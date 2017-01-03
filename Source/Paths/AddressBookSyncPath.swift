@@ -8,22 +8,22 @@ open class AddressBookSyncPath: PathSegment {
         }
     }
     // Contacts Synchronization
-    open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: GetResponse?, error) in
+    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     // Contacts Synchronization
-    open func get(parameters: Parameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(), parameters: parameters) { (t: GetResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     // Contacts Synchronization
-    open func get(parameters: GetParameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        get(parameters: parameters.toParameters(), callback: callback)
+    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class GetParameters: Mappable {
+    open class ListParameters: Mappable {
         // Type of synchronization. The default value is 'FSync'
         open var `syncType`: String?
         // Value of syncToken property of the last sync request response
@@ -55,7 +55,7 @@ open class AddressBookSyncPath: PathSegment {
             return result
         }
     }
-    open class GetResponse: Mappable {
+    open class ListResponse: Mappable {
         // List of contacts with synchronization information
         open var `records`: [PersonalContactInfo]?
         // Sync type, token and time

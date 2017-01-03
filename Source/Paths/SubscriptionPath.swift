@@ -47,6 +47,36 @@ open class SubscriptionPath: PathSegment {
             return result
         }
     }
+    // Get Subscription List
+    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+            callback(t, error)
+        }
+    }
+    open class ListResponse: Mappable {
+        // Canonical URI of a subscription resource
+        open var `uri`: String?
+        // List of subscriptions for the current user and application
+        open var `records`: [SubscriptionInfo]?
+        public init() {
+        }
+        convenience public init(uri: String? = nil, records: [SubscriptionInfo]? = nil) {
+            self.init()
+            self.uri = `uri`
+            self.records = `records`
+        }
+        required public init?(map: Map) {
+        }
+        open func mapping(map: Map) {
+            `uri` <- map["uri"]
+            `records` <- map["records"]
+        }
+        open func toParameters() -> Parameters {
+            var result = [String: String]()
+            result["json-string"] = self.toJSONString(prettyPrint: false)!
+            return result
+        }
+    }
     // Cancel Subscription by ID
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in

@@ -41,10 +41,4 @@ open class GroupPath: PathSegment {
             return result
         }
     }
-    // Get Contact Group by ID
-    open func get(callback: @escaping (_ t: GroupInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: GroupInfo?, error) in
-            callback(t, error)
-        }
-    }
 }

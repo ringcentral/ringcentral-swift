@@ -8,22 +8,22 @@ open class MessageSyncPath: PathSegment {
         }
     }
     // Message Synchronization
-    open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: GetResponse?, error) in
+    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     // Message Synchronization
-    open func get(parameters: Parameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(), parameters: parameters) { (t: GetResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     // Message Synchronization
-    open func get(parameters: GetParameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        get(parameters: parameters.toParameters(), callback: callback)
+    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class GetParameters: Mappable {
+    open class ListParameters: Mappable {
         // Conversation identifier for the resulting messages. Meaningful for SMS and Pager messages only.
         open var `conversationId`: Int?
         // The start datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
@@ -75,7 +75,7 @@ open class MessageSyncPath: PathSegment {
             return result
         }
     }
-    open class GetResponse: Mappable {
+    open class ListResponse: Mappable {
         // List of message records with synchronization information
         open var `records`: [MessageInfo]?
         // Sync type, token and time
