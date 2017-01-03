@@ -234,6 +234,7 @@
 		875500E11DB4C6B00089B0EA /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875500E01DB4C6B00089B0EA /* Async.framework */; };
 		875500E21DB4C6BA0089B0EA /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875500E01DB4C6B00089B0EA /* Async.framework */; };
 		875500E31DB4C6C20089B0EA /* Async.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 875500E01DB4C6B00089B0EA /* Async.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		877021BB1E1B7D2800857F0F /* BlockedNumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */; };
 		878BC2DF1DF7EA56009F28B3 /* IPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DD1DF7EA56009F28B3 /* IPath.swift */; };
 		878BC2E01DF7EA56009F28B3 /* PathSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DE1DF7EA56009F28B3 /* PathSegment.swift */; };
 		878BC2E11DF7F090009F28B3 /* IPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DD1DF7EA56009F28B3 /* IPath.swift */; };
@@ -1189,6 +1190,7 @@
 		875500D91DB468540089B0EA /* SubscriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionTest.swift; path = Tests/SubscriptionTest.swift; sourceTree = "<group>"; };
 		875500DC1DB494E10089B0EA /* PubNub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubNub.framework; path = Carthage/Build/Mac/PubNub.framework; sourceTree = "<group>"; };
 		875500E01DB4C6B00089B0EA /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/Mac/Async.framework; sourceTree = "<group>"; };
+		877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockedNumberTest.swift; path = Tests/BlockedNumberTest.swift; sourceTree = "<group>"; };
 		87748F491DD02A2400DDCF21 /* FaxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaxTest.swift; path = Tests/FaxTest.swift; sourceTree = "<group>"; };
 		878BC2DD1DF7EA56009F28B3 /* IPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPath.swift; path = Source/Path/IPath.swift; sourceTree = "<group>"; };
 		878BC2DE1DF7EA56009F28B3 /* PathSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathSegment.swift; path = Source/Path/PathSegment.swift; sourceTree = "<group>"; };
@@ -1661,6 +1663,7 @@
 		879ADF141D98E759008E7735 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */,
 				87F5C72C1DE30ECF00A0D681 /* TokenTest.swift */,
 				87F5C7291DE2F85900A0D681 /* AuthorizationTest.swift */,
 				8734DF6B1DD5A6F40042951B /* DefaultValueTest.swift */,
@@ -2809,6 +2812,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				877021BB1E1B7D2800857F0F /* BlockedNumberTest.swift in Sources */,
 				878BC5721DF7F0CA009F28B3 /* TokenTest.swift in Sources */,
 				878BC5731DF7F0CA009F28B3 /* AuthorizationTest.swift in Sources */,
 				878BC5741DF7F0CA009F28B3 /* DefaultValueTest.swift in Sources */,
