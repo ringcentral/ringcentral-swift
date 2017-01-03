@@ -33,6 +33,28 @@ class SubscriptionTest: BaseTest {
         }
     }
 
+    func testList() {
+        let subscription = rc.restapi("v1.0").subscription().new()
+        subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
+        subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/presence?detailedTelephonyState=true")
+        subscription.listeners.append { notification in
+            print(notification.json!)
+        }
+
+        let expectation1 = expectation(description: "expectation1")
+        subscription.register() { error in
+            XCTAssertNil(error)
+            rc.restapi().subscription().list() { list, error in
+                XCTAssertTrue(list?.records?.count ?? 0 > 0)
+                expectation1.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error)
+        }
+    }
+
     func testSMSNotification() {
         let subscription = rc.restapi().subscription().new()
         subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
