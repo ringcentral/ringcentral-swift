@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class RuleInfo_ForwardingNumberInfo: Mappable {
+open class RuleInfo_ForwardingNumberInfo: Definition {
     // Link to a forwarding number resource
     open var `uri`: String?
     // Internal identifier of a forwarding number
@@ -10,8 +9,6 @@ open class RuleInfo_ForwardingNumberInfo: Mappable {
     open var `phoneNumber`: String?
     // Title of a forwarding number
     open var `label`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil, id: String? = nil, phoneNumber: String? = nil, label: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -20,16 +17,15 @@ open class RuleInfo_ForwardingNumberInfo: Mappable {
         self.label = `label`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `phoneNumber` <- map["phoneNumber"]
         `label` <- map["label"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

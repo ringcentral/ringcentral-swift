@@ -23,7 +23,7 @@ open class CallLogSyncPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Type of synchronization. 'FSync' is a default value
         open var `syncType`: String?
         // Value of syncToken property of last sync request response
@@ -34,8 +34,6 @@ open class CallLogSyncPath: PathSegment {
         open var `recordCount`: Int?
         // Type of calls to be returned. The default value is 'All'
         open var `statusGroup`: String?
-        public init() {
-        }
         convenience public init(syncType: String? = nil, syncToken: String? = nil, dateFrom: String? = nil, recordCount: Int? = nil, statusGroup: String? = nil) {
             self.init()
             self.syncType = `syncType`
@@ -45,42 +43,38 @@ open class CallLogSyncPath: PathSegment {
             self.statusGroup = `statusGroup`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `syncType` <- map["syncType"]
             `syncToken` <- map["syncToken"]
             `dateFrom` <- map["dateFrom"]
             `recordCount` <- map["recordCount"]
             `statusGroup` <- map["statusGroup"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of call log records with synchronization information. For ISync the total number of returned records is limited to 250; this includes both new records and the old ones, specified by the recordCount parameter
         open var `records`: [CallLogRecord]?
         // Sync type, token and time
         open var `syncInfo`: SyncInfo?
-        public init() {
-        }
         convenience public init(records: [CallLogRecord]? = nil, syncInfo: SyncInfo? = nil) {
             self.init()
             self.records = `records`
             self.syncInfo = `syncInfo`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `syncInfo` <- map["syncInfo"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

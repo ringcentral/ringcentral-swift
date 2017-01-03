@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class BlockedNumberInfo: Mappable {
+open class BlockedNumberInfo: Definition {
     // Standard resource properties ID and canonical URI, see the section called “Resource Identification Properties”
     open var `id`: String?
     // Canonical URI of a blocked number resource
@@ -10,8 +9,6 @@ open class BlockedNumberInfo: Mappable {
     open var `name`: String?
     // Phone number to be blocked
     open var `phoneNumber`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, name: String? = nil, phoneNumber: String? = nil) {
         self.init()
         self.id = `id`
@@ -20,16 +17,15 @@ open class BlockedNumberInfo: Mappable {
         self.phoneNumber = `phoneNumber`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `name` <- map["name"]
         `phoneNumber` <- map["phoneNumber"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

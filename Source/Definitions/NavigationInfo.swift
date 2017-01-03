@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class NavigationInfo: Mappable {
+open class NavigationInfo: Definition {
     // First page of the list
     open var `firstPage`: Page?
     // Next page of the list
@@ -10,8 +9,6 @@ open class NavigationInfo: Mappable {
     open var `previousPage`: Page?
     // Last page of the list
     open var `lastPage`: Page?
-    public init() {
-    }
     convenience public init(firstPage: Page? = nil, nextPage: Page? = nil, previousPage: Page? = nil, lastPage: Page? = nil) {
         self.init()
         self.firstPage = `firstPage`
@@ -20,16 +17,15 @@ open class NavigationInfo: Mappable {
         self.lastPage = `lastPage`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `firstPage` <- map["firstPage"]
         `nextPage` <- map["nextPage"]
         `previousPage` <- map["previousPage"]
         `lastPage` <- map["lastPage"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

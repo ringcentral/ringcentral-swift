@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class InstantMessageEvent_CallerInfo: Mappable {
+open class InstantMessageEvent_CallerInfo: Definition {
     // Phone number in E.164 (with '+' sign) format
     open var `phoneNumber`: String?
     // Extension number
@@ -10,8 +9,6 @@ open class InstantMessageEvent_CallerInfo: Mappable {
     open var `location`: String?
     // Symbolic name associated with a caller/callee. If the phone does not belong to the known extension, only the location is returned, the name is not determined then
     open var `name`: String?
-    public init() {
-    }
     convenience public init(phoneNumber: String? = nil, extensionNumber: String? = nil, location: String? = nil, name: String? = nil) {
         self.init()
         self.phoneNumber = `phoneNumber`
@@ -20,16 +17,15 @@ open class InstantMessageEvent_CallerInfo: Mappable {
         self.name = `name`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `phoneNumber` <- map["phoneNumber"]
         `extensionNumber` <- map["extensionNumber"]
         `location` <- map["location"]
         `name` <- map["name"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

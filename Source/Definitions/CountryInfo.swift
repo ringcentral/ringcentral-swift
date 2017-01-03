@@ -1,15 +1,12 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class CountryInfo: Mappable {
+open class CountryInfo: Definition {
     // Internal identifier of a home country
     open var `id`: String?
     // Canonical URI of a home country
     open var `uri`: String?
     // Official name of a home country
     open var `name`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, name: String? = nil) {
         self.init()
         self.id = `id`
@@ -17,15 +14,14 @@ open class CountryInfo: Mappable {
         self.name = `name`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `name` <- map["name"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

@@ -235,6 +235,7 @@
 		875500E21DB4C6BA0089B0EA /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875500E01DB4C6B00089B0EA /* Async.framework */; };
 		875500E31DB4C6C20089B0EA /* Async.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 875500E01DB4C6B00089B0EA /* Async.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		877021BB1E1B7D2800857F0F /* BlockedNumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */; };
+		877021BD1E1BA32B00857F0F /* Definition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877021BC1E1BA32B00857F0F /* Definition.swift */; };
 		878BC2DF1DF7EA56009F28B3 /* IPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DD1DF7EA56009F28B3 /* IPath.swift */; };
 		878BC2E01DF7EA56009F28B3 /* PathSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DE1DF7EA56009F28B3 /* PathSegment.swift */; };
 		878BC2E11DF7F090009F28B3 /* IPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BC2DD1DF7EA56009F28B3 /* IPath.swift */; };
@@ -1191,6 +1192,7 @@
 		875500DC1DB494E10089B0EA /* PubNub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubNub.framework; path = Carthage/Build/Mac/PubNub.framework; sourceTree = "<group>"; };
 		875500E01DB4C6B00089B0EA /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/Mac/Async.framework; sourceTree = "<group>"; };
 		877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockedNumberTest.swift; path = Tests/BlockedNumberTest.swift; sourceTree = "<group>"; };
+		877021BC1E1BA32B00857F0F /* Definition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Definition.swift; path = Source/Definition/Definition.swift; sourceTree = "<group>"; };
 		87748F491DD02A2400DDCF21 /* FaxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaxTest.swift; path = Tests/FaxTest.swift; sourceTree = "<group>"; };
 		878BC2DD1DF7EA56009F28B3 /* IPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPath.swift; path = Source/Path/IPath.swift; sourceTree = "<group>"; };
 		878BC2DE1DF7EA56009F28B3 /* PathSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathSegment.swift; path = Source/Path/PathSegment.swift; sourceTree = "<group>"; };
@@ -1534,6 +1536,14 @@
 			name = Paths;
 			sourceTree = "<group>";
 		};
+		877021BE1E1BA33000857F0F /* Definition */ = {
+			isa = PBXGroup;
+			children = (
+				877021BC1E1BA32B00857F0F /* Definition.swift */,
+			);
+			name = Definition;
+			sourceTree = "<group>";
+		};
 		878BC2DC1DF7EA49009F28B3 /* Path */ = {
 			isa = PBXGroup;
 			children = (
@@ -1613,6 +1623,7 @@
 		879ADEF31D98C4C5008E7735 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				877021BE1E1BA33000857F0F /* Definition */,
 				878BC2DC1DF7EA49009F28B3 /* Path */,
 				8734DF6F1DD5CC020042951B /* Paths */,
 				8734DF6E1DD5CBF60042951B /* Definitions */,
@@ -1960,6 +1971,7 @@
 				8734E0391DD5CC120042951B /* ExtensionInfo_Request_ContactInfo_RegionalSettings_GreetingLanguage.swift in Sources */,
 				8734E09A1DD5CC120042951B /* SubscriptionInfo.swift in Sources */,
 				8734E00E1DD5CC120042951B /* AccountServiceInfo.swift in Sources */,
+				877021BD1E1BA32B00857F0F /* Definition.swift in Sources */,
 				8734E0651DD5CC120042951B /* MessageChange.swift in Sources */,
 				8734E1161DD5CC210042951B /* StatePath.swift in Sources */,
 				8734E07D1DD5CC120042951B /* PresenceNotification.swift in Sources */,

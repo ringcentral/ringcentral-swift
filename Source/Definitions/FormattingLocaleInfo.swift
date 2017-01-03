@@ -1,15 +1,12 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class FormattingLocaleInfo: Mappable {
+open class FormattingLocaleInfo: Definition {
     // Internal identifier of a formatting language
     open var `id`: String?
     // Localization code of a formatting language
     open var `localeCode`: String?
     // Official name of a formatting language
     open var `name`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, localeCode: String? = nil, name: String? = nil) {
         self.init()
         self.id = `id`
@@ -17,15 +14,14 @@ open class FormattingLocaleInfo: Mappable {
         self.name = `name`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `localeCode` <- map["localeCode"]
         `name` <- map["name"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

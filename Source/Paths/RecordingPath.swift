@@ -16,7 +16,7 @@ open class RecordingPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Mappable {
+    open class GetResponse: Definition {
         // Internal identifier of the call recording
         open var `id`: String?
         // Link to the call recording binary content
@@ -25,8 +25,6 @@ open class RecordingPath: PathSegment {
         open var `contentType`: String?
         // Recorded call duration
         open var `duration`: Int?
-        public init() {
-        }
         convenience public init(id: String? = nil, contentUri: String? = nil, contentType: String? = nil, duration: Int? = nil) {
             self.init()
             self.id = `id`
@@ -35,17 +33,16 @@ open class RecordingPath: PathSegment {
             self.duration = `duration`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `id` <- (map["id"], StringTransform())
             `contentUri` <- map["contentUri"]
             `contentType` <- map["contentType"]
             `duration` <- map["duration"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

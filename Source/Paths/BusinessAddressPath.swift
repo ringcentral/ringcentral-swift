@@ -13,7 +13,7 @@ open class BusinessAddressPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Mappable {
+    open class GetResponse: Definition {
         // Canonical URI of the business address resource
         open var `uri`: String?
         // Company business name
@@ -22,8 +22,6 @@ open class BusinessAddressPath: PathSegment {
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
         convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -32,17 +30,16 @@ open class BusinessAddressPath: PathSegment {
             self.businessAddress = `businessAddress`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `company` <- map["company"]
             `email` <- map["email"]
             `businessAddress` <- map["businessAddress"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Update Company Business Address
@@ -61,15 +58,13 @@ open class BusinessAddressPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
+    open class PutParameters: Definition {
         // Company business name
         open var `company`: String?
         // Company business email address
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
         convenience public init(company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.company = `company`
@@ -77,19 +72,18 @@ open class BusinessAddressPath: PathSegment {
             self.businessAddress = `businessAddress`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `company` <- map["company"]
             `email` <- map["email"]
             `businessAddress` <- map["businessAddress"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class PutResponse: Mappable {
+    open class PutResponse: Definition {
         // Canonical URI of the business address resource
         open var `uri`: String?
         // Company business name
@@ -98,8 +92,6 @@ open class BusinessAddressPath: PathSegment {
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
         convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -108,17 +100,16 @@ open class BusinessAddressPath: PathSegment {
             self.businessAddress = `businessAddress`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `company` <- map["company"]
             `email` <- map["email"]
             `businessAddress` <- map["businessAddress"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

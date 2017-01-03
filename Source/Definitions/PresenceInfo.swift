@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PresenceInfo: Mappable {
+open class PresenceInfo: Definition {
     // Canonical URI of a presence info resource
     open var `uri`: String?
     // If 'True' enables other extensions to see the extension presence status
@@ -22,8 +21,6 @@ open class PresenceInfo: Mappable {
     open var `telephonyStatus`: String?
     // User-defined presence status (as previously published by the user)
     open var `userStatus`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil, allowSeeMyPresence: Bool? = nil, dndStatus: String? = nil, extension: PresenceInfo_ExtensionInfo? = nil, message: String? = nil, pickUpCallsOnHold: Bool? = nil, presenceStatus: String? = nil, ringOnMonitoredCall: Bool? = nil, telephonyStatus: String? = nil, userStatus: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -38,8 +35,12 @@ open class PresenceInfo: Mappable {
         self.userStatus = `userStatus`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `allowSeeMyPresence` <- map["allowSeeMyPresence"]
         `dndStatus` <- map["dndStatus"]
@@ -50,10 +51,5 @@ open class PresenceInfo: Mappable {
         `ringOnMonitoredCall` <- map["ringOnMonitoredCall"]
         `telephonyStatus` <- map["telephonyStatus"]
         `userStatus` <- map["userStatus"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

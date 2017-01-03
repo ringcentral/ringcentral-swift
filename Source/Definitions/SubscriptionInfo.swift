@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class SubscriptionInfo: Mappable {
+open class SubscriptionInfo: Definition {
     // Internal identifier of a subscription
     open var `id`: String?
     // Canonical URI of a subscription
@@ -18,8 +17,6 @@ open class SubscriptionInfo: Mappable {
     open var `creationTime`: String?
     // Delivery mode data
     open var `deliveryMode`: DeliveryMode?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, eventFilters: [String]? = nil, expirationTime: String? = nil, expiresIn: Int? = nil, status: String? = nil, creationTime: String? = nil, deliveryMode: DeliveryMode? = nil) {
         self.init()
         self.id = `id`
@@ -32,8 +29,12 @@ open class SubscriptionInfo: Mappable {
         self.deliveryMode = `deliveryMode`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `eventFilters` <- map["eventFilters"]
@@ -42,10 +43,5 @@ open class SubscriptionInfo: Mappable {
         `status` <- map["status"]
         `creationTime` <- map["creationTime"]
         `deliveryMode` <- map["deliveryMode"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

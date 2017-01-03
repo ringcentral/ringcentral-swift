@@ -23,24 +23,21 @@ open class RevokePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Active access or refresh token to be revoked
         open var `token`: String?
-        public init() {
-        }
         convenience public init(token: String? = nil) {
             self.init()
             self.token = `token`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `token` <- map["token"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

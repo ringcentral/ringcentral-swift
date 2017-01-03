@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class LookUpPhoneNumber_PhoneNumberInfo: Mappable {
+open class LookUpPhoneNumber_PhoneNumberInfo: Definition {
     // Phone number in E.164 format without a '+'
     open var `phoneNumber`: String?
     // Phone number formatted according to current brand's default country
@@ -10,8 +9,6 @@ open class LookUpPhoneNumber_PhoneNumberInfo: Mappable {
     open var `vanityPattern`: String?
     // The value is returned if the extendedSearch parameter is true. '10' is the closest match
     open var `rank`: Int?
-    public init() {
-    }
     convenience public init(phoneNumber: String? = nil, formattedNumber: String? = nil, vanityPattern: String? = nil, rank: Int? = nil) {
         self.init()
         self.phoneNumber = `phoneNumber`
@@ -20,16 +17,15 @@ open class LookUpPhoneNumber_PhoneNumberInfo: Mappable {
         self.rank = `rank`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `phoneNumber` <- map["phoneNumber"]
         `formattedNumber` <- map["formattedNumber"]
         `vanityPattern` <- map["vanityPattern"]
         `rank` <- map["rank"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

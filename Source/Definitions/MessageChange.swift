@@ -1,15 +1,12 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class MessageChange: Mappable {
+open class MessageChange: Definition {
     // Message type
     open var `type`: String?
     // The number of new messages. Can be omitted if the value is zero
     open var `newCount`: Int?
     // The number of updated messages. Can be omitted if the value is zero
     open var `updatedCount`: Int?
-    public init() {
-    }
     convenience public init(type: String? = nil, newCount: Int? = nil, updatedCount: Int? = nil) {
         self.init()
         self.type = `type`
@@ -17,15 +14,14 @@ open class MessageChange: Mappable {
         self.updatedCount = `updatedCount`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `type` <- map["type"]
         `newCount` <- map["newCount"]
         `updatedCount` <- map["updatedCount"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

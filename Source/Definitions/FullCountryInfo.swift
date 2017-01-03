@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class FullCountryInfo: Mappable {
+open class FullCountryInfo: Definition {
     // Internal identifier of a country
     open var `id`: String?
     // Canonical URI of a country
@@ -18,8 +17,6 @@ open class FullCountryInfo: Mappable {
     open var `numberSelling`: Bool?
     // Specifies whether login with the phone numbers of this country is enabled or not
     open var `loginAllowed`: Bool?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, callingCode: String? = nil, emergencyCalling: Bool? = nil, isoCode: String? = nil, name: String? = nil, numberSelling: Bool? = nil, loginAllowed: Bool? = nil) {
         self.init()
         self.id = `id`
@@ -32,8 +29,12 @@ open class FullCountryInfo: Mappable {
         self.loginAllowed = `loginAllowed`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `callingCode` <- map["callingCode"]
@@ -42,10 +43,5 @@ open class FullCountryInfo: Mappable {
         `name` <- map["name"]
         `numberSelling` <- map["numberSelling"]
         `loginAllowed` <- map["loginAllowed"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

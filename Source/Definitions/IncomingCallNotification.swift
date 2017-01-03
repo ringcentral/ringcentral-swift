@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class IncomingCallNotification: Mappable {
+open class IncomingCallNotification: Definition {
     // Event filter URI
     open var `event`: String?
     // Universally unique identifier of a notification
@@ -36,8 +35,6 @@ open class IncomingCallNotification: Mappable {
     open var `srvLvlExt`: String?
     // File containing recorded caller name
     open var `recUrl`: String?
-    public init() {
-    }
     convenience public init(event: String? = nil, uuid: String? = nil, subscriptionId: String? = nil, timestamp: String? = nil, extensionId: String? = nil, action: String? = nil, sessionId: String? = nil, serverId: String? = nil, from: String? = nil, fromName: String? = nil, to: String? = nil, toName: String? = nil, sid: String? = nil, toUrl: String? = nil, srvLvl: String? = nil, srvLvlExt: String? = nil, recUrl: String? = nil) {
         self.init()
         self.event = `event`
@@ -59,8 +56,12 @@ open class IncomingCallNotification: Mappable {
         self.recUrl = `recUrl`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `event` <- map["event"]
         `uuid` <- map["uuid"]
         `subscriptionId` <- map["subscriptionId"]
@@ -78,10 +79,5 @@ open class IncomingCallNotification: Mappable {
         `srvLvl` <- map["srvLvl"]
         `srvLvlExt` <- map["srvLvlExt"]
         `recUrl` <- map["recUrl"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

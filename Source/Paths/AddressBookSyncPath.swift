@@ -23,7 +23,7 @@ open class AddressBookSyncPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Type of synchronization. The default value is 'FSync'
         open var `syncType`: String?
         // Value of syncToken property of the last sync request response
@@ -32,8 +32,6 @@ open class AddressBookSyncPath: PathSegment {
         open var `perPage`: Int?
         // Internal identifier of a page. It can be obtained from the 'nextPageId' parameter passed in response body
         open var `pageId`: Int?
-        public init() {
-        }
         convenience public init(syncType: String? = nil, syncToken: String? = nil, perPage: Int? = nil, pageId: Int? = nil) {
             self.init()
             self.syncType = `syncType`
@@ -42,20 +40,19 @@ open class AddressBookSyncPath: PathSegment {
             self.pageId = `pageId`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `syncType` <- map["syncType"]
             `syncToken` <- map["syncToken"]
             `perPage` <- map["perPage"]
             `pageId` <- map["pageId"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of contacts with synchronization information
         open var `records`: [PersonalContactInfo]?
         // Sync type, token and time
@@ -64,8 +61,6 @@ open class AddressBookSyncPath: PathSegment {
         open var `nextPageId`: Int?
         // URL of the next page, if any
         open var `nextPageUri`: String?
-        public init() {
-        }
         convenience public init(records: [PersonalContactInfo]? = nil, syncInfo: SyncInfo? = nil, nextPageId: Int? = nil, nextPageUri: String? = nil) {
             self.init()
             self.records = `records`
@@ -74,17 +69,16 @@ open class AddressBookSyncPath: PathSegment {
             self.nextPageUri = `nextPageUri`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `syncInfo` <- map["syncInfo"]
             `nextPageId` <- map["nextPageId"]
             `nextPageUri` <- map["nextPageUri"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

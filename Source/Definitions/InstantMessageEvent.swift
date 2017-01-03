@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class InstantMessageEvent: Mappable {
+open class InstantMessageEvent: Definition {
     // Internal identifier of a message
     open var `id`: String?
     // Message receiver(s) information
@@ -30,8 +29,6 @@ open class InstantMessageEvent: Mappable {
     open var `messageStatus`: String?
     // Identifier of the conversation the message belongs to
     open var `conversationId`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, to: [InstantMessageEvent_CallerInfo]? = nil, from: InstantMessageEvent_CallerInfo? = nil, type: String? = nil, creationTime: String? = nil, lastModifiedTime: String? = nil, readStatus: String? = nil, priority: String? = nil, attachments: [InstantMessageAttachmentInfo]? = nil, direction: String? = nil, availability: String? = nil, subject: String? = nil, messageStatus: String? = nil, conversationId: String? = nil) {
         self.init()
         self.id = `id`
@@ -50,8 +47,12 @@ open class InstantMessageEvent: Mappable {
         self.conversationId = `conversationId`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `to` <- map["to"]
         `from` <- map["from"]
@@ -66,10 +67,5 @@ open class InstantMessageEvent: Mappable {
         `subject` <- map["subject"]
         `messageStatus` <- map["messageStatus"]
         `conversationId` <- map["conversationId"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

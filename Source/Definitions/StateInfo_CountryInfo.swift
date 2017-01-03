@@ -1,27 +1,23 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class StateInfo_CountryInfo: Mappable {
+open class StateInfo_CountryInfo: Definition {
     // Internal identifier of a state
     open var `id`: String?
     // Canonical URI of a state
     open var `uri`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

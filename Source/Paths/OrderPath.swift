@@ -23,44 +23,38 @@ open class OrderPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // List of devices to order
         open var `devices`: [DeviceInfo]?
-        public init() {
-        }
         convenience public init(devices: [DeviceInfo]? = nil) {
             self.init()
             self.devices = `devices`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `devices` <- map["devices"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
-    open class PostResponse: Mappable {
+    open class PostResponse: Definition {
         // List of the ordered devices
         open var `devices`: [DeviceInfo]?
-        public init() {
-        }
         convenience public init(devices: [DeviceInfo]? = nil) {
             self.init()
             self.devices = `devices`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `devices` <- map["devices"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Get Order by ID
@@ -69,15 +63,13 @@ open class OrderPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Mappable {
+    open class GetResponse: Definition {
         // Identifier of a device
         open var `id`: String?
         // Canonical URI of an order resource
         open var `uri`: String?
         // List of the ordered devices
         open var `devices`: [DeviceInfo]?
-        public init() {
-        }
         convenience public init(id: String? = nil, uri: String? = nil, devices: [DeviceInfo]? = nil) {
             self.init()
             self.id = `id`
@@ -85,16 +77,15 @@ open class OrderPath: PathSegment {
             self.devices = `devices`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `id` <- (map["id"], StringTransform())
             `uri` <- map["uri"]
             `devices` <- map["devices"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

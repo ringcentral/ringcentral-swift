@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class LanguageInfo: Mappable {
+open class LanguageInfo: Definition {
     // Internal identifier of a language
     open var `id`: String?
     // Canonical URI of a language
@@ -16,8 +15,6 @@ open class LanguageInfo: Mappable {
     open var `name`: String?
     // Indicates whether a language is available as UI language
     open var `ui`: Bool?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, greeting: Bool? = nil, formattingLocale: Bool? = nil, localeCode: String? = nil, name: String? = nil, ui: Bool? = nil) {
         self.init()
         self.id = `id`
@@ -29,8 +26,12 @@ open class LanguageInfo: Mappable {
         self.ui = `ui`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `greeting` <- map["greeting"]
@@ -38,10 +39,5 @@ open class LanguageInfo: Mappable {
         `localeCode` <- map["localeCode"]
         `name` <- map["name"]
         `ui` <- map["ui"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

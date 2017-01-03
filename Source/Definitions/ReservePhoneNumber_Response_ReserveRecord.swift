@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ReservePhoneNumber_Response_ReserveRecord: Mappable {
+open class ReservePhoneNumber_Response_ReserveRecord: Definition {
     // Phone number in E.164 format without a '+'
     open var `phoneNumber`: String?
     // Domestic format of a phone number
@@ -14,8 +13,6 @@ open class ReservePhoneNumber_Response_ReserveRecord: Mappable {
     open var `status`: String?
     // The error code in case of reservation/un-reservation failure
     open var `error`: String?
-    public init() {
-    }
     convenience public init(phoneNumber: String? = nil, formattedNumber: String? = nil, reservedTill: String? = nil, reservationId: String? = nil, status: String? = nil, error: String? = nil) {
         self.init()
         self.phoneNumber = `phoneNumber`
@@ -26,18 +23,17 @@ open class ReservePhoneNumber_Response_ReserveRecord: Mappable {
         self.error = `error`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `phoneNumber` <- map["phoneNumber"]
         `formattedNumber` <- map["formattedNumber"]
         `reservedTill` <- map["reservedTill"]
         `reservationId` <- map["reservationId"]
         `status` <- map["status"]
         `error` <- map["error"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

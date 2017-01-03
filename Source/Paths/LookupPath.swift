@@ -23,7 +23,7 @@ open class LookupPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Area code of the location
         open var `areaCode`: Int?
         // Two-letter country code, complying with the ISO standard
@@ -48,8 +48,6 @@ open class LookupPath: PathSegment {
         open var `perPage`: Int?
         // Specifies if SMS activation is available for the number. If specified, it is taken into account in all returned phone numbers both in the phone numbers satisfying to parameters of lookup and in alternative phone numbers (in case when extendedSearch is specified). If not specified, the value is null.
         open var `smsEnabled`: Bool?
-        public init() {
-        }
         convenience public init(areaCode: Int? = nil, countryCode: String? = nil, countryId: String? = nil, exclude: String? = nil, extendedSearch: Bool? = nil, line: String? = nil, numberPattern: String? = nil, nxx: String? = nil, npa: String? = nil, paymentType: String? = nil, perPage: Int? = nil, smsEnabled: Bool? = nil) {
             self.init()
             self.areaCode = `areaCode`
@@ -66,8 +64,12 @@ open class LookupPath: PathSegment {
             self.smsEnabled = `smsEnabled`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `areaCode` <- map["areaCode"]
             `countryCode` <- map["countryCode"]
             `countryId` <- map["countryId"]
@@ -81,34 +83,26 @@ open class LookupPath: PathSegment {
             `perPage` <- map["perPage"]
             `smsEnabled` <- map["smsEnabled"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class PostResponse: Mappable {
+    open class PostResponse: Definition {
         // Canonical URI of the phone numbers resource
         open var `uri`: String?
         // List of phone numbers filtered by the specified criteria
         open var `records`: [LookUpPhoneNumber_PhoneNumberInfo]?
-        public init() {
-        }
         convenience public init(uri: String? = nil, records: [LookUpPhoneNumber_PhoneNumberInfo]? = nil) {
             self.init()
             self.uri = `uri`
             self.records = `records`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

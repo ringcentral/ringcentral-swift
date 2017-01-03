@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class TimezoneInfo: Mappable {
+open class TimezoneInfo: Definition {
     // Internal identifier of a timezone
     open var `id`: String?
     // Canonical URI of a timezone
@@ -10,8 +9,6 @@ open class TimezoneInfo: Mappable {
     open var `name`: String?
     // Meaningful description of the timezone
     open var `description`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, name: String? = nil, description: String? = nil) {
         self.init()
         self.id = `id`
@@ -20,16 +17,15 @@ open class TimezoneInfo: Mappable {
         self.description = `description`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `name` <- map["name"]
         `description` <- map["description"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

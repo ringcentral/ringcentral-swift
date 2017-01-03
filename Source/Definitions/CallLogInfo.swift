@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class CallLogInfo: Mappable {
+open class CallLogInfo: Definition {
     // Internal identifier of a cal log record
     open var `id`: String?
     // Canonical URI of a call log record
@@ -26,8 +25,6 @@ open class CallLogInfo: Mappable {
     open var `duration`: Int?
     // Call recording data. Returned if the call is recorded
     open var `recording`: RecordingInfo?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil) {
         self.init()
         self.id = `id`
@@ -44,8 +41,12 @@ open class CallLogInfo: Mappable {
         self.recording = `recording`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `sessionId` <- map["sessionId"]
@@ -58,10 +59,5 @@ open class CallLogInfo: Mappable {
         `startTime` <- map["startTime"]
         `duration` <- map["duration"]
         `recording` <- map["recording"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

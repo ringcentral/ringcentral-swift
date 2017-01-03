@@ -23,28 +23,25 @@ open class SubscriptionPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Mandatory. Collection of URIs to API resources (see Event Types for details). For APNS transport type only message event filter is available
         open var `eventFilters`: [String]?
         // Notification delivery settings
         open var `deliveryMode`: Subscription_Request_DeliveryMode?
-        public init() {
-        }
         convenience public init(eventFilters: [String]? = nil, deliveryMode: Subscription_Request_DeliveryMode? = nil) {
             self.init()
             self.eventFilters = `eventFilters`
             self.deliveryMode = `deliveryMode`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `eventFilters` <- map["eventFilters"]
             `deliveryMode` <- map["deliveryMode"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Get Subscription List
@@ -53,28 +50,25 @@ open class SubscriptionPath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // Canonical URI of a subscription resource
         open var `uri`: String?
         // List of subscriptions for the current user and application
         open var `records`: [SubscriptionInfo]?
-        public init() {
-        }
         convenience public init(uri: String? = nil, records: [SubscriptionInfo]? = nil) {
             self.init()
             self.uri = `uri`
             self.records = `records`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Cancel Subscription by ID
@@ -105,24 +99,21 @@ open class SubscriptionPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
+    open class PutParameters: Definition {
         // Collection of URIs to API resources (see Event Types). Mandatory field
         open var `eventFilters`: [String]?
-        public init() {
-        }
         convenience public init(eventFilters: [String]? = nil) {
             self.init()
             self.eventFilters = `eventFilters`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `eventFilters` <- map["eventFilters"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

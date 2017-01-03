@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PagingInfo: Mappable {
+open class PagingInfo: Definition {
     // The current page number. 1-indexed, so the first page is 1 by default. May be omitted if result is empty (because non-existent page was specified or perPage=0 was requested)
     open var `page`: Int?
     // Current page size, describes how many items are in each page. Default value is 100. Maximum value is 1000. If perPage value in the request is greater than 1000, the maximum value (1000) is applied
@@ -14,8 +13,6 @@ open class PagingInfo: Mappable {
     open var `totalPages`: Int?
     // The total number of elements in a dataset. May be omitted for some resource due to performance reasons
     open var `totalElements`: Int?
-    public init() {
-    }
     convenience public init(page: Int? = nil, perPage: Int? = nil, pageStart: Int? = nil, pageEnd: Int? = nil, totalPages: Int? = nil, totalElements: Int? = nil) {
         self.init()
         self.page = `page`
@@ -26,18 +23,17 @@ open class PagingInfo: Mappable {
         self.totalElements = `totalElements`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `page` <- map["page"]
         `perPage` <- map["perPage"]
         `pageStart` <- map["pageStart"]
         `pageEnd` <- map["pageEnd"]
         `totalPages` <- map["totalPages"]
         `totalElements` <- map["totalElements"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

@@ -26,7 +26,7 @@ open class MessageStorePath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Specifies the availability status for the resulting messages. Default value is 'Alive'. Multiple values are accepted
         open var `availability`: String?
         // Specifies the conversation identifier for the resulting messages
@@ -49,8 +49,6 @@ open class MessageStorePath: PathSegment {
         open var `perPage`: Int?
         // The phone number. If specified, messages are returned for this particular phone number only
         open var `phoneNumber`: String?
-        public init() {
-        }
         convenience public init(availability: String? = nil, conversationId: Int? = nil, dateFrom: String? = nil, dateTo: String? = nil, direction: String? = nil, distinctConversations: Bool? = nil, messageType: String? = nil, readStatus: String? = nil, page: Int? = nil, perPage: Int? = nil, phoneNumber: String? = nil) {
             self.init()
             self.availability = `availability`
@@ -66,8 +64,12 @@ open class MessageStorePath: PathSegment {
             self.phoneNumber = `phoneNumber`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `availability` <- map["availability"]
             `conversationId` <- map["conversationId"]
             `dateFrom` <- map["dateFrom"]
@@ -80,21 +82,14 @@ open class MessageStorePath: PathSegment {
             `perPage` <- map["perPage"]
             `phoneNumber` <- map["phoneNumber"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of records with message information
         open var `records`: [MessageInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
-        public init() {
-        }
         convenience public init(records: [MessageInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
@@ -102,16 +97,15 @@ open class MessageStorePath: PathSegment {
             self.paging = `paging`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Delete Message by ID
@@ -130,28 +124,25 @@ open class MessageStorePath: PathSegment {
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
     }
-    open class DeleteParameters: Mappable {
+    open class DeleteParameters: Definition {
         // If the value is 'True', then the message is purged immediately with all the attachments. The default value is 'False'
         open var `purge`: Bool?
         // Internal identifier of a message thread
         open var `conversationId`: Int?
-        public init() {
-        }
         convenience public init(purge: Bool? = nil, conversationId: Int? = nil) {
             self.init()
             self.purge = `purge`
             self.conversationId = `conversationId`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `purge` <- map["purge"]
             `conversationId` <- map["conversationId"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Get Message by ID
@@ -176,24 +167,21 @@ open class MessageStorePath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
+    open class PutParameters: Definition {
         // Read status of a message to be changed. Multiple values are accepted
         open var `readStatus`: String?
-        public init() {
-        }
         convenience public init(readStatus: String? = nil) {
             self.init()
             self.readStatus = `readStatus`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `readStatus` <- map["readStatus"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

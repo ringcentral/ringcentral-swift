@@ -1,27 +1,23 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ExtensionInfo_Request_PasswordPIN: Mappable {
+open class ExtensionInfo_Request_PasswordPIN: Definition {
     // Password for extension
     open var `password`: String?
     // IVR PIN
     open var `ivrPin`: String?
-    public init() {
-    }
     convenience public init(password: String? = nil, ivrPin: String? = nil) {
         self.init()
         self.password = `password`
         self.ivrPin = `ivrPin`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `password` <- map["password"]
         `ivrPin` <- map["ivrPin"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

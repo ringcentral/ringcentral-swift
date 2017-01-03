@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class MessageAttachmentInfo: Mappable {
+open class MessageAttachmentInfo: Definition {
     // Internal identifier of a message attachment
     open var `id`: String?
     // Canonical URI of a message attachment
@@ -12,8 +11,6 @@ open class MessageAttachmentInfo: Mappable {
     open var `contentType`: String?
     // Voicemail only Duration of the voicemail in seconds
     open var `vmDuration`: Int?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, type: String? = nil, contentType: String? = nil, vmDuration: Int? = nil) {
         self.init()
         self.id = `id`
@@ -23,17 +20,16 @@ open class MessageAttachmentInfo: Mappable {
         self.vmDuration = `vmDuration`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `type` <- map["type"]
         `contentType` <- map["contentType"]
         `vmDuration` <- map["vmDuration"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

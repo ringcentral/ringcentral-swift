@@ -23,7 +23,7 @@ open class CountryPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Specifies whether login with the phone numbers of this country is enabled or not
         open var `loginAllowed`: Bool?
         // Specifies if RingCentral sells phone numbers of this country
@@ -32,8 +32,6 @@ open class CountryPath: PathSegment {
         open var `page`: Int?
         // Indicates the page size (number of items). If not specified, the value is '100' by default
         open var `perPage`: Int?
-        public init() {
-        }
         convenience public init(loginAllowed: Bool? = nil, numberSelling: Bool? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.loginAllowed = `loginAllowed`
@@ -42,28 +40,25 @@ open class CountryPath: PathSegment {
             self.perPage = `perPage`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `loginAllowed` <- map["loginAllowed"]
             `numberSelling` <- map["numberSelling"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of countries with the country data
         open var `records`: [FullCountryInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
-        public init() {
-        }
         convenience public init(records: [FullCountryInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
@@ -71,16 +66,15 @@ open class CountryPath: PathSegment {
             self.paging = `paging`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Get Country by ID

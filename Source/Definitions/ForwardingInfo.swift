@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ForwardingInfo: Mappable {
+open class ForwardingInfo: Definition {
     // Specifies if the user's softphone(s) are notified before forwarding the incoming call to desk phones and forwarding numbers
     open var `notifyMySoftPhones`: Bool?
     // Specifies if the administrator's softphone is notified before forwarding the incoming call to desk phones and forwarding numbers. The default value is 'False'
@@ -12,8 +11,6 @@ open class ForwardingInfo: Mappable {
     open var `ringingMode`: String?
     // Information on a call forwarding rule
     open var `rules`: [RuleInfo]?
-    public init() {
-    }
     convenience public init(notifyMySoftPhones: Bool? = nil, notifyAdminSoftPhones: Bool? = nil, softPhonesRingCount: Int? = nil, ringingMode: String? = nil, rules: [RuleInfo]? = nil) {
         self.init()
         self.notifyMySoftPhones = `notifyMySoftPhones`
@@ -23,17 +20,16 @@ open class ForwardingInfo: Mappable {
         self.rules = `rules`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `notifyMySoftPhones` <- map["notifyMySoftPhones"]
         `notifyAdminSoftPhones` <- map["notifyAdminSoftPhones"]
         `softPhonesRingCount` <- map["softPhonesRingCount"]
         `ringingMode` <- map["ringingMode"]
         `rules` <- map["rules"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

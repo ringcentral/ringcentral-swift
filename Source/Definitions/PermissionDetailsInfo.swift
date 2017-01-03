@@ -1,23 +1,19 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PermissionDetailsInfo: Mappable {
+open class PermissionDetailsInfo: Definition {
     // Information on a permission checked
     open var `permission`: UserPermissionInfo?
-    public init() {
-    }
     convenience public init(permission: UserPermissionInfo? = nil) {
         self.init()
         self.permission = `permission`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `permission` <- map["permission"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

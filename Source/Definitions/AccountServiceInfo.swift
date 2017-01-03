@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class AccountServiceInfo: Mappable {
+open class AccountServiceInfo: Definition {
     // Canonical URI of the account Service Info resource
     open var `uri`: String?
     // Account Service Plan name
@@ -16,8 +15,6 @@ open class AccountServiceInfo: Mappable {
     open var `serviceFeatures`: [ServiceFeatureInfo]?
     // Limits which are effective for the account
     open var `limits`: AccountLimits?
-    public init() {
-    }
     convenience public init(uri: String? = nil, servicePlanName: String? = nil, brand: BrandInfo? = nil, servicePlan: ServicePlanInfo? = nil, billingPlan: BillingPlanInfo? = nil, serviceFeatures: [ServiceFeatureInfo]? = nil, limits: AccountLimits? = nil) {
         self.init()
         self.uri = `uri`
@@ -29,8 +26,12 @@ open class AccountServiceInfo: Mappable {
         self.limits = `limits`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `servicePlanName` <- map["servicePlanName"]
         `brand` <- map["brand"]
@@ -38,10 +39,5 @@ open class AccountServiceInfo: Mappable {
         `billingPlan` <- map["billingPlan"]
         `serviceFeatures` <- map["serviceFeatures"]
         `limits` <- map["limits"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

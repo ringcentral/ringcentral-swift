@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class AnsweringRuleInfo: Mappable {
+open class AnsweringRuleInfo: Definition {
     // Canonical URI to the answering rule resource
     open var `uri`: String?
     // Internal identifier of an asnwering rule
@@ -28,8 +27,6 @@ open class AnsweringRuleInfo: Mappable {
     open var `voicemail`: VoicemailInfo?
     // Predefined greetings applied for an answering rule
     open var `greetings`: [GreetingInfo]?
-    public init() {
-    }
     convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, name: String? = nil, enabled: Bool? = nil, schedule: ScheduleInfo? = nil, calledNumbers: [AnsweringRuleInfo_CalleeInfo]? = nil, callers: [AnsweringRuleInfo_CallerInfo]? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voicemail: VoicemailInfo? = nil, greetings: [GreetingInfo]? = nil) {
         self.init()
         self.uri = `uri`
@@ -47,8 +44,12 @@ open class AnsweringRuleInfo: Mappable {
         self.greetings = `greetings`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `type` <- map["type"]
@@ -62,10 +63,5 @@ open class AnsweringRuleInfo: Mappable {
         `unconditionalForwarding` <- map["unconditionalForwarding"]
         `voicemail` <- map["voicemail"]
         `greetings` <- map["greetings"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

@@ -23,31 +23,28 @@ open class ParsePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Internal identifier of a home country. The default value is ISO code (ISO 3166) of the user's home country or brand country, if the user is undefined
         open var `homeCountry`: String?
         // The default value is "False". If "True", the numbers that are closer to the home country are given higher priority
         open var `nationalAsPriority`: Bool?
-        public init() {
-        }
         convenience public init(homeCountry: String? = nil, nationalAsPriority: Bool? = nil) {
             self.init()
             self.homeCountry = `homeCountry`
             self.nationalAsPriority = `nationalAsPriority`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `homeCountry` <- map["homeCountry"]
             `nationalAsPriority` <- map["nationalAsPriority"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class PostResponse: Mappable {
+    open class PostResponse: Definition {
         // Canonical URI of a resource
         open var `uri`: String?
         // Information on a user home country
@@ -72,8 +69,6 @@ open class ParsePath: PathSegment {
         open var `normalized`: String?
         // Information on a country the phone number belongs to
         open var `country`: [ParsePhoneNumber_CountryInfo]?
-        public init() {
-        }
         convenience public init(uri: String? = nil, homeCountry: [ParsePhoneNumber_CountryInfo]? = nil, phoneNumbers: [ParsePhoneNumber_PhoneNumberInfo]? = nil, originalString: String? = nil, areaCode: String? = nil, formattedNational: String? = nil, formattedInternational: String? = nil, dialable: String? = nil, e164: String? = nil, special: Bool? = nil, normalized: String? = nil, country: [ParsePhoneNumber_CountryInfo]? = nil) {
             self.init()
             self.uri = `uri`
@@ -90,8 +85,12 @@ open class ParsePath: PathSegment {
             self.country = `country`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `homeCountry` <- map["homeCountry"]
             `phoneNumbers` <- map["phoneNumbers"]
@@ -104,11 +103,6 @@ open class ParsePath: PathSegment {
             `special` <- map["special"]
             `normalized` <- map["normalized"]
             `country` <- map["country"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

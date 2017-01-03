@@ -1,27 +1,23 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PhoneLinesInfo: Mappable {
+open class PhoneLinesInfo: Definition {
     // Type of phone line
     open var `lineType`: String?
     // Phone number information
     open var `phoneInfo`: PhoneLinesInfo_PhoneNumberInfo?
-    public init() {
-    }
     convenience public init(lineType: String? = nil, phoneInfo: PhoneLinesInfo_PhoneNumberInfo? = nil) {
         self.init()
         self.lineType = `lineType`
         self.phoneInfo = `phoneInfo`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `lineType` <- map["lineType"]
         `phoneInfo` <- map["phoneInfo"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

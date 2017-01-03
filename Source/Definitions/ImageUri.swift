@@ -1,23 +1,19 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ImageUri: Mappable {
+open class ImageUri: Definition {
     // Link to an image.
     open var `uri`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil) {
         self.init()
         self.uri = `uri`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

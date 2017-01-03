@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class DetailedPresenceNotification: Mappable {
+open class DetailedPresenceNotification: Definition {
     // Universally unique identifier of a notification
     open var `uuid`: String?
     // Event filter URI
@@ -12,8 +11,6 @@ open class DetailedPresenceNotification: Mappable {
     open var `timestamp`: String?
     // Notification payload body
     open var `body`: DetailedPresenceEvent?
-    public init() {
-    }
     convenience public init(uuid: String? = nil, event: String? = nil, subscriptionId: String? = nil, timestamp: String? = nil, body: DetailedPresenceEvent? = nil) {
         self.init()
         self.uuid = `uuid`
@@ -23,17 +20,16 @@ open class DetailedPresenceNotification: Mappable {
         self.body = `body`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uuid` <- map["uuid"]
         `event` <- map["event"]
         `subscriptionId` <- map["subscriptionId"]
         `timestamp` <- map["timestamp"]
         `body` <- map["body"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

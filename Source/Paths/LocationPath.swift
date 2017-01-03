@@ -23,7 +23,7 @@ open class LocationPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Sorts results by the specified property. The default value is 'City'
         open var `orderBy`: String?
         // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
@@ -34,8 +34,6 @@ open class LocationPath: PathSegment {
         open var `stateId`: String?
         // Specifies if nxx codes are returned
         open var `withNxx`: Bool?
-        public init() {
-        }
         convenience public init(orderBy: String? = nil, page: Int? = nil, perPage: Int? = nil, stateId: String? = nil, withNxx: Bool? = nil) {
             self.init()
             self.orderBy = `orderBy`
@@ -45,29 +43,26 @@ open class LocationPath: PathSegment {
             self.withNxx = `withNxx`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `orderBy` <- map["orderBy"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
             `stateId` <- map["stateId"]
             `withNxx` <- map["withNxx"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of locations
         open var `records`: [LocationInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
-        public init() {
-        }
         convenience public init(records: [LocationInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
@@ -75,16 +70,15 @@ open class LocationPath: PathSegment {
             self.paging = `paging`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

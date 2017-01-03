@@ -1,23 +1,19 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ExtensionInfo_Request_PartnerId: Mappable {
+open class ExtensionInfo_Request_PartnerId: Definition {
     // Extension partner identifier
     open var `partnerId`: String?
-    public init() {
-    }
     convenience public init(partnerId: String? = nil) {
         self.init()
         self.partnerId = `partnerId`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `partnerId` <- map["partnerId"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

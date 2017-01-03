@@ -23,7 +23,7 @@ open class CompanyPagerPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Sender of a pager message. The extensionNumber property must be filled
         open var `from`: CallerInfo?
         // Internal identifier of a message this message replies to
@@ -32,8 +32,6 @@ open class CompanyPagerPath: PathSegment {
         open var `text`: String?
         // Optional if replyOn parameter is specified. Receiver of a pager message. The extensionNumber property must be filled
         open var `to`: [CallerInfo]?
-        public init() {
-        }
         convenience public init(from: CallerInfo? = nil, replyOn: Int? = nil, text: String? = nil, to: [CallerInfo]? = nil) {
             self.init()
             self.from = `from`
@@ -42,17 +40,16 @@ open class CompanyPagerPath: PathSegment {
             self.to = `to`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `from` <- map["from"]
             `replyOn` <- map["replyOn"]
             `text` <- map["text"]
             `to` <- map["to"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

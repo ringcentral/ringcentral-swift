@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class DetailedPresenceEvent_ActiveCallInfo: Mappable {
+open class DetailedPresenceEvent_ActiveCallInfo: Definition {
     // Internal identifier of a call
     open var `id`: String?
     // Call direction
@@ -16,8 +15,6 @@ open class DetailedPresenceEvent_ActiveCallInfo: Mappable {
     open var `sessionId`: String?
     // Type of call termination. Supported for calls in 'NoCall' status. If the returned termination type is 'Intermediate' it means the call is not actually ended, the connection is established on one of the devices
     open var `terminationType`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, direction: String? = nil, from: String? = nil, to: String? = nil, telephonyStatus: String? = nil, sessionId: String? = nil, terminationType: String? = nil) {
         self.init()
         self.id = `id`
@@ -29,8 +26,12 @@ open class DetailedPresenceEvent_ActiveCallInfo: Mappable {
         self.terminationType = `terminationType`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `direction` <- map["direction"]
         `from` <- map["from"]
@@ -38,10 +39,5 @@ open class DetailedPresenceEvent_ActiveCallInfo: Mappable {
         `telephonyStatus` <- map["telephonyStatus"]
         `sessionId` <- map["sessionId"]
         `terminationType` <- map["terminationType"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

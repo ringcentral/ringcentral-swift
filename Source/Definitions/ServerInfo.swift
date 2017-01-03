@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ServerInfo: Mappable {
+open class ServerInfo: Definition {
     // Canonical URI of the API version
     open var `uri`: String?
     // Full API version information: uri, number, release date
@@ -10,8 +9,6 @@ open class ServerInfo: Mappable {
     open var `serverVersion`: String?
     // Server revision
     open var `serverRevision`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil, apiVersions: [VersionInfo]? = nil, serverVersion: String? = nil, serverRevision: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -20,16 +17,15 @@ open class ServerInfo: Mappable {
         self.serverRevision = `serverRevision`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `apiVersions` <- map["apiVersions"]
         `serverVersion` <- map["serverVersion"]
         `serverRevision` <- map["serverRevision"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

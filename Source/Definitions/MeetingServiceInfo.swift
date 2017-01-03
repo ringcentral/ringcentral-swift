@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class MeetingServiceInfo: Mappable {
+open class MeetingServiceInfo: Definition {
     // Canonical URI of a meeting service info resource
     open var `uri`: String?
     // URI to retrieve support information for meetings functionality
@@ -12,8 +11,6 @@ open class MeetingServiceInfo: Mappable {
     open var `externalUserInfo`: ExternalUserInfo?
     // Dial-in numbers data
     open var `dialInNumbers`: DialInNumbers?
-    public init() {
-    }
     convenience public init(uri: String? = nil, supportUri: String? = nil, intlDialInNumbersUri: String? = nil, externalUserInfo: ExternalUserInfo? = nil, dialInNumbers: DialInNumbers? = nil) {
         self.init()
         self.uri = `uri`
@@ -23,17 +20,16 @@ open class MeetingServiceInfo: Mappable {
         self.dialInNumbers = `dialInNumbers`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `supportUri` <- map["supportUri"]
         `intlDialInNumbersUri` <- map["intlDialInNumbersUri"]
         `externalUserInfo` <- map["externalUserInfo"]
         `dialInNumbers` <- map["dialInNumbers"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

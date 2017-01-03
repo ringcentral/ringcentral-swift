@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class VersionInfo: Mappable {
+open class VersionInfo: Definition {
     // Canonical URI of API versions
     open var `uri`: String?
     // Version of the RingCentral REST API
@@ -10,8 +9,6 @@ open class VersionInfo: Mappable {
     open var `releaseDate`: String?
     // URI part determining the current version
     open var `uriString`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil, versionString: String? = nil, releaseDate: String? = nil, uriString: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -20,16 +17,15 @@ open class VersionInfo: Mappable {
         self.uriString = `uriString`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `versionString` <- map["versionString"]
         `releaseDate` <- map["releaseDate"]
         `uriString` <- map["uriString"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

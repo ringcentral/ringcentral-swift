@@ -29,15 +29,13 @@ open class BlockedNumberPath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of blocked phone numbers
         open var `records`: [BlockedNumberInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
-        public init() {
-        }
         convenience public init(records: [BlockedNumberInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
@@ -45,16 +43,15 @@ open class BlockedNumberPath: PathSegment {
             self.paging = `paging`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Delete Blocked Number by ID

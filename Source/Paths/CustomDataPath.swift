@@ -23,31 +23,28 @@ open class CustomDataPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
+    open class PutParameters: Definition {
         // Custom data access key. Optional. If specified, must match the custom key in the URL
         open var `id`: String?
         // Description of custom data. Mandatory for create, if there is no attachment specified. Maximum length is limited to 256 symbols
         open var `value`: String?
-        public init() {
-        }
         convenience public init(id: String? = nil, value: String? = nil) {
             self.init()
             self.id = `id`
             self.value = `value`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `id` <- (map["id"], StringTransform())
             `value` <- map["value"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class PutResponse: Mappable {
+    open class PutResponse: Definition {
         // Custom data access key
         open var `id`: String?
         // Link to the custom data
@@ -58,8 +55,6 @@ open class CustomDataPath: PathSegment {
         open var `lastModifiedTime`: String?
         // Attachment data: link and type
         open var `attachment`: AttachmentInfo?
-        public init() {
-        }
         convenience public init(id: String? = nil, uri: String? = nil, value: String? = nil, lastModifiedTime: String? = nil, attachment: AttachmentInfo? = nil) {
             self.init()
             self.id = `id`
@@ -69,18 +64,17 @@ open class CustomDataPath: PathSegment {
             self.attachment = `attachment`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `id` <- (map["id"], StringTransform())
             `uri` <- map["uri"]
             `value` <- map["value"]
             `lastModifiedTime` <- map["lastModifiedTime"]
             `attachment` <- map["attachment"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

@@ -7,7 +7,7 @@ open class FaxPath: PathSegment {
             return "fax"
         }
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Recipient information. Phone number property is mandatory. Optional for resend fax request
         open var `to`: [CallerInfo]?
         // Fax resolution
@@ -20,8 +20,6 @@ open class FaxPath: PathSegment {
         open var `coverPageText`: String?
         // Internal identifier of the original fax message which needs to be resent. Mandatory for resend fax request
         open var `originalMessageId`: String?
-        public init() {
-        }
         convenience public init(to: [CallerInfo]? = nil, faxResolution: String? = nil, sendTime: String? = nil, coverIndex: Int? = nil, coverPageText: String? = nil, originalMessageId: String? = nil) {
             self.init()
             self.to = `to`
@@ -32,19 +30,18 @@ open class FaxPath: PathSegment {
             self.originalMessageId = `originalMessageId`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `to` <- map["to"]
             `faxResolution` <- map["faxResolution"]
             `sendTime` <- map["sendTime"]
             `coverIndex` <- map["coverIndex"]
             `coverPageText` <- map["coverPageText"]
             `originalMessageId` <- map["originalMessageId"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class WeeklyScheduleInfo: Mappable {
+open class WeeklyScheduleInfo: Definition {
     // Time intervals for a particular day
     open var `monday`: [TimeInterval]?
     // Time intervals for a particular day
@@ -16,8 +15,6 @@ open class WeeklyScheduleInfo: Mappable {
     open var `saturday`: [TimeInterval]?
     // Time intervals for a particular day
     open var `sunday`: [TimeInterval]?
-    public init() {
-    }
     convenience public init(monday: [TimeInterval]? = nil, tuesday: [TimeInterval]? = nil, wednesday: [TimeInterval]? = nil, thursday: [TimeInterval]? = nil, friday: [TimeInterval]? = nil, saturday: [TimeInterval]? = nil, sunday: [TimeInterval]? = nil) {
         self.init()
         self.monday = `monday`
@@ -29,8 +26,12 @@ open class WeeklyScheduleInfo: Mappable {
         self.sunday = `sunday`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `monday` <- map["monday"]
         `tuesday` <- map["tuesday"]
         `wednesday` <- map["wednesday"]
@@ -38,10 +39,5 @@ open class WeeklyScheduleInfo: Mappable {
         `friday` <- map["friday"]
         `saturday` <- map["saturday"]
         `sunday` <- map["sunday"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

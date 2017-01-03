@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class LegInfo: Mappable {
+open class LegInfo: Definition {
     // Action description of the call operation
     open var `action`: String?
     // Call direction
@@ -26,8 +25,6 @@ open class LegInfo: Mappable {
     open var `transport`: String?
     // Call recording data. Returned if the call is recorded
     open var `recording`: RecordingInfo?
-    public init() {
-    }
     convenience public init(action: String? = nil, direction: String? = nil, duration: Int? = nil, extension: LegInfo_ExtensionInfo? = nil, legType: String? = nil, startTime: String? = nil, type: String? = nil, result: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, transport: String? = nil, recording: RecordingInfo? = nil) {
         self.init()
         self.action = `action`
@@ -44,8 +41,12 @@ open class LegInfo: Mappable {
         self.recording = `recording`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `action` <- map["action"]
         `direction` <- map["direction"]
         `duration` <- map["duration"]
@@ -58,10 +59,5 @@ open class LegInfo: Mappable {
         `to` <- map["to"]
         `transport` <- map["transport"]
         `recording` <- map["recording"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

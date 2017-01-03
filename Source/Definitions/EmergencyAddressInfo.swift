@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class EmergencyAddressInfo: Mappable {
+open class EmergencyAddressInfo: Definition {
     // Name of a customer
     open var `customerName`: String?
     // Street address, line 1 - street address, P.O. box, company name, c/o
@@ -16,8 +15,6 @@ open class EmergencyAddressInfo: Mappable {
     open var `zip`: String?
     // Country name
     open var `country`: String?
-    public init() {
-    }
     convenience public init(customerName: String? = nil, street: String? = nil, street2: String? = nil, city: String? = nil, state: String? = nil, zip: String? = nil, country: String? = nil) {
         self.init()
         self.customerName = `customerName`
@@ -29,8 +26,12 @@ open class EmergencyAddressInfo: Mappable {
         self.country = `country`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `customerName` <- map["customerName"]
         `street` <- map["street"]
         `street2` <- map["street2"]
@@ -38,10 +39,5 @@ open class EmergencyAddressInfo: Mappable {
         `state` <- map["state"]
         `zip` <- map["zip"]
         `country` <- map["country"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

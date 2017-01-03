@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class GrantInfo_ExtensionInfo: Mappable {
+open class GrantInfo_ExtensionInfo: Definition {
     // Internal identifier of an extension
     open var `id`: String?
     // Canonical URI of an extension
@@ -10,8 +9,6 @@ open class GrantInfo_ExtensionInfo: Mappable {
     open var `extensionNumber`: String?
     // Extension type
     open var `type`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, extensionNumber: String? = nil, type: String? = nil) {
         self.init()
         self.id = `id`
@@ -20,16 +17,15 @@ open class GrantInfo_ExtensionInfo: Mappable {
         self.type = `type`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `extensionNumber` <- map["extensionNumber"]
         `type` <- map["type"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

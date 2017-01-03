@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class BillingPlanInfo: Mappable {
+open class BillingPlanInfo: Definition {
     // Internal identifier of a billing plan
     open var `id`: String?
     // Billing plan name
@@ -12,8 +11,6 @@ open class BillingPlanInfo: Mappable {
     open var `duration`: String?
     // Billing plan type
     open var `type`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, name: String? = nil, durationUnit: String? = nil, duration: String? = nil, type: String? = nil) {
         self.init()
         self.id = `id`
@@ -23,17 +20,16 @@ open class BillingPlanInfo: Mappable {
         self.type = `type`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `name` <- map["name"]
         `durationUnit` <- map["durationUnit"]
         `duration` <- map["duration"]
         `type` <- map["type"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

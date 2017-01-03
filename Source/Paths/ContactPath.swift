@@ -39,7 +39,7 @@ open class ContactPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Mappable {
+    open class ListParameters: Definition {
         // Phone number in E.164 (11-digits) format with or without plus '+'. Multiple values are supported
         open var `phoneNumber`: String?
         // If specified, only contacts whose First name or Last name start with the mentioned substring are returned. Case-insensitive
@@ -50,8 +50,6 @@ open class ContactPath: PathSegment {
         open var `page`: Int?
         // Indicates the page size (number of items). If not specified, the value is '100' by default
         open var `perPage`: Int?
-        public init() {
-        }
         convenience public init(phoneNumber: String? = nil, startsWith: String? = nil, sortBy: String? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.phoneNumber = `phoneNumber`
@@ -61,29 +59,26 @@ open class ContactPath: PathSegment {
             self.perPage = `perPage`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `phoneNumber` <- map["phoneNumber"]
             `startsWith` <- map["startsWith"]
             `sortBy` <- map["sortBy"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // List of personal contacts from the extension address book
         open var `records`: [PersonalContactInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
-        public init() {
-        }
         convenience public init(records: [PersonalContactInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
@@ -91,16 +86,15 @@ open class ContactPath: PathSegment {
             self.paging = `paging`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Delete Contact by ID

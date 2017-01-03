@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PersonalContactInfo: Mappable {
+open class PersonalContactInfo: Definition {
     // Standard resource properties ID
     open var `id`: String?
     // Canonical URI
@@ -62,8 +61,6 @@ open class PersonalContactInfo: Mappable {
     open var `webPage`: String?
     // Notes of a personal contact
     open var `notes`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, url: String? = nil, availability: String? = nil, firstName: String? = nil, lastName: String? = nil, middleName: String? = nil, nickName: String? = nil, company: String? = nil, jobTitle: String? = nil, homePhone: String? = nil, homePhone2: String? = nil, businessPhone: String? = nil, businessPhone2: String? = nil, mobilePhone: String? = nil, businessFax: String? = nil, companyPhone: String? = nil, assistantPhone: String? = nil, carPhone: String? = nil, otherPhone: String? = nil, otherFax: String? = nil, callbackPhone: String? = nil, email: String? = nil, email2: String? = nil, email3: String? = nil, homeAddress: ContactAddressInfo? = nil, businessAddress: ContactAddressInfo? = nil, otherAddress: ContactAddressInfo? = nil, birthday: String? = nil, webPage: String? = nil, notes: String? = nil) {
         self.init()
         self.id = `id`
@@ -98,8 +95,12 @@ open class PersonalContactInfo: Mappable {
         self.notes = `notes`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `url` <- map["url"]
         `availability` <- map["availability"]
@@ -130,10 +131,5 @@ open class PersonalContactInfo: Mappable {
         `birthday` <- map["birthday"]
         `webPage` <- map["webPage"]
         `notes` <- map["notes"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

@@ -23,7 +23,7 @@ open class AnsweringRulePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Specifies if the rule is active or inactive. The default value is 'True'
         open var `enabled`: Bool?
         // Type of an answering rule, the supported value is 'Custom'
@@ -44,8 +44,6 @@ open class AnsweringRulePath: PathSegment {
         open var `unconditionalForwarding`: UnconditionalForwardingInfo?
         // Specifies whether to take a voicemail and who should do it
         open var `voiceMail`: VoicemailInfo?
-        public init() {
-        }
         convenience public init(enabled: Bool? = nil, type: String? = nil, name: String? = nil, callers: [CallersInfo]? = nil, calledNumbers: [CalledNumberInfo]? = nil, schedule: AnsweringRule_ScheduleInfo? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voiceMail: VoicemailInfo? = nil) {
             self.init()
             self.enabled = `enabled`
@@ -60,8 +58,12 @@ open class AnsweringRulePath: PathSegment {
             self.voiceMail = `voiceMail`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `enabled` <- map["enabled"]
             `type` <- map["type"]
             `name` <- map["name"]
@@ -73,11 +75,6 @@ open class AnsweringRulePath: PathSegment {
             `unconditionalForwarding` <- map["unconditionalForwarding"]
             `voiceMail` <- map["voiceMail"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
     // Get Answering Rules List
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
@@ -85,7 +82,7 @@ open class AnsweringRulePath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Mappable {
+    open class ListResponse: Definition {
         // Canonical URI of an answering rule resource
         open var `uri`: String?
         // List of answering rules
@@ -94,8 +91,6 @@ open class AnsweringRulePath: PathSegment {
         open var `paging`: PagingInfo?
         // Information on navigation
         open var `navigation`: NavigationInfo?
-        public init() {
-        }
         convenience public init(uri: String? = nil, records: [AnsweringRuleInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -104,17 +99,16 @@ open class AnsweringRulePath: PathSegment {
             self.navigation = `navigation`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
             `paging` <- map["paging"]
             `navigation` <- map["navigation"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
     // Delete Answering Rule by ID
@@ -145,7 +139,7 @@ open class AnsweringRulePath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
+    open class PutParameters: Definition {
         // Specifies if the answering rule is active or not
         open var `enabled`: Bool?
         // Custom name of an answering rule. The maximum number of characters is 64
@@ -154,8 +148,6 @@ open class AnsweringRulePath: PathSegment {
         open var `forwarding`: ForwardingInfo?
         // Predefined greetings applied for an answering rule
         open var `greetings`: [GreetingInfo]?
-        public init() {
-        }
         convenience public init(enabled: Bool? = nil, name: String? = nil, forwarding: ForwardingInfo? = nil, greetings: [GreetingInfo]? = nil) {
             self.init()
             self.enabled = `enabled`
@@ -164,17 +156,16 @@ open class AnsweringRulePath: PathSegment {
             self.greetings = `greetings`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `enabled` <- map["enabled"]
             `name` <- map["name"]
             `forwarding` <- map["forwarding"]
             `greetings` <- map["greetings"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

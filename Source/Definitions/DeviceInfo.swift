@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class DeviceInfo: Mappable {
+open class DeviceInfo: Definition {
     // Internal identifier of a device
     open var `id`: String?
     // Canonical URI of a device
@@ -28,8 +27,6 @@ open class DeviceInfo: Mappable {
     open var `shipping`: ShippingInfo?
     // Box billing identifier of a device. Applicable only for HardPhones. It is an alternative way to identify the device to be ordered. Either "model" structure, or "boxBillingId" must be specified for HardPhone
     open var `boxBillingId`: Int?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: ModelInfo? = nil, extension: DeviceInfo_ExtensionInfo? = nil, emergencyServiceAddress: EmergencyAddressInfo? = nil, phoneLines: PhoneLinesInfo? = nil, shipping: ShippingInfo? = nil, boxBillingId: Int? = nil) {
         self.init()
         self.id = `id`
@@ -47,8 +44,12 @@ open class DeviceInfo: Mappable {
         self.boxBillingId = `boxBillingId`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `sku` <- map["sku"]
@@ -62,10 +63,5 @@ open class DeviceInfo: Mappable {
         `phoneLines` <- map["phoneLines"]
         `shipping` <- map["shipping"]
         `boxBillingId` <- map["boxBillingId"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

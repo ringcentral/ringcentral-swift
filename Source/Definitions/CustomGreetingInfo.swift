@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class CustomGreetingInfo: Mappable {
+open class CustomGreetingInfo: Definition {
     // Link to an extension custom greeting
     open var `uri`: String?
     // Internal identifier of an answering rule
@@ -12,8 +11,6 @@ open class CustomGreetingInfo: Mappable {
     open var `contentType`: String?
     // Link to a greeting content (audio file)
     open var `contentUri`: String?
-    public init() {
-    }
     convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, contentType: String? = nil, contentUri: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -23,17 +20,16 @@ open class CustomGreetingInfo: Mappable {
         self.contentUri = `contentUri`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `type` <- map["type"]
         `contentType` <- map["contentType"]
         `contentUri` <- map["contentUri"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

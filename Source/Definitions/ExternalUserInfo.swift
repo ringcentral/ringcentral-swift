@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ExternalUserInfo: Mappable {
+open class ExternalUserInfo: Definition {
     // User type of a meeting account
     open var `accountId`: String?
     // Meeting account user identifier
@@ -10,8 +9,6 @@ open class ExternalUserInfo: Mappable {
     open var `userToken`: String?
     // Meeting account user type
     open var `userType`: Int?
-    public init() {
-    }
     convenience public init(accountId: String? = nil, userId: String? = nil, userToken: String? = nil, userType: Int? = nil) {
         self.init()
         self.accountId = `accountId`
@@ -20,16 +17,15 @@ open class ExternalUserInfo: Mappable {
         self.userType = `userType`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `accountId` <- map["accountId"]
         `userId` <- map["userId"]
         `userToken` <- map["userToken"]
         `userType` <- map["userType"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

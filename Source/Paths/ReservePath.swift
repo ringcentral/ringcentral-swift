@@ -23,44 +23,38 @@ open class ReservePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
+    open class PostParameters: Definition {
         // Phone numbers to be reserved/un-reserved
         open var `records`: [ReservePhoneNumber_Request_ReserveRecord]?
-        public init() {
-        }
         convenience public init(records: [ReservePhoneNumber_Request_ReserveRecord]? = nil) {
             self.init()
             self.records = `records`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
         }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
-        }
     }
-    open class PostResponse: Mappable {
+    open class PostResponse: Definition {
         // Phone numbers to be reserved/un-reserved
         open var `records`: [ReservePhoneNumber_Response_ReserveRecord]?
-        public init() {
-        }
         convenience public init(records: [ReservePhoneNumber_Response_ReserveRecord]? = nil) {
             self.init()
             self.records = `records`
         }
         required public init?(map: Map) {
+            super.init(map: map)
         }
-        open func mapping(map: Map) {
+        public override init() {
+            super.init()
+        }
+        open override func mapping(map: Map) {
             `records` <- map["records"]
-        }
-        open func toParameters() -> Parameters {
-            var result = [String: String]()
-            result["json-string"] = self.toJSONString(prettyPrint: false)!
-            return result
         }
     }
 }

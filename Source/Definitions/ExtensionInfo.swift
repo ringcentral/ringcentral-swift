@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class ExtensionInfo: Mappable {
+open class ExtensionInfo: Definition {
     // Internal identifier of an extension
     open var `id`: String?
     // Canonical URI of an extension
@@ -34,8 +33,6 @@ open class ExtensionInfo: Mappable {
     open var `statusInfo`: StatusInfo?
     // Extension type
     open var `type`: String?
-    public init() {
-    }
     convenience public init(id: String? = nil, uri: String? = nil, contact: ContactInfo? = nil, departments: [DepartmentInfo]? = nil, extensionNumber: String? = nil, name: String? = nil, partnerId: String? = nil, permissions: ExtensionPermissions? = nil, profileImage: ProfileImageInfo? = nil, references: [ReferenceInfo]? = nil, regionalSettings: RegionalSettings? = nil, serviceFeatures: [ExtensionServiceFeatureInfo]? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: StatusInfo? = nil, type: String? = nil) {
         self.init()
         self.id = `id`
@@ -56,8 +53,12 @@ open class ExtensionInfo: Mappable {
         self.type = `type`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `contact` <- map["contact"]
@@ -74,10 +75,5 @@ open class ExtensionInfo: Mappable {
         `status` <- map["status"]
         `statusInfo` <- map["statusInfo"]
         `type` <- map["type"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

@@ -1,23 +1,19 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class BusinessHour_ScheduleInfo: Mappable {
+open class BusinessHour_ScheduleInfo: Definition {
     // Weekly schedule
     open var `weeklyRanges`: WeeklyScheduleInfo?
-    public init() {
-    }
     convenience public init(weeklyRanges: WeeklyScheduleInfo? = nil) {
         self.init()
         self.weeklyRanges = `weeklyRanges`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `weeklyRanges` <- map["weeklyRanges"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }

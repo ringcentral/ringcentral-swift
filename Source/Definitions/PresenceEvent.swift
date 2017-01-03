@@ -1,7 +1,6 @@
 import Foundation
 import ObjectMapper
-import Alamofire
-open class PresenceEvent: Mappable {
+open class PresenceEvent: Definition {
     // Internal identifier of an extension. Optional parameter
     open var `extensionId`: String?
     // Telephony presence status. Returned if telephony status is changed. See Telephony Status Values
@@ -22,8 +21,6 @@ open class PresenceEvent: Mappable {
     open var `ringOnMonitoredCall`: Bool?
     // If 'True' enables the extension user to pick up a monitored line on hold
     open var `pickUpCallsOnHold`: Bool?
-    public init() {
-    }
     convenience public init(extensionId: String? = nil, telephonyStatus: String? = nil, terminationType: String? = nil, sequence: Int? = nil, presenceStatus: String? = nil, userStatus: String? = nil, dndStatus: String? = nil, allowSeeMyPresence: Bool? = nil, ringOnMonitoredCall: Bool? = nil, pickUpCallsOnHold: Bool? = nil) {
         self.init()
         self.extensionId = `extensionId`
@@ -38,8 +35,12 @@ open class PresenceEvent: Mappable {
         self.pickUpCallsOnHold = `pickUpCallsOnHold`
     }
     required public init?(map: Map) {
+        super.init(map: map)
     }
-    open func mapping(map: Map) {
+    public override init() {
+        super.init()
+    }
+    open override func mapping(map: Map) {
         `extensionId` <- map["extensionId"]
         `telephonyStatus` <- map["telephonyStatus"]
         `terminationType` <- map["terminationType"]
@@ -50,10 +51,5 @@ open class PresenceEvent: Mappable {
         `allowSeeMyPresence` <- map["allowSeeMyPresence"]
         `ringOnMonitoredCall` <- map["ringOnMonitoredCall"]
         `pickUpCallsOnHold` <- map["pickUpCallsOnHold"]
-    }
-    open func toParameters() -> Parameters {
-        var result = [String: String]()
-        result["json-string"] = self.toJSONString(prettyPrint: false)!
-        return result
     }
 }
