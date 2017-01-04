@@ -23,7 +23,7 @@ open class AnsweringRulePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Specifies if the rule is active or inactive. The default value is 'True'
         open var `enabled`: Bool?
         // Type of an answering rule, the supported value is 'Custom'
@@ -44,6 +44,10 @@ open class AnsweringRulePath: PathSegment {
         open var `unconditionalForwarding`: UnconditionalForwardingInfo?
         // Specifies whether to take a voicemail and who should do it
         open var `voiceMail`: VoicemailInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(enabled: Bool? = nil, type: String? = nil, name: String? = nil, callers: [CallersInfo]? = nil, calledNumbers: [CalledNumberInfo]? = nil, schedule: AnsweringRule_ScheduleInfo? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voiceMail: VoicemailInfo? = nil) {
             self.init()
             self.enabled = `enabled`
@@ -57,13 +61,7 @@ open class AnsweringRulePath: PathSegment {
             self.unconditionalForwarding = `unconditionalForwarding`
             self.voiceMail = `voiceMail`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `enabled` <- map["enabled"]
             `type` <- map["type"]
             `name` <- map["name"]
@@ -82,7 +80,7 @@ open class AnsweringRulePath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // Canonical URI of an answering rule resource
         open var `uri`: String?
         // List of answering rules
@@ -91,6 +89,10 @@ open class AnsweringRulePath: PathSegment {
         open var `paging`: PagingInfo?
         // Information on navigation
         open var `navigation`: NavigationInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, records: [AnsweringRuleInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -98,13 +100,7 @@ open class AnsweringRulePath: PathSegment {
             self.paging = `paging`
             self.navigation = `navigation`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
             `paging` <- map["paging"]
@@ -139,7 +135,7 @@ open class AnsweringRulePath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Definition {
+    open class PutParameters: Mappable {
         // Specifies if the answering rule is active or not
         open var `enabled`: Bool?
         // Custom name of an answering rule. The maximum number of characters is 64
@@ -148,6 +144,10 @@ open class AnsweringRulePath: PathSegment {
         open var `forwarding`: ForwardingInfo?
         // Predefined greetings applied for an answering rule
         open var `greetings`: [GreetingInfo]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(enabled: Bool? = nil, name: String? = nil, forwarding: ForwardingInfo? = nil, greetings: [GreetingInfo]? = nil) {
             self.init()
             self.enabled = `enabled`
@@ -155,13 +155,7 @@ open class AnsweringRulePath: PathSegment {
             self.forwarding = `forwarding`
             self.greetings = `greetings`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `enabled` <- map["enabled"]
             `name` <- map["name"]
             `forwarding` <- map["forwarding"]

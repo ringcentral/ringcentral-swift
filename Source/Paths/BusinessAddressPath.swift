@@ -13,7 +13,7 @@ open class BusinessAddressPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Definition {
+    open class GetResponse: Mappable {
         // Canonical URI of the business address resource
         open var `uri`: String?
         // Company business name
@@ -22,6 +22,10 @@ open class BusinessAddressPath: PathSegment {
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -29,13 +33,7 @@ open class BusinessAddressPath: PathSegment {
             self.email = `email`
             self.businessAddress = `businessAddress`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `company` <- map["company"]
             `email` <- map["email"]
@@ -58,32 +56,30 @@ open class BusinessAddressPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Definition {
+    open class PutParameters: Mappable {
         // Company business name
         open var `company`: String?
         // Company business email address
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.company = `company`
             self.email = `email`
             self.businessAddress = `businessAddress`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `company` <- map["company"]
             `email` <- map["email"]
             `businessAddress` <- map["businessAddress"]
         }
     }
-    open class PutResponse: Definition {
+    open class PutResponse: Mappable {
         // Canonical URI of the business address resource
         open var `uri`: String?
         // Company business name
@@ -92,6 +88,10 @@ open class BusinessAddressPath: PathSegment {
         open var `email`: String?
         // Company business address
         open var `businessAddress`: BusinessAddressInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -99,13 +99,7 @@ open class BusinessAddressPath: PathSegment {
             self.email = `email`
             self.businessAddress = `businessAddress`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `company` <- map["company"]
             `email` <- map["email"]

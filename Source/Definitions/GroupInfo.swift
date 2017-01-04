@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class GroupInfo: Definition {
+open class GroupInfo: Mappable {
     // Internal identifier of a group
     open var `id`: String?
     // Canonical URI of a group
@@ -11,6 +11,10 @@ open class GroupInfo: Definition {
     open var `groupName`: String?
     // Notes for a group
     open var `notes`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, contactsCount: Int? = nil, groupName: String? = nil, notes: String? = nil) {
         self.init()
         self.id = `id`
@@ -19,13 +23,7 @@ open class GroupInfo: Definition {
         self.groupName = `groupName`
         self.notes = `notes`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `contactsCount` <- map["contactsCount"]

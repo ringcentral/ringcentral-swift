@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class AccountInfo: Definition {
+open class AccountInfo: Mappable {
     // Internal identifier of an account
     open var `id`: String?
     // Canonical URI of an account
@@ -19,6 +19,10 @@ open class AccountInfo: Definition {
     open var `status`: String?
     // Status information (reason, comment, lifetime). Returned for 'Disabled' status only
     open var `statusInfo`: StatusInfo?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, mainNumber: String? = nil, operator: ExtensionInfo? = nil, partnerId: String? = nil, serviceInfo: Account_ServiceInfo? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: StatusInfo? = nil) {
         self.init()
         self.id = `id`
@@ -31,13 +35,7 @@ open class AccountInfo: Definition {
         self.status = `status`
         self.statusInfo = `statusInfo`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `mainNumber` <- map["mainNumber"]

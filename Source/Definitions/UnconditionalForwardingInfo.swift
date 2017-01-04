@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class UnconditionalForwardingInfo: Definition {
+open class UnconditionalForwardingInfo: Mappable {
     // Phone number to which the call is forwarded
     open var `phoneNumber`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(phoneNumber: String? = nil) {
         self.init()
         self.phoneNumber = `phoneNumber`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `phoneNumber` <- map["phoneNumber"]
     }
 }

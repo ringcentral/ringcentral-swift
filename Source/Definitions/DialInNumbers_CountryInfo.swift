@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DialInNumbers_CountryInfo: Definition {
+open class DialInNumbers_CountryInfo: Mappable {
     // Internal identifier of a country
     open var `id`: String?
     // Canonical URI of a country
@@ -11,6 +11,10 @@ open class DialInNumbers_CountryInfo: Definition {
     open var `isoCode`: String?
     // Official name of a country
     open var `name`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, callingCode: String? = nil, isoCode: String? = nil, name: String? = nil) {
         self.init()
         self.id = `id`
@@ -19,13 +23,7 @@ open class DialInNumbers_CountryInfo: Definition {
         self.isoCode = `isoCode`
         self.name = `name`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `callingCode` <- map["callingCode"]

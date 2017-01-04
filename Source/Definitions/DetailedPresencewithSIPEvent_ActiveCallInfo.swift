@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DetailedPresencewithSIPEvent_ActiveCallInfo: Definition {
+open class DetailedPresencewithSIPEvent_ActiveCallInfo: Mappable {
     // Internal identifier of a call
     open var `id`: String?
     // Call direction
@@ -15,6 +15,10 @@ open class DetailedPresencewithSIPEvent_ActiveCallInfo: Definition {
     open var `sessionId`: String?
     // SIP connection settings
     open var `sipData`: SIPData?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, direction: String? = nil, from: String? = nil, to: String? = nil, telephonyStatus: String? = nil, sessionId: String? = nil, sipData: SIPData? = nil) {
         self.init()
         self.id = `id`
@@ -25,13 +29,7 @@ open class DetailedPresencewithSIPEvent_ActiveCallInfo: Definition {
         self.sessionId = `sessionId`
         self.sipData = `sipData`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `direction` <- map["direction"]
         `from` <- map["from"]

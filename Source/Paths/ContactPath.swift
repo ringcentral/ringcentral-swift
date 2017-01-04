@@ -39,7 +39,7 @@ open class ContactPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Definition {
+    open class ListParameters: Mappable {
         // Phone number in E.164 (11-digits) format with or without plus '+'. Multiple values are supported
         open var `phoneNumber`: String?
         // If specified, only contacts whose First name or Last name start with the mentioned substring are returned. Case-insensitive
@@ -50,6 +50,10 @@ open class ContactPath: PathSegment {
         open var `page`: Int?
         // Indicates the page size (number of items). If not specified, the value is '100' by default
         open var `perPage`: Int?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(phoneNumber: String? = nil, startsWith: String? = nil, sortBy: String? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.phoneNumber = `phoneNumber`
@@ -58,13 +62,7 @@ open class ContactPath: PathSegment {
             self.page = `page`
             self.perPage = `perPage`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `phoneNumber` <- map["phoneNumber"]
             `startsWith` <- map["startsWith"]
             `sortBy` <- map["sortBy"]
@@ -72,26 +70,24 @@ open class ContactPath: PathSegment {
             `perPage` <- map["perPage"]
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // List of personal contacts from the extension address book
         open var `records`: [PersonalContactInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [PersonalContactInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]

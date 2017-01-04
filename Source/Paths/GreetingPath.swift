@@ -23,23 +23,21 @@ open class GreetingPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: CustomGreetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Type of a greeting, specifying the case when the greeting is played. See also Greeting Types
         open var `type`: String?
         // Information on an answering rule that the greeting is applied to
         open var `answeringRule`: CustomGreetingInfo_AnsweringRuleInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(type: String? = nil, answeringRule: CustomGreetingInfo_AnsweringRuleInfo? = nil) {
             self.init()
             self.type = `type`
             self.answeringRule = `answeringRule`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `type` <- map["type"]
             `answeringRule` <- map["answeringRule"]
         }

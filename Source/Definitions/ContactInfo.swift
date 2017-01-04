@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ContactInfo: Definition {
+open class ContactInfo: Mappable {
     // For User extension type only. Extension user first name
     open var `firstName`: String?
     // For User extension type only. Extension user last name
@@ -13,6 +13,10 @@ open class ContactInfo: Definition {
     open var `businessPhone`: String?
     // Business address of extension user company
     open var `businessAddress`: ContactAddressInfo?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(firstName: String? = nil, lastName: String? = nil, company: String? = nil, email: String? = nil, businessPhone: String? = nil, businessAddress: ContactAddressInfo? = nil) {
         self.init()
         self.firstName = `firstName`
@@ -22,13 +26,7 @@ open class ContactInfo: Definition {
         self.businessPhone = `businessPhone`
         self.businessAddress = `businessAddress`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `firstName` <- map["firstName"]
         `lastName` <- map["lastName"]
         `company` <- map["company"]

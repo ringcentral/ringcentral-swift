@@ -37,7 +37,7 @@ class CallLogTest: BaseTest {
             expectation2.fulfill()
         }
 
-        waitForExpectations(timeout: 20) { error in
+        waitForExpectations(timeout: 30) { error in
             XCTAssertNil(error)
         }
     }

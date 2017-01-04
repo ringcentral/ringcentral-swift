@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DetailedPresenceWithSIPNotification: Definition {
+open class DetailedPresenceWithSIPNotification: Mappable {
     // Universally unique identifier of a notification
     open var `uuid`: String?
     // Event filter URI
@@ -11,6 +11,10 @@ open class DetailedPresenceWithSIPNotification: Definition {
     open var `timestamp`: String?
     // Notification payload body
     open var `body`: DetailedPresencewithSIPEvent?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uuid: String? = nil, event: String? = nil, subscriptionId: String? = nil, timestamp: String? = nil, body: DetailedPresencewithSIPEvent? = nil) {
         self.init()
         self.uuid = `uuid`
@@ -19,13 +23,7 @@ open class DetailedPresenceWithSIPNotification: Definition {
         self.timestamp = `timestamp`
         self.body = `body`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uuid` <- map["uuid"]
         `event` <- map["event"]
         `subscriptionId` <- map["subscriptionId"]

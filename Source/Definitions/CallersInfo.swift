@@ -1,22 +1,20 @@
 import Foundation
 import ObjectMapper
-open class CallersInfo: Definition {
+open class CallersInfo: Mappable {
     // Phone number of a caller
     open var `callerId`: String?
     // Contact name of a caller
     open var `name`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(callerId: String? = nil, name: String? = nil) {
         self.init()
         self.callerId = `callerId`
         self.name = `name`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `callerId` <- map["callerId"]
         `name` <- map["name"]
     }

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class MeetingInfo: Definition {
+open class MeetingInfo: Mappable {
     // Canonical URI of a meeting resource
     open var `uri`: String?
     // Internal identifier of a meeting as retrieved from Zoom
@@ -25,6 +25,10 @@ open class MeetingInfo: Definition {
     open var `startParticipantsVideo`: Bool?
     // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
     open var `audioOptions`: [String]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, id: String? = nil, topic: String? = nil, meetingType: String? = nil, password: String? = nil, status: String? = nil, links: LinksInfo? = nil, schedule: MeetingScheduleInfo? = nil, allowJoinBeforeHost: Bool? = nil, startHostVideo: Bool? = nil, startParticipantsVideo: Bool? = nil, audioOptions: [String]? = nil) {
         self.init()
         self.uri = `uri`
@@ -40,13 +44,7 @@ open class MeetingInfo: Definition {
         self.startParticipantsVideo = `startParticipantsVideo`
         self.audioOptions = `audioOptions`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `topic` <- map["topic"]

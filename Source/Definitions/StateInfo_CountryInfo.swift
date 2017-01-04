@@ -1,22 +1,20 @@
 import Foundation
 import ObjectMapper
-open class StateInfo_CountryInfo: Definition {
+open class StateInfo_CountryInfo: Mappable {
     // Internal identifier of a state
     open var `id`: String?
     // Canonical URI of a state
     open var `uri`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
     }

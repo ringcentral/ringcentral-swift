@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class WeeklyScheduleInfo: Definition {
+open class WeeklyScheduleInfo: Mappable {
     // Time intervals for a particular day
     open var `monday`: [TimeInterval]?
     // Time intervals for a particular day
@@ -15,6 +15,10 @@ open class WeeklyScheduleInfo: Definition {
     open var `saturday`: [TimeInterval]?
     // Time intervals for a particular day
     open var `sunday`: [TimeInterval]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(monday: [TimeInterval]? = nil, tuesday: [TimeInterval]? = nil, wednesday: [TimeInterval]? = nil, thursday: [TimeInterval]? = nil, friday: [TimeInterval]? = nil, saturday: [TimeInterval]? = nil, sunday: [TimeInterval]? = nil) {
         self.init()
         self.monday = `monday`
@@ -25,13 +29,7 @@ open class WeeklyScheduleInfo: Definition {
         self.saturday = `saturday`
         self.sunday = `sunday`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `monday` <- map["monday"]
         `tuesday` <- map["tuesday"]
         `wednesday` <- map["wednesday"]

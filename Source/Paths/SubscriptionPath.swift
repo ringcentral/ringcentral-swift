@@ -23,23 +23,21 @@ open class SubscriptionPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Mandatory. Collection of URIs to API resources (see Event Types for details). For APNS transport type only message event filter is available
         open var `eventFilters`: [String]?
         // Notification delivery settings
         open var `deliveryMode`: Subscription_Request_DeliveryMode?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(eventFilters: [String]? = nil, deliveryMode: Subscription_Request_DeliveryMode? = nil) {
             self.init()
             self.eventFilters = `eventFilters`
             self.deliveryMode = `deliveryMode`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `eventFilters` <- map["eventFilters"]
             `deliveryMode` <- map["deliveryMode"]
         }
@@ -50,23 +48,21 @@ open class SubscriptionPath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // Canonical URI of a subscription resource
         open var `uri`: String?
         // List of subscriptions for the current user and application
         open var `records`: [SubscriptionInfo]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, records: [SubscriptionInfo]? = nil) {
             self.init()
             self.uri = `uri`
             self.records = `records`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
         }
@@ -99,20 +95,18 @@ open class SubscriptionPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Definition {
+    open class PutParameters: Mappable {
         // Collection of URIs to API resources (see Event Types). Mandatory field
         open var `eventFilters`: [String]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(eventFilters: [String]? = nil) {
             self.init()
             self.eventFilters = `eventFilters`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `eventFilters` <- map["eventFilters"]
         }
     }

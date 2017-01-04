@@ -23,7 +23,7 @@ open class RingoutPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Phone number of the caller. This number corresponds to the 1st leg of the RingOut call. This number can be one of user's configured forwarding numbers or arbitrary number
         open var `from`: RingOut_Request_From?
         // Phone number of the called party. This number corresponds to the 2nd leg of the RingOut call
@@ -34,6 +34,10 @@ open class RingoutPath: PathSegment {
         open var `playPrompt`: Bool?
         // Optional. Dialing plan country data. If not specified, then extension home country is applied by default
         open var `country`: RingOut_Request_CountryInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(from: RingOut_Request_From? = nil, to: RingOut_Request_To? = nil, callerId: RingOut_Request_To? = nil, playPrompt: Bool? = nil, country: RingOut_Request_CountryInfo? = nil) {
             self.init()
             self.from = `from`
@@ -42,13 +46,7 @@ open class RingoutPath: PathSegment {
             self.playPrompt = `playPrompt`
             self.country = `country`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `from` <- map["from"]
             `to` <- map["to"]
             `callerId` <- map["callerId"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class RecordingInfo: Definition {
+open class RecordingInfo: Mappable {
     // Internal identifier of the call recording
     open var `id`: String?
     // Link to the call recording metadata resource
@@ -9,6 +9,10 @@ open class RecordingInfo: Definition {
     open var `type`: String?
     // Link to the call recording binary content
     open var `contentUri`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, type: String? = nil, contentUri: String? = nil) {
         self.init()
         self.id = `id`
@@ -16,13 +20,7 @@ open class RecordingInfo: Definition {
         self.type = `type`
         self.contentUri = `contentUri`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `type` <- map["type"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class RegionalSettings: Definition {
+open class RegionalSettings: Mappable {
     // Extension country information
     open var `homeCountry`: CountryInfo?
     // Extension timezone information
@@ -11,6 +11,10 @@ open class RegionalSettings: Definition {
     open var `greetingLanguage`: GreetingLanguageInfo?
     // Formatting language preferences for numbers, dates and currencies
     open var `formattingLocale`: FormattingLocaleInfo?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(homeCountry: CountryInfo? = nil, timezone: TimezoneInfo? = nil, language: LanguageInfo? = nil, greetingLanguage: GreetingLanguageInfo? = nil, formattingLocale: FormattingLocaleInfo? = nil) {
         self.init()
         self.homeCountry = `homeCountry`
@@ -19,13 +23,7 @@ open class RegionalSettings: Definition {
         self.greetingLanguage = `greetingLanguage`
         self.formattingLocale = `formattingLocale`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `homeCountry` <- map["homeCountry"]
         `timezone` <- map["timezone"]
         `language` <- map["language"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ShippingInfo: Definition {
+open class ShippingInfo: Mappable {
     // Shipping status of the order item. It is set to 'Initial' when the order is submitted. Then it is changed to 'Accepted' when a distributor starts processing the order. Finally it is changed to Shipped which means that distributor has shipped the device.
     open var `status`: String?
     // Shipping carrier name. Appears only if the device status is "Shipped"
@@ -11,6 +11,10 @@ open class ShippingInfo: Definition {
     open var `method`: [ShippingMethod]?
     // Shipping address for the order. If it coincides with the Emergency Service Address, then can be omitted. By default the same value as the emergencyServiceAddress. Multiple addresses can be specified; in case an order contains several devices, they can be delivered to different addresses
     open var `address`: [ShippingAddress]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(status: String? = nil, carrier: String? = nil, trackingNumber: String? = nil, method: [ShippingMethod]? = nil, address: [ShippingAddress]? = nil) {
         self.init()
         self.status = `status`
@@ -19,13 +23,7 @@ open class ShippingInfo: Definition {
         self.method = `method`
         self.address = `address`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `status` <- map["status"]
         `carrier` <- map["carrier"]
         `trackingNumber` <- map["trackingNumber"]

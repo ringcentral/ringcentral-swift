@@ -13,23 +13,21 @@ open class BusinessHoursPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Definition {
+    open class GetResponse: Mappable {
         // Canonical URI of a business-hours resource
         open var `uri`: String?
         // Schedule when an answering rule is applied
         open var `schedule`: BusinessHour_ScheduleInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, schedule: BusinessHour_ScheduleInfo? = nil) {
             self.init()
             self.uri = `uri`
             self.schedule = `schedule`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `schedule` <- map["schedule"]
         }

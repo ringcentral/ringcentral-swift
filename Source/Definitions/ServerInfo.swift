@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ServerInfo: Definition {
+open class ServerInfo: Mappable {
     // Canonical URI of the API version
     open var `uri`: String?
     // Full API version information: uri, number, release date
@@ -9,6 +9,10 @@ open class ServerInfo: Definition {
     open var `serverVersion`: String?
     // Server revision
     open var `serverRevision`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, apiVersions: [VersionInfo]? = nil, serverVersion: String? = nil, serverRevision: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -16,13 +20,7 @@ open class ServerInfo: Definition {
         self.serverVersion = `serverVersion`
         self.serverRevision = `serverRevision`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `apiVersions` <- map["apiVersions"]
         `serverVersion` <- map["serverVersion"]

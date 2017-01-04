@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class InstantMessageEvent: Definition {
+open class InstantMessageEvent: Mappable {
     // Internal identifier of a message
     open var `id`: String?
     // Message receiver(s) information
@@ -29,6 +29,10 @@ open class InstantMessageEvent: Definition {
     open var `messageStatus`: String?
     // Identifier of the conversation the message belongs to
     open var `conversationId`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, to: [InstantMessageEvent_CallerInfo]? = nil, from: InstantMessageEvent_CallerInfo? = nil, type: String? = nil, creationTime: String? = nil, lastModifiedTime: String? = nil, readStatus: String? = nil, priority: String? = nil, attachments: [InstantMessageAttachmentInfo]? = nil, direction: String? = nil, availability: String? = nil, subject: String? = nil, messageStatus: String? = nil, conversationId: String? = nil) {
         self.init()
         self.id = `id`
@@ -46,13 +50,7 @@ open class InstantMessageEvent: Definition {
         self.messageStatus = `messageStatus`
         self.conversationId = `conversationId`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `to` <- map["to"]
         `from` <- map["from"]

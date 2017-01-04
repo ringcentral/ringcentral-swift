@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ExternalUserInfo: Definition {
+open class ExternalUserInfo: Mappable {
     // User type of a meeting account
     open var `accountId`: String?
     // Meeting account user identifier
@@ -9,6 +9,10 @@ open class ExternalUserInfo: Definition {
     open var `userToken`: String?
     // Meeting account user type
     open var `userType`: Int?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(accountId: String? = nil, userId: String? = nil, userToken: String? = nil, userType: Int? = nil) {
         self.init()
         self.accountId = `accountId`
@@ -16,13 +20,7 @@ open class ExternalUserInfo: Definition {
         self.userToken = `userToken`
         self.userType = `userType`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `accountId` <- map["accountId"]
         `userId` <- map["userId"]
         `userToken` <- map["userToken"]

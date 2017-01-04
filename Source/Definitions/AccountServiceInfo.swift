@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class AccountServiceInfo: Definition {
+open class AccountServiceInfo: Mappable {
     // Canonical URI of the account Service Info resource
     open var `uri`: String?
     // Account Service Plan name
@@ -15,6 +15,10 @@ open class AccountServiceInfo: Definition {
     open var `serviceFeatures`: [ServiceFeatureInfo]?
     // Limits which are effective for the account
     open var `limits`: AccountLimits?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, servicePlanName: String? = nil, brand: BrandInfo? = nil, servicePlan: ServicePlanInfo? = nil, billingPlan: BillingPlanInfo? = nil, serviceFeatures: [ServiceFeatureInfo]? = nil, limits: AccountLimits? = nil) {
         self.init()
         self.uri = `uri`
@@ -25,13 +29,7 @@ open class AccountServiceInfo: Definition {
         self.serviceFeatures = `serviceFeatures`
         self.limits = `limits`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `servicePlanName` <- map["servicePlanName"]
         `brand` <- map["brand"]

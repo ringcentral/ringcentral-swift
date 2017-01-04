@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class BillingPlanInfo: Definition {
+open class BillingPlanInfo: Mappable {
     // Internal identifier of a billing plan
     open var `id`: String?
     // Billing plan name
@@ -11,6 +11,10 @@ open class BillingPlanInfo: Definition {
     open var `duration`: String?
     // Billing plan type
     open var `type`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, name: String? = nil, durationUnit: String? = nil, duration: String? = nil, type: String? = nil) {
         self.init()
         self.id = `id`
@@ -19,13 +23,7 @@ open class BillingPlanInfo: Definition {
         self.duration = `duration`
         self.type = `type`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `name` <- map["name"]
         `durationUnit` <- map["durationUnit"]

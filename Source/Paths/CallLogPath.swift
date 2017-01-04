@@ -23,7 +23,7 @@ open class CallLogPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Definition {
+    open class ListParameters: Mappable {
         // Extension number of a user. If specified, returns call log for a particular extension only. Cannot be specified together with the phoneNumber filter
         open var `extensionNumber`: String?
         // Phone number of a caller/call recipient. If specified, returns all calls (both incoming and outcoming) with the mentioned phone number. Cannot be specified together with the extensionNumber filter
@@ -44,6 +44,10 @@ open class CallLogPath: PathSegment {
         open var `page`: Int?
         // Indicates the page size (number of items). If not specified, the value is '100' by default.
         open var `perPage`: Int?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(extensionNumber: String? = nil, phoneNumber: String? = nil, direction: String? = nil, type: String? = nil, view: String? = nil, withRecording: Bool? = nil, dateFrom: String? = nil, dateTo: String? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.extensionNumber = `extensionNumber`
@@ -57,13 +61,7 @@ open class CallLogPath: PathSegment {
             self.page = `page`
             self.perPage = `perPage`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `extensionNumber` <- map["extensionNumber"]
             `phoneNumber` <- map["phoneNumber"]
             `direction` <- map["direction"]
@@ -76,7 +74,7 @@ open class CallLogPath: PathSegment {
             `perPage` <- map["perPage"]
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // Canonical URI
         open var `uri`: String?
         // List of call log records
@@ -85,6 +83,10 @@ open class CallLogPath: PathSegment {
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, records: [CallLogRecord]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -92,13 +94,7 @@ open class CallLogPath: PathSegment {
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
             `navigation` <- map["navigation"]
@@ -127,20 +123,18 @@ open class CallLogPath: PathSegment {
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
     }
-    open class DeleteParameters: Definition {
+    open class DeleteParameters: Mappable {
         // The end datetime for records deletion in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
         open var `dateTo`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(dateTo: String? = nil) {
             self.init()
             self.dateTo = `dateTo`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `dateTo` <- map["dateTo"]
         }
     }

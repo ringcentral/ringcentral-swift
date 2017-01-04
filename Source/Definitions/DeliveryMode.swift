@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DeliveryMode: Definition {
+open class DeliveryMode: Mappable {
     // Notifications transportation provider name. 'APNS' (Apple Push Notifications Service)
     open var `transportType`: String?
     // Optional parameter. Specifies if the message will be encrypted or not. For APNS transport type the value is always "false"
@@ -15,6 +15,10 @@ open class DeliveryMode: Definition {
     open var `encryptionAlgorithm`: String?
     // Key for notification message decryption (for PubNub transport type only)
     open var `encryptionKey`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(transportType: String? = nil, encryption: Bool? = nil, address: String? = nil, subscriberKey: String? = nil, secretKey: String? = nil, encryptionAlgorithm: String? = nil, encryptionKey: String? = nil) {
         self.init()
         self.transportType = `transportType`
@@ -25,13 +29,7 @@ open class DeliveryMode: Definition {
         self.encryptionAlgorithm = `encryptionAlgorithm`
         self.encryptionKey = `encryptionKey`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `transportType` <- map["transportType"]
         `encryption` <- map["encryption"]
         `address` <- map["address"]

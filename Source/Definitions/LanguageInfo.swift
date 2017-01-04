@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class LanguageInfo: Definition {
+open class LanguageInfo: Mappable {
     // Internal identifier of a language
     open var `id`: String?
     // Canonical URI of a language
@@ -15,6 +15,10 @@ open class LanguageInfo: Definition {
     open var `name`: String?
     // Indicates whether a language is available as UI language
     open var `ui`: Bool?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, greeting: Bool? = nil, formattingLocale: Bool? = nil, localeCode: String? = nil, name: String? = nil, ui: Bool? = nil) {
         self.init()
         self.id = `id`
@@ -25,13 +29,7 @@ open class LanguageInfo: Definition {
         self.name = `name`
         self.ui = `ui`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `greeting` <- map["greeting"]

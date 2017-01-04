@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class InstantMessageEvent_CallerInfo: Definition {
+open class InstantMessageEvent_CallerInfo: Mappable {
     // Phone number in E.164 (with '+' sign) format
     open var `phoneNumber`: String?
     // Extension number
@@ -9,6 +9,10 @@ open class InstantMessageEvent_CallerInfo: Definition {
     open var `location`: String?
     // Symbolic name associated with a caller/callee. If the phone does not belong to the known extension, only the location is returned, the name is not determined then
     open var `name`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(phoneNumber: String? = nil, extensionNumber: String? = nil, location: String? = nil, name: String? = nil) {
         self.init()
         self.phoneNumber = `phoneNumber`
@@ -16,13 +20,7 @@ open class InstantMessageEvent_CallerInfo: Definition {
         self.location = `location`
         self.name = `name`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `phoneNumber` <- map["phoneNumber"]
         `extensionNumber` <- map["extensionNumber"]
         `location` <- map["location"]

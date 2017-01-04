@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class CallLogRecord: Definition {
+open class CallLogRecord: Mappable {
     // Internal identifier of a cal log record
     open var `id`: String?
     // Canonical URI of a call log record
@@ -31,6 +31,10 @@ open class CallLogRecord: Definition {
     open var `transport`: String?
     // For 'Detailed' view only. Leg description
     open var `legs`: [LegInfo]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil, lastModifiedTime: String? = nil, transport: String? = nil, legs: [LegInfo]? = nil) {
         self.init()
         self.id = `id`
@@ -49,13 +53,7 @@ open class CallLogRecord: Definition {
         self.transport = `transport`
         self.legs = `legs`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `sessionId` <- map["sessionId"]

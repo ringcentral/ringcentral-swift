@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class Binary: Definition {
+open class Binary: Mappable {
     // Required. Binary data.
     open var `data`: Data?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(data: Data? = nil) {
         self.init()
         self.data = `data`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `data` <- map["data"]
     }
 }

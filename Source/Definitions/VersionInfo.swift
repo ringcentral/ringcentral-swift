@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class VersionInfo: Definition {
+open class VersionInfo: Mappable {
     // Canonical URI of API versions
     open var `uri`: String?
     // Version of the RingCentral REST API
@@ -9,6 +9,10 @@ open class VersionInfo: Definition {
     open var `releaseDate`: String?
     // URI part determining the current version
     open var `uriString`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, versionString: String? = nil, releaseDate: String? = nil, uriString: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -16,13 +20,7 @@ open class VersionInfo: Definition {
         self.releaseDate = `releaseDate`
         self.uriString = `uriString`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `versionString` <- map["versionString"]
         `releaseDate` <- map["releaseDate"]

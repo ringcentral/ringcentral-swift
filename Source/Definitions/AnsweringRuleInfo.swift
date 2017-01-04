@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class AnsweringRuleInfo: Definition {
+open class AnsweringRuleInfo: Mappable {
     // Canonical URI to the answering rule resource
     open var `uri`: String?
     // Internal identifier of an asnwering rule
@@ -27,6 +27,10 @@ open class AnsweringRuleInfo: Definition {
     open var `voicemail`: VoicemailInfo?
     // Predefined greetings applied for an answering rule
     open var `greetings`: [GreetingInfo]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, name: String? = nil, enabled: Bool? = nil, schedule: ScheduleInfo? = nil, calledNumbers: [AnsweringRuleInfo_CalleeInfo]? = nil, callers: [AnsweringRuleInfo_CallerInfo]? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voicemail: VoicemailInfo? = nil, greetings: [GreetingInfo]? = nil) {
         self.init()
         self.uri = `uri`
@@ -43,13 +47,7 @@ open class AnsweringRuleInfo: Definition {
         self.voicemail = `voicemail`
         self.greetings = `greetings`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `type` <- map["type"]

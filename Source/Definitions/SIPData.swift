@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class SIPData: Definition {
+open class SIPData: Mappable {
     // Recipient data
     open var `toTag`: String?
     // Sender data
@@ -9,6 +9,10 @@ open class SIPData: Definition {
     open var `remoteUri`: String?
     // Local address URL
     open var `localUri`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(toTag: String? = nil, fromTag: String? = nil, remoteUri: String? = nil, localUri: String? = nil) {
         self.init()
         self.toTag = `toTag`
@@ -16,13 +20,7 @@ open class SIPData: Definition {
         self.remoteUri = `remoteUri`
         self.localUri = `localUri`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `toTag` <- map["toTag"]
         `fromTag` <- map["fromTag"]
         `remoteUri` <- map["remoteUri"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class LegInfo: Definition {
+open class LegInfo: Mappable {
     // Action description of the call operation
     open var `action`: String?
     // Call direction
@@ -25,6 +25,10 @@ open class LegInfo: Definition {
     open var `transport`: String?
     // Call recording data. Returned if the call is recorded
     open var `recording`: RecordingInfo?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(action: String? = nil, direction: String? = nil, duration: Int? = nil, extension: LegInfo_ExtensionInfo? = nil, legType: String? = nil, startTime: String? = nil, type: String? = nil, result: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, transport: String? = nil, recording: RecordingInfo? = nil) {
         self.init()
         self.action = `action`
@@ -40,13 +44,7 @@ open class LegInfo: Definition {
         self.transport = `transport`
         self.recording = `recording`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `action` <- map["action"]
         `direction` <- map["direction"]
         `duration` <- map["duration"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class NavigationInfo: Definition {
+open class NavigationInfo: Mappable {
     // First page of the list
     open var `firstPage`: Page?
     // Next page of the list
@@ -9,6 +9,10 @@ open class NavigationInfo: Definition {
     open var `previousPage`: Page?
     // Last page of the list
     open var `lastPage`: Page?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(firstPage: Page? = nil, nextPage: Page? = nil, previousPage: Page? = nil, lastPage: Page? = nil) {
         self.init()
         self.firstPage = `firstPage`
@@ -16,13 +20,7 @@ open class NavigationInfo: Definition {
         self.previousPage = `previousPage`
         self.lastPage = `lastPage`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `firstPage` <- map["firstPage"]
         `nextPage` <- map["nextPage"]
         `previousPage` <- map["previousPage"]

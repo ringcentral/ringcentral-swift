@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class PresenceInfo: Definition {
+open class PresenceInfo: Mappable {
     // Canonical URI of a presence info resource
     open var `uri`: String?
     // If 'True' enables other extensions to see the extension presence status
@@ -21,6 +21,10 @@ open class PresenceInfo: Definition {
     open var `telephonyStatus`: String?
     // User-defined presence status (as previously published by the user)
     open var `userStatus`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, allowSeeMyPresence: Bool? = nil, dndStatus: String? = nil, extension: PresenceInfo_ExtensionInfo? = nil, message: String? = nil, pickUpCallsOnHold: Bool? = nil, presenceStatus: String? = nil, ringOnMonitoredCall: Bool? = nil, telephonyStatus: String? = nil, userStatus: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -34,13 +38,7 @@ open class PresenceInfo: Definition {
         self.telephonyStatus = `telephonyStatus`
         self.userStatus = `userStatus`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `allowSeeMyPresence` <- map["allowSeeMyPresence"]
         `dndStatus` <- map["dndStatus"]

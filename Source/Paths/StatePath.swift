@@ -23,7 +23,7 @@ open class StatePath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Definition {
+    open class ListParameters: Mappable {
         // Internal identifier of a country
         open var `countryId`: Int?
         // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
@@ -32,6 +32,10 @@ open class StatePath: PathSegment {
         open var `perPage`: Int?
         // If 'True', the list of states with phone numbers available for buying is returned. The default value is 'False'
         open var `withPhoneNumbers`: Bool?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(countryId: Int? = nil, page: Int? = nil, perPage: Int? = nil, withPhoneNumbers: Bool? = nil) {
             self.init()
             self.countryId = `countryId`
@@ -39,39 +43,31 @@ open class StatePath: PathSegment {
             self.perPage = `perPage`
             self.withPhoneNumbers = `withPhoneNumbers`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `countryId` <- map["countryId"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
             `withPhoneNumbers` <- map["withPhoneNumbers"]
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // List of states
         open var `records`: [StateInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [StateInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]

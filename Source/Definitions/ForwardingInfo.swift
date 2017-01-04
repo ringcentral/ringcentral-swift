@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ForwardingInfo: Definition {
+open class ForwardingInfo: Mappable {
     // Specifies if the user's softphone(s) are notified before forwarding the incoming call to desk phones and forwarding numbers
     open var `notifyMySoftPhones`: Bool?
     // Specifies if the administrator's softphone is notified before forwarding the incoming call to desk phones and forwarding numbers. The default value is 'False'
@@ -11,6 +11,10 @@ open class ForwardingInfo: Definition {
     open var `ringingMode`: String?
     // Information on a call forwarding rule
     open var `rules`: [RuleInfo]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(notifyMySoftPhones: Bool? = nil, notifyAdminSoftPhones: Bool? = nil, softPhonesRingCount: Int? = nil, ringingMode: String? = nil, rules: [RuleInfo]? = nil) {
         self.init()
         self.notifyMySoftPhones = `notifyMySoftPhones`
@@ -19,13 +23,7 @@ open class ForwardingInfo: Definition {
         self.ringingMode = `ringingMode`
         self.rules = `rules`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `notifyMySoftPhones` <- map["notifyMySoftPhones"]
         `notifyAdminSoftPhones` <- map["notifyAdminSoftPhones"]
         `softPhonesRingCount` <- map["softPhonesRingCount"]

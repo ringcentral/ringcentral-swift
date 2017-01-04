@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ProfileImageInfo: Definition {
+open class ProfileImageInfo: Mappable {
     // Link to a profile image. If an image is not uploaded for an extension, only uri is returned
     open var `uri`: String?
     // Identifier of an image
@@ -11,6 +11,10 @@ open class ProfileImageInfo: Definition {
     open var `contentType`: String?
     // List of URIs to profile images in different dimensions
     open var `scales`: [ImageUri]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, etag: String? = nil, lastModified: String? = nil, contentType: String? = nil, scales: [ImageUri]? = nil) {
         self.init()
         self.uri = `uri`
@@ -19,13 +23,7 @@ open class ProfileImageInfo: Definition {
         self.contentType = `contentType`
         self.scales = `scales`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `etag` <- map["etag"]
         `lastModified` <- map["lastModified"]

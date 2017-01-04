@@ -23,37 +23,33 @@ open class OrderPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // List of devices to order
         open var `devices`: [DeviceInfo]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(devices: [DeviceInfo]? = nil) {
             self.init()
             self.devices = `devices`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `devices` <- map["devices"]
         }
     }
-    open class PostResponse: Definition {
+    open class PostResponse: Mappable {
         // List of the ordered devices
         open var `devices`: [DeviceInfo]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(devices: [DeviceInfo]? = nil) {
             self.init()
             self.devices = `devices`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `devices` <- map["devices"]
         }
     }
@@ -63,26 +59,24 @@ open class OrderPath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Definition {
+    open class GetResponse: Mappable {
         // Identifier of a device
         open var `id`: String?
         // Canonical URI of an order resource
         open var `uri`: String?
         // List of the ordered devices
         open var `devices`: [DeviceInfo]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(id: String? = nil, uri: String? = nil, devices: [DeviceInfo]? = nil) {
             self.init()
             self.id = `id`
             self.uri = `uri`
             self.devices = `devices`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `id` <- (map["id"], StringTransform())
             `uri` <- map["uri"]
             `devices` <- map["devices"]

@@ -29,26 +29,24 @@ open class BlockedNumberPath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // List of blocked phone numbers
         open var `records`: [BlockedNumberInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [BlockedNumberInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]

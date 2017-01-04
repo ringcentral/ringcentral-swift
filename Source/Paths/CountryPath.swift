@@ -23,7 +23,7 @@ open class CountryPath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Definition {
+    open class ListParameters: Mappable {
         // Specifies whether login with the phone numbers of this country is enabled or not
         open var `loginAllowed`: Bool?
         // Specifies if RingCentral sells phone numbers of this country
@@ -32,6 +32,10 @@ open class CountryPath: PathSegment {
         open var `page`: Int?
         // Indicates the page size (number of items). If not specified, the value is '100' by default
         open var `perPage`: Int?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(loginAllowed: Bool? = nil, numberSelling: Bool? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.loginAllowed = `loginAllowed`
@@ -39,39 +43,31 @@ open class CountryPath: PathSegment {
             self.page = `page`
             self.perPage = `perPage`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `loginAllowed` <- map["loginAllowed"]
             `numberSelling` <- map["numberSelling"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // List of countries with the country data
         open var `records`: [FullCountryInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [FullCountryInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]

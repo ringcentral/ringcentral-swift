@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class ImageUri: Definition {
+open class ImageUri: Mappable {
     // Link to an image.
     open var `uri`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil) {
         self.init()
         self.uri = `uri`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
     }
 }

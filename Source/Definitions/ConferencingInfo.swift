@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ConferencingInfo: Definition {
+open class ConferencingInfo: Mappable {
     // Canonical URI of a conferencing
     open var `uri`: String?
     // Determines if host user allows conference participants to join before the host
@@ -17,6 +17,10 @@ open class ConferencingInfo: Definition {
     open var `tapToJoinUri`: String?
     // List of multiple dial-in phone numbers to connect to audio conference service, relevant for user's brand. Each number is given with the country and location information, in order to let the user choose the less expensive way to connect to a conference. The first number in the list is the primary conference number, that is default and domestic
     open var `phoneNumbers`: [ConferencingInfo_PhoneNumberInfo]?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, allowJoinBeforeHost: Bool? = nil, hostCode: String? = nil, mode: String? = nil, participantCode: String? = nil, phoneNumber: String? = nil, tapToJoinUri: String? = nil, phoneNumbers: [ConferencingInfo_PhoneNumberInfo]? = nil) {
         self.init()
         self.uri = `uri`
@@ -28,13 +32,7 @@ open class ConferencingInfo: Definition {
         self.tapToJoinUri = `tapToJoinUri`
         self.phoneNumbers = `phoneNumbers`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `allowJoinBeforeHost` <- map["allowJoinBeforeHost"]
         `hostCode` <- map["hostCode"]

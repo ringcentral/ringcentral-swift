@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class PermissionInfo: Definition {
+open class PermissionInfo: Mappable {
     // Specifies if a permission is enabled or not
     open var `enabled`: Bool?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(enabled: Bool? = nil) {
         self.init()
         self.enabled = `enabled`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `enabled` <- map["enabled"]
     }
 }

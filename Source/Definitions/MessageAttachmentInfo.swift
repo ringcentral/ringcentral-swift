@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class MessageAttachmentInfo: Definition {
+open class MessageAttachmentInfo: Mappable {
     // Internal identifier of a message attachment
     open var `id`: String?
     // Canonical URI of a message attachment
@@ -11,6 +11,10 @@ open class MessageAttachmentInfo: Definition {
     open var `contentType`: String?
     // Voicemail only Duration of the voicemail in seconds
     open var `vmDuration`: Int?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, type: String? = nil, contentType: String? = nil, vmDuration: Int? = nil) {
         self.init()
         self.id = `id`
@@ -19,13 +23,7 @@ open class MessageAttachmentInfo: Definition {
         self.contentType = `contentType`
         self.vmDuration = `vmDuration`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `type` <- map["type"]

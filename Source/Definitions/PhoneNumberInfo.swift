@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class PhoneNumberInfo: Definition {
+open class PhoneNumberInfo: Mappable {
     // Internal identifier of a phone number
     open var `id`: String?
     // Brief information on a phone number country
@@ -21,6 +21,10 @@ open class PhoneNumberInfo: Definition {
     open var `type`: String?
     // Usage type of the phone number
     open var `usageType`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, country: CountryInfo? = nil, extension: PhoneNumberInfo_ExtensionInfo? = nil, features: [String]? = nil, location: String? = nil, paymentType: String? = nil, phoneNumber: String? = nil, status: String? = nil, type: String? = nil, usageType: String? = nil) {
         self.init()
         self.id = `id`
@@ -34,13 +38,7 @@ open class PhoneNumberInfo: Definition {
         self.type = `type`
         self.usageType = `usageType`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `country` <- map["country"]
         `extension` <- map["extension"]

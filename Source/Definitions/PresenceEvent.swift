@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class PresenceEvent: Definition {
+open class PresenceEvent: Mappable {
     // Internal identifier of an extension. Optional parameter
     open var `extensionId`: String?
     // Telephony presence status. Returned if telephony status is changed. See Telephony Status Values
@@ -21,6 +21,10 @@ open class PresenceEvent: Definition {
     open var `ringOnMonitoredCall`: Bool?
     // If 'True' enables the extension user to pick up a monitored line on hold
     open var `pickUpCallsOnHold`: Bool?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(extensionId: String? = nil, telephonyStatus: String? = nil, terminationType: String? = nil, sequence: Int? = nil, presenceStatus: String? = nil, userStatus: String? = nil, dndStatus: String? = nil, allowSeeMyPresence: Bool? = nil, ringOnMonitoredCall: Bool? = nil, pickUpCallsOnHold: Bool? = nil) {
         self.init()
         self.extensionId = `extensionId`
@@ -34,13 +38,7 @@ open class PresenceEvent: Definition {
         self.ringOnMonitoredCall = `ringOnMonitoredCall`
         self.pickUpCallsOnHold = `pickUpCallsOnHold`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `extensionId` <- map["extensionId"]
         `telephonyStatus` <- map["telephonyStatus"]
         `terminationType` <- map["terminationType"]

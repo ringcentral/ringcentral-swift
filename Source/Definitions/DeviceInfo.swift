@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DeviceInfo: Definition {
+open class DeviceInfo: Mappable {
     // Internal identifier of a device
     open var `id`: String?
     // Canonical URI of a device
@@ -27,6 +27,10 @@ open class DeviceInfo: Definition {
     open var `shipping`: ShippingInfo?
     // Box billing identifier of a device. Applicable only for HardPhones. It is an alternative way to identify the device to be ordered. Either "model" structure, or "boxBillingId" must be specified for HardPhone
     open var `boxBillingId`: Int?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: ModelInfo? = nil, extension: DeviceInfo_ExtensionInfo? = nil, emergencyServiceAddress: EmergencyAddressInfo? = nil, phoneLines: PhoneLinesInfo? = nil, shipping: ShippingInfo? = nil, boxBillingId: Int? = nil) {
         self.init()
         self.id = `id`
@@ -43,13 +47,7 @@ open class DeviceInfo: Definition {
         self.shipping = `shipping`
         self.boxBillingId = `boxBillingId`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `sku` <- map["sku"]

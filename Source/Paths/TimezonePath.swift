@@ -23,47 +23,43 @@ open class TimezonePath: PathSegment {
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class ListParameters: Definition {
+    open class ListParameters: Mappable {
         // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
         open var `page`: String?
         // Indicates the page size (number of items). If not specified, the value is '100' by default
         open var `perPage`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(page: String? = nil, perPage: String? = nil) {
             self.init()
             self.page = `page`
             self.perPage = `perPage`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `page` <- map["page"]
             `perPage` <- map["perPage"]
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // List of timezones
         open var `records`: [TimezoneInfo]?
         // Information on navigation
         open var `navigation`: NavigationInfo?
         // Information on paging
         open var `paging`: PagingInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [TimezoneInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
             self.init()
             self.records = `records`
             self.navigation = `navigation`
             self.paging = `paging`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
             `navigation` <- map["navigation"]
             `paging` <- map["paging"]

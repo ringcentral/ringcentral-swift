@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class SubscriptionInfo: Definition {
+open class SubscriptionInfo: Mappable {
     // Internal identifier of a subscription
     open var `id`: String?
     // Canonical URI of a subscription
@@ -17,6 +17,10 @@ open class SubscriptionInfo: Definition {
     open var `creationTime`: String?
     // Delivery mode data
     open var `deliveryMode`: DeliveryMode?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, eventFilters: [String]? = nil, expirationTime: String? = nil, expiresIn: Int? = nil, status: String? = nil, creationTime: String? = nil, deliveryMode: DeliveryMode? = nil) {
         self.init()
         self.id = `id`
@@ -28,13 +32,7 @@ open class SubscriptionInfo: Definition {
         self.creationTime = `creationTime`
         self.deliveryMode = `deliveryMode`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `eventFilters` <- map["eventFilters"]

@@ -23,37 +23,33 @@ open class ReservePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Phone numbers to be reserved/un-reserved
         open var `records`: [ReservePhoneNumber_Request_ReserveRecord]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [ReservePhoneNumber_Request_ReserveRecord]? = nil) {
             self.init()
             self.records = `records`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
         }
     }
-    open class PostResponse: Definition {
+    open class PostResponse: Mappable {
         // Phone numbers to be reserved/un-reserved
         open var `records`: [ReservePhoneNumber_Response_ReserveRecord]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(records: [ReservePhoneNumber_Response_ReserveRecord]? = nil) {
             self.init()
             self.records = `records`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `records` <- map["records"]
         }
     }

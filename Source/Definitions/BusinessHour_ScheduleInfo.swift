@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class BusinessHour_ScheduleInfo: Definition {
+open class BusinessHour_ScheduleInfo: Mappable {
     // Weekly schedule
     open var `weeklyRanges`: WeeklyScheduleInfo?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(weeklyRanges: WeeklyScheduleInfo? = nil) {
         self.init()
         self.weeklyRanges = `weeklyRanges`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `weeklyRanges` <- map["weeklyRanges"]
     }
 }

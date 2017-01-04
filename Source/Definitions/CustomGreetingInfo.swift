@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class CustomGreetingInfo: Definition {
+open class CustomGreetingInfo: Mappable {
     // Link to an extension custom greeting
     open var `uri`: String?
     // Internal identifier of an answering rule
@@ -11,6 +11,10 @@ open class CustomGreetingInfo: Definition {
     open var `contentType`: String?
     // Link to a greeting content (audio file)
     open var `contentUri`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, contentType: String? = nil, contentUri: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -19,13 +23,7 @@ open class CustomGreetingInfo: Definition {
         self.contentType = `contentType`
         self.contentUri = `contentUri`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
         `type` <- map["type"]

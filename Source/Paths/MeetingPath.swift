@@ -26,7 +26,7 @@ open class MeetingPath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Topic of a meeting
         open var `topic`: String?
         // Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
@@ -43,6 +43,10 @@ open class MeetingPath: PathSegment {
         open var `startParticipantsVideo`: Bool?
         // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
         open var `audioOptions`: [String]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(topic: String? = nil, meetingType: String? = nil, password: String? = nil, schedule: MeetingScheduleInfo? = nil, allowJoinBeforeHost: Bool? = nil, startHostVideo: Bool? = nil, startParticipantsVideo: Bool? = nil, audioOptions: [String]? = nil) {
             self.init()
             self.topic = `topic`
@@ -54,13 +58,7 @@ open class MeetingPath: PathSegment {
             self.startParticipantsVideo = `startParticipantsVideo`
             self.audioOptions = `audioOptions`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `topic` <- map["topic"]
             `meetingType` <- map["meetingType"]
             `password` <- map["password"]
@@ -77,7 +75,7 @@ open class MeetingPath: PathSegment {
             callback(t, error)
         }
     }
-    open class ListResponse: Definition {
+    open class ListResponse: Mappable {
         // Canonical URI of meetings resource
         open var `uri`: String?
         // List of extension meetings
@@ -86,6 +84,10 @@ open class MeetingPath: PathSegment {
         open var `paging`: PagingInfo?
         // Information on navigation
         open var `navigation`: NavigationInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, records: [MeetingInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
             self.init()
             self.uri = `uri`
@@ -93,13 +95,7 @@ open class MeetingPath: PathSegment {
             self.paging = `paging`
             self.navigation = `navigation`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `records` <- map["records"]
             `paging` <- map["paging"]
@@ -134,7 +130,7 @@ open class MeetingPath: PathSegment {
     open func put(parameters: PutParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Definition {
+    open class PutParameters: Mappable {
         // Topic of a meeting
         open var `topic`: String?
         // Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
@@ -151,6 +147,10 @@ open class MeetingPath: PathSegment {
         open var `startParticipantsVideo`: Bool?
         // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
         open var `audioOptions`: [String]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(topic: String? = nil, meetingType: String? = nil, password: String? = nil, schedule: MeetingScheduleInfo? = nil, allowJoinBeforeHost: Bool? = nil, startHostVideo: Bool? = nil, startParticipantsVideo: Bool? = nil, audioOptions: [String]? = nil) {
             self.init()
             self.topic = `topic`
@@ -162,13 +162,7 @@ open class MeetingPath: PathSegment {
             self.startParticipantsVideo = `startParticipantsVideo`
             self.audioOptions = `audioOptions`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `topic` <- map["topic"]
             `meetingType` <- map["meetingType"]
             `password` <- map["password"]

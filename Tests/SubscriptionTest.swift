@@ -92,7 +92,7 @@ class SubscriptionTest: BaseTest {
         }
 
         let expectation2 = expectation(description: "expectation2")
-        Async.main(after: 15.0) {
+        Async.main(after: 20.0) {
             XCTAssertTrue(count >= 1)
             expectation2.fulfill()
         }

@@ -1,19 +1,17 @@
 import Foundation
 import ObjectMapper
-open class ExtensionInfo_Request_PartnerId: Definition {
+open class ExtensionInfo_Request_PartnerId: Mappable {
     // Extension partner identifier
     open var `partnerId`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(partnerId: String? = nil) {
         self.init()
         self.partnerId = `partnerId`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `partnerId` <- map["partnerId"]
     }
 }

@@ -23,7 +23,7 @@ open class AuthorizePath: PathSegment {
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Definition {
+    open class PostParameters: Mappable {
         // Must be set to code
         open var `response_type`: String?
         // Required. Enter your application key (Production or Sandbox) here
@@ -32,6 +32,10 @@ open class AuthorizePath: PathSegment {
         open var `redirect_uri`: String?
         // Optional, recommended. An opaque value used by the client to maintain state between the request and callback. The authorization server includes this value when redirecting the user-agent back to the client. The parameter should be used for preventing cross-site request forgery
         open var `state`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(response_type: String? = nil, client_id: String? = nil, redirect_uri: String? = nil, state: String? = nil) {
             self.init()
             self.response_type = `response_type`
@@ -39,39 +43,31 @@ open class AuthorizePath: PathSegment {
             self.redirect_uri = `redirect_uri`
             self.state = `state`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `response_type` <- map["response_type"]
             `client_id` <- map["client_id"]
             `redirect_uri` <- map["redirect_uri"]
             `state` <- map["state"]
         }
     }
-    open class PostResponse: Definition {
+    open class PostResponse: Mappable {
         // The authorization code returned for your application
         open var `code`: String?
         // The remaining lifetime of the authorization code
         open var `expires_in`: Int?
         // This parameter will be included in response if it was specified in the client authorization request. The value will be copied from the one received from the client
         open var `state`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(code: String? = nil, expires_in: Int? = nil, state: String? = nil) {
             self.init()
             self.code = `code`
             self.expires_in = `expires_in`
             self.state = `state`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `code` <- map["code"]
             `expires_in` <- map["expires_in"]
             `state` <- map["state"]

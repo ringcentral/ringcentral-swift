@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class ForwardingNumberInfo: Definition {
+open class ForwardingNumberInfo: Mappable {
     // Internal identifier of a forwarding/call flip phone number
     open var `id`: String?
     // Canonical URI of a forwarding/call flip phone number
@@ -13,6 +13,10 @@ open class ForwardingNumberInfo: Definition {
     open var `features`: String?
     // Number assigned to the call flip phone number, corresponds to the shortcut dial number
     open var `flipNumber`: Int?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, phoneNumber: String? = nil, label: String? = nil, features: String? = nil, flipNumber: Int? = nil) {
         self.init()
         self.id = `id`
@@ -22,13 +26,7 @@ open class ForwardingNumberInfo: Definition {
         self.features = `features`
         self.flipNumber = `flipNumber`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `phoneNumber` <- map["phoneNumber"]

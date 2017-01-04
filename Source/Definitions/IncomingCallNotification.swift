@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class IncomingCallNotification: Definition {
+open class IncomingCallNotification: Mappable {
     // Event filter URI
     open var `event`: String?
     // Universally unique identifier of a notification
@@ -35,6 +35,10 @@ open class IncomingCallNotification: Definition {
     open var `srvLvlExt`: String?
     // File containing recorded caller name
     open var `recUrl`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(event: String? = nil, uuid: String? = nil, subscriptionId: String? = nil, timestamp: String? = nil, extensionId: String? = nil, action: String? = nil, sessionId: String? = nil, serverId: String? = nil, from: String? = nil, fromName: String? = nil, to: String? = nil, toName: String? = nil, sid: String? = nil, toUrl: String? = nil, srvLvl: String? = nil, srvLvlExt: String? = nil, recUrl: String? = nil) {
         self.init()
         self.event = `event`
@@ -55,13 +59,7 @@ open class IncomingCallNotification: Definition {
         self.srvLvlExt = `srvLvlExt`
         self.recUrl = `recUrl`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `event` <- map["event"]
         `uuid` <- map["uuid"]
         `subscriptionId` <- map["subscriptionId"]

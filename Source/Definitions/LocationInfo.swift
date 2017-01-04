@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class LocationInfo: Definition {
+open class LocationInfo: Mappable {
     // Canonical URI of a location
     open var `uri`: String?
     // Area code of the location
@@ -13,6 +13,10 @@ open class LocationInfo: Definition {
     open var `nxx`: String?
     // ID and URI of the state this location belongs to, see State Info
     open var `state`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, areaCode: String? = nil, city: String? = nil, npa: String? = nil, nxx: String? = nil, state: String? = nil) {
         self.init()
         self.uri = `uri`
@@ -22,13 +26,7 @@ open class LocationInfo: Definition {
         self.nxx = `nxx`
         self.state = `state`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `areaCode` <- map["areaCode"]
         `city` <- map["city"]

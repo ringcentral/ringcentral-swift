@@ -1,22 +1,20 @@
 import Foundation
 import ObjectMapper
-open class ReferenceInfo: Definition {
+open class ReferenceInfo: Mappable {
     // Non-RC identifier of an extension
     open var `ref`: String?
     // Type of external identifier
     open var `type`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(ref: String? = nil, type: String? = nil) {
         self.init()
         self.ref = `ref`
         self.type = `type`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `ref` <- map["ref"]
         `type` <- map["type"]
     }

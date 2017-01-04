@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class MeetingServiceInfo: Definition {
+open class MeetingServiceInfo: Mappable {
     // Canonical URI of a meeting service info resource
     open var `uri`: String?
     // URI to retrieve support information for meetings functionality
@@ -11,6 +11,10 @@ open class MeetingServiceInfo: Definition {
     open var `externalUserInfo`: ExternalUserInfo?
     // Dial-in numbers data
     open var `dialInNumbers`: DialInNumbers?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, supportUri: String? = nil, intlDialInNumbersUri: String? = nil, externalUserInfo: ExternalUserInfo? = nil, dialInNumbers: DialInNumbers? = nil) {
         self.init()
         self.uri = `uri`
@@ -19,13 +23,7 @@ open class MeetingServiceInfo: Definition {
         self.externalUserInfo = `externalUserInfo`
         self.dialInNumbers = `dialInNumbers`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `supportUri` <- map["supportUri"]
         `intlDialInNumbersUri` <- map["intlDialInNumbersUri"]

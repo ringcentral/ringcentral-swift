@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class EmergencyAddressInfo: Definition {
+open class EmergencyAddressInfo: Mappable {
     // Name of a customer
     open var `customerName`: String?
     // Street address, line 1 - street address, P.O. box, company name, c/o
@@ -15,6 +15,10 @@ open class EmergencyAddressInfo: Definition {
     open var `zip`: String?
     // Country name
     open var `country`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(customerName: String? = nil, street: String? = nil, street2: String? = nil, city: String? = nil, state: String? = nil, zip: String? = nil, country: String? = nil) {
         self.init()
         self.customerName = `customerName`
@@ -25,13 +29,7 @@ open class EmergencyAddressInfo: Definition {
         self.zip = `zip`
         self.country = `country`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `customerName` <- map["customerName"]
         `street` <- map["street"]
         `street2` <- map["street2"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class GrantInfo: Definition {
+open class GrantInfo: Mappable {
     // Canonical URI of a grant
     open var `uri`: String?
     // Extension information
@@ -9,6 +9,10 @@ open class GrantInfo: Definition {
     open var `callPickup`: Bool?
     // Specifies if monitoring of other extensions' calls is allowed for the extension. If 'CallMonitoring' feature is disabled for the given extension, the flag is not returned
     open var `callMonitoring`: Bool?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(uri: String? = nil, extension: GrantInfo_ExtensionInfo? = nil, callPickup: Bool? = nil, callMonitoring: Bool? = nil) {
         self.init()
         self.uri = `uri`
@@ -16,13 +20,7 @@ open class GrantInfo: Definition {
         self.callPickup = `callPickup`
         self.callMonitoring = `callMonitoring`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `uri` <- map["uri"]
         `extension` <- map["extension"]
         `callPickup` <- map["callPickup"]

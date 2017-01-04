@@ -16,23 +16,21 @@ open class AuthzProfilePath: PathSegment {
             callback(t, error)
         }
     }
-    open class GetResponse: Definition {
+    open class GetResponse: Mappable {
         // Canonical URI of an authorization profile resource
         open var `uri`: String?
         // List of user permissions granted
         open var `permissions`: [UserPermission]?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
         convenience public init(uri: String? = nil, permissions: [UserPermission]? = nil) {
             self.init()
             self.uri = `uri`
             self.permissions = `permissions`
         }
-        required public init?(map: Map) {
-            super.init(map: map)
-        }
-        public override init() {
-            super.init()
-        }
-        open override func mapping(map: Map) {
+        open func mapping(map: Map) {
             `uri` <- map["uri"]
             `permissions` <- map["permissions"]
         }

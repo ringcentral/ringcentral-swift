@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class GrantInfo_ExtensionInfo: Definition {
+open class GrantInfo_ExtensionInfo: Mappable {
     // Internal identifier of an extension
     open var `id`: String?
     // Canonical URI of an extension
@@ -9,6 +9,10 @@ open class GrantInfo_ExtensionInfo: Definition {
     open var `extensionNumber`: String?
     // Extension type
     open var `type`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, uri: String? = nil, extensionNumber: String? = nil, type: String? = nil) {
         self.init()
         self.id = `id`
@@ -16,13 +20,7 @@ open class GrantInfo_ExtensionInfo: Definition {
         self.extensionNumber = `extensionNumber`
         self.type = `type`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `uri` <- map["uri"]
         `extensionNumber` <- map["extensionNumber"]

@@ -1,6 +1,6 @@
 import Foundation
 import ObjectMapper
-open class DetailedPresenceEvent_ActiveCallInfo: Definition {
+open class DetailedPresenceEvent_ActiveCallInfo: Mappable {
     // Internal identifier of a call
     open var `id`: String?
     // Call direction
@@ -15,6 +15,10 @@ open class DetailedPresenceEvent_ActiveCallInfo: Definition {
     open var `sessionId`: String?
     // Type of call termination. Supported for calls in 'NoCall' status. If the returned termination type is 'Intermediate' it means the call is not actually ended, the connection is established on one of the devices
     open var `terminationType`: String?
+    public init() {
+    }
+    required public init?(map: Map) {
+    }
     convenience public init(id: String? = nil, direction: String? = nil, from: String? = nil, to: String? = nil, telephonyStatus: String? = nil, sessionId: String? = nil, terminationType: String? = nil) {
         self.init()
         self.id = `id`
@@ -25,13 +29,7 @@ open class DetailedPresenceEvent_ActiveCallInfo: Definition {
         self.sessionId = `sessionId`
         self.terminationType = `terminationType`
     }
-    required public init?(map: Map) {
-        super.init(map: map)
-    }
-    public override init() {
-        super.init()
-    }
-    open override func mapping(map: Map) {
+    open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
         `direction` <- map["direction"]
         `from` <- map["from"]
