@@ -22,14 +22,22 @@ class BaseTest: XCTestCase {
             XCTAssertNil(error)
             expectation1.fulfill()
         }
-        temp.waitForExpectations(timeout: 10) { error in
+        temp.waitForExpectations(timeout: 30) { error in
             XCTAssertNil(error)
         }
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        sleep(3)
+    override class func tearDown() {
+        let temp = BaseTest()
+        let expectation1 = temp.expectation(description: "expectation1")
+        rc.revoke() { result in
+            XCTAssertTrue(result)
+            sleep(30)
+            expectation1.fulfill()
+        }
+        temp.waitForExpectations(timeout: 60) { error in
+            XCTAssertNil(error)
+        }
         super.tearDown()
     }
 

@@ -24,7 +24,10 @@ class SubscriptionTest: BaseTest {
             XCTAssertNil(error)
             subscription.renew() { error in
                 XCTAssertNil(error)
-                expectation2.fulfill()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation2.fulfill()
+                }
             }
         }
 
@@ -46,10 +49,35 @@ class SubscriptionTest: BaseTest {
             XCTAssertNil(error)
             rc.restapi().subscription().list() { list, error in
                 XCTAssertTrue(list?.records?.count ?? 0 > 0)
-                expectation1.fulfill()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation1.fulfill()
+                }
             }
         }
         
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error)
+        }
+    }
+
+    func testRemove() {
+        let subscription = rc.restapi().subscription().new()
+        subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
+        subscription.listeners.append { notification in
+            print(notification)
+        }
+        let expectation1 = expectation(description: "expectation1")
+        subscription.register() { error in
+            XCTAssertNil(error)
+            XCTAssertTrue(subscription.alive())
+            subscription.remove() { error in
+                XCTAssertNil(error)
+                XCTAssertTrue(!subscription.alive())
+                expectation1.fulfill()
+            }
+        }
+
         waitForExpectations(timeout: 10) { error in
             XCTAssertNil(error)
         }
@@ -94,7 +122,10 @@ class SubscriptionTest: BaseTest {
         let expectation2 = expectation(description: "expectation2")
         Async.main(after: 20.0) {
             XCTAssertTrue(count >= 1)
-            expectation2.fulfill()
+            subscription.remove() { error in
+                XCTAssertNil(error)
+                expectation2.fulfill()
+            }
         }
 
         waitForExpectations(timeout: 30) { error in
