@@ -1,5 +1,7 @@
 # RingCentral Swift Client
 
+[![Build status](https://travis-ci.org/tylerlong/ringcentral-swift-client.svg?branch=master)](https://travis-ci.org/tylerlong/ringcentral-swift-client)
+
 
 ## Requirements
 

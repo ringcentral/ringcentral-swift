@@ -1,0 +1,12 @@
+language: objective-c
+
+branches:
+  only:
+    - master
+
+osx_image: xcode8.2
+
+before_script:
+  - carthage update --platform macOS
+script:
+  - xcodebuild clean build test -project RingCentral.xcodeproj -scheme RingCentral_macOS_Tests

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-open class Config: Mappable {
+open class Config {
     open var production: Bool?
     open var server: String?
     open var appKey: String?
@@ -19,23 +19,16 @@ open class Config: Mappable {
     open var password: String?
     open var receiver: String?
 
-    required public init?(map: Map) {
-
-    }
-
-    open func mapping(map: Map) {
-        production  <- map["production"]
-        server      <- map["server"]
-        appKey      <- map["appKey"]
-        appSecret   <- map["appSecret"]
-        username    <- map["username"]
-        `extension` <- map["extension"]
-        password    <- map["password"]
-        receiver    <- map["receiver"]
-    }
-
-    open class func getInstance(filePath: String = ProcessInfo.processInfo.environment[".rc.json"]!) -> Config {
-        let fileContent = try! String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
-        return Config(JSONString: fileContent)!
+    open class func getInstance() -> Config {
+        let config = Config()
+        config.production = ProcessInfo.processInfo.environment["rc_production"]! == "true"
+        config.server = ProcessInfo.processInfo.environment["rc_server"]!
+        config.appKey = ProcessInfo.processInfo.environment["rc_appKey"]!
+        config.appSecret = ProcessInfo.processInfo.environment["rc_appSecret"]!
+        config.username = ProcessInfo.processInfo.environment["rc_username"]!
+        config.extension = ProcessInfo.processInfo.environment["rc_extension"]!
+        config.password = ProcessInfo.processInfo.environment["rc_password"]!
+        config.receiver = ProcessInfo.processInfo.environment["rc_receiver"]!
+        return config
     }
 }
