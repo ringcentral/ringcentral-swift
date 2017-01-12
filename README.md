@@ -20,6 +20,31 @@ Add the following to your Cartfile:
     github "tylerlong/ringcentral-swift-client"
 
 
+## URL Builder
+
+Given any API endpoint, taking `/restapi/v1.0/account/~/extension/~/call-log` for example.
+
+You can build its url with code easily:
+
+```swift
+let restapiVersion = "v1.0"
+let accountID = "~"
+let extensionId = "~"
+```
+
+### URL Builder helps you to build your URL with ease
+
+```swift
+rc.restapi(restapiVersion).account(accountID).extension(extensionId).callLog()
+```
+
+### Please NEVER do string concatenation like below
+
+```swift
+"/restapi" + restapiVersion + "/account/" + accountID + "/extension/" + extensionId + "/call-log"
+```
+
+
 ## Authorization
 
 ```swift
@@ -148,6 +173,11 @@ rc.restapi().account().extension().profileImage().put(imageData: imageData, imag
     }
 }
 ```
+
+
+## More sample code
+
+The [test cases](https://github.com/tylerlong/ringcentral-swift-client/tree/master/Tests) contain lots of sample code.
 
 
 ## License
