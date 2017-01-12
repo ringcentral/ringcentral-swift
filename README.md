@@ -39,6 +39,52 @@ By default, there is a background timer calling `rc.refresh()` periodically, so 
 But if you would like to call refresh manually: `rc.autoRefreshToken = false`
 
 
+## Sample for list, get, post, put and delete
+
+### list
+
+```swift
+// /restapi/v1.0/account/~/extension/~/address-book
+let addressBook = rc.restapi("v1.0").account("~").extension("~").addressBook()
+addressBook.contact().list() { list, error in
+    print(list!.paging!.page) // 1
+}
+```
+
+### post
+
+```swift
+addressBook.contact().post(parameters: [ "firstName": "Tyler", "lastName": "Long", "homePhone": phoneNumber ]) { contact, error in
+    print(contact!.lastName) // Long
+}
+```
+
+### get
+
+```swift
+addressBook.contact("\(contact.id!)").get(){ contact, error in
+    print(contact.lastName) // Long
+}
+```
+
+### put
+
+```swift
+contact.lastName = "Liu"
+addressBook.contact("\(contact.id!)").put(parameters: contact.toParameters()) { contact2, error in
+    print(contact2.lastName) // Liu
+}
+```
+
+### delete
+
+```swift
+addressBook.contact("\(item.id!)").delete() { error in
+    print(error == nil) // true
+}
+```
+
+
 ## Send SMS
 
 ```swift
