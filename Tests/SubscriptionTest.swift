@@ -88,9 +88,7 @@ class SubscriptionTest: BaseTest {
         subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
         var count = 0
         subscription.listeners.append { notification in
-            print("before")
             print(notification.json!)
-            print("after")
             XCTAssertTrue(NotificationType.Message == notification.type!)
             let messageNotification: MessageNotification = notification.downcast()!
             XCTAssertNotNil(messageNotification.body)
