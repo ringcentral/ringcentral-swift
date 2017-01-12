@@ -1,6 +1,7 @@
 # RingCentral Swift Client
 
 [![Build status](https://travis-ci.org/tylerlong/ringcentral-swift-client.svg?branch=master)](https://travis-ci.org/tylerlong/ringcentral-swift-client)
+[![Coverage Status](https://coveralls.io/repos/github/tylerlong/ringcentral-swift-client/badge.svg?branch=master)](https://coveralls.io/github/tylerlong/ringcentral-swift-client?branch=master)
 
 
 ## Requirements

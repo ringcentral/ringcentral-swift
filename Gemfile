@@ -1,1 +1,1 @@
-gem 'slather'
+gem 'slather', require: false
