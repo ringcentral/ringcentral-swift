@@ -6,3 +6,7 @@ before_script:
   - carthage update --platform macOS
 script:
   - xcodebuild clean build test -project RingCentral.xcodeproj -scheme RingCentral_macOS
+
+before_install: rvm use $RVM_RUBY_VERSION
+install: bundle install --without=documentation --path ../travis_bundle_dir
+after_success: slather

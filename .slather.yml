@@ -1,0 +1,6 @@
+coverage_service: coveralls
+xcodeproj: RingCentral.xcodeproj
+scheme: RingCentral_macOS
+ignore:
+  - Source/Definitions/*
+  - Source/Paths/*
