@@ -1,12 +1,11 @@
 language: objective-c
 
-osx_image: xcode8.1
+osx_image: xcode8.2
 
 before_script:
   - carthage update --platform macOS
 script:
   - xcodebuild clean build test -project RingCentral.xcodeproj -scheme RingCentral_macOS
 
-before_install: rvm use $RVM_RUBY_VERSION
 install: bundle install
 after_success: bundle exec slather
