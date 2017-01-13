@@ -36,9 +36,17 @@ class SpecialTest: BaseTest {
         notification = Notification(json: json)!
         XCTAssertTrue(.PresenceLine == notification.type!)
 
+        json = "{\"uuid\":\"-6947519413845489152-2144468163963379453\",\"event\":\"/restapi/v1.0/account/130829004/extension/130829004/presence/line/presence\",\"timestamp\":\"2017-01-13T07:42:27.632Z\",\"subscriptionId\":\"99a5fe54-dbec-49b1-80bb-8a239fe14282\",\"body\":{\"extensionId\":130829004,\"lastUpdated\":\"2017-01-13T07:42:20.909+0000\",\"changes\":[{\"type\":\"Fax\",\"newCount\":0,\"updatedCount\":1}]}}"
+        notification = Notification(json: json)!
+        XCTAssertTrue(.Presence == notification.type!)
+
         json = "{\"uuid\":\"-6947519413845489152-2144468163963379453\",\"event\":\"/restapi/v1.0/account/130829004/extension/130829004/presence\",\"timestamp\":\"2017-01-13T07:42:27.632Z\",\"subscriptionId\":\"99a5fe54-dbec-49b1-80bb-8a239fe14282\",\"body\":{\"extensionId\":130829004,\"lastUpdated\":\"2017-01-13T07:42:20.909+0000\",\"changes\":[{\"type\":\"Fax\",\"newCount\":0,\"updatedCount\":1}]}}"
         notification = Notification(json: json)!
         XCTAssertTrue(.Presence == notification.type!)
+
+        json = "{\"uuid\":\"-6947519413845489152-2144468163963379453\",\"event\":\"/restapi/v1.0\",\"timestamp\":\"2017-01-13T07:42:27.632Z\",\"subscriptionId\":\"99a5fe54-dbec-49b1-80bb-8a239fe14282\",\"body\":{\"extensionId\":130829004,\"lastUpdated\":\"2017-01-13T07:42:20.909+0000\",\"changes\":[{\"type\":\"Fax\",\"newCount\":0,\"updatedCount\":1}]}}"
+        notification = Notification(json: json)!
+        XCTAssertTrue(nil == notification.type)
     }
 
 }

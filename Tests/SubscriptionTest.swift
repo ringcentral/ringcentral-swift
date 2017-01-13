@@ -31,7 +31,14 @@ class SubscriptionTest: BaseTest {
             }
         }
 
-        waitForExpectations(timeout: 10) { error in
+        // register() again to trigger renew()
+        let expectation3 = expectation(description: "expectation3")
+        subscription.register() { error in
+            XCTAssertNil(error)
+            expectation3.fulfill()
+        }
+
+        waitForExpectations(timeout: 20) { error in
             XCTAssertNil(error)
         }
     }
@@ -68,17 +75,27 @@ class SubscriptionTest: BaseTest {
             print(notification)
         }
         let expectation1 = expectation(description: "expectation1")
+        let expectation2 = expectation(description: "expectation2")
         subscription.register() { error in
             XCTAssertNil(error)
             XCTAssertTrue(subscription.alive())
             subscription.remove() { error in
                 XCTAssertNil(error)
                 XCTAssertTrue(!subscription.alive())
-                expectation1.fulfill()
+                // renew() after remove()
+                subscription.renew() { error in
+                    XCTAssertNotNil(error)
+                    expectation1.fulfill()
+                }
+                // remove() after remove()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation2.fulfill()
+                }
             }
         }
 
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: 20) { error in
             XCTAssertNil(error)
         }
     }

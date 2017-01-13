@@ -38,7 +38,7 @@ let extensionId = "~"
 rc.restapi(restapiVersion).account(accountID).extension(extensionId).callLog()
 ```
 
-### Please NEVER do string concatenation like below
+### Please ***NEVER*** do string concatenation like below
 
 ```swift
 "/restapi" + restapiVersion + "/account/" + accountID + "/extension/" + extensionId + "/call-log"
