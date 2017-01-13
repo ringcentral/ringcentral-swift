@@ -1,0 +1,4 @@
+---
+BUNDLE_WITHOUT: "documentation"
+BUNDLE_PATH: "../travis_bundle_dir"
+BUNDLE_DISABLE_SHARED_GEMS: "true"

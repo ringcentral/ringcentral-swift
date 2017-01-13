@@ -8,5 +8,5 @@ script:
   - xcodebuild clean build test -project RingCentral.xcodeproj -scheme RingCentral_macOS
 
 before_install: rvm use $RVM_RUBY_VERSION
-install: bundle install --without=documentation --path ../travis_bundle_dir
-after_success: slather
+install: bundle install && ls ../travis_bundle_dir/ruby
+after_success: ../travis_bundle_dir/ruby/2.0.0/bin/slather
