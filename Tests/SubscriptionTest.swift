@@ -24,11 +24,21 @@ class SubscriptionTest: BaseTest {
             XCTAssertNil(error)
             subscription.renew() { error in
                 XCTAssertNil(error)
-                expectation2.fulfill()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation2.fulfill()
+                }
             }
         }
 
-        waitForExpectations(timeout: 10) { error in
+        // register() again to trigger renew()
+        let expectation3 = expectation(description: "expectation3")
+        subscription.register() { error in
+            XCTAssertNil(error)
+            expectation3.fulfill()
+        }
+
+        waitForExpectations(timeout: 20) { error in
             XCTAssertNil(error)
         }
     }
@@ -46,11 +56,46 @@ class SubscriptionTest: BaseTest {
             XCTAssertNil(error)
             rc.restapi().subscription().list() { list, error in
                 XCTAssertTrue(list?.records?.count ?? 0 > 0)
-                expectation1.fulfill()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation1.fulfill()
+                }
             }
         }
         
         waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error)
+        }
+    }
+
+    func testRemove() {
+        let subscription = rc.restapi().subscription().new()
+        subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
+        subscription.listeners.append { notification in
+            print(notification)
+        }
+        let expectation1 = expectation(description: "expectation1")
+        let expectation2 = expectation(description: "expectation2")
+        subscription.register() { error in
+            XCTAssertNil(error)
+            XCTAssertTrue(subscription.alive())
+            subscription.remove() { error in
+                XCTAssertNil(error)
+                XCTAssertTrue(!subscription.alive())
+                // renew() after remove()
+                subscription.renew() { error in
+                    XCTAssertNotNil(error)
+                    expectation1.fulfill()
+                }
+                // remove() after remove()
+                subscription.remove() { error in
+                    XCTAssertNil(error)
+                    expectation2.fulfill()
+                }
+            }
+        }
+
+        waitForExpectations(timeout: 20) { error in
             XCTAssertNil(error)
         }
     }
@@ -60,15 +105,12 @@ class SubscriptionTest: BaseTest {
         subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
         var count = 0
         subscription.listeners.append { notification in
-            print("before")
             print(notification.json!)
-            print("after")
             XCTAssertTrue(NotificationType.Message == notification.type!)
             let messageNotification: MessageNotification = notification.downcast()!
             XCTAssertNotNil(messageNotification.body)
             XCTAssertNotNil(messageNotification.body!.extensionId)
             XCTAssertTrue(messageNotification.body!.changes!.count > 0)
-            XCTAssertTrue("SMS" == messageNotification.body!.changes![0].type!)
             count += 1
         }
 
@@ -94,7 +136,10 @@ class SubscriptionTest: BaseTest {
         let expectation2 = expectation(description: "expectation2")
         Async.main(after: 20.0) {
             XCTAssertTrue(count >= 1)
-            expectation2.fulfill()
+            subscription.remove() { error in
+                XCTAssertNil(error)
+                expectation2.fulfill()
+            }
         }
 
         waitForExpectations(timeout: 30) { error in

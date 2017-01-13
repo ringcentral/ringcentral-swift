@@ -29,6 +29,7 @@ class BinaryTest: BaseTest {
 
     func testUpload() {
         let expectation1 = expectation(description: "expectation1")
+        let expectation2 = expectation(description: "expectation2")
 
         Alamofire.download("https://www.baidu.com/img/bd_logo1.png").responseData { response in
             if let imageData = response.result.value {
@@ -36,10 +37,14 @@ class BinaryTest: BaseTest {
                     XCTAssertNil(error)
                     expectation1.fulfill()
                 }
+                rc.restapi("v1.0").account("~").extension("~").profileImage().post(imageData: imageData, imageFileName: "test.png") { error in
+                    XCTAssertNil(error)
+                    expectation2.fulfill()
+                }
             }
         }
 
-        waitForExpectations(timeout: 100) { error in
+        waitForExpectations(timeout: 20) { error in
             XCTAssertNil(error)
         }
     }

@@ -1,5 +1,8 @@
 # RingCentral Swift Client
 
+[![Build status](https://travis-ci.org/tylerlong/ringcentral-swift-client.svg?branch=master)](https://travis-ci.org/tylerlong/ringcentral-swift-client)
+[![Coverage Status](https://coveralls.io/repos/github/tylerlong/ringcentral-swift-client/badge.svg?branch=master)](https://coveralls.io/github/tylerlong/ringcentral-swift-client?branch=master)
+
 
 ## Requirements
 
@@ -15,6 +18,31 @@ The recommended way to install this framework is via [Carthage](https://github.c
 Add the following to your Cartfile:
 
     github "tylerlong/ringcentral-swift-client"
+
+
+## URL Builder
+
+Given any API endpoint, taking `/restapi/v1.0/account/~/extension/~/call-log` for example.
+
+You can build its url with code easily:
+
+```swift
+let restapiVersion = "v1.0"
+let accountID = "~"
+let extensionId = "~"
+```
+
+### URL Builder helps you to build your URL with ease
+
+```swift
+rc.restapi(restapiVersion).account(accountID).extension(extensionId).callLog()
+```
+
+### Please ***NEVER*** do string concatenation like below
+
+```swift
+"/restapi" + restapiVersion + "/account/" + accountID + "/extension/" + extensionId + "/call-log"
+```
 
 
 ## Authorization
@@ -34,6 +62,52 @@ rc.authorize("username", ext: "", password: "password") { token, error in
 By default, there is a background timer calling `rc.refresh()` periodically, so the authorization never expires.
 
 But if you would like to call refresh manually: `rc.autoRefreshToken = false`
+
+
+## Sample for list, get, post, put and delete
+
+### list
+
+```swift
+// /restapi/v1.0/account/~/extension/~/address-book
+let addressBook = rc.restapi("v1.0").account("~").extension("~").addressBook()
+addressBook.contact().list() { list, error in
+    print(list!.paging!.page) // 1
+}
+```
+
+### post
+
+```swift
+addressBook.contact().post(parameters: [ "firstName": "Tyler", "lastName": "Long", "homePhone": phoneNumber ]) { contact, error in
+    print(contact!.lastName) // Long
+}
+```
+
+### get
+
+```swift
+addressBook.contact("\(contact.id!)").get(){ contact, error in
+    print(contact.lastName) // Long
+}
+```
+
+### put
+
+```swift
+contact.lastName = "Liu"
+addressBook.contact("\(contact.id!)").put(parameters: contact.toParameters()) { contact2, error in
+    print(contact2.lastName) // Liu
+}
+```
+
+### delete
+
+```swift
+addressBook.contact("\(item.id!)").delete() { error in
+    print(error == nil) // true
+}
+```
 
 
 ## Send SMS
@@ -99,6 +173,11 @@ rc.restapi().account().extension().profileImage().put(imageData: imageData, imag
     }
 }
 ```
+
+
+## More sample code
+
+The [test cases](https://github.com/tylerlong/ringcentral-swift-client/tree/master/Tests) contain lots of sample code.
 
 
 ## License

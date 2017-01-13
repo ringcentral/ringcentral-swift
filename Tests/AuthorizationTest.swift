@@ -24,4 +24,10 @@ class AuthorizationTest: BaseTest {
         XCTAssertTrue("https://platform.devtest.ringcentral.com/restapi/oauth/authorize?response_type=code&state=myState&redirect_uri=http://baidu.com&client_id=\(rc.appKey)" == uri)
     }
 
+    func testAuthCode() {
+        rc.authorize(authCode: "does-not-exist", redirectUri: "http://baidu.com") { token, error in
+            XCTAssertNotNil(error)
+        }
+    }
+
 }

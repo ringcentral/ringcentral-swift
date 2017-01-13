@@ -101,7 +101,21 @@ open class SubscriptionService: NSObject, PNObjectEventListener {
         }
     }
 
-    func alive() -> Bool {
+    open func remove(callback: @escaping (_ error: HTTPError?) -> Void) {
+        if !alive() { // Remove() has been called
+            return callback(nil)
+        }
+        rc.restapi("v1.0").subscription(subscriptionInfo!.id!).delete() { error in
+            if let error = error {
+                return callback(error)
+            }
+            self.subscriptionInfo = nil
+            self.pubnub = nil
+            callback(nil)
+        }
+    }
+
+    open func alive() -> Bool {
         if let _ = pubnub, let subscriptionInfo = subscriptionInfo {
             if subscriptionInfo.id != nil {
                 if let deliveryMode = subscriptionInfo.deliveryMode {

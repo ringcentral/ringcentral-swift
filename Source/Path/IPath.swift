@@ -35,14 +35,14 @@ public protocol IPath {
 
 extension IPath {
     public func endpoint(withId: Bool = true) -> String {
-        if parent == nil {
-            return ""
+        var result = pathSegment
+        if parent != nil {
+            result = parent!.endpoint() <= result
         }
-        var url = parent!.endpoint() <= pathSegment
         if withId && _id != nil {
-            url = url <= _id!
+            result = result <= _id!
         }
-        return "/" + url.trimLeft("/")
+        return "/" + result.trimLeft("/")
     }
 
     public func url(withId: Bool = true) -> String {

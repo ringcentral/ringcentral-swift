@@ -15,25 +15,16 @@ We only test on macOS. For other platforms, we just make sure that the code comp
 
 Create a scheme for RingCentral_macOS_Tests if it doesn't already exist.
 
-Edit the scheme and create an environtment variable: 
+Edit the scheme and create the following environtment variables: 
     
-- the key is`.rc.json` 
-- the value is path to the configuration file, for example: `/Users/tyler.liu/.rc.json`.
-
-Create the configuration file and its content should be:
-
-
-    {
-        "production": false,
-        "server": "https://platform.devtest.ringcentral.com",
-        "appKey": "appKey",
-        "appSecret": "appSecret",
-        "username": "username",
-        "extension": "",
-        "password": "password",
-        "receiver":  "receiver number"
-    }
-
+    production => false
+    server => https://platform.devtest.ringcentral.com
+    appKey => appKey
+    appSecret => appSecret
+    username => username
+    extension =>
+    password => password
+    receiver => receiver number
 
 
 ## Don't forget

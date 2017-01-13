@@ -66,6 +66,7 @@ class ContactTest: BaseTest {
 
         // search
         let expectation6 = expectation(description: "expectation6")
+        let expectation7 = expectation(description: "expectation7")
         addressBook.contact().list(parameters: ["phoneNumber": phoneNumber]) { list, error in
             XCTAssertNil(error)
             XCTAssertNotNil(list)
@@ -89,15 +90,16 @@ class ContactTest: BaseTest {
                     XCTAssertTrue("Tyler" == contact3!.firstName)
                     expectation6.fulfill()
                 }
-
-
             }
-
+            rc.putString(addressBook.contact("\(contact.id!)").endpoint(), parameters: contact.toParameters()) { string, error in
+                XCTAssertNil(error)
+                expectation7.fulfill()
+            }
         }
         sleep(1)
 
 
-        waitForExpectations(timeout: 40) { error in
+        waitForExpectations(timeout: 60) { error in
             XCTAssertNil(error)
         }
     }
