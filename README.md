@@ -1,7 +1,7 @@
 # RingCentral Swift Client
 
-[![Build status](https://travis-ci.org/tylerlong/ringcentral-swift-client.svg?branch=master)](https://travis-ci.org/tylerlong/ringcentral-swift-client)
-[![Coverage Status](https://coveralls.io/repos/github/tylerlong/ringcentral-swift-client/badge.svg?branch=master)](https://coveralls.io/github/tylerlong/ringcentral-swift-client?branch=master)
+[![Build status](https://travis-ci.org/ringcentral/ringcentral-swift-client.svg?branch=master)](https://travis-ci.org/ringcentral/ringcentral-swift-client)
+[![Coverage Status](https://coveralls.io/repos/github/ringcentral/ringcentral-swift-client/badge.svg?branch=master)](https://coveralls.io/github/ringcentral/ringcentral-swift-client?branch=master)
 
 
 ## Requirements
@@ -17,7 +17,7 @@ The recommended way to install this framework is via [Carthage](https://github.c
 
 Add the following to your Cartfile:
 
-    github "tylerlong/ringcentral-swift-client"
+    github "ringcentral/ringcentral-swift-client"
 
 
 ## URL Builder
@@ -177,7 +177,7 @@ rc.restapi().account().extension().profileImage().put(imageData: imageData, imag
 
 ## More sample code
 
-The [test cases](https://github.com/tylerlong/ringcentral-swift-client/tree/master/Tests) contain lots of sample code.
+The [test cases](https://github.com/ringcentral/ringcentral-swift-client/tree/master/Tests) contain lots of sample code.
 
 
 ## License
