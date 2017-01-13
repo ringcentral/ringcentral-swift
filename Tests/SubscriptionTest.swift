@@ -94,7 +94,6 @@ class SubscriptionTest: BaseTest {
             XCTAssertNotNil(messageNotification.body)
             XCTAssertNotNil(messageNotification.body!.extensionId)
             XCTAssertTrue(messageNotification.body!.changes!.count > 0)
-            XCTAssertTrue("SMS" == messageNotification.body!.changes![0].type!)
             count += 1
         }
 
