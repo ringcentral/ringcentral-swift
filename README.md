@@ -151,7 +151,7 @@ let subscription = rc.restapi().subscription().new()
 subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/message-store")
 subscription.eventFilters.append("/restapi/v1.0/account/~/extension/~/presence?detailedTelephonyState=true")
 subscription.listeners.append { notification in
-    print(notification.json!)
+    print(notification.json!) // If you want to parse JSON data yourself, here it is.
     switch notification.type! {
         case .Message:
             let messageNotification: MessageNotification = notification.downcast()!
