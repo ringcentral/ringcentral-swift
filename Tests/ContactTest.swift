@@ -99,7 +99,7 @@ class ContactTest: BaseTest {
         sleep(1)
 
 
-        waitForExpectations(timeout: 90) { error in
+        waitForExpectations(timeout: 120) { error in
             XCTAssertNil(error)
         }
     }

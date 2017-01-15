@@ -44,6 +44,19 @@ rc.restapi(restapiVersion).account(accountID).extension(extensionId).callLog()
 "/restapi" + restapiVersion + "/account/" + accountID + "/extension/" + extensionId + "/call-log"
 ```
 
+### Default Value
+
+Default value for `restapi` is "v1.0"; default value for `account` and `extension` are both "~".
+
+If you don't specify an explicit value, default value is used.
+
+So the following two lines are equivalent:
+
+```swift
+rc.restapi().account().extension()
+rc.restapi("v1.0").account("~").extension("~")
+```
+
 
 ## Authorization
 
