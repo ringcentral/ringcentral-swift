@@ -57,14 +57,14 @@ rc.authorize("username", ext: "", password: "password") { token, error in
 ```
 
 
-## Token Refresh
+### Token Refresh
 
 By default, there is a background timer calling `rc.refresh()` periodically, so the authorization never expires.
 
 But if you would like to call refresh manually: `rc.autoRefreshToken = false`
 
 
-## Token Revoken
+### Token Revoke
 
 When you no longer need the token, don't forget to revoke it: `rc.revoke()`.
 
