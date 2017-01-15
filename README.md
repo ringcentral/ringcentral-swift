@@ -155,6 +155,15 @@ subscription.listeners.append { notification in
 ```
 
 
+### Remove Subscription
+
+When you no longer need a subscription, don't forget to remove it:
+
+```swift
+subscription.remove()
+```
+
+
 ## Send fax
 
 ```swift
