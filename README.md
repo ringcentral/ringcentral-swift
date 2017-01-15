@@ -64,6 +64,11 @@ By default, there is a background timer calling `rc.refresh()` periodically, so 
 But if you would like to call refresh manually: `rc.autoRefreshToken = false`
 
 
+## Token Revoken
+
+When you no longer need the token, don't forget to revoke it: `rc.revoke()`.
+
+
 ## Sample for list, get, post, put and delete
 
 ### list
