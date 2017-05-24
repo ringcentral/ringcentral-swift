@@ -32,7 +32,7 @@ class BaseTest: XCTestCase {
         let expectation1 = temp.expectation(description: "expectation1")
         rc.revoke() { result in
             XCTAssertTrue(result)
-            sleep(20)
+            sleep(10)
             expectation1.fulfill()
         }
         temp.waitForExpectations(timeout: 40) { error in

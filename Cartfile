@@ -1,6 +1,6 @@
 github "Alamofire/Alamofire"
 github "Hearst-DD/ObjectMapper"
 github "pubnub/objective-c"
-github "duemunk/Async" "2.0.3"
+github "duemunk/Async"
 github "krzyzanowskim/CryptoSwift"
 github "ankurp/Dollar"
