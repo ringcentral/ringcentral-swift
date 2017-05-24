@@ -1,6 +1,5 @@
 import PubNub
 import Alamofire
-import Async
 import CryptoSwift
 
 
@@ -37,7 +36,7 @@ open class SubscriptionService: NSObject, PNObjectEventListener {
         set(value) {
             _subscriptionInfo = value
             if _subscriptionInfo != nil && !renewScheduled {
-                Async.background(after: Double(_subscriptionInfo!.expiresIn! - 120)) {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(_subscriptionInfo!.expiresIn! - 120)) {
                     self.renew() { error in
                         self.renewScheduled = false
                     }

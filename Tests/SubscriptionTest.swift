@@ -1,6 +1,5 @@
 import XCTest
 import RingCentral
-import Async
 import Alamofire
 
 class SubscriptionTest: BaseTest {
@@ -134,7 +133,7 @@ class SubscriptionTest: BaseTest {
         }
 
         let expectation2 = expectation(description: "expectation2")
-        Async.main(after: 20.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(20)) {
             XCTAssertTrue(count >= 1)
             subscription.remove() { error in
                 XCTAssertNil(error)

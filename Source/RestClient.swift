@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import Async
 
 
 open class RestClient {
@@ -24,7 +23,7 @@ open class RestClient {
     open var token: TokenInfo? {
         didSet {
             if autoRefreshToken && token != nil && !refreshScheduled {
-                Async.background(after: Double(token!.expires_in! - 120)) {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(token!.expires_in! - 120)) {
                     self.refreshScheduled = false
                     self.refresh()
                 }

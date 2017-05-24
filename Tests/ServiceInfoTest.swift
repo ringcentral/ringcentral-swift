@@ -1,6 +1,5 @@
 import XCTest
 import RingCentral
-import Dollar
 
 
 class ServiceInfoTest: BaseTest {
@@ -10,7 +9,8 @@ class ServiceInfoTest: BaseTest {
 
         rc.restapi("v1.0").account("~").serviceInfo().get() { serviceInfo, error in
             XCTAssertNil(error)
-            let feature = $.find(serviceInfo!.serviceFeatures!) { $0.featureName! == "FaxReceiving" }!
+            let index = serviceInfo!.serviceFeatures!.index(where: { $0.featureName! == "FaxReceiving" })!
+            let feature = serviceInfo!.serviceFeatures![index]
             XCTAssertTrue(true == feature.enabled!)
             XCTAssertNotNil(serviceInfo?.limits)
             expectation1.fulfill()
@@ -25,9 +25,8 @@ class ServiceInfoTest: BaseTest {
         let expectation1 = expectation(description: "expectation1")
 
         rc.restapi("v1.0").account("~").extension("~").meetingServiceInfo().get() { serviceInfo, error in
-            // todo: update code below after getting permission
-            XCTAssertNotNil(error)
-            XCTAssertTrue(403 == error!.statusCode)
+            XCTAssertNil(error)
+            XCTAssertNotNil(serviceInfo)
             expectation1.fulfill()
         }
 
