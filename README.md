@@ -19,6 +19,15 @@ Add the following to your Cartfile:
 
     github "ringcentral/ringcentral-swift"
 
+Denpending on your target platform, run **one** of the following:
+
+    carthage update --platform macOS
+    carthage update --platform iOS
+    carthage update --platform tvOS
+    carthage update --platform watchOS
+
+Built libraries will be available in `./Carthage/Build/`. 
+
 
 ## URL Builder
 
