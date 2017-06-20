@@ -74,6 +74,9 @@ extension RestClient {
         if token != nil && headers["Authorization"] == nil {
             headers["Authorization"] = "Bearer \(token!.access_token!)"
         }
+        let userAgentHeader = ["RC-SWIFT-SDK", userAgent].joined(separator: " ")
+        headers["User-Agent"] = userAgentHeader
+        headers["RC-User-Agent"] = userAgentHeader
         let request = Alamofire.request(urlString, method: method, parameters: parameters, encoding: encoding, headers: headers)
         return request
     }
