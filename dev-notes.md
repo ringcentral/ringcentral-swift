@@ -31,3 +31,10 @@ Edit the scheme and create the following environtment variables:
 
 Push a new tag to remote every time you made some changes. 
 Otherwise Carthage users won't be able to download the latest code.
+
+
+## Troubleshooting
+
+Sometimes Travis fails due to: https://github.com/Carthage/Carthage/issues/1236
+
+You need to add a GITHUB_ACCESS_TOKEN env variable.
