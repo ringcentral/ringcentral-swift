@@ -19,6 +19,9 @@ open class RestapiPath: PathSegment {
     open func `dictionary`() -> DictionaryPath {
         return DictionaryPath(parent: self)
     }
+    open func `glip`() -> GlipPath {
+        return GlipPath(parent: self)
+    }
     open func `numberParser`() -> NumberParserPath {
         return NumberParserPath(parent: self)
     }
