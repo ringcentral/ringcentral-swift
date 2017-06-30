@@ -19,7 +19,6 @@ open class RestClient {
     open var appSecret: String
     open var server: String
     open var autoRefreshToken: Bool = true
-    open var userAgent: String = ""
     private var refreshScheduled: Bool = false
     open var token: TokenInfo? {
         didSet {
