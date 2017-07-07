@@ -11,6 +11,8 @@ open class CallLogRecord: Mappable {
     open var `from`: CallerInfo?
     // Callee information
     open var `to`: CallerInfo?
+    // For Extension Call Log only. Voicemail message data
+    open var `message`: VoicemailMessageInfo?
     // Call type
     open var `type`: String?
     // Call direction
@@ -19,6 +21,8 @@ open class CallLogRecord: Mappable {
     open var `action`: String?
     // Status description of the call operation
     open var `result`: String?
+    // For 'Detailed' view only. Call billing information
+    open var `billing`: BillingInfo?
     // The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
     open var `startTime`: String?
     // Call duration in seconds
@@ -27,30 +31,29 @@ open class CallLogRecord: Mappable {
     open var `recording`: RecordingInfo?
     // For 'Detailed' view only. The datetime when the call log record was modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
     open var `lastModifiedTime`: String?
-    // For 'Detailed' view only. Call transport
-    open var `transport`: String?
     // For 'Detailed' view only. Leg description
     open var `legs`: [LegInfo]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil, lastModifiedTime: String? = nil, transport: String? = nil, legs: [LegInfo]? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallerInfo? = nil, to: CallerInfo? = nil, message: VoicemailMessageInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, billing: BillingInfo? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil, lastModifiedTime: String? = nil, legs: [LegInfo]? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
         self.sessionId = `sessionId`
         self.from = `from`
         self.to = `to`
+        self.message = `message`
         self.type = `type`
         self.direction = `direction`
         self.action = `action`
         self.result = `result`
+        self.billing = `billing`
         self.startTime = `startTime`
         self.duration = `duration`
         self.recording = `recording`
         self.lastModifiedTime = `lastModifiedTime`
-        self.transport = `transport`
         self.legs = `legs`
     }
     open func mapping(map: Map) {
@@ -59,15 +62,16 @@ open class CallLogRecord: Mappable {
         `sessionId` <- map["sessionId"]
         `from` <- map["from"]
         `to` <- map["to"]
+        `message` <- map["message"]
         `type` <- map["type"]
         `direction` <- map["direction"]
         `action` <- map["action"]
         `result` <- map["result"]
+        `billing` <- map["billing"]
         `startTime` <- map["startTime"]
         `duration` <- map["duration"]
         `recording` <- map["recording"]
         `lastModifiedTime` <- map["lastModifiedTime"]
-        `transport` <- map["transport"]
         `legs` <- map["legs"]
     }
 }

@@ -929,6 +929,14 @@
 		875500DD1DB494E10089B0EA /* PubNub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875500DC1DB494E10089B0EA /* PubNub.framework */; };
 		875500DE1DB494F00089B0EA /* PubNub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875500DC1DB494E10089B0EA /* PubNub.framework */; };
 		875500DF1DB495050089B0EA /* PubNub.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 875500DC1DB494E10089B0EA /* PubNub.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8764864D1F0F89990047931B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864B1F0F89990047931B /* BillingInfo.swift */; };
+		8764864E1F0F89990047931B /* VoicemailMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */; };
+		8764864F1F0F89BA0047931B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864B1F0F89990047931B /* BillingInfo.swift */; };
+		876486501F0F89BA0047931B /* VoicemailMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */; };
+		876486511F0F89C20047931B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864B1F0F89990047931B /* BillingInfo.swift */; };
+		876486521F0F89C20047931B /* VoicemailMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */; };
+		876486531F0F89C80047931B /* BillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864B1F0F89990047931B /* BillingInfo.swift */; };
+		876486541F0F89C80047931B /* VoicemailMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */; };
 		878BC5821DF7F6B0009F28B3 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873B6B131DB71044001D1825 /* CryptoSwift.framework */; };
 		878BC5831DF7F6CC009F28B3 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 873B6B131DB71044001D1825 /* CryptoSwift.framework */; };
 		879ADEC21D98C409008E7735 /* RingCentral_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 879ADEC01D98C409008E7735 /* RingCentral_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1230,6 +1238,8 @@
 		875500D91DB468540089B0EA /* SubscriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionTest.swift; path = Tests/SubscriptionTest.swift; sourceTree = "<group>"; };
 		875500DC1DB494E10089B0EA /* PubNub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubNub.framework; path = Carthage/Build/Mac/PubNub.framework; sourceTree = "<group>"; };
 		875500E01DB4C6B00089B0EA /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/Mac/Async.framework; sourceTree = "<group>"; };
+		8764864B1F0F89990047931B /* BillingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingInfo.swift; path = Source/Definitions/BillingInfo.swift; sourceTree = "<group>"; };
+		8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoicemailMessageInfo.swift; path = Source/Definitions/VoicemailMessageInfo.swift; sourceTree = "<group>"; };
 		877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockedNumberTest.swift; path = Tests/BlockedNumberTest.swift; sourceTree = "<group>"; };
 		877021BC1E1BA32B00857F0F /* Definition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Definition.swift; path = Source/Definition/Definition.swift; sourceTree = "<group>"; };
 		87748F491DD02A2400DDCF21 /* FaxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaxTest.swift; path = Tests/FaxTest.swift; sourceTree = "<group>"; };
@@ -1346,6 +1356,8 @@
 		8734DF6E1DD5CBF60042951B /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
+				8764864B1F0F89990047931B /* BillingInfo.swift */,
+				8764864C1F0F89990047931B /* VoicemailMessageInfo.swift */,
 				8714C83D1EF8EB3600296963 /* GlipGroupInfo.swift */,
 				8714C83E1EF8EB3600296963 /* GlipNavigationInfo.swift */,
 				8714C83F1EF8EB3600296963 /* GlipPostInfo.swift */,
@@ -2014,6 +2026,7 @@
 				8714C8421EF8EB3600296963 /* GlipPostInfo.swift in Sources */,
 				8714C4EF1EF8E91C00296963 /* ParsePath.swift in Sources */,
 				8714C4F01EF8E91C00296963 /* PhoneNumberPath.swift in Sources */,
+				8764864D1F0F89990047931B /* BillingInfo.swift in Sources */,
 				8714C4F11EF8E91C00296963 /* PresencePath.swift in Sources */,
 				8714C4F21EF8E91C00296963 /* ProfileImagePath.swift in Sources */,
 				8714C4F31EF8E91C00296963 /* RecordingPath.swift in Sources */,
@@ -2169,6 +2182,7 @@
 				8714C5851EF8E91D00296963 /* ShippingAddress.swift in Sources */,
 				8714C83B1EF8EAF400296963 /* PersonsPath.swift in Sources */,
 				8714C5861EF8E91D00296963 /* ShippingInfo.swift in Sources */,
+				8764864E1F0F89990047931B /* VoicemailMessageInfo.swift in Sources */,
 				8714C5871EF8E91D00296963 /* ShippingMethod.swift in Sources */,
 				8714C5881EF8E91D00296963 /* SIPData.swift in Sources */,
 				8714C5891EF8E91D00296963 /* StateInfo_CountryInfo.swift in Sources */,
@@ -2199,6 +2213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8764864F1F0F89BA0047931B /* BillingInfo.swift in Sources */,
+				876486501F0F89BA0047931B /* VoicemailMessageInfo.swift in Sources */,
 				8714C8431EF8EBA000296963 /* Definition.swift in Sources */,
 				8714C8441EF8EBA000296963 /* IPath.swift in Sources */,
 				8714C8451EF8EBA000296963 /* PathSegment.swift in Sources */,
@@ -2435,6 +2451,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876486511F0F89C20047931B /* BillingInfo.swift in Sources */,
+				876486521F0F89C20047931B /* VoicemailMessageInfo.swift in Sources */,
 				8714C9281EF8EBAB00296963 /* Definition.swift in Sources */,
 				8714C9291EF8EBAB00296963 /* IPath.swift in Sources */,
 				8714C92A1EF8EBAB00296963 /* PathSegment.swift in Sources */,
@@ -2671,6 +2689,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876486531F0F89C80047931B /* BillingInfo.swift in Sources */,
+				876486541F0F89C80047931B /* VoicemailMessageInfo.swift in Sources */,
 				8714CA0D1EF8EBB600296963 /* Definition.swift in Sources */,
 				8714CA0E1EF8EBB600296963 /* IPath.swift in Sources */,
 				8714CA0F1EF8EBB600296963 /* PathSegment.swift in Sources */,

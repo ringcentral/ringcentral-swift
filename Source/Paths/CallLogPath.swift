@@ -26,15 +26,21 @@ open class CallLogPath: PathSegment {
     open class ListParameters: Mappable {
         // Extension number of a user. If specified, returns call log for a particular extension only. Cannot be specified together with the phoneNumber filter
         open var `extensionNumber`: String?
+        // If 'True' then calls from/to blocked numbers are returned. The default value is 'True'
+        open var `showBlocked`: Bool?
         // Phone number of a caller/call recipient. If specified, returns all calls (both incoming and outcoming) with the mentioned phone number. Cannot be specified together with the extensionNumber filter
         open var `phoneNumber`: String?
-        // The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are accepted
+        // The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are supported
         open var `direction`: String?
-        // Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are accepted
+        // Internal identifier of a call session. Cannot be specified along with parameters 'dateTo'/'dateFrom'
+        open var `sessionId`: String?
+        // Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are supported
         open var `type`: String?
+        // Call transport type. By default this filter is disabled
+        open var `transport`: String?
         // The default value is 'Simple' for both account and extension call log
         open var `view`: String?
-        // 'True' if only recorded calls have to be returned
+        // 'True' if only recorded calls are returned. The default value is 'False'
         open var `withRecording`: Bool?
         // The start datetime for resulting records in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
         open var `dateFrom`: String?
@@ -48,12 +54,15 @@ open class CallLogPath: PathSegment {
         }
         required public init?(map: Map) {
         }
-        convenience public init(extensionNumber: String? = nil, phoneNumber: String? = nil, direction: String? = nil, type: String? = nil, view: String? = nil, withRecording: Bool? = nil, dateFrom: String? = nil, dateTo: String? = nil, page: Int? = nil, perPage: Int? = nil) {
+        convenience public init(extensionNumber: String? = nil, showBlocked: Bool? = nil, phoneNumber: String? = nil, direction: String? = nil, sessionId: String? = nil, type: String? = nil, transport: String? = nil, view: String? = nil, withRecording: Bool? = nil, dateFrom: String? = nil, dateTo: String? = nil, page: Int? = nil, perPage: Int? = nil) {
             self.init()
             self.extensionNumber = `extensionNumber`
+            self.showBlocked = `showBlocked`
             self.phoneNumber = `phoneNumber`
             self.direction = `direction`
+            self.sessionId = `sessionId`
             self.type = `type`
+            self.transport = `transport`
             self.view = `view`
             self.withRecording = `withRecording`
             self.dateFrom = `dateFrom`
@@ -63,9 +72,12 @@ open class CallLogPath: PathSegment {
         }
         open func mapping(map: Map) {
             `extensionNumber` <- map["extensionNumber"]
+            `showBlocked` <- map["showBlocked"]
             `phoneNumber` <- map["phoneNumber"]
             `direction` <- map["direction"]
+            `sessionId` <- map["sessionId"]
             `type` <- map["type"]
+            `transport` <- map["transport"]
             `view` <- map["view"]
             `withRecording` <- map["withRecording"]
             `dateFrom` <- map["dateFrom"]
