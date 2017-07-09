@@ -53,9 +53,22 @@ public struct MyURLEncoding: ParameterEncoding {
     public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
         let urlRequest = try urlRequest.asURLRequest()
         guard let parameters = parameters else { return urlRequest }
-        var myParameters: Parameters? = parameters
+        var myParameters: Parameters = parameters
         if let json = parameters["json-string"] as? String {
-            myParameters = try JSONSerialization.jsonObject(with: json.data(using: String.Encoding.utf8)!, options: []) as? Parameters
+            myParameters = try JSONSerialization.jsonObject(with: json.data(using: String.Encoding.utf8)!, options: []) as! Parameters
+        }
+
+        // convert Bool to String: https://github.com/Alamofire/Alamofire/issues/1056
+        for (key, value) in myParameters {
+            let type = String(describing: type(of: value))
+            if type == "Bool" || type == "__NSCFBoolean" {
+                let bool = value as! Bool
+                if bool == true {
+                    myParameters[key] = "true"
+                } else {
+                    myParameters[key] = "false"
+                }
+            }
         }
 
         // delegate to URLEncoding
