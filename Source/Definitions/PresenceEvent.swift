@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class PresenceEvent: Mappable {
     // Internal identifier of an extension. Optional parameter
-    open var `extensionId`: String?
+    open var `extensionId`: Int?
     // Telephony presence status. Returned if telephony status is changed. See Telephony Status Values
     open var `telephonyStatus`: String?
     // Type of call termination. Supported for calls in 'NoCall' status. If the returned termination type is 'Intermediate' it means the call is not actually ended, the connection is established on one of the devices
@@ -25,7 +25,7 @@ open class PresenceEvent: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(extensionId: String? = nil, telephonyStatus: String? = nil, terminationType: String? = nil, sequence: Int? = nil, presenceStatus: String? = nil, userStatus: String? = nil, dndStatus: String? = nil, allowSeeMyPresence: Bool? = nil, ringOnMonitoredCall: Bool? = nil, pickUpCallsOnHold: Bool? = nil) {
+    convenience public init(extensionId: Int? = nil, telephonyStatus: String? = nil, terminationType: String? = nil, sequence: Int? = nil, presenceStatus: String? = nil, userStatus: String? = nil, dndStatus: String? = nil, allowSeeMyPresence: Bool? = nil, ringOnMonitoredCall: Bool? = nil, pickUpCallsOnHold: Bool? = nil) {
         self.init()
         self.extensionId = `extensionId`
         self.telephonyStatus = `telephonyStatus`
