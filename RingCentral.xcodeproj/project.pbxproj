@@ -977,6 +977,9 @@
 		87F3F57B1DD1D66B005850AE /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F3F5761DD1D66B005850AE /* CryptoSwift.framework */; };
 		87F3F57D1DD1D66B005850AE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F3F5781DD1D66B005850AE /* Alamofire.framework */; };
 		EAD906F11F27D967007CC137 /* MmsPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD906F01F27D967007CC137 /* MmsPath.swift */; };
+		EAD906F91F27F78A007CC137 /* MmsPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD906F01F27D967007CC137 /* MmsPath.swift */; };
+		EAD906FA1F27F791007CC137 /* MmsPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD906F01F27D967007CC137 /* MmsPath.swift */; };
+		EAD906FB1F27F791007CC137 /* MmsPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD906F01F27D967007CC137 /* MmsPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2419,6 +2422,7 @@
 				8714C9081EF8EBA000296963 /* RingOutInfo.swift in Sources */,
 				8714C9091EF8EBA000296963 /* RingOutStatusInfo.swift in Sources */,
 				8714C90A1EF8EBA000296963 /* RuleInfo_ForwardingNumberInfo.swift in Sources */,
+				EAD906F91F27F78A007CC137 /* MmsPath.swift in Sources */,
 				8714C90B1EF8EBA000296963 /* RuleInfo.swift in Sources */,
 				8714C90C1EF8EBA000296963 /* ScheduleInfo.swift in Sources */,
 				8714C90D1EF8EBA000296963 /* ServerInfo.swift in Sources */,
@@ -2657,6 +2661,7 @@
 				8714C9ED1EF8EBAC00296963 /* RingOutInfo.swift in Sources */,
 				8714C9EE1EF8EBAC00296963 /* RingOutStatusInfo.swift in Sources */,
 				8714C9EF1EF8EBAC00296963 /* RuleInfo_ForwardingNumberInfo.swift in Sources */,
+				EAD906FA1F27F791007CC137 /* MmsPath.swift in Sources */,
 				8714C9F01EF8EBAC00296963 /* RuleInfo.swift in Sources */,
 				8714C9F11EF8EBAC00296963 /* ScheduleInfo.swift in Sources */,
 				8714C9F21EF8EBAC00296963 /* ServerInfo.swift in Sources */,
@@ -2895,6 +2900,7 @@
 				8714CAD21EF8EBB600296963 /* RingOutInfo.swift in Sources */,
 				8714CAD31EF8EBB600296963 /* RingOutStatusInfo.swift in Sources */,
 				8714CAD41EF8EBB600296963 /* RuleInfo_ForwardingNumberInfo.swift in Sources */,
+				EAD906FB1F27F791007CC137 /* MmsPath.swift in Sources */,
 				8714CAD51EF8EBB600296963 /* RuleInfo.swift in Sources */,
 				8714CAD61EF8EBB600296963 /* ScheduleInfo.swift in Sources */,
 				8714CAD71EF8EBB600296963 /* ServerInfo.swift in Sources */,
