@@ -976,6 +976,7 @@
 		87F3F57A1DD1D66B005850AE /* PubNub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F3F5751DD1D66B005850AE /* PubNub.framework */; };
 		87F3F57B1DD1D66B005850AE /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F3F5761DD1D66B005850AE /* CryptoSwift.framework */; };
 		87F3F57D1DD1D66B005850AE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F3F5781DD1D66B005850AE /* Alamofire.framework */; };
+		EAD906F11F27D967007CC137 /* MmsPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD906F01F27D967007CC137 /* MmsPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1291,6 +1292,7 @@
 		87F5C7261DE2EBDE00A0D681 /* Dollar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dollar.framework; path = Carthage/Build/Mac/Dollar.framework; sourceTree = "<group>"; };
 		87F5C7291DE2F85900A0D681 /* AuthorizationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorizationTest.swift; path = Tests/AuthorizationTest.swift; sourceTree = "<group>"; };
 		87F5C72C1DE30ECF00A0D681 /* TokenTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TokenTest.swift; path = Tests/TokenTest.swift; sourceTree = "<group>"; };
+		EAD906F01F27D967007CC137 /* MmsPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MmsPath.swift; path = Source/Paths/MmsPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1587,6 +1589,7 @@
 				8734E0DD1DD5CC210042951B /* SubscriptionPath.swift */,
 				8734E0DE1DD5CC210042951B /* TimezonePath.swift */,
 				8734E0DF1DD5CC210042951B /* TokenPath.swift */,
+				EAD906F01F27D967007CC137 /* MmsPath.swift */,
 			);
 			name = Paths;
 			sourceTree = "<group>";
@@ -2177,6 +2180,7 @@
 				8714C5801EF8E91D00296963 /* RuleInfo.swift in Sources */,
 				8714C5811EF8E91D00296963 /* ScheduleInfo.swift in Sources */,
 				8714C5821EF8E91D00296963 /* ServerInfo.swift in Sources */,
+				EAD906F11F27D967007CC137 /* MmsPath.swift in Sources */,
 				8714C5831EF8E91D00296963 /* ServiceFeatureInfo.swift in Sources */,
 				8714C5841EF8E91D00296963 /* ServicePlanInfo.swift in Sources */,
 				8714C5851EF8E91D00296963 /* ShippingAddress.swift in Sources */,
