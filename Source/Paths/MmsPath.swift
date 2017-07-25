@@ -4,7 +4,7 @@ import Alamofire
 open class MmsPath: PathSegment {
     public override var pathSegment: String {
         get{
-            return "mms"
+            return "sms"
         }
     }
     open class PostParameters: Mappable {
