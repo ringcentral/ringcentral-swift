@@ -7,30 +7,44 @@ open class ActiveCallsPath: PathSegment {
             return "active-calls"
         }
     }
-    // Get Account Active (Recent) Calls
+    /*
+    Get Account Active (Recent) Calls.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Account Active (Recent) Calls
+    /*
+    Get Account Active (Recent) Calls.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Account Active (Recent) Calls
+    /*
+    Get Account Active (Recent) Calls.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are accepted
+        /*
+        The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are accepted
+        */
         open var `direction`: String?
-        // Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are accepted
+        /*
+        Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are accepted
+        */
         open var `type`: String?
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default.
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        */
         open var `perPage`: Int?
         public init() {
         }
@@ -51,11 +65,17 @@ open class ActiveCallsPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of call log records
+        /*
+        List of call log records
+        */
         open var `records`: [CallLogRecord]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }

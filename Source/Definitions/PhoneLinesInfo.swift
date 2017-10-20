@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class PhoneLinesInfo: Mappable {
-    // Type of phone line
+    /*
+    Type of phone line
+    */
     open var `lineType`: String?
-    // Phone number information
+    /*
+    Phone number information
+    */
     open var `phoneInfo`: PhoneLinesInfo_PhoneNumberInfo?
     public init() {
     }

@@ -7,20 +7,30 @@ open class BusinessAddressPath: PathSegment {
             return "business-address"
         }
     }
-    // Get Company Business Address
+    /*
+    Get Company Business Address.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Canonical URI of the business address resource
+        /*
+        Canonical URI of the business address resource
+        */
         open var `uri`: String?
-        // Company business name
+        /*
+        Company business name
+        */
         open var `company`: String?
-        // Company business email address
+        /*
+        Company business email address
+        */
         open var `email`: String?
-        // Company business address
+        /*
+        Company business address
+        */
         open var `businessAddress`: BusinessAddressInfo?
         public init() {
         }
@@ -40,28 +50,40 @@ open class BusinessAddressPath: PathSegment {
             `businessAddress` <- map["businessAddress"]
         }
     }
-    // Update Company Business Address
+    /*
+    Update Company Business Address.
+    */
     open func put(callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: PutResponse?, error) in
             callback(t, error)
         }
     }
-    // Update Company Business Address
+    /*
+    Update Company Business Address.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: PutResponse?, error) in
             callback(t, error)
         }
     }
-    // Update Company Business Address
+    /*
+    Update Company Business Address.
+    */
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
-        // Company business name
+        /*
+        Company business name
+        */
         open var `company`: String?
-        // Company business email address
+        /*
+        Company business email address
+        */
         open var `email`: String?
-        // Company business address
+        /*
+        Company business address
+        */
         open var `businessAddress`: BusinessAddressInfo?
         public init() {
         }
@@ -80,13 +102,21 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     open class PutResponse: Mappable {
-        // Canonical URI of the business address resource
+        /*
+        Canonical URI of the business address resource
+        */
         open var `uri`: String?
-        // Company business name
+        /*
+        Company business name
+        */
         open var `company`: String?
-        // Company business email address
+        /*
+        Company business email address
+        */
         open var `email`: String?
-        // Company business address
+        /*
+        Company business address
+        */
         open var `businessAddress`: BusinessAddressInfo?
         public init() {
         }

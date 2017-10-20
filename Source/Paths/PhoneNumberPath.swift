@@ -7,28 +7,40 @@ open class PhoneNumberPath: PathSegment {
             return "phone-number"
         }
     }
-    // Get Extension Phone Numbers
+    /*
+    Get Extension Phone Numbers.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Extension Phone Numbers
+    /*
+    Get Extension Phone Numbers.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Extension Phone Numbers
+    /*
+    Get Extension Phone Numbers.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Usage type of the phone number
+        /*
+        Usage type of the phone number
+        */
         open var `usageType`: String?
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: Int?
         public init() {
         }
@@ -47,11 +59,17 @@ open class PhoneNumberPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of phone numbers
+        /*
+        List of phone numbers
+        */
         open var `records`: [PhoneNumberInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -69,7 +87,9 @@ open class PhoneNumberPath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Phone Number by ID
+    /*
+    Get Phone Number by ID.
+    */
     open func get(callback: @escaping (_ t: PhoneNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: PhoneNumberInfo?, error) in
             callback(t, error)

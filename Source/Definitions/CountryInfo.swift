@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class CountryInfo: Mappable {
-    // Internal identifier of a home country
+    /*
+    Internal identifier of a home country
+    */
     open var `id`: String?
-    // Canonical URI of a home country
+    /*
+    Canonical URI of a home country
+    */
     open var `uri`: String?
-    // Official name of a home country
+    /*
+    Official name of a home country
+    */
     open var `name`: String?
     public init() {
     }

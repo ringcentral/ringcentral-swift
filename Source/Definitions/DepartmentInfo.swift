@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class DepartmentInfo: Mappable {
-    // Internal identifier of a department extension
+    /*
+    Internal identifier of a department extension
+    */
     open var `id`: String?
-    // Canonical URI of a department extension
+    /*
+    Canonical URI of a department extension
+    */
     open var `uri`: String?
-    // Number of a department extension
+    /*
+    Number of a department extension
+    */
     open var `extensionNumber`: String?
     public init() {
     }

@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class MessageAttachmentInfo: Mappable {
-    // Internal identifier of a message attachment
+    /*
+    Internal identifier of a message attachment
+    */
     open var `id`: String?
-    // Canonical URI of a message attachment
+    /*
+    Canonical URI of a message attachment
+    */
     open var `uri`: String?
-    // Type of message attachment
+    /*
+    Type of message attachment
+    */
     open var `type`: String?
-    // MIME type for a given attachment, for instance 'audio/wav'
+    /*
+    MIME type for a given attachment, for instance 'audio/wav'
+    */
     open var `contentType`: String?
-    // Voicemail only Duration of the voicemail in seconds
+    /*
+    Voicemail only Duration of the voicemail in seconds
+    */
     open var `vmDuration`: Int?
     public init() {
     }

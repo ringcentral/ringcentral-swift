@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class MessageChange: Mappable {
-    // Message type
+    /*
+    Message type
+    */
     open var `type`: String?
-    // The number of new messages. Can be omitted if the value is zero
+    /*
+    The number of new messages. Can be omitted if the value is zero
+    */
     open var `newCount`: Int?
-    // The number of updated messages. Can be omitted if the value is zero
+    /*
+    The number of updated messages. Can be omitted if the value is zero
+    */
     open var `updatedCount`: Int?
     public init() {
     }

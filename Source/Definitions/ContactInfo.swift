@@ -1,17 +1,29 @@
 import Foundation
 import ObjectMapper
 open class ContactInfo: Mappable {
-    // For User extension type only. Extension user first name
+    /*
+    For User extension type only. Extension user first name
+    */
     open var `firstName`: String?
-    // For User extension type only. Extension user last name
+    /*
+    For User extension type only. Extension user last name
+    */
     open var `lastName`: String?
-    // Extension user company name
+    /*
+    Extension user company name
+    */
     open var `company`: String?
-    // Email of extension user
+    /*
+    Email of extension user
+    */
     open var `email`: String?
-    // Extension user contact phone number
+    /*
+    Extension user contact phone number
+    */
     open var `businessPhone`: String?
-    // Business address of extension user company
+    /*
+    Business address of extension user company
+    */
     open var `businessAddress`: ContactAddressInfo?
     public init() {
     }

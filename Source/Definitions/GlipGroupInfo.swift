@@ -1,21 +1,37 @@
 import Foundation
 import ObjectMapper
 open class GlipGroupInfo: Mappable {
-    // Internal identifier of a group
+    /*
+    Internal identifier of a group
+    */
     open var `id`: String?
-    // Type of a group. 'PrivateChat' is a group of 2 members. 'Group' is a chat of 2 and more participants, the membership cannot be changed after group creation. 'Team' is a chat of 1 and more participants, the membership can be modified in future
+    /*
+    Type of a group. 'PrivateChat' is a group of 2 members. 'Group' is a chat of 2 and more participants, the membership cannot be changed after group creation. 'Team' is a chat of 1 and more participants, the membership can be modified in future
+    */
     open var `type`: String?
-    // For 'Team' group type only. Team access level
+    /*
+    For 'Team' group type only. Team access level
+    */
     open var `isPublic`: Bool?
-    // For 'Team' group type only. Team name
+    /*
+    For 'Team' group type only. Team name
+    */
     open var `name`: String?
-    // For 'Team' group type only. Team description
+    /*
+    For 'Team' group type only. Team description
+    */
     open var `description`: String?
-    // Identifier(s) of group members
+    /*
+    Identifier(s) of group members
+    */
     open var `members`: [String]?
-    // Group creation datetime in ISO 8601 format
+    /*
+    Group creation datetime in ISO 8601 format
+    */
     open var `creationTime`: String?
-    // Group last change datetime in ISO 8601 format
+    /*
+    Group last change datetime in ISO 8601 format
+    */
     open var `lastModifiedTime`: String?
     public init() {
     }

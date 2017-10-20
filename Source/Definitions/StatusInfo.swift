@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class StatusInfo: Mappable {
-    // A free-form user comment, describing the status change reason
+    /*
+    A free-form user comment, describing the status change reason
+    */
     open var `comment`: String?
-    // Type of suspension
+    /*
+    Type of suspension
+    */
     open var `reason`: String?
     public init() {
     }

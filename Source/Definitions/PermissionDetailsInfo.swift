@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class PermissionDetailsInfo: Mappable {
-    // Information on a permission checked
+    /*
+    Information on a permission checked
+    */
     open var `permission`: UserPermissionInfo?
     public init() {
     }

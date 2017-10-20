@@ -1,29 +1,53 @@
 import Foundation
 import ObjectMapper
 open class LegInfo: Mappable {
-    // Action description of the call operation
+    /*
+    Action description of the call operation
+    */
     open var `action`: String?
-    // Call direction
+    /*
+    Call direction
+    */
     open var `direction`: String?
-    // Call duration in seconds
+    /*
+    Call duration in seconds
+    */
     open var `duration`: Int?
-    // Information on extension
+    /*
+    Information on extension
+    */
     open var `extension`: LegInfo_ExtensionInfo?
-    // Leg type
+    /*
+    Leg type
+    */
     open var `legType`: String?
-    // The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `startTime`: String?
-    // Call type
+    /*
+    Call type
+    */
     open var `type`: String?
-    // Status description of the call operation
+    /*
+    Status description of the call operation
+    */
     open var `result`: String?
-    // Caller information
+    /*
+    Caller information
+    */
     open var `from`: CallerInfo?
-    // Callee information
+    /*
+    Callee information
+    */
     open var `to`: CallerInfo?
-    // Call transport
+    /*
+    Call transport
+    */
     open var `transport`: String?
-    // Call recording data. Returned if the call is recorded
+    /*
+    Call recording data. Returned if the call is recorded
+    */
     open var `recording`: RecordingInfo?
     public init() {
     }

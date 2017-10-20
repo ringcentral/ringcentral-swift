@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class PresetInfo: Mappable {
-    // Link to a greeting resource
+    /*
+    Link to a greeting resource
+    */
     open var `uri`: String?
-    // Internal identifier of greeting
+    /*
+    Internal identifier of greeting
+    */
     open var `id`: String?
-    // Name of a greeting
+    /*
+    Name of a greeting
+    */
     open var `name`: String?
     public init() {
     }

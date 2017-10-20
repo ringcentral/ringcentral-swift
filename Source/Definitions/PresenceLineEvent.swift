@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class PresenceLineEvent: Mappable {
-    // Extension information
+    /*
+    Extension information
+    */
     open var `extension`: PresenceLineEvent_ExtensionInfo?
-    // Order number of a notification to state the chronology
+    /*
+    Order number of a notification to state the chronology
+    */
     open var `sequence`: Int?
     public init() {
     }

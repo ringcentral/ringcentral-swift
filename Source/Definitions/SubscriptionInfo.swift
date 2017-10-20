@@ -1,21 +1,37 @@
 import Foundation
 import ObjectMapper
 open class SubscriptionInfo: Mappable {
-    // Internal identifier of a subscription
+    /*
+    Internal identifier of a subscription
+    */
     open var `id`: String?
-    // Canonical URI of a subscription
+    /*
+    Canonical URI of a subscription
+    */
     open var `uri`: String?
-    // Collection of URIs to API resources (message-store/presence/detailed presence)
+    /*
+    Collection of URIs to API resources (message-store/presence/detailed presence)
+    */
     open var `eventFilters`: [String]?
-    // Subscription expiration datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Subscription expiration datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `expirationTime`: String?
-    // Subscription lifetime in seconds. The default value is 900
+    /*
+    Subscription lifetime in seconds. The default value is 900
+    */
     open var `expiresIn`: Int?
-    // Subscription status
+    /*
+    Subscription status
+    */
     open var `status`: String?
-    // Subscription creation datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Subscription creation datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `creationTime`: String?
-    // Delivery mode data
+    /*
+    Delivery mode data
+    */
     open var `deliveryMode`: DeliveryMode?
     public init() {
     }

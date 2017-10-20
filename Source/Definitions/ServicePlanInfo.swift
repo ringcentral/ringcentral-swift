@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class ServicePlanInfo: Mappable {
-    // Internal identifier of a service plan
+    /*
+    Internal identifier of a service plan
+    */
     open var `id`: String?
-    // Name of a service plan
+    /*
+    Name of a service plan
+    */
     open var `name`: String?
-    // Edition of a service plan
+    /*
+    Edition of a service plan
+    */
     open var `edition`: String?
     public init() {
     }

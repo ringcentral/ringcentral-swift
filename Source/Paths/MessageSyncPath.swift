@@ -7,40 +7,64 @@ open class MessageSyncPath: PathSegment {
             return "message-sync"
         }
     }
-    // Message Synchronization
+    /*
+    Message Synchronization.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Message Synchronization
+    /*
+    Message Synchronization.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Message Synchronization
+    /*
+    Message Synchronization.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Conversation identifier for the resulting messages. Meaningful for SMS and Pager messages only.
+        /*
+        Conversation identifier for the resulting messages. Meaningful for SMS and Pager messages only.
+        */
         open var `conversationId`: Int?
-        // The start datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        /*
+        The start datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        */
         open var `dateFrom`: String?
-        // The end datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        /*
+        The end datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        */
         open var `dateTo`: String?
-        // Direction for the resulting messages. If not specified, both inbound and outbound messages are returned. Multiple values are accepted
+        /*
+        Direction for the resulting messages. If not specified, both inbound and outbound messages are returned. Multiple values are accepted
+        */
         open var `direction`: String?
-        // If 'True', then the latest messages per every conversation ID are returned
+        /*
+        If 'True', then the latest messages per every conversation ID are returned
+        */
         open var `distinctConversations`: Bool?
-        // Type for the resulting messages. If not specified, all types of messages are returned. Multiple values are accepted
+        /*
+        Type for the resulting messages. If not specified, all types of messages are returned. Multiple values are accepted
+        */
         open var `messageType`: String?
-        // Limits the number of records to be returned (works in combination with dateFrom and dateTo if specified)
+        /*
+        Limits the number of records to be returned (works in combination with dateFrom and dateTo if specified)
+        */
         open var `recordCount`: Int?
-        // Value of syncToken property of last sync request response
+        /*
+        Value of syncToken property of last sync request response
+        */
         open var `syncToken`: String?
-        // Type of message synchronization
+        /*
+        Type of message synchronization
+        */
         open var `syncType`: String?
         public init() {
         }
@@ -71,9 +95,13 @@ open class MessageSyncPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of message records with synchronization information
+        /*
+        List of message records with synchronization information
+        */
         open var `records`: [MessageInfo]?
-        // Sync type, token and time
+        /*
+        Sync type, token and time
+        */
         open var `syncInfo`: SyncInfo?
         public init() {
         }

@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class ModelInfo: Mappable {
-    // Device model identifier. Mandatory when ordering a HardPhone if boxBillingId is not used for ordering
+    /*
+    Device model identifier. Mandatory when ordering a HardPhone if boxBillingId is not used for ordering
+    */
     open var `id`: String?
-    // Device name
+    /*
+    Device name
+    */
     open var `name`: String?
-    // Addons description
+    /*
+    Addons description
+    */
     open var `addons`: [AddonInfo]?
     public init() {
     }

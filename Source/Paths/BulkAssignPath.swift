@@ -7,28 +7,40 @@ open class BulkAssignPath: PathSegment {
             return "bulk-assign"
         }
     }
-    // Edit Group Members
+    /*
+    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    */
     open func post(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipGroupInfo?, error) in
             callback(t, error)
         }
     }
-    // Edit Group Members
+    /*
+    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipGroupInfo?, error) in
             callback(t, error)
         }
     }
-    // Edit Group Members
+    /*
+    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // List of users to be added to the team
+        /*
+        List of users to be added to the team
+        */
         open var `addedPersonIds`: [String]?
-        // List of user email addresses to be added to the team (i.e. as guests)
+        /*
+        List of user email addresses to be added to the team (i.e. as guests)
+        */
         open var `addedPersonEmails`: [String]?
-        // List of users to be removed from the team
+        /*
+        List of users to be removed from the team
+        */
         open var `removedPersonIds`: [String]?
         public init() {
         }

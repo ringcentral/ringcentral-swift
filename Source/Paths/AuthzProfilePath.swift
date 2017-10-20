@@ -10,16 +10,22 @@ open class AuthzProfilePath: PathSegment {
     open func `check`() -> CheckPath {
         return CheckPath(parent: self)
     }
-    // Get User Permissions
+    /*
+    Get User Permissions. Returns a list of user permissions granted at authorization procedure.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Canonical URI of an authorization profile resource
+        /*
+        Canonical URI of an authorization profile resource
+        */
         open var `uri`: String?
-        // List of user permissions granted
+        /*
+        List of user permissions granted
+        */
         open var `permissions`: [UserPermission]?
         public init() {
         }

@@ -1,21 +1,37 @@
 import Foundation
 import ObjectMapper
 open class GlipPostInfo: Mappable {
-    // Internal identifier of a post
+    /*
+    Internal identifier of a post
+    */
     open var `id`: String?
-    // Internal identifier of a group a post belongs to
+    /*
+    Internal identifier of a group a post belongs to
+    */
     open var `groupId`: String?
-    // Type of a post
+    /*
+    Type of a post
+    */
     open var `type`: String?
-    // For 'TextMessage' post type only. Message text
+    /*
+    For 'TextMessage' post type only. Message text
+    */
     open var `text`: String?
-    // Internal identifier of a user - author of a post
+    /*
+    Internal identifier of a user - author of a post
+    */
     open var `creatorId`: String?
-    // For PersonsAdded post type only. Identifiers of persons added to a group
+    /*
+    For PersonsAdded post type only. Identifiers of persons added to a group
+    */
     open var `addedPersonIds`: [String]?
-    // Post creation datetime in ISO 8601 format
+    /*
+    Post creation datetime in ISO 8601 format
+    */
     open var `creationTime`: String?
-    // Post last modification datetime in ISO 8601 format
+    /*
+    Post last modification datetime in ISO 8601 format
+    */
     open var `lastModifiedTime`: String?
     public init() {
     }

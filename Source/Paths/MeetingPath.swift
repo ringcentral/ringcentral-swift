@@ -10,38 +10,106 @@ open class MeetingPath: PathSegment {
     open func `end`() -> EndPath {
         return EndPath(parent: self)
     }
-    // Create Meeting
+    /*
+    Get Meetings List. Returns a list of meetings for a particular extension.
+    ::: info
+    The list of meetings does not include messages of 'Instant' type.
+    :::
+    */
+    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+            callback(t, error)
+        }
+    }
+    open class ListResponse: Mappable {
+        /*
+        Canonical URI of meetings resource
+        */
+        open var `uri`: String?
+        /*
+        List of extension meetings
+        */
+        open var `records`: [MeetingInfo]?
+        /*
+        Information on paging
+        */
+        open var `paging`: PagingInfo?
+        /*
+        Information on navigation
+        */
+        open var `navigation`: NavigationInfo?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
+        convenience public init(uri: String? = nil, records: [MeetingInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
+            self.init()
+            self.uri = `uri`
+            self.records = `records`
+            self.paging = `paging`
+            self.navigation = `navigation`
+        }
+        open func mapping(map: Map) {
+            `uri` <- map["uri"]
+            `records` <- map["records"]
+            `paging` <- map["paging"]
+            `navigation` <- map["navigation"]
+        }
+    }
+    /*
+    Create Meeting. Creates a new meeting.
+    */
     open func post(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: MeetingInfo?, error) in
             callback(t, error)
         }
     }
-    // Create Meeting
+    /*
+    Create Meeting. Creates a new meeting.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: MeetingInfo?, error) in
             callback(t, error)
         }
     }
-    // Create Meeting
+    /*
+    Create Meeting. Creates a new meeting.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // Topic of a meeting
+        /*
+        Topic of a meeting
+        */
         open var `topic`: String?
-        // Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
+        /*
+        Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
+        */
         open var `meetingType`: String?
-        // Password required to join a meeting. Max number of characters is 10
+        /*
+        Password required to join a meeting. Max number of characters is 10
+        */
         open var `password`: String?
-        // Schedule of a meeting
+        /*
+        Schedule of a meeting
+        */
         open var `schedule`: MeetingScheduleInfo?
-        // If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+        /*
+        If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+        */
         open var `allowJoinBeforeHost`: Bool?
-        // Enables starting video when host joins the meeting
+        /*
+        Enables starting video when host joins the meeting
+        */
         open var `startHostVideo`: Bool?
-        // Enables starting video when participants join the meeting
+        /*
+        Enables starting video when participants join the meeting
+        */
         open var `startParticipantsVideo`: Bool?
-        // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+        /*
+        Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+        */
         open var `audioOptions`: [String]?
         public init() {
         }
@@ -69,83 +137,76 @@ open class MeetingPath: PathSegment {
             `audioOptions` <- map["audioOptions"]
         }
     }
-    // Get Meetings List
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
-            callback(t, error)
-        }
-    }
-    open class ListResponse: Mappable {
-        // Canonical URI of meetings resource
-        open var `uri`: String?
-        // List of extension meetings
-        open var `records`: [MeetingInfo]?
-        // Information on paging
-        open var `paging`: PagingInfo?
-        // Information on navigation
-        open var `navigation`: NavigationInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(uri: String? = nil, records: [MeetingInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
-            self.init()
-            self.uri = `uri`
-            self.records = `records`
-            self.paging = `paging`
-            self.navigation = `navigation`
-        }
-        open func mapping(map: Map) {
-            `uri` <- map["uri"]
-            `records` <- map["records"]
-            `paging` <- map["paging"]
-            `navigation` <- map["navigation"]
-        }
-    }
-    // Delete Meeting
-    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.deleteString(self.endpoint()) { string, error in
-            callback(error)
-        }
-    }
-    // Get Meeting
+    /*
+    Get Meeting. Returns a particular meetings details.
+    */
     open func get(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: MeetingInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Meeting
+    /*
+    Delete Meeting. Deletes a scheduled meeting.
+    */
+    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.deleteString(self.endpoint()) { string, error in
+            callback(error)
+        }
+    }
+    /*
+    Update Meeting. Modifies a particular meetings.
+    */
     open func put(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: MeetingInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Meeting
+    /*
+    Update Meeting. Modifies a particular meetings.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: MeetingInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Meeting
+    /*
+    Update Meeting. Modifies a particular meetings.
+    */
     open func put(parameters: PutParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
-        // Topic of a meeting
+        /*
+        Topic of a meeting
+        */
         open var `topic`: String?
-        // Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
+        /*
+        Type of a meeting. 'Instant' - meeting that is instantly started as soon as the host creates it; 'Scheduled' - common scheduled meeting; 'Recurring' - a recurring meeting. If the specified meeting type is 'Scheduled' then schedule property is mandatory for request
+        */
         open var `meetingType`: String?
-        // Password required to join a meeting. Max number of characters is 10
+        /*
+        Password required to join a meeting. Max number of characters is 10
+        */
         open var `password`: String?
-        // Schedule of a meeting
+        /*
+        Schedule of a meeting
+        */
         open var `schedule`: MeetingScheduleInfo?
-        // If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+        /*
+        If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+        */
         open var `allowJoinBeforeHost`: Bool?
-        // Enables starting video when host joins the meeting
+        /*
+        Enables starting video when host joins the meeting
+        */
         open var `startHostVideo`: Bool?
-        // Enables starting video when participants join the meeting
+        /*
+        Enables starting video when participants join the meeting
+        */
         open var `startParticipantsVideo`: Bool?
-        // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+        /*
+        Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+        */
         open var `audioOptions`: [String]?
         public init() {
         }

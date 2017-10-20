@@ -82,30 +82,44 @@ open class ExtensionPath: PathSegment {
     open func `sms`() -> SmsPath {
         return SmsPath(parent: self)
     }
-    // Get Extension List
+    /*
+    Get Extension List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Extension List
+    /*
+    Get Extension List.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Extension List
+    /*
+    Get Extension List.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default.
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        */
         open var `perPage`: Int?
-        // Extension current state. Multiple values are supported. If 'Unassigned' is specified, then extensions without extensionNumber are returned. If not specified, then all extensions are returned
+        /*
+        Extension current state. Multiple values are supported. If 'Unassigned' is specified, then extensions without extensionNumber are returned. If not specified, then all extensions are returned
+        */
         open var `status`: String?
-        // Extension type. Multiple values are supported
+        /*
+        Extension type. Multiple values are supported
+        */
         open var `type`: String?
         public init() {
         }
@@ -126,11 +140,17 @@ open class ExtensionPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of extensions with extension information
+        /*
+        List of extensions with extension information
+        */
         open var `records`: [ExtensionInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -148,25 +168,51 @@ open class ExtensionPath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Extension Info by ID
+    /*
+    Get Extension Info by ID.
+    */
     open func get(callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: ExtensionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Extension by ID
+    /*
+    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    1. Updates the extension data:
+    - status info
+    - contact info
+    - password/PIN
+    - partnerId
+    2. Provisions unassigned extensions
+    */
     open func put(callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: ExtensionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Extension by ID
+    /*
+    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    1. Updates the extension data:
+    - status info
+    - contact info
+    - password/PIN
+    - partnerId
+    2. Provisions unassigned extensions
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: ExtensionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Extension by ID
+    /*
+    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    1. Updates the extension data:
+    - status info
+    - contact info
+    - password/PIN
+    - partnerId
+    2. Provisions unassigned extensions
+    */
     open func put(parameters: ExtensionParameters, callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }

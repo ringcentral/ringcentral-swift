@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class RecordingInfo: Mappable {
-    // Internal identifier of the call recording
+    /*
+    Internal identifier of the call recording
+    */
     open var `id`: String?
-    // Link to the call recording metadata resource
+    /*
+    Link to the call recording metadata resource
+    */
     open var `uri`: String?
-    // Indicates recording mode used
+    /*
+    Indicates recording mode used
+    */
     open var `type`: String?
-    // Link to the call recording binary content
+    /*
+    Link to the call recording binary content
+    */
     open var `contentUri`: String?
     public init() {
     }

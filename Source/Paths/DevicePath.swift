@@ -7,18 +7,26 @@ open class DevicePath: PathSegment {
             return "device"
         }
     }
-    // Get Account Device List
+    /*
+    Get Account Device List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     open class ListResponse: Mappable {
-        // List of extension records
+        /*
+        List of extension records
+        */
         open var `records`: [DeviceInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -36,7 +44,9 @@ open class DevicePath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Device by ID
+    /*
+    Get Device by ID.
+    */
     open func get(callback: @escaping (_ t: DeviceInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: DeviceInfo?, error) in
             callback(t, error)

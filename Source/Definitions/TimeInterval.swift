@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class TimeInterval: Mappable {
-    // Time in format hh:mm
+    /*
+    Time in format hh:mm
+    */
     open var `from`: String?
-    // Time in format hh:mm
+    /*
+    Time in format hh:mm
+    */
     open var `to`: String?
     public init() {
     }

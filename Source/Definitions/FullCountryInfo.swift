@@ -1,21 +1,37 @@
 import Foundation
 import ObjectMapper
 open class FullCountryInfo: Mappable {
-    // Internal identifier of a country
+    /*
+    Internal identifier of a country
+    */
     open var `id`: String?
-    // Canonical URI of a country
+    /*
+    Canonical URI of a country
+    */
     open var `uri`: String?
-    // Country calling code defined by ITU-T recommendations E.123 and E.164, see Calling Codes
+    /*
+    Country calling code defined by ITU-T recommendations E.123 and E.164, see Calling Codes
+    */
     open var `callingCode`: String?
-    // Emergency calling feature availability/emergency address requirement indicator
+    /*
+    Emergency calling feature availability/emergency address requirement indicator
+    */
     open var `emergencyCalling`: Bool?
-    // Country code according to the ISO standard, see ISO 3166
+    /*
+    Country code according to the ISO standard, see ISO 3166
+    */
     open var `isoCode`: String?
-    // Official name of a country
+    /*
+    Official name of a country
+    */
     open var `name`: String?
-    // Determines whether phone numbers are available for a country
+    /*
+    Determines whether phone numbers are available for a country
+    */
     open var `numberSelling`: Bool?
-    // Specifies whether login with the phone numbers of this country is enabled or not
+    /*
+    Specifies whether login with the phone numbers of this country is enabled or not
+    */
     open var `loginAllowed`: Bool?
     public init() {
     }

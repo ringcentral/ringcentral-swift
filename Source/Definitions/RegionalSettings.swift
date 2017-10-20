@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class RegionalSettings: Mappable {
-    // Extension country information
+    /*
+    Extension country information
+    */
     open var `homeCountry`: CountryInfo?
-    // Extension timezone information
+    /*
+    Extension timezone information
+    */
     open var `timezone`: TimezoneInfo?
-    // User interface language data
+    /*
+    User interface language data
+    */
     open var `language`: LanguageInfo?
-    // Information on language used for telephony greetings
+    /*
+    Information on language used for telephony greetings
+    */
     open var `greetingLanguage`: GreetingLanguageInfo?
-    // Formatting language preferences for numbers, dates and currencies
+    /*
+    Formatting language preferences for numbers, dates and currencies
+    */
     open var `formattingLocale`: FormattingLocaleInfo?
     public init() {
     }

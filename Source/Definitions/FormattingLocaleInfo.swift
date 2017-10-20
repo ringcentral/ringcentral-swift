@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class FormattingLocaleInfo: Mappable {
-    // Internal identifier of a formatting language
+    /*
+    Internal identifier of a formatting language
+    */
     open var `id`: String?
-    // Localization code of a formatting language
+    /*
+    Localization code of a formatting language
+    */
     open var `localeCode`: String?
-    // Official name of a formatting language
+    /*
+    Official name of a formatting language
+    */
     open var `name`: String?
     public init() {
     }

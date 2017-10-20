@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class BrandInfo: Mappable {
-    // Internal identifier of a brand
+    /*
+    Internal identifier of a brand
+    */
     open var `id`: String?
-    // Brand name, for example "RingCentral UK", "ClearFax"
+    /*
+    Brand name, for example "RingCentral UK", "ClearFax"
+    */
     open var `name`: String?
-    // Home country information
+    /*
+    Home country information
+    */
     open var `homeCountry`: CountryInfo?
     public init() {
     }

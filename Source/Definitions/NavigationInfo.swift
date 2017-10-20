@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class NavigationInfo: Mappable {
-    // First page of the list
+    /*
+    First page of the list
+    */
     open var `firstPage`: Page?
-    // Next page of the list
+    /*
+    Next page of the list
+    */
     open var `nextPage`: Page?
-    // Previous page of the list
+    /*
+    Previous page of the list
+    */
     open var `previousPage`: Page?
-    // Last page of the list
+    /*
+    Last page of the list
+    */
     open var `lastPage`: Page?
     public init() {
     }

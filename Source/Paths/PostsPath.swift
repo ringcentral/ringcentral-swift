@@ -7,26 +7,36 @@ open class PostsPath: PathSegment {
             return "posts"
         }
     }
-    // Create Post
+    /*
+    Create Post. Creates a post.
+    */
     open func post(callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipPostInfo?, error) in
             callback(t, error)
         }
     }
-    // Create Post
+    /*
+    Create Post. Creates a post.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipPostInfo?, error) in
             callback(t, error)
         }
     }
-    // Create Post
+    /*
+    Create Post. Creates a post.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // Internal identifier of a group to send post to
+        /*
+        Internal identifier of a group to send post to
+        */
         open var `groupId`: String?
-        // Text of a post, the maximum is 10000 characters
+        /*
+        Text of a post, the maximum is 10000 characters
+        */
         open var `text`: String?
         public init() {
         }
@@ -42,28 +52,40 @@ open class PostsPath: PathSegment {
             `text` <- map["text"]
         }
     }
-    // Get Posts
+    /*
+    Get Posts. Returns list of posts.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Posts
+    /*
+    Get Posts. Returns list of posts.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Posts
+    /*
+    Get Posts. Returns list of posts.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Identifier of a group to filter posts
+        /*
+        Identifier of a group to filter posts
+        */
         open var `groupId`: String?
-        // Token of a page to be returned, see Glip Navigation Info
+        /*
+        Token of a page to be returned, see Glip Navigation Info
+        */
         open var `pageToken`: String?
-        // Max numbers of records to be returned. The default/maximum value is 250
+        /*
+        Max numbers of records to be returned. The default/maximum value is 250
+        */
         open var `recordCount`: Int?
         public init() {
         }
@@ -82,9 +104,13 @@ open class PostsPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of posts
+        /*
+        List of posts
+        */
         open var `records`: [GlipPostInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: GlipNavigationInfo?
         public init() {
         }

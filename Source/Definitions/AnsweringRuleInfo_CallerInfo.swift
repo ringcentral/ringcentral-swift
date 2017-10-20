@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class AnsweringRuleInfo_CallerInfo: Mappable {
-    // Phone number of a caller
+    /*
+    Phone number of a caller
+    */
     open var `callerId`: String?
-    // Contact name of a caller
+    /*
+    Contact name of a caller
+    */
     open var `name`: String?
     public init() {
     }

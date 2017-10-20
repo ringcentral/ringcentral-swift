@@ -7,22 +7,34 @@ open class CompaniesPath: PathSegment {
             return "companies"
         }
     }
-    // Get Company by ID
+    /*
+    Get Company by ID. Returns a company by ID.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Internal identifier of an RC account/Glip company, or tilde (~) to indicate a company the current user belongs to
+        /*
+        Internal identifier of an RC account/Glip company, or tilde (~) to indicate a company the current user belongs to
+        */
         open var `id`: String?
-        // Name of a company
+        /*
+        Name of a company
+        */
         open var `name`: String?
-        // Domain name of a company
+        /*
+        Domain name of a company
+        */
         open var `domain`: String?
-        // Datetime of creation in ISO 8601 format
+        /*
+        Datetime of creation in ISO 8601 format
+        */
         open var `creationTime`: String?
-        // Datetime of last modification in ISO 8601 format
+        /*
+        Datetime of last modification in ISO 8601 format
+        */
         open var `lastModifiedTime`: String?
         public init() {
         }

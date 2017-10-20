@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class BusinessAddressInfo: Mappable {
-    // Name of a country
+    /*
+    Name of a country
+    */
     open var `country`: String?
-    // Name of a state/province
+    /*
+    Name of a state/province
+    */
     open var `state`: String?
-    // Name of a city
+    /*
+    Name of a city
+    */
     open var `city`: String?
-    // Street address
+    /*
+    Street address
+    */
     open var `street`: String?
-    // Zip code
+    /*
+    Zip code
+    */
     open var `zip`: String?
     public init() {
     }

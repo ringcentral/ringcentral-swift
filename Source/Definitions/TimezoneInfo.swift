@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class TimezoneInfo: Mappable {
-    // Internal identifier of a timezone
+    /*
+    Internal identifier of a timezone
+    */
     open var `id`: String?
-    // Canonical URI of a timezone
+    /*
+    Canonical URI of a timezone
+    */
     open var `uri`: String?
-    // Short name of a timezone
+    /*
+    Short name of a timezone
+    */
     open var `name`: String?
-    // Meaningful description of the timezone
+    /*
+    Meaningful description of the timezone
+    */
     open var `description`: String?
     public init() {
     }

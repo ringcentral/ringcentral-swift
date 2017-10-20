@@ -7,30 +7,44 @@ open class AuthorizePath: PathSegment {
             return "authorize"
         }
     }
-    // OAuth2 Authorize
+    /*
+    OAuth2 Authorize.
+    */
     open func post(callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PostResponse?, error) in
             callback(t, error)
         }
     }
-    // OAuth2 Authorize
+    /*
+    OAuth2 Authorize.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PostResponse?, error) in
             callback(t, error)
         }
     }
-    // OAuth2 Authorize
+    /*
+    OAuth2 Authorize.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // Must be set to code
+        /*
+        Must be set to code
+        */
         open var `response_type`: String?
-        // Required. Enter your application key (Production or Sandbox) here
+        /*
+        Required. Enter your application key (Production or Sandbox) here
+        */
         open var `client_id`: String?
-        // Required. This is a callback URI which determines where the response will be sent to. The value of this parameter must exactly match one of the URIs you have provided for your app upon registration. This URI can be HTTP/HTTPS address for web applications or custom scheme URI for mobile or desktop applications.
+        /*
+        Required. This is a callback URI which determines where the response will be sent to. The value of this parameter must exactly match one of the URIs you have provided for your app upon registration. This URI can be HTTP/HTTPS address for web applications or custom scheme URI for mobile or desktop applications.
+        */
         open var `redirect_uri`: String?
-        // Optional, recommended. An opaque value used by the client to maintain state between the request and callback. The authorization server includes this value when redirecting the user-agent back to the client. The parameter should be used for preventing cross-site request forgery
+        /*
+        Optional, recommended. An opaque value used by the client to maintain state between the request and callback. The authorization server includes this value when redirecting the user-agent back to the client. The parameter should be used for preventing cross-site request forgery
+        */
         open var `state`: String?
         public init() {
         }
@@ -51,11 +65,17 @@ open class AuthorizePath: PathSegment {
         }
     }
     open class PostResponse: Mappable {
-        // The authorization code returned for your application
+        /*
+        The authorization code returned for your application
+        */
         open var `code`: String?
-        // The remaining lifetime of the authorization code
+        /*
+        The remaining lifetime of the authorization code
+        */
         open var `expires_in`: Int?
-        // This parameter will be included in response if it was specified in the client authorization request. The value will be copied from the one received from the client
+        /*
+        This parameter will be included in response if it was specified in the client authorization request. The value will be copied from the one received from the client
+        */
         open var `state`: String?
         public init() {
         }

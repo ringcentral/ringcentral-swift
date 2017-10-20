@@ -7,30 +7,44 @@ open class StatePath: PathSegment {
             return "state"
         }
     }
-    // Get State/Province List
+    /*
+    Get State/Province List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get State/Province List
+    /*
+    Get State/Province List.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get State/Province List
+    /*
+    Get State/Province List.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Internal identifier of a country
+        /*
+        Internal identifier of a country
+        */
         open var `countryId`: Int?
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: Int?
-        // If 'True', the list of states with phone numbers available for buying is returned. The default value is 'False'
+        /*
+        If 'True', the list of states with phone numbers available for buying is returned. The default value is 'False'
+        */
         open var `withPhoneNumbers`: Bool?
         public init() {
         }
@@ -51,11 +65,17 @@ open class StatePath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of states
+        /*
+        List of states
+        */
         open var `records`: [StateInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -73,7 +93,9 @@ open class StatePath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get State/Province by ID
+    /*
+    Get State/Province by ID.
+    */
     open func get(callback: @escaping (_ t: StateInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: StateInfo?, error) in
             callback(t, error)

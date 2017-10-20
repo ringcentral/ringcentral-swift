@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class AddonInfo: Mappable {
-    // Addon identifier. For HardPhones of certain types, which are compatible with this addon identifier
+    /*
+    Addon identifier. For HardPhones of certain types, which are compatible with this addon identifier
+    */
     open var `id`: String?
-    // Number of addons. For HardPhones of certain types, which are compatible with such addon identifier
+    /*
+    Number of addons. For HardPhones of certain types, which are compatible with such addon identifier
+    */
     open var `count`: Int?
     public init() {
     }

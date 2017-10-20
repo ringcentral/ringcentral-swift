@@ -10,20 +10,30 @@ open class RecordingPath: PathSegment {
     open func `content`(_ _id: String? = nil) -> ContentPath {
         return ContentPath(parent: self, _id: _id)
     }
-    // Get Call Recording Metadata
+    /*
+    Get Call Recording Metadata. Returns call recording metadata.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Internal identifier of the call recording
+        /*
+        Internal identifier of the call recording
+        */
         open var `id`: String?
-        // Link to the call recording binary content
+        /*
+        Link to the call recording binary content
+        */
         open var `contentUri`: String?
-        // Call recording file format. Supported format is audio/x-wav
+        /*
+        Call recording file format. Supported format is audio/x-wav
+        */
         open var `contentType`: String?
-        // Recorded call duration
+        /*
+        Recorded call duration
+        */
         open var `duration`: Int?
         public init() {
         }

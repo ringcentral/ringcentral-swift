@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_StatusInfo: Mappable {
-    // Required extension status
+    /*
+    Required extension status
+    */
     open var `status`: String?
-    // Extension status information, only for the 'Disabled' status
+    /*
+    Extension status information, only for the 'Disabled' status
+    */
     open var `statusInfo`: StatusInfo?
     public init() {
     }

@@ -7,24 +7,32 @@ open class OrderPath: PathSegment {
             return "order"
         }
     }
-    // Create New Order
+    /*
+    Create New Order.
+    */
     open func post(callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PostResponse?, error) in
             callback(t, error)
         }
     }
-    // Create New Order
+    /*
+    Create New Order.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PostResponse?, error) in
             callback(t, error)
         }
     }
-    // Create New Order
+    /*
+    Create New Order.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // List of devices to order
+        /*
+        List of devices to order
+        */
         open var `devices`: [DeviceInfo]?
         public init() {
         }
@@ -39,7 +47,9 @@ open class OrderPath: PathSegment {
         }
     }
     open class PostResponse: Mappable {
-        // List of the ordered devices
+        /*
+        List of the ordered devices
+        */
         open var `devices`: [DeviceInfo]?
         public init() {
         }
@@ -53,18 +63,26 @@ open class OrderPath: PathSegment {
             `devices` <- map["devices"]
         }
     }
-    // Get Order by ID
+    /*
+    Get Order by ID.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Identifier of a device
+        /*
+        Identifier of a device
+        */
         open var `id`: String?
-        // Canonical URI of an order resource
+        /*
+        Canonical URI of an order resource
+        */
         open var `uri`: String?
-        // List of the ordered devices
+        /*
+        List of the ordered devices
+        */
         open var `devices`: [DeviceInfo]?
         public init() {
         }

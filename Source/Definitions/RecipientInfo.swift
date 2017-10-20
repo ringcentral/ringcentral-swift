@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class RecipientInfo: Mappable {
-    // Link to a recipient extension resource
+    /*
+    Link to a recipient extension resource
+    */
     open var `uri`: String?
-    // Internal identifier of a recipient extension
+    /*
+    Internal identifier of a recipient extension
+    */
     open var `id`: String?
     public init() {
     }

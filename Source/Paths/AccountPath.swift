@@ -40,7 +40,9 @@ open class AccountPath: PathSegment {
     open func `serviceInfo`() -> ServiceInfoPath {
         return ServiceInfoPath(parent: self)
     }
-    // Get Account Info by ID
+    /*
+    Get Account Info by ID.
+    */
     open func get(callback: @escaping (_ t: AccountInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: AccountInfo?, error) in
             callback(t, error)

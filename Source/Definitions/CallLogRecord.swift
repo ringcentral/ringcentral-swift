@@ -1,37 +1,69 @@
 import Foundation
 import ObjectMapper
 open class CallLogRecord: Mappable {
-    // Internal identifier of a cal log record
+    /*
+    Internal identifier of a cal log record
+    */
     open var `id`: String?
-    // Canonical URI of a call log record
+    /*
+    Canonical URI of a call log record
+    */
     open var `uri`: String?
-    // Internal identifier of a call session
+    /*
+    Internal identifier of a call session
+    */
     open var `sessionId`: String?
-    // Caller information
+    /*
+    Caller information
+    */
     open var `from`: CallerInfo?
-    // Callee information
+    /*
+    Callee information
+    */
     open var `to`: CallerInfo?
-    // For Extension Call Log only. Voicemail message data
+    /*
+    For Extension Call Log only. Voicemail message data
+    */
     open var `message`: VoicemailMessageInfo?
-    // Call type
+    /*
+    Call type
+    */
     open var `type`: String?
-    // Call direction
+    /*
+    Call direction
+    */
     open var `direction`: String?
-    // Action description of the call operation
+    /*
+    Action description of the call operation
+    */
     open var `action`: String?
-    // Status description of the call operation
+    /*
+    Status description of the call operation
+    */
     open var `result`: String?
-    // For 'Detailed' view only. Call billing information
+    /*
+    For 'Detailed' view only. Call billing information
+    */
     open var `billing`: BillingInfo?
-    // The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `startTime`: String?
-    // Call duration in seconds
+    /*
+    Call duration in seconds
+    */
     open var `duration`: Int?
-    // Call recording data. Returned if the call is recorded, the withRecording parameter is set to 'True' in this case
+    /*
+    Call recording data. Returned if the call is recorded, the withRecording parameter is set to 'True' in this case
+    */
     open var `recording`: RecordingInfo?
-    // For 'Detailed' view only. The datetime when the call log record was modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    For 'Detailed' view only. The datetime when the call log record was modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `lastModifiedTime`: String?
-    // For 'Detailed' view only. Leg description
+    /*
+    For 'Detailed' view only. Leg description
+    */
     open var `legs`: [LegInfo]?
     public init() {
     }

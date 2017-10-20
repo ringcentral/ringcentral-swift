@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_PasswordPIN: Mappable {
-    // Password for extension
+    /*
+    Password for extension
+    */
     open var `password`: String?
-    // IVR PIN
+    /*
+    IVR PIN
+    */
     open var `ivrPin`: String?
     public init() {
     }

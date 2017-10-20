@@ -7,34 +7,26 @@ open class BlockedNumberPath: PathSegment {
             return "blocked-number"
         }
     }
-    // Add New Blocked Number
-    open func post(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: BlockedNumberInfo?, error) in
-            callback(t, error)
-        }
-    }
-    // Add New Blocked Number
-    open func post(parameters: Parameters, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: BlockedNumberInfo?, error) in
-            callback(t, error)
-        }
-    }
-    // Add New Blocked Number
-    open func post(parameters: BlockedNumberInfo, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
-        post(parameters: parameters.toParameters(), callback: callback)
-    }
-    // Get Blocked Number List
+    /*
+    Get Blocked Number List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     open class ListResponse: Mappable {
-        // List of blocked phone numbers
+        /*
+        List of blocked phone numbers
+        */
         open var `records`: [BlockedNumberInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -52,32 +44,64 @@ open class BlockedNumberPath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Delete Blocked Number by ID
-    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.deleteString(self.endpoint()) { string, error in
-            callback(error)
-        }
-    }
-    // Get Blocked Number by ID
-    open func get(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: BlockedNumberInfo?, error) in
+    /*
+    Add New Blocked Number.
+    */
+    open func post(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: BlockedNumberInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Blocked Number Label
+    /*
+    Add New Blocked Number.
+    */
+    open func post(parameters: Parameters, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: BlockedNumberInfo?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    Add New Blocked Number.
+    */
+    open func post(parameters: BlockedNumberInfo, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
+        post(parameters: parameters.toParameters(), callback: callback)
+    }
+    /*
+    Update Blocked Number Label.
+    */
     open func put(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: BlockedNumberInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Blocked Number Label
+    /*
+    Update Blocked Number Label.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: BlockedNumberInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Blocked Number Label
+    /*
+    Update Blocked Number Label.
+    */
     open func put(parameters: BlockedNumberInfo, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
+    }
+    /*
+    Delete Blocked Number by ID.
+    */
+    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.deleteString(self.endpoint()) { string, error in
+            callback(error)
+        }
+    }
+    /*
+    Get Blocked Number by ID.
+    */
+    open func get(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: BlockedNumberInfo?, error) in
+            callback(t, error)
+        }
     }
 }

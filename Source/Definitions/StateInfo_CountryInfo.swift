@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class StateInfo_CountryInfo: Mappable {
-    // Internal identifier of a state
+    /*
+    Internal identifier of a state
+    */
     open var `id`: String?
-    // Canonical URI of a state
+    /*
+    Canonical URI of a state
+    */
     open var `uri`: String?
     public init() {
     }

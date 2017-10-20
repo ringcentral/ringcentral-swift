@@ -7,26 +7,36 @@ open class CustomDataPath: PathSegment {
             return "custom-data"
         }
     }
-    // Update Custom Data by Key
+    /*
+    Update Custom Data by Key.
+    */
     open func put(callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: PutResponse?, error) in
             callback(t, error)
         }
     }
-    // Update Custom Data by Key
+    /*
+    Update Custom Data by Key.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: PutResponse?, error) in
             callback(t, error)
         }
     }
-    // Update Custom Data by Key
+    /*
+    Update Custom Data by Key.
+    */
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
-        // Custom data access key. Optional. If specified, must match the custom key in the URL
+        /*
+        Custom data access key. Optional. If specified, must match the custom key in the URL
+        */
         open var `id`: String?
-        // Description of custom data. Mandatory for create, if there is no attachment specified. Maximum length is limited to 256 symbols
+        /*
+        Description of custom data. Mandatory for create, if there is no attachment specified. Maximum length is limited to 256 symbols
+        */
         open var `value`: String?
         public init() {
         }
@@ -43,15 +53,25 @@ open class CustomDataPath: PathSegment {
         }
     }
     open class PutResponse: Mappable {
-        // Custom data access key
+        /*
+        Custom data access key
+        */
         open var `id`: String?
-        // Link to the custom data
+        /*
+        Link to the custom data
+        */
         open var `uri`: String?
-        // Description of custom data
+        /*
+        Description of custom data
+        */
         open var `value`: String?
-        // Time of the last change in custom data
+        /*
+        Time of the last change in custom data
+        */
         open var `lastModifiedTime`: String?
-        // Attachment data: link and type
+        /*
+        Attachment data: link and type
+        */
         open var `attachment`: AttachmentInfo?
         public init() {
         }

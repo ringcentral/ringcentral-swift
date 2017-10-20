@@ -7,30 +7,44 @@ open class AddressBookSyncPath: PathSegment {
             return "address-book-sync"
         }
     }
-    // Contacts Synchronization
+    /*
+    Contacts Synchronization.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Contacts Synchronization
+    /*
+    Contacts Synchronization.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Contacts Synchronization
+    /*
+    Contacts Synchronization.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Type of synchronization. The default value is 'FSync'
+        /*
+        Type of synchronization. The default value is 'FSync'
+        */
         open var `syncType`: String?
-        // Value of syncToken property of the last sync request response
+        /*
+        Value of syncToken property of the last sync request response
+        */
         open var `syncToken`: String?
-        // Number of records per page to be returned. The max number of records is 250, which is also the default. For FSync — if the number of records exceeds the parameter value (either specified or default), all of the pages can be retrieved in several requests. For ISync — if the number of records exceeds the page size, the number of incoming changes to this number is limited
+        /*
+        Number of records per page to be returned. The max number of records is 250, which is also the default. For FSync — if the number of records exceeds the parameter value (either specified or default), all of the pages can be retrieved in several requests. For ISync — if the number of records exceeds the page size, the number of incoming changes to this number is limited
+        */
         open var `perPage`: Int?
-        // Internal identifier of a page. It can be obtained from the 'nextPageId' parameter passed in response body
+        /*
+        Internal identifier of a page. It can be obtained from the 'nextPageId' parameter passed in response body
+        */
         open var `pageId`: Int?
         public init() {
         }
@@ -51,13 +65,21 @@ open class AddressBookSyncPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of contacts with synchronization information
+        /*
+        List of contacts with synchronization information
+        */
         open var `records`: [PersonalContactInfo]?
-        // Sync type, token and time
+        /*
+        Sync type, token and time
+        */
         open var `syncInfo`: SyncInfo?
-        // Internal identifier of the next page, if any
+        /*
+        Internal identifier of the next page, if any
+        */
         open var `nextPageId`: Int?
-        // URL of the next page, if any
+        /*
+        URL of the next page, if any
+        */
         open var `nextPageUri`: String?
         public init() {
         }

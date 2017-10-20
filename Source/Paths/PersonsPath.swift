@@ -7,28 +7,46 @@ open class PersonsPath: PathSegment {
             return "persons"
         }
     }
-    // Get Person by ID
+    /*
+    Get Person by ID. Returns a user or few users by ID(s). Batch request is supported.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Internal identifier of a user
+        /*
+        Internal identifier of a user
+        */
         open var `id`: String?
-        // First name of a user
+        /*
+        First name of a user
+        */
         open var `firstName`: String?
-        // Last name of a user
+        /*
+        Last name of a user
+        */
         open var `lastName`: String?
-        // Email of a user
+        /*
+        Email of a user
+        */
         open var `email`: String?
-        // Photo of a user
+        /*
+        Photo of a user
+        */
         open var `avatar`: String?
-        // Internal identifier of a company
+        /*
+        Internal identifier of a company
+        */
         open var `companyId`: String?
-        // Time of creation in ISO 8601 format
+        /*
+        Time of creation in ISO 8601 format
+        */
         open var `creationTime`: String?
-        // Time of last modification in ISO 8601 format
+        /*
+        Time of last modification in ISO 8601 format
+        */
         open var `lastModifiedTime`: String?
         public init() {
         }

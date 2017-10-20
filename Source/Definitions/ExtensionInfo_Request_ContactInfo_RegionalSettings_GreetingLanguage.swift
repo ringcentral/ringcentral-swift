@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_ContactInfo_RegionalSettings_GreetingLanguage: Mappable {
-    // Internal identifier of a greeting language
+    /*
+    Internal identifier of a greeting language
+    */
     open var `id`: String?
     public init() {
     }

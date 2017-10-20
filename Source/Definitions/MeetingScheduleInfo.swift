@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class MeetingScheduleInfo: Mappable {
-    // Start time of a meeting in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Start time of a meeting in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `startTime`: String?
-    // Duration of a meeting in minutes
+    /*
+    Duration of a meeting in minutes
+    */
     open var `durationInMinutes`: Int?
-    // Timezone of a meeting
+    /*
+    Timezone of a meeting
+    */
     open var `timeZone`: MeetingScheduleInfo_TimezoneInfo?
     public init() {
     }

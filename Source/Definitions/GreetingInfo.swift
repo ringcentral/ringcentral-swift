@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class GreetingInfo: Mappable {
-    // Type of a greeting, specifying the case when the greeting is played. See also Greeting Types
+    /*
+    Type of a greeting, specifying the case when the greeting is played. See also Greeting Types
+    */
     open var `type`: String?
-    // Predefined greeting information
+    /*
+    Predefined greeting information
+    */
     open var `preset`: PresetInfo?
     public init() {
     }

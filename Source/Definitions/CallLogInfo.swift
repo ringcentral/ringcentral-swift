@@ -1,29 +1,53 @@
 import Foundation
 import ObjectMapper
 open class CallLogInfo: Mappable {
-    // Internal identifier of a cal log record
+    /*
+    Internal identifier of a cal log record
+    */
     open var `id`: String?
-    // Canonical URI of a call log record
+    /*
+    Canonical URI of a call log record
+    */
     open var `uri`: String?
-    // Internal identifier of a call session
+    /*
+    Internal identifier of a call session
+    */
     open var `sessionId`: String?
-    // Caller information
+    /*
+    Caller information
+    */
     open var `from`: CallerInfo?
-    // Callee information
+    /*
+    Callee information
+    */
     open var `to`: CallerInfo?
-    // Call type
+    /*
+    Call type
+    */
     open var `type`: String?
-    // Call direction
+    /*
+    Call direction
+    */
     open var `direction`: String?
-    // Action description of the call operation
+    /*
+    Action description of the call operation
+    */
     open var `action`: String?
-    // Status description of the call operation
+    /*
+    Status description of the call operation
+    */
     open var `result`: String?
-    // The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    The call start datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `startTime`: String?
-    // Call duration in seconds
+    /*
+    Call duration in seconds
+    */
     open var `duration`: Int?
-    // Call recording data. Returned if the call is recorded
+    /*
+    Call recording data. Returned if the call is recorded
+    */
     open var `recording`: RecordingInfo?
     public init() {
     }

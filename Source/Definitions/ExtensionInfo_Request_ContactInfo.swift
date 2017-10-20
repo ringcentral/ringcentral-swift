@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_ContactInfo: Mappable {
-    // Contact information
+    /*
+    Contact information
+    */
     open var `contact`: ContactInfo?
-    // Region data (timezone, home country, language)
+    /*
+    Region data (timezone, home country, language)
+    */
     open var `regionalSettings`: ExtensionInfo_Request_ContactInfo_RegionalSettings?
-    // Specifies extension configuration wizard state (web service setup). The default value is 'NotStarted'
+    /*
+    Specifies extension configuration wizard state (web service setup). The default value is 'NotStarted'
+    */
     open var `setupWizardState`: String?
-    // Extension user department
+    /*
+    Extension user department
+    */
     open var `department`: String?
     public init() {
     }

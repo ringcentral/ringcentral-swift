@@ -7,18 +7,26 @@ open class LanguagePath: PathSegment {
             return "language"
         }
     }
-    // Get Supported Language List
+    /*
+    Get Supported Language List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     open class ListResponse: Mappable {
-        // Language data
+        /*
+        Language data
+        */
         open var `records`: [LanguageInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -36,7 +44,9 @@ open class LanguagePath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Language by ID
+    /*
+    Get Language by ID.
+    */
     open func get(callback: @escaping (_ t: LanguageInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: LanguageInfo?, error) in
             callback(t, error)

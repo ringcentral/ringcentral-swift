@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class ServerInfo: Mappable {
-    // Canonical URI of the API version
+    /*
+    Canonical URI of the API version
+    */
     open var `uri`: String?
-    // Full API version information: uri, number, release date
+    /*
+    Full API version information: uri, number, release date
+    */
     open var `apiVersions`: [VersionInfo]?
-    // Server version
+    /*
+    Server version
+    */
     open var `serverVersion`: String?
-    // Server revision
+    /*
+    Server revision
+    */
     open var `serverRevision`: String?
     public init() {
     }

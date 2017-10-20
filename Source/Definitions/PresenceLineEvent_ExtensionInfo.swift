@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class PresenceLineEvent_ExtensionInfo: Mappable {
-    // Internal identifier of the extension
+    /*
+    Internal identifier of the extension
+    */
     open var `id`: String?
     public init() {
     }

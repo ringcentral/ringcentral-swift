@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class BillingPlanInfo: Mappable {
-    // Internal identifier of a billing plan
+    /*
+    Internal identifier of a billing plan
+    */
     open var `id`: String?
-    // Billing plan name
+    /*
+    Billing plan name
+    */
     open var `name`: String?
-    // Duration period
+    /*
+    Duration period
+    */
     open var `durationUnit`: String?
-    // Number of duration units
+    /*
+    Number of duration units
+    */
     open var `duration`: String?
-    // Billing plan type
+    /*
+    Billing plan type
+    */
     open var `type`: String?
     public init() {
     }

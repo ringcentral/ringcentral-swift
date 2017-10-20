@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class PermissionInfo: Mappable {
-    // Specifies if a permission is enabled or not
+    /*
+    Specifies if a permission is enabled or not
+    */
     open var `enabled`: Bool?
     public init() {
     }

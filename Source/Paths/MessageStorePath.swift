@@ -10,44 +10,72 @@ open class MessageStorePath: PathSegment {
     open func `content`(_ _id: String? = nil) -> ContentPath {
         return ContentPath(parent: self, _id: _id)
     }
-    // Get Message List
+    /*
+    Get Message List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Message List
+    /*
+    Get Message List.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Message List
+    /*
+    Get Message List.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Specifies the availability status for the resulting messages. Default value is 'Alive'. Multiple values are accepted
+        /*
+        Specifies the availability status for the resulting messages. Default value is 'Alive'. Multiple values are accepted
+        */
         open var `availability`: String?
-        // Specifies the conversation identifier for the resulting messages
+        /*
+        Specifies the conversation identifier for the resulting messages
+        */
         open var `conversationId`: Int?
-        // The start datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        /*
+        The start datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        */
         open var `dateFrom`: String?
-        // The end datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        /*
+        The end datetime for resulting messages in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        */
         open var `dateTo`: String?
-        // The direction for the resulting messages. If not specified, both inbound and outbound messages are returned. Multiple values are accepted
+        /*
+        The direction for the resulting messages. If not specified, both inbound and outbound messages are returned. Multiple values are accepted
+        */
         open var `direction`: String?
-        // If 'True', then the latest messages per every conversation ID are returned
+        /*
+        If 'True', then the latest messages per every conversation ID are returned
+        */
         open var `distinctConversations`: Bool?
-        // The type of the resulting messages. If not specified, all messages without message type filtering are returned. Multiple values are accepted
+        /*
+        The type of the resulting messages. If not specified, all messages without message type filtering are returned. Multiple values are accepted
+        */
         open var `messageType`: String?
-        // The read status for the resulting messages. Multiple values are accepted
+        /*
+        The read status for the resulting messages. Multiple values are accepted
+        */
         open var `readStatus`: String?
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: Int?
-        // The phone number. If specified, messages are returned for this particular phone number only
+        /*
+        The phone number. If specified, messages are returned for this particular phone number only
+        */
         open var `phoneNumber`: String?
         public init() {
         }
@@ -82,11 +110,17 @@ open class MessageStorePath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of records with message information
+        /*
+        List of records with message information
+        */
         open var `records`: [MessageInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -104,26 +138,36 @@ open class MessageStorePath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Delete Message by ID
+    /*
+    Delete Message by ID.
+    */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
         }
     }
-    // Delete Message by ID
+    /*
+    Delete Message by ID.
+    */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
             callback(error)
         }
     }
-    // Delete Message by ID
+    /*
+    Delete Message by ID.
+    */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
     }
     open class DeleteParameters: Mappable {
-        // If the value is 'True', then the message is purged immediately with all the attachments. The default value is 'False'
+        /*
+        If the value is 'True', then the message is purged immediately with all the attachments. The default value is 'False'
+        */
         open var `purge`: Bool?
-        // Internal identifier of a message thread
+        /*
+        Internal identifier of a message thread
+        */
         open var `conversationId`: Int?
         public init() {
         }
@@ -139,30 +183,40 @@ open class MessageStorePath: PathSegment {
             `conversationId` <- map["conversationId"]
         }
     }
-    // Get Message by ID
+    /*
+    Get Message by ID.
+    */
     open func get(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: MessageInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Message by ID
+    /*
+    Update Message by ID.
+    */
     open func put(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: MessageInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Message by ID
+    /*
+    Update Message by ID.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: MessageInfo?, error) in
             callback(t, error)
         }
     }
-    // Update Message by ID
+    /*
+    Update Message by ID.
+    */
     open func put(parameters: PutParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
-        // Read status of a message to be changed. Multiple values are accepted
+        /*
+        Read status of a message to be changed. Multiple values are accepted
+        */
         open var `readStatus`: String?
         public init() {
         }

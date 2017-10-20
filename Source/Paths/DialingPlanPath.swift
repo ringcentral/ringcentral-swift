@@ -7,26 +7,36 @@ open class DialingPlanPath: PathSegment {
             return "dialing-plan"
         }
     }
-    // Get IBO Dialing Plans
+    /*
+    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get IBO Dialing Plans
+    /*
+    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get IBO Dialing Plans
+    /*
+    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: Int?
         public init() {
         }
@@ -43,11 +53,17 @@ open class DialingPlanPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of countries which can be selected for a dialing plan
+        /*
+        List of countries which can be selected for a dialing plan
+        */
         open var `records`: [DialingPlanCountryInfo]?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
         public init() {
         }

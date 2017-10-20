@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class RingOutInfo: Mappable {
-    // Internal identifier of a RingOut call
+    /*
+    Internal identifier of a RingOut call
+    */
     open var `id`: String?
-    // RingOut status information
+    /*
+    RingOut status information
+    */
     open var `status`: RingOutStatusInfo?
     public init() {
     }

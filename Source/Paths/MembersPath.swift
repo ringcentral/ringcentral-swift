@@ -7,26 +7,36 @@ open class MembersPath: PathSegment {
             return "members"
         }
     }
-    // Get Department Members
+    /*
+    Get Department Members.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Department Members
+    /*
+    Get Department Members.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Department Members
+    /*
+    Get Department Members.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: Int?
         public init() {
         }
@@ -43,11 +53,17 @@ open class MembersPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of extensions belonging to a given department
+        /*
+        List of extensions belonging to a given department
+        */
         open var `records`: [Department_Response_ExtensionInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }

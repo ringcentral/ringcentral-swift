@@ -31,13 +31,17 @@ open class RestapiPath: PathSegment {
     open func `subscription`(_ _id: String? = nil) -> SubscriptionPath {
         return SubscriptionPath(parent: self, _id: _id)
     }
-    // Get Server Info
+    /*
+    Get API Versions. Returns current API version(s) and server info.
+    */
     open func list(callback: @escaping (_ t: ServerInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ServerInfo?, error) in
             callback(t, error)
         }
     }
-    // Get API Version Info
+    /*
+    Get API Version Info.
+    */
     open func get(callback: @escaping (_ t: VersionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: VersionInfo?, error) in
             callback(t, error)

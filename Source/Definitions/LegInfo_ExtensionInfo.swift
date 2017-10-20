@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class LegInfo_ExtensionInfo: Mappable {
-    // Internal identifier of an extension
+    /*
+    Internal identifier of an extension
+    */
     open var `id`: String?
-    // Canonical URI of an extension
+    /*
+    Canonical URI of an extension
+    */
     open var `uri`: String?
     public init() {
     }

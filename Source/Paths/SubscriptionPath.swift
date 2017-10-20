@@ -7,26 +7,36 @@ open class SubscriptionPath: PathSegment {
             return "subscription"
         }
     }
-    // Create New Subscription
+    /*
+    Create New Subscription.
+    */
     open func post(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: SubscriptionInfo?, error) in
             callback(t, error)
         }
     }
-    // Create New Subscription
+    /*
+    Create New Subscription.
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
             callback(t, error)
         }
     }
-    // Create New Subscription
+    /*
+    Create New Subscription.
+    */
     open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
-        // Mandatory. Collection of URIs to API resources (see Event Types for details). For APNS transport type only message event filter is available
+        /*
+        Mandatory. Collection of URIs to API resources (see Event Types for details). For APNS transport type only message event filter is available
+        */
         open var `eventFilters`: [String]?
-        // Notification delivery settings
+        /*
+        Notification delivery settings
+        */
         open var `deliveryMode`: Subscription_Request_DeliveryMode?
         public init() {
         }
@@ -42,16 +52,22 @@ open class SubscriptionPath: PathSegment {
             `deliveryMode` <- map["deliveryMode"]
         }
     }
-    // Get Subscription List
+    /*
+    Get Subscription List. Returns a list of subscriptions created by a particular user on a particular client app.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     open class ListResponse: Mappable {
-        // Canonical URI of a subscription resource
+        /*
+        Canonical URI of a subscription resource
+        */
         open var `uri`: String?
-        // List of subscriptions for the current user and application
+        /*
+        List of subscriptions for the current user and application
+        */
         open var `records`: [SubscriptionInfo]?
         public init() {
         }
@@ -67,36 +83,48 @@ open class SubscriptionPath: PathSegment {
             `records` <- map["records"]
         }
     }
-    // Cancel Subscription by ID
+    /*
+    Cancel Subscription by ID.
+    */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
         }
     }
-    // Get Subscription by ID
+    /*
+    Get Subscription by ID.
+    */
     open func get(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: SubscriptionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update/Renew Subscription by ID
+    /*
+    Update/Renew Subscription by ID.
+    */
     open func put(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: SubscriptionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update/Renew Subscription by ID
+    /*
+    Update/Renew Subscription by ID.
+    */
     open func put(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
             callback(t, error)
         }
     }
-    // Update/Renew Subscription by ID
+    /*
+    Update/Renew Subscription by ID.
+    */
     open func put(parameters: PutParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
-        // Collection of URIs to API resources (see Event Types). Mandatory field
+        /*
+        Collection of URIs to API resources (see Event Types). Mandatory field
+        */
         open var `eventFilters`: [String]?
         public init() {
         }

@@ -7,32 +7,48 @@ open class LocationPath: PathSegment {
             return "location"
         }
     }
-    // Get Location List
+    /*
+    Get Location List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Location List
+    /*
+    Get Location List.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Location List
+    /*
+    Get Location List.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Sorts results by the specified property. The default value is 'City'
+        /*
+        Sorts results by the specified property. The default value is 'City'
+        */
         open var `orderBy`: String?
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default.
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        */
         open var `perPage`: Int?
-        // Internal identifier of a state
+        /*
+        Internal identifier of a state
+        */
         open var `stateId`: String?
-        // Specifies if nxx codes are returned
+        /*
+        Specifies if nxx codes are returned
+        */
         open var `withNxx`: Bool?
         public init() {
         }
@@ -55,11 +71,17 @@ open class LocationPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of locations
+        /*
+        List of locations
+        */
         open var `records`: [LocationInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }

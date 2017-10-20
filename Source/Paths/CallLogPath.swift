@@ -7,48 +7,80 @@ open class CallLogPath: PathSegment {
             return "call-log"
         }
     }
-    // Get Account Call Log
+    /*
+    Get Account Call Log. Get Account Call Log Records by Filter
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Account Call Log
+    /*
+    Get Account Call Log. Get Account Call Log Records by Filter
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Account Call Log
+    /*
+    Get Account Call Log. Get Account Call Log Records by Filter
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Extension number of a user. If specified, returns call log for a particular extension only. Cannot be specified together with the phoneNumber filter
+        /*
+        Extension number of a user. If specified, returns call log for a particular extension only. Cannot be specified together with the phoneNumber filter
+        */
         open var `extensionNumber`: String?
-        // If 'True' then calls from/to blocked numbers are returned. The default value is 'True'
+        /*
+        If 'True' then calls from/to blocked numbers are returned. The default value is 'True'
+        */
         open var `showBlocked`: Bool?
-        // Phone number of a caller/call recipient. If specified, returns all calls (both incoming and outcoming) with the mentioned phone number. Cannot be specified together with the extensionNumber filter
+        /*
+        Phone number of a caller/call recipient. If specified, returns all calls (both incoming and outcoming) with the mentioned phone number. Cannot be specified together with the extensionNumber filter
+        */
         open var `phoneNumber`: String?
-        // The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are supported
+        /*
+        The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are supported
+        */
         open var `direction`: String?
-        // Internal identifier of a call session. Cannot be specified along with parameters 'dateTo'/'dateFrom'
+        /*
+        Internal identifier of a call session. Cannot be specified along with parameters 'dateTo'/'dateFrom'
+        */
         open var `sessionId`: String?
-        // Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are supported
+        /*
+        Call type of a record. It is allowed to specify more than one type. If not specified, all call types are returned. Multiple values are supported
+        */
         open var `type`: String?
-        // Call transport type. By default this filter is disabled
+        /*
+        Call transport type. By default this filter is disabled
+        */
         open var `transport`: String?
-        // The default value is 'Simple' for both account and extension call log
+        /*
+        The default value is 'Simple' for both account and extension call log
+        */
         open var `view`: String?
-        // 'True' if only recorded calls are returned. The default value is 'False'
+        /*
+        'True' if only recorded calls are returned. The default value is 'False'
+        */
         open var `withRecording`: Bool?
-        // The start datetime for resulting records in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        /*
+        The start datetime for resulting records in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is dateTo minus 24 hours
+        */
         open var `dateFrom`: String?
-        // The end datetime for resulting records in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        /*
+        The end datetime for resulting records in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        */
         open var `dateTo`: String?
-        // Indicates the page number to retrieve. Only positive number values are allowed. The default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. The default value is '1'
+        */
         open var `page`: Int?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default.
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        */
         open var `perPage`: Int?
         public init() {
         }
@@ -87,13 +119,21 @@ open class CallLogPath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // Canonical URI
+        /*
+        Canonical URI
+        */
         open var `uri`: String?
-        // List of call log records
+        /*
+        List of call log records
+        */
         open var `records`: [CallLogRecord]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -113,30 +153,40 @@ open class CallLogPath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Account Call Log Record by ID
+    /*
+    Get Account Call Log Record by ID.
+    */
     open func get(callback: @escaping (_ t: CallLogInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: CallLogInfo?, error) in
             callback(t, error)
         }
     }
-    // Delete Extension Call Log
+    /*
+    Delete Extension Call Log.
+    */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
         }
     }
-    // Delete Extension Call Log
+    /*
+    Delete Extension Call Log.
+    */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
             callback(error)
         }
     }
-    // Delete Extension Call Log
+    /*
+    Delete Extension Call Log.
+    */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
     }
     open class DeleteParameters: Mappable {
-        // The end datetime for records deletion in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        /*
+        The end datetime for records deletion in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z. The default value is current time
+        */
         open var `dateTo`: String?
         public init() {
         }

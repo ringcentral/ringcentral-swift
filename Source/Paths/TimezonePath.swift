@@ -7,26 +7,36 @@ open class TimezonePath: PathSegment {
             return "timezone"
         }
     }
-    // Get Time Zone List
+    /*
+    Get Time Zone List.
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Time Zone List
+    /*
+    Get Time Zone List.
+    */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
-    // Get Time Zone List
+    /*
+    Get Time Zone List.
+    */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        // Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        /*
+        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        */
         open var `page`: String?
-        // Indicates the page size (number of items). If not specified, the value is '100' by default
+        /*
+        Indicates the page size (number of items). If not specified, the value is '100' by default
+        */
         open var `perPage`: String?
         public init() {
         }
@@ -43,11 +53,17 @@ open class TimezonePath: PathSegment {
         }
     }
     open class ListResponse: Mappable {
-        // List of timezones
+        /*
+        List of timezones
+        */
         open var `records`: [TimezoneInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }
@@ -65,7 +81,9 @@ open class TimezonePath: PathSegment {
             `paging` <- map["paging"]
         }
     }
-    // Get Time Zone by ID
+    /*
+    Get Time Zone by ID.
+    */
     open func get(callback: @escaping (_ t: TimezoneInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: TimezoneInfo?, error) in
             callback(t, error)

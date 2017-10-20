@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class SIPData: Mappable {
-    // Recipient data
+    /*
+    Recipient data
+    */
     open var `toTag`: String?
-    // Sender data
+    /*
+    Sender data
+    */
     open var `fromTag`: String?
-    // Remote address URL
+    /*
+    Remote address URL
+    */
     open var `remoteUri`: String?
-    // Local address URL
+    /*
+    Local address URL
+    */
     open var `localUri`: String?
     public init() {
     }

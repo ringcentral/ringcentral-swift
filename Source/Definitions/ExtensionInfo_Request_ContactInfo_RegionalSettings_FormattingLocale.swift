@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_ContactInfo_RegionalSettings_FormattingLocale: Mappable {
-    // Internal identifier of a formatting language
+    /*
+    Internal identifier of a formatting language
+    */
     open var `id`: String?
     public init() {
     }

@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class RuleInfo_ForwardingNumberInfo: Mappable {
-    // Link to a forwarding number resource
+    /*
+    Link to a forwarding number resource
+    */
     open var `uri`: String?
-    // Internal identifier of a forwarding number
+    /*
+    Internal identifier of a forwarding number
+    */
     open var `id`: String?
-    // Phone number to which the call is forwarded
+    /*
+    Phone number to which the call is forwarded
+    */
     open var `phoneNumber`: String?
-    // Title of a forwarding number
+    /*
+    Title of a forwarding number
+    */
     open var `label`: String?
     public init() {
     }

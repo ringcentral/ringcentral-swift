@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class ContactAddressInfo: Mappable {
-    // Country name of extension user company. Not returned for Address Book
+    /*
+    Country name of extension user company. Not returned for Address Book
+    */
     open var `country`: String?
-    // State/province name of extension user company
+    /*
+    State/province name of extension user company
+    */
     open var `state`: String?
-    // City name of extension user company
+    /*
+    City name of extension user company
+    */
     open var `city`: String?
-    // Street address of extension user company
+    /*
+    Street address of extension user company
+    */
     open var `street`: String?
-    // Zip code of extension user company
+    /*
+    Zip code of extension user company
+    */
     open var `zip`: String?
     public init() {
     }

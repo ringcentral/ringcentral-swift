@@ -7,16 +7,22 @@ open class BusinessHoursPath: PathSegment {
             return "business-hours"
         }
     }
-    // Get User Hours Setting
+    /*
+    Get User Hours Setting.
+    */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
             callback(t, error)
         }
     }
     open class GetResponse: Mappable {
-        // Canonical URI of a business-hours resource
+        /*
+        Canonical URI of a business-hours resource
+        */
         open var `uri`: String?
-        // Schedule when an answering rule is applied
+        /*
+        Schedule when an answering rule is applied
+        */
         open var `schedule`: BusinessHour_ScheduleInfo?
         public init() {
         }

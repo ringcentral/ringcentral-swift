@@ -1,27 +1,49 @@
 import Foundation
 import ObjectMapper
 open class DetailedPresencewithSIPEvent: Mappable {
-    // Internal identifier of an extension. Optional parameter
+    /*
+    Internal identifier of an extension. Optional parameter
+    */
     open var `extensionId`: String?
-    // Telephony presence status. Returned if telephony status is changed. See Telephony Status Values
+    /*
+    Telephony presence status. Returned if telephony status is changed. See Telephony Status Values
+    */
     open var `telephonyStatus`: String?
-    // Type of call termination. Supported for calls in 'NoCall' status. If the returned termination type is 'Intermediate' it means the call is not actually ended, the connection is established on one of the devices
+    /*
+    Type of call termination. Supported for calls in 'NoCall' status. If the returned termination type is 'Intermediate' it means the call is not actually ended, the connection is established on one of the devices
+    */
     open var `terminationType`: String?
-    // Information on active calls
+    /*
+    Information on active calls
+    */
     open var `activeCalls`: [DetailedPresencewithSIPEvent_ActiveCallInfo]?
-    // Order number of a notification to state the chronology
+    /*
+    Order number of a notification to state the chronology
+    */
     open var `sequence`: Int?
-    // Aggregated presence status, calculated from a number of sources
+    /*
+    Aggregated presence status, calculated from a number of sources
+    */
     open var `presenceStatus`: String?
-    // User-defined presence status (as previously published by the user)
+    /*
+    User-defined presence status (as previously published by the user)
+    */
     open var `userStatus`: String?
-    // Extended DnD (Do not Disturb) status
+    /*
+    Extended DnD (Do not Disturb) status
+    */
     open var `dndStatus`: String?
-    // If 'True' enables other extensions to see the extension presence status
+    /*
+    If 'True' enables other extensions to see the extension presence status
+    */
     open var `allowSeeMyPresence`: Bool?
-    // If 'True' enables to ring extension phone, if any user monitored by this extension is ringing
+    /*
+    If 'True' enables to ring extension phone, if any user monitored by this extension is ringing
+    */
     open var `ringOnMonitoredCall`: Bool?
-    // If 'True' enables the extension user to pick up a monitored line on hold
+    /*
+    If 'True' enables the extension user to pick up a monitored line on hold
+    */
     open var `pickUpCallsOnHold`: Bool?
     public init() {
     }
