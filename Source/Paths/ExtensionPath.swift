@@ -82,6 +82,9 @@ open class ExtensionPath: PathSegment {
     open func `sms`() -> SmsPath {
         return SmsPath(parent: self)
     }
+    open func `mms`() -> MmsPath {
+        return MmsPath(parent: self)
+    }
     // Get Extension List
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
