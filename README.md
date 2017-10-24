@@ -11,6 +11,13 @@
 - Swift 3.0+
 
 
+## Version requirements
+
+For Swift 3.1 or earlier, use version 0.5.0.
+
+For Swift 4 or later, use the latest version.
+
+
 ## Installation
 
 The recommended way to install this framework is via [Carthage](https://github.com/Carthage/Carthage).
