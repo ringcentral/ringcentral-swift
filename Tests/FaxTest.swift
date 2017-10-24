@@ -52,7 +52,7 @@ class FaxTest: BaseTest {
             }
         }
 
-        waitForExpectations(timeout: 20) { error in
+        waitForExpectations(timeout: 30) { error in
             XCTAssertNil(error)
         }
     }
