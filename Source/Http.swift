@@ -60,7 +60,7 @@ public struct MyURLEncoding: ParameterEncoding {
 
         // convert Bool to String: https://github.com/Alamofire/Alamofire/issues/1056
         for (key, value) in myParameters {
-            let type = String(describing: type(of: value))
+            let type = String(describing: Swift.type(of: value))
             if type == "Bool" || type == "__NSCFBoolean" {
                 let bool = value as! Bool
                 if bool == true {
