@@ -7,6 +7,9 @@ open class RestapiPath: PathSegment {
             return "restapi"
         }
     }
+    open func `auth`() -> AuthPath {
+        return AuthPath(parent: self)
+    }
     open func `oauth`() -> OauthPath {
         return OauthPath(parent: self)
     }
@@ -22,6 +25,12 @@ open class RestapiPath: PathSegment {
     open func `glip`() -> GlipPath {
         return GlipPath(parent: self)
     }
+    open func `internal`() -> InternalPath {
+        return InternalPath(parent: self)
+    }
+    open func `interop`() -> InteropPath {
+        return InteropPath(parent: self)
+    }
     open func `numberParser`() -> NumberParserPath {
         return NumberParserPath(parent: self)
     }
@@ -32,7 +41,7 @@ open class RestapiPath: PathSegment {
         return SubscriptionPath(parent: self, _id: _id)
     }
     /*
-    Get API Versions. Returns current API version(s) and server info.
+    Returns current API version(s) and server info.
     */
     open func list(callback: @escaping (_ t: ServerInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ServerInfo?, error) in
@@ -40,7 +49,6 @@ open class RestapiPath: PathSegment {
         }
     }
     /*
-    Get API Version Info.
     */
     open func get(callback: @escaping (_ t: VersionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: VersionInfo?, error) in

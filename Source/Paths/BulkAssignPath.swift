@@ -8,7 +8,7 @@ open class BulkAssignPath: PathSegment {
         }
     }
     /*
-    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
     */
     open func post(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipGroupInfo?, error) in
@@ -16,7 +16,7 @@ open class BulkAssignPath: PathSegment {
         }
     }
     /*
-    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipGroupInfo?, error) in
@@ -24,7 +24,7 @@ open class BulkAssignPath: PathSegment {
         }
     }
     /*
-    Edit Group Members. Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
+    Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation (either adding or removal) is supported.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

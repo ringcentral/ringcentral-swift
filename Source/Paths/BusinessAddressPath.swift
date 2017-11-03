@@ -8,7 +8,6 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     /*
-    Get Company Business Address.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
@@ -51,7 +50,6 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     /*
-    Update Company Business Address.
     */
     open func put(callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: PutResponse?, error) in
@@ -59,7 +57,6 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     /*
-    Update Company Business Address.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: PutResponse?, error) in
@@ -67,7 +64,6 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     /*
-    Update Company Business Address.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

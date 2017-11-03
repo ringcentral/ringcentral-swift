@@ -10,7 +10,7 @@ open class AddressBookPath: PathSegment {
     open func `contact`(_ _id: String? = nil) -> ContactPath {
         return ContactPath(parent: self, _id: _id)
     }
-    open func `group`() -> GroupPath {
-        return GroupPath(parent: self)
+    open func `group`(_ _id: String? = nil) -> GroupPath {
+        return GroupPath(parent: self, _id: _id)
     }
 }

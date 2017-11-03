@@ -8,7 +8,6 @@ open class RevokePath: PathSegment {
         }
     }
     /*
-    OAuth2 Revoke Token.
     */
     open func post(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.postString(self.endpoint()) { string, error in
@@ -16,7 +15,6 @@ open class RevokePath: PathSegment {
         }
     }
     /*
-    OAuth2 Revoke Token.
     */
     open func post(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.postString(self.endpoint(), parameters: parameters) { string, error in
@@ -24,7 +22,6 @@ open class RevokePath: PathSegment {
         }
     }
     /*
-    OAuth2 Revoke Token.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

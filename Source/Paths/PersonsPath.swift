@@ -8,7 +8,7 @@ open class PersonsPath: PathSegment {
         }
     }
     /*
-    Get Person by ID. Returns a user or few users by ID(s). Batch request is supported.
+    Returns a user or few users by ID(s). Batch request is supported.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in

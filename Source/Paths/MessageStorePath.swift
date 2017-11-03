@@ -11,7 +11,6 @@ open class MessageStorePath: PathSegment {
         return ContentPath(parent: self, _id: _id)
     }
     /*
-    Get Message List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -19,7 +18,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Get Message List.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -27,7 +25,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Get Message List.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -139,7 +136,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Delete Message by ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -147,7 +143,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Delete Message by ID.
     */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
@@ -155,7 +150,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Delete Message by ID.
     */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
@@ -184,7 +178,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Get Message by ID.
     */
     open func get(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: MessageInfo?, error) in
@@ -192,7 +185,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Update Message by ID.
     */
     open func put(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: MessageInfo?, error) in
@@ -200,7 +192,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Update Message by ID.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: MessageInfo?, error) in
@@ -208,7 +199,6 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    Update Message by ID.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

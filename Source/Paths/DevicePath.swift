@@ -8,7 +8,6 @@ open class DevicePath: PathSegment {
         }
     }
     /*
-    Get Account Device List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -45,7 +44,6 @@ open class DevicePath: PathSegment {
         }
     }
     /*
-    Get Device by ID.
     */
     open func get(callback: @escaping (_ t: DeviceInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: DeviceInfo?, error) in

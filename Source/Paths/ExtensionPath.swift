@@ -7,6 +7,12 @@ open class ExtensionPath: PathSegment {
             return "extension"
         }
     }
+    open func `bulkAssign`() -> BulkAssignPath {
+        return BulkAssignPath(parent: self)
+    }
+    open func `validate`() -> ValidatePath {
+        return ValidatePath(parent: self)
+    }
     open func `activeCalls`() -> ActiveCallsPath {
         return ActiveCallsPath(parent: self)
     }
@@ -18,6 +24,9 @@ open class ExtensionPath: PathSegment {
     }
     open func `answeringRule`(_ _id: String? = nil) -> AnsweringRulePath {
         return AnsweringRulePath(parent: self, _id: _id)
+    }
+    open func `assignedRole`() -> AssignedRolePath {
+        return AssignedRolePath(parent: self)
     }
     open func `authzProfile`() -> AuthzProfilePath {
         return AuthzProfilePath(parent: self)
@@ -76,6 +85,9 @@ open class ExtensionPath: PathSegment {
     open func `profileImage`(_ _id: String? = nil) -> ProfileImagePath {
         return ProfileImagePath(parent: self, _id: _id)
     }
+    open func `reporting`() -> ReportingPath {
+        return ReportingPath(parent: self)
+    }
     open func `ringout`(_ _id: String? = nil) -> RingoutPath {
         return RingoutPath(parent: self, _id: _id)
     }
@@ -83,7 +95,6 @@ open class ExtensionPath: PathSegment {
         return SmsPath(parent: self)
     }
     /*
-    Get Extension List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -91,7 +102,6 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Get Extension List.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -99,7 +109,6 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Get Extension List.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -169,7 +178,6 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Get Extension Info by ID.
     */
     open func get(callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: ExtensionInfo?, error) in
@@ -177,7 +185,7 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    Modifies extension(s) by extension ID(s).
     1. Updates the extension data:
     - status info
     - contact info
@@ -191,7 +199,7 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    Modifies extension(s) by extension ID(s).
     1. Updates the extension data:
     - status info
     - contact info
@@ -205,7 +213,7 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    Update Extension by ID. Modifies extension(s) by extension ID(s).
+    Modifies extension(s) by extension ID(s).
     1. Updates the extension data:
     - status info
     - contact info

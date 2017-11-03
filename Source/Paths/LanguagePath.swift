@@ -8,7 +8,6 @@ open class LanguagePath: PathSegment {
         }
     }
     /*
-    Get Supported Language List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -45,7 +44,6 @@ open class LanguagePath: PathSegment {
         }
     }
     /*
-    Get Language by ID.
     */
     open func get(callback: @escaping (_ t: LanguageInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: LanguageInfo?, error) in

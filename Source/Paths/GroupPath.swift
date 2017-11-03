@@ -8,7 +8,6 @@ open class GroupPath: PathSegment {
         }
     }
     /*
-    Get Contact Group List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in

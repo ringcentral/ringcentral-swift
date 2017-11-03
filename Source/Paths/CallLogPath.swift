@@ -8,7 +8,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Get Account Call Log. Get Account Call Log Records by Filter
+    Get Account Call Log Records by Filter
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -16,7 +16,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Get Account Call Log. Get Account Call Log Records by Filter
+    Get Account Call Log Records by Filter
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -24,7 +24,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Get Account Call Log. Get Account Call Log Records by Filter
+    Get Account Call Log Records by Filter
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -154,7 +154,6 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Get Account Call Log Record by ID.
     */
     open func get(callback: @escaping (_ t: CallLogInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: CallLogInfo?, error) in
@@ -162,7 +161,6 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Delete Extension Call Log.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -170,7 +168,6 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Delete Extension Call Log.
     */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
@@ -178,7 +175,6 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    Delete Extension Call Log.
     */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)

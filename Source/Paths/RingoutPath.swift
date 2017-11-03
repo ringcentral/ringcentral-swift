@@ -7,8 +7,11 @@ open class RingoutPath: PathSegment {
             return "ringout"
         }
     }
+    open func `direct`() -> DirectPath {
+        return DirectPath(parent: self)
+    }
     /*
-    Initiate RingOut Call. Makes a 2-leg RingOut call.
+    Makes a 2-leg RingOut call.
     */
     open func post(callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: RingOutInfo?, error) in
@@ -16,7 +19,7 @@ open class RingoutPath: PathSegment {
         }
     }
     /*
-    Initiate RingOut Call. Makes a 2-leg RingOut call.
+    Makes a 2-leg RingOut call.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: RingOutInfo?, error) in
@@ -24,7 +27,7 @@ open class RingoutPath: PathSegment {
         }
     }
     /*
-    Initiate RingOut Call. Makes a 2-leg RingOut call.
+    Makes a 2-leg RingOut call.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -71,7 +74,6 @@ open class RingoutPath: PathSegment {
         }
     }
     /*
-    Cancel RingOut Call.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -79,7 +81,6 @@ open class RingoutPath: PathSegment {
         }
     }
     /*
-    Get RingOut Call Status.
     */
     open func get(callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: RingOutInfo?, error) in

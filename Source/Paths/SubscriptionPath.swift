@@ -8,7 +8,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Create New Subscription.
     */
     open func post(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -16,7 +15,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Create New Subscription.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
@@ -24,7 +22,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Create New Subscription.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -53,7 +50,7 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Get Subscription List. Returns a list of subscriptions created by a particular user on a particular client app.
+    Returns a list of subscriptions created by a particular user on a particular client app.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -84,7 +81,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Cancel Subscription by ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -92,7 +88,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Get Subscription by ID.
     */
     open func get(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -100,7 +95,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Update/Renew Subscription by ID.
     */
     open func put(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -108,7 +102,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Update/Renew Subscription by ID.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
@@ -116,7 +109,6 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
-    Update/Renew Subscription by ID.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

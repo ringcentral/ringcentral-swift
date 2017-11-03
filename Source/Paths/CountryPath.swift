@@ -8,7 +8,6 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    Get Country List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -16,7 +15,6 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    Get Country List.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -24,7 +22,6 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    Get Country List.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -94,7 +91,6 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    Get Country by ID.
     */
     open func get(callback: @escaping (_ t: FullCountryInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: FullCountryInfo?, error) in

@@ -11,7 +11,7 @@ open class AuthzProfilePath: PathSegment {
         return CheckPath(parent: self)
     }
     /*
-    Get User Permissions. Returns a list of user permissions granted at authorization procedure.
+    Returns a list of user permissions granted at authorization procedure.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in

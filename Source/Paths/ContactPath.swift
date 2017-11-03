@@ -8,7 +8,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Get Contact List. Returns the extension address book.
+    Returns the extension address book.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -16,7 +16,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Get Contact List. Returns the extension address book.
+    Returns the extension address book.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -24,7 +24,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Get Contact List. Returns the extension address book.
+    Returns the extension address book.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -100,7 +100,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Create New Contact.
     */
     open func post(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PersonalContactInfo?, error) in
@@ -108,7 +107,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Create New Contact.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PersonalContactInfo?, error) in
@@ -116,13 +114,11 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Create New Contact.
     */
     open func post(parameters: PersonalContactInfo, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     /*
-    Delete Contact by ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -130,7 +126,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Get Contact by ID.
     */
     open func get(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: PersonalContactInfo?, error) in
@@ -138,7 +133,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Update Contact by ID.
     */
     open func put(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: PersonalContactInfo?, error) in
@@ -146,7 +140,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Update Contact by ID.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: PersonalContactInfo?, error) in
@@ -154,7 +147,6 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Update Contact by ID.
     */
     open func put(parameters: PersonalContactInfo, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

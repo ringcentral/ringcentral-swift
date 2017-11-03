@@ -8,7 +8,7 @@ open class SmsPath: PathSegment {
         }
     }
     /*
-    Create and Send SMS Message. Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
+    Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
     */
     open func post(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: MessageInfo?, error) in
@@ -16,7 +16,7 @@ open class SmsPath: PathSegment {
         }
     }
     /*
-    Create and Send SMS Message. Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
+    Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: MessageInfo?, error) in
@@ -24,7 +24,7 @@ open class SmsPath: PathSegment {
         }
     }
     /*
-    Create and Send SMS Message. Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
+    Creates and sends new SMS message. Sending SMS messages simultaneously to different recipients is limited up to 50 requests per minute; relevant for all client applications.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

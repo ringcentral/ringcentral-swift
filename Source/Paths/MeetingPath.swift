@@ -11,7 +11,7 @@ open class MeetingPath: PathSegment {
         return EndPath(parent: self)
     }
     /*
-    Get Meetings List. Returns a list of meetings for a particular extension.
+    Returns a list of meetings for a particular extension.
     ::: info
     The list of meetings does not include messages of 'Instant' type.
     :::
@@ -57,7 +57,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Create Meeting. Creates a new meeting.
+    Creates a new meeting.
     */
     open func post(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: MeetingInfo?, error) in
@@ -65,7 +65,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Create Meeting. Creates a new meeting.
+    Creates a new meeting.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: MeetingInfo?, error) in
@@ -73,7 +73,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Create Meeting. Creates a new meeting.
+    Creates a new meeting.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -138,7 +138,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Get Meeting. Returns a particular meetings details.
+    Returns a particular meetings details.
     */
     open func get(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: MeetingInfo?, error) in
@@ -146,7 +146,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Delete Meeting. Deletes a scheduled meeting.
+    Deletes a scheduled meeting.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -154,7 +154,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Update Meeting. Modifies a particular meetings.
+    Modifies a particular meetings.
     */
     open func put(callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: MeetingInfo?, error) in
@@ -162,7 +162,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Update Meeting. Modifies a particular meetings.
+    Modifies a particular meetings.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: MeetingInfo?, error) in
@@ -170,7 +170,7 @@ open class MeetingPath: PathSegment {
         }
     }
     /*
-    Update Meeting. Modifies a particular meetings.
+    Modifies a particular meetings.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: MeetingInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

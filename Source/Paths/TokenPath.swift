@@ -8,7 +8,6 @@ open class TokenPath: PathSegment {
         }
     }
     /*
-    OAuth2 Get Token.
     */
     open func post(callback: @escaping (_ t: TokenInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: TokenInfo?, error) in
@@ -16,7 +15,6 @@ open class TokenPath: PathSegment {
         }
     }
     /*
-    OAuth2 Get Token.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: TokenInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: TokenInfo?, error) in
@@ -24,7 +22,6 @@ open class TokenPath: PathSegment {
         }
     }
     /*
-    OAuth2 Get Token.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: TokenInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

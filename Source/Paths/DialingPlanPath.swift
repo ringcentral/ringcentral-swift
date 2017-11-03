@@ -8,7 +8,7 @@ open class DialingPlanPath: PathSegment {
         }
     }
     /*
-    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -16,7 +16,7 @@ open class DialingPlanPath: PathSegment {
         }
     }
     /*
-    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -24,7 +24,7 @@ open class DialingPlanPath: PathSegment {
         }
     }
     /*
-    Get IBO Dialing Plans. Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
+    Returns list of countries which can be selected for a dialing plan (to call short numbers and special services).
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)

@@ -8,7 +8,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Get Conferencing info.
     */
     open func get(callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: ConferencingInfo?, error) in
@@ -16,7 +15,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Get Conferencing info.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: ConferencingInfo?, error) in
@@ -24,7 +22,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Get Conferencing info.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
@@ -47,7 +44,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Update Conferencing info.
     */
     open func put(callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: ConferencingInfo?, error) in
@@ -55,7 +51,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Update Conferencing info.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: ConferencingInfo?, error) in
@@ -63,7 +58,6 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    Update Conferencing info.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: ConferencingInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

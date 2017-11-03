@@ -8,7 +8,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Create Post. Creates a post.
+    Creates a post.
     */
     open func post(callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipPostInfo?, error) in
@@ -16,7 +16,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Create Post. Creates a post.
+    Creates a post.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipPostInfo?, error) in
@@ -24,7 +24,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Create Post. Creates a post.
+    Creates a post.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -53,7 +53,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Get Posts. Returns list of posts.
+    Returns list of posts.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -61,7 +61,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Get Posts. Returns list of posts.
+    Returns list of posts.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -69,7 +69,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Get Posts. Returns list of posts.
+    Returns list of posts.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)

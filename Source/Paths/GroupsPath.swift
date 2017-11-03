@@ -11,7 +11,7 @@ open class GroupsPath: PathSegment {
         return BulkAssignPath(parent: self)
     }
     /*
-    Get Group List. Returns list of groups.
+    Returns list of groups.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -19,7 +19,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Get Group List. Returns list of groups.
+    Returns list of groups.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
@@ -27,7 +27,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Get Group List. Returns list of groups.
+    Returns list of groups.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -85,7 +85,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Create Group. Creates a group.
+    Creates a group.
     */
     open func post(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipGroupInfo?, error) in
@@ -93,7 +93,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Create Group. Creates a group.
+    Creates a group.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipGroupInfo?, error) in
@@ -101,7 +101,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Create Group. Creates a group.
+    Creates a group.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -148,7 +148,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    Get Group by ID. Returns a group or few groups by ID(s). Batch request is supported.
+    Returns a group or few groups by ID(s). Batch request is supported.
     */
     open func get(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GlipGroupInfo?, error) in

@@ -8,7 +8,7 @@ open class EndPath: PathSegment {
         }
     }
     /*
-    End Current Meeting. Ends a meetings which is in progress.
+    Ends a meetings which is in progress.
     */
     open func post(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.postString(self.endpoint()) { string, error in

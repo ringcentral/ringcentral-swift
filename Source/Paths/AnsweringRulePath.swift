@@ -8,7 +8,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Get Answering Rules List. Returns the extension answering rules.
+    Returns the extension answering rules.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -51,7 +51,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Create Custom Answering Rule. Creates a custom answering rule for a particular caller ID.
+    Creates a custom answering rule for a particular caller ID.
     */
     open func post(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
@@ -59,7 +59,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Create Custom Answering Rule. Creates a custom answering rule for a particular caller ID.
+    Creates a custom answering rule for a particular caller ID.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: AnsweringRuleInfo?, error) in
@@ -67,7 +67,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Create Custom Answering Rule. Creates a custom answering rule for a particular caller ID.
+    Creates a custom answering rule for a particular caller ID.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -144,7 +144,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Get Custom Answering Rule by ID. Returns an answering rule by ID.
+    Returns an answering rule by ID.
     */
     open func get(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
@@ -152,7 +152,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Update Answering Rule by ID. Updates a custom answering rule for a particular caller ID.
+    Updates a custom answering rule for a particular caller ID.
     */
     open func put(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
@@ -160,7 +160,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Update Answering Rule by ID. Updates a custom answering rule for a particular caller ID.
+    Updates a custom answering rule for a particular caller ID.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: AnsweringRuleInfo?, error) in
@@ -168,7 +168,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Update Answering Rule by ID. Updates a custom answering rule for a particular caller ID.
+    Updates a custom answering rule for a particular caller ID.
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
@@ -209,7 +209,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Delete Answering Rule by ID. Deletes a custom answering rule by a particular ID.
+    Deletes a custom answering rule by a particular ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in

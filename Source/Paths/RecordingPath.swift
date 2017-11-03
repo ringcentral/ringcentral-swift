@@ -11,7 +11,7 @@ open class RecordingPath: PathSegment {
         return ContentPath(parent: self, _id: _id)
     }
     /*
-    Get Call Recording Metadata. Returns call recording metadata.
+    Returns call recording metadata.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in

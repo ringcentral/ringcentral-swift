@@ -8,7 +8,6 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    Parse Phone Number.
     */
     open func post(callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PostResponse?, error) in
@@ -16,7 +15,6 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    Parse Phone Number.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PostResponse?, error) in
@@ -24,7 +22,6 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    Parse Phone Number.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

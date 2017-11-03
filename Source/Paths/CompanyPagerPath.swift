@@ -8,7 +8,6 @@ open class CompanyPagerPath: PathSegment {
         }
     }
     /*
-    Create and Send Pager Message.
     */
     open func post(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: MessageInfo?, error) in
@@ -16,7 +15,6 @@ open class CompanyPagerPath: PathSegment {
         }
     }
     /*
-    Create and Send Pager Message.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: MessageInfo?, error) in
@@ -24,7 +22,6 @@ open class CompanyPagerPath: PathSegment {
         }
     }
     /*
-    Create and Send Pager Message.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

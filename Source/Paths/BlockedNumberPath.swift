@@ -8,7 +8,6 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Get Blocked Number List.
     */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
@@ -45,7 +44,6 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Add New Blocked Number.
     */
     open func post(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: BlockedNumberInfo?, error) in
@@ -53,7 +51,6 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Add New Blocked Number.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: BlockedNumberInfo?, error) in
@@ -61,13 +58,11 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Add New Blocked Number.
     */
     open func post(parameters: BlockedNumberInfo, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     /*
-    Update Blocked Number Label.
     */
     open func put(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: BlockedNumberInfo?, error) in
@@ -75,7 +70,6 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Update Blocked Number Label.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: BlockedNumberInfo?, error) in
@@ -83,13 +77,11 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Update Blocked Number Label.
     */
     open func put(parameters: BlockedNumberInfo, callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     /*
-    Delete Blocked Number by ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -97,7 +89,6 @@ open class BlockedNumberPath: PathSegment {
         }
     }
     /*
-    Get Blocked Number by ID.
     */
     open func get(callback: @escaping (_ t: BlockedNumberInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: BlockedNumberInfo?, error) in

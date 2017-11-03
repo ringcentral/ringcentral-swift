@@ -8,7 +8,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    Create Custom Greeting. Creates extension user custom greeting.
+    Creates extension user custom greeting.
     */
     open func post(callback: @escaping (_ t: CustomGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: CustomGreetingInfo?, error) in
@@ -16,7 +16,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    Create Custom Greeting. Creates extension user custom greeting.
+    Creates extension user custom greeting.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: CustomGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: CustomGreetingInfo?, error) in
@@ -24,7 +24,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    Create Custom Greeting. Creates extension user custom greeting.
+    Creates extension user custom greeting.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: CustomGreetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -53,7 +53,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    Get Custom Greeting by ID. Returns a custom greeting by ID.
+    Returns a custom greeting by ID.
     */
     open func get(callback: @escaping (_ t: CustomGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: CustomGreetingInfo?, error) in

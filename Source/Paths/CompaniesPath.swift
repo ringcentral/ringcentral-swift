@@ -8,7 +8,7 @@ open class CompaniesPath: PathSegment {
         }
     }
     /*
-    Get Company by ID. Returns a company by ID.
+    Returns a company by ID.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in

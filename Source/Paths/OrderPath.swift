@@ -8,7 +8,6 @@ open class OrderPath: PathSegment {
         }
     }
     /*
-    Create New Order.
     */
     open func post(callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PostResponse?, error) in
@@ -16,7 +15,6 @@ open class OrderPath: PathSegment {
         }
     }
     /*
-    Create New Order.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PostResponse?, error) in
@@ -24,7 +22,6 @@ open class OrderPath: PathSegment {
         }
     }
     /*
-    Create New Order.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: PostResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
@@ -64,7 +61,6 @@ open class OrderPath: PathSegment {
         }
     }
     /*
-    Get Order by ID.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in

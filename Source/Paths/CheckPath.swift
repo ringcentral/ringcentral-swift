@@ -8,7 +8,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
-    Check User Permissions. Checks if a certain user permission is activated for the particular extension.
+    Checks if a certain user permission is activated for the particular extension.
     */
     open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetResponse?, error) in
@@ -16,7 +16,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
-    Check User Permissions. Checks if a certain user permission is activated for the particular extension.
+    Checks if a certain user permission is activated for the particular extension.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: GetResponse?, error) in
@@ -24,7 +24,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
-    Check User Permissions. Checks if a certain user permission is activated for the particular extension.
+    Checks if a certain user permission is activated for the particular extension.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
