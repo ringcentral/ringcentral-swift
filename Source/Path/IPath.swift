@@ -4,7 +4,7 @@ import Foundation
 extension String {
     func trimLeft(_ c: Character = " ") -> String {
         var str = self
-        while str.characters.first == c {
+        while str.first == c {
             str = String(str.dropFirst())
         }
         return str
@@ -12,7 +12,7 @@ extension String {
 
     func trimRight(_ c: Character = " ") -> String {
         var str = self
-        while str.characters.last == c {
+        while str.last == c {
             str = String(str.dropLast())
         }
         return str
