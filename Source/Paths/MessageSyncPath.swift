@@ -8,22 +8,25 @@ open class MessageSyncPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GetMessageSyncResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetMessageSyncResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
@@ -42,7 +45,7 @@ open class MessageSyncPath: PathSegment {
         /*
         Direction for the resulting messages. If not specified, both inbound and outbound messages are returned. Multiple values are accepted
         */
-        open var `direction`: String?
+        open var `direction`: [String]?
         /*
         If 'True', then the latest messages per every conversation ID are returned
         */
@@ -50,7 +53,7 @@ open class MessageSyncPath: PathSegment {
         /*
         Type for the resulting messages. If not specified, all types of messages are returned. Multiple values are accepted
         */
-        open var `messageType`: String?
+        open var `messageType`: [String]?
         /*
         Limits the number of records to be returned (works in combination with dateFrom and dateTo if specified)
         */
@@ -62,12 +65,12 @@ open class MessageSyncPath: PathSegment {
         /*
         Type of message synchronization
         */
-        open var `syncType`: String?
+        open var `syncType`: [String]?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(conversationId: Int? = nil, dateFrom: String? = nil, dateTo: String? = nil, direction: String? = nil, distinctConversations: Bool? = nil, messageType: String? = nil, recordCount: Int? = nil, syncToken: String? = nil, syncType: String? = nil) {
+        convenience public init(conversationId: Int? = nil, dateFrom: String? = nil, dateTo: String? = nil, direction: [String]? = nil, distinctConversations: Bool? = nil, messageType: [String]? = nil, recordCount: Int? = nil, syncToken: String? = nil, syncType: [String]? = nil) {
             self.init()
             self.conversationId = `conversationId`
             self.dateFrom = `dateFrom`
@@ -89,29 +92,6 @@ open class MessageSyncPath: PathSegment {
             `recordCount` <- map["recordCount"]
             `syncToken` <- map["syncToken"]
             `syncType` <- map["syncType"]
-        }
-    }
-    open class ListResponse: Mappable {
-        /*
-        List of message records with synchronization information
-        */
-        open var `records`: [MessageInfo]?
-        /*
-        Sync type, token and time
-        */
-        open var `syncInfo`: SyncInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [MessageInfo]? = nil, syncInfo: SyncInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.syncInfo = `syncInfo`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `syncInfo` <- map["syncInfo"]
         }
     }
 }

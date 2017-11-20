@@ -6,7 +6,7 @@ open class BrandInfo: Mappable {
     */
     open var `id`: String?
     /*
-    Brand name, for example "RingCentral UK", "ClearFax"
+    Brand name, for example  RingCentral UK ,  ClearFax
     */
     open var `name`: String?
     /*

@@ -2,18 +2,16 @@ import Foundation
 import ObjectMapper
 open class AddonInfo: Mappable {
     /*
-    Addon identifier. For HardPhones of certain types, which are compatible with this addon identifier
     */
     open var `id`: String?
     /*
-    Number of addons. For HardPhones of certain types, which are compatible with such addon identifier
     */
-    open var `count`: Int?
+    open var `count`: String?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, count: Int? = nil) {
+    convenience public init(id: String? = nil, count: String? = nil) {
         self.init()
         self.id = `id`
         self.count = `count`

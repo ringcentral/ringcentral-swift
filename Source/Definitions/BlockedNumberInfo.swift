@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 open class BlockedNumberInfo: Mappable {
     /*
-    Standard resource properties ID and canonical URI, see the section called “Resource Identification Properties”
+    Internal identifier of a blocked number
     */
     open var `id`: String?
     /*
-    Canonical URI of a blocked number resource
+    Canonical URI of a blocked number
     */
     open var `uri`: String?
     /*

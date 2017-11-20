@@ -7,10 +7,10 @@ class FaxTest: BaseTest {
 
     func testSendingFax() {
         let expectation1 = expectation(description: "expectation1")
-        let expectation2 = expectation(description: "expectation2")
+//        let expectation2 = expectation(description: "expectation2")
 
         let parameters: Parameters = ["to": [["phoneNumber": Config.getInstance().receiver!]]]
-        let postParameters = FaxPath.PostParameters(to: [CallerInfo(phoneNumber: Config.getInstance().receiver!)])
+//        let postParameters = FaxPath.PostParameters(to: [CallerInfo(phoneNumber: Config.getInstance().receiver!)])
         var attachments: [Attachment] = []
         Alamofire.download("https://raw.githubusercontent.com/ringcentral/ringcentral-swift/master/README.md").responseData { response in
             if let textData = response.result.value {
@@ -19,10 +19,10 @@ class FaxTest: BaseTest {
                     XCTAssertNil(error)
                     expectation1.fulfill()
                 }
-                rc.restapi().account().extension().fax().post(parameters: postParameters, attachments: attachments) { messageInfo, error in
-                    XCTAssertNil(error)
-                    expectation2.fulfill()
-                }
+//                rc.restapi().account().extension().fax().post(parameters: postParameters, attachments: attachments) { messageInfo, error in
+//                    XCTAssertNil(error)
+//                    expectation2.fulfill()
+//                }
             }
         }
 

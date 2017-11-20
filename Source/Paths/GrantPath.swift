@@ -8,22 +8,25 @@ open class GrantPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'></p><p>Returns the list of extension grants.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: GetExtensionGrantListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GetExtensionGrantListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p>Returns the list of extension grants.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: GetExtensionGrantListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetExtensionGrantListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p>Returns the list of extension grants.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: GetExtensionGrantListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
@@ -47,35 +50,6 @@ open class GrantPath: PathSegment {
         open func mapping(map: Map) {
             `page` <- map["page"]
             `perPage` <- map["perPage"]
-        }
-    }
-    open class ListResponse: Mappable {
-        /*
-        List of extension grants with the data
-        */
-        open var `records`: [GrantInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [GrantInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
         }
     }
 }

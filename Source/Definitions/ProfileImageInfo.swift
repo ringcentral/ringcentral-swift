@@ -20,12 +20,12 @@ open class ProfileImageInfo: Mappable {
     /*
     List of URIs to profile images in different dimensions
     */
-    open var `scales`: [ImageUri]?
+    open var `scales`: [String]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, etag: String? = nil, lastModified: String? = nil, contentType: String? = nil, scales: [ImageUri]? = nil) {
+    convenience public init(uri: String? = nil, etag: String? = nil, lastModified: String? = nil, contentType: String? = nil, scales: [String]? = nil) {
         self.init()
         self.uri = `uri`
         self.etag = `etag`

@@ -8,128 +8,33 @@ open class BusinessAddressPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func get(callback: @escaping (_ t: GetResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: GetResponse?, error) in
-            callback(t, error)
-        }
-    }
-    open class GetResponse: Mappable {
-        /*
-        Canonical URI of the business address resource
-        */
-        open var `uri`: String?
-        /*
-        Company business name
-        */
-        open var `company`: String?
-        /*
-        Company business email address
-        */
-        open var `email`: String?
-        /*
-        Company business address
-        */
-        open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
-            self.init()
-            self.uri = `uri`
-            self.company = `company`
-            self.email = `email`
-            self.businessAddress = `businessAddress`
-        }
-        open func mapping(map: Map) {
-            `uri` <- map["uri"]
-            `company` <- map["company"]
-            `email` <- map["email"]
-            `businessAddress` <- map["businessAddress"]
-        }
-    }
-    /*
-    */
-    open func put(callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint()) { (t: PutResponse?, error) in
+    open func get(callback: @escaping (_ t: GetAccountInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: GetAccountInfoResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
-    open func put(parameters: Parameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint(), parameters: parameters) { (t: PutResponse?, error) in
+    open func put(callback: @escaping (_ t: AccountBusinessAddressResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint()) { (t: AccountBusinessAddressResource?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
-    open func put(parameters: PutParameters, callback: @escaping (_ t: PutResponse?, _ error: HTTPError?) -> Void) {
+    open func put(parameters: Parameters, callback: @escaping (_ t: AccountBusinessAddressResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint(), parameters: parameters) { (t: AccountBusinessAddressResource?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    */
+    open func put(parameters: ModifyAccountBusinessAddressRequest, callback: @escaping (_ t: AccountBusinessAddressResource?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
-    }
-    open class PutParameters: Mappable {
-        /*
-        Company business name
-        */
-        open var `company`: String?
-        /*
-        Company business email address
-        */
-        open var `email`: String?
-        /*
-        Company business address
-        */
-        open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
-            self.init()
-            self.company = `company`
-            self.email = `email`
-            self.businessAddress = `businessAddress`
-        }
-        open func mapping(map: Map) {
-            `company` <- map["company"]
-            `email` <- map["email"]
-            `businessAddress` <- map["businessAddress"]
-        }
-    }
-    open class PutResponse: Mappable {
-        /*
-        Canonical URI of the business address resource
-        */
-        open var `uri`: String?
-        /*
-        Company business name
-        */
-        open var `company`: String?
-        /*
-        Company business email address
-        */
-        open var `email`: String?
-        /*
-        Company business address
-        */
-        open var `businessAddress`: BusinessAddressInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(uri: String? = nil, company: String? = nil, email: String? = nil, businessAddress: BusinessAddressInfo? = nil) {
-            self.init()
-            self.uri = `uri`
-            self.company = `company`
-            self.email = `email`
-            self.businessAddress = `businessAddress`
-        }
-        open func mapping(map: Map) {
-            `uri` <- map["uri"]
-            `company` <- map["company"]
-            `email` <- map["email"]
-            `businessAddress` <- map["businessAddress"]
-        }
     }
 }

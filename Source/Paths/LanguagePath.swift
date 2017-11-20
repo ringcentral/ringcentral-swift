@@ -8,42 +8,15 @@ open class LanguagePath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.14 (Release 6.6)</p><p>Returns the information about supported languages.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: LanguageList?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: LanguageList?, error) in
             callback(t, error)
         }
     }
-    open class ListResponse: Mappable {
-        /*
-        Language data
-        */
-        open var `records`: [LanguageInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [LanguageInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
-        }
-    }
     /*
+    <p style='font-style:italic;'>Since 1.0.14 (Release 6.6)</p><p>Returns language by its respective ID.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
     open func get(callback: @escaping (_ t: LanguageInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: LanguageInfo?, error) in

@@ -7,7 +7,18 @@ open class SubscriptionPath: PathSegment {
             return "subscription"
         }
     }
+    open func `renew`() -> RenewPath {
+        return RenewPath(parent: self)
+    }
     /*
+    */
+    open func list(callback: @escaping (_ t: RecordsCollectionResourceSubscriptionResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: RecordsCollectionResourceSubscriptionResponse?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Creates a new subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func post(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -15,6 +26,7 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Creates a new subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
@@ -22,72 +34,30 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Creates a new subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     open class PostParameters: Mappable {
         /*
-        Mandatory. Collection of URIs to API resources (see Event Types for details). For APNS transport type only message event filter is available
+        If 'True' then aggregated presence status is returned in a notification payload in the 'presenceStatus' field
         */
-        open var `eventFilters`: [String]?
-        /*
-        Notification delivery settings
-        */
-        open var `deliveryMode`: Subscription_Request_DeliveryMode?
+        open var `aggregated`: Bool?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(eventFilters: [String]? = nil, deliveryMode: Subscription_Request_DeliveryMode? = nil) {
+        convenience public init(aggregated: Bool? = nil) {
             self.init()
-            self.eventFilters = `eventFilters`
-            self.deliveryMode = `deliveryMode`
+            self.aggregated = `aggregated`
         }
         open func mapping(map: Map) {
-            `eventFilters` <- map["eventFilters"]
-            `deliveryMode` <- map["deliveryMode"]
+            `aggregated` <- map["aggregated"]
         }
     }
     /*
-    Returns a list of subscriptions created by a particular user on a particular client app.
-    */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
-            callback(t, error)
-        }
-    }
-    open class ListResponse: Mappable {
-        /*
-        Canonical URI of a subscription resource
-        */
-        open var `uri`: String?
-        /*
-        List of subscriptions for the current user and application
-        */
-        open var `records`: [SubscriptionInfo]?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(uri: String? = nil, records: [SubscriptionInfo]? = nil) {
-            self.init()
-            self.uri = `uri`
-            self.records = `records`
-        }
-        open func mapping(map: Map) {
-            `uri` <- map["uri"]
-            `records` <- map["records"]
-        }
-    }
-    /*
-    */
-    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.deleteString(self.endpoint()) { string, error in
-            callback(error)
-        }
-    }
-    /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Returns the requested subscription.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
     open func get(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -95,6 +65,7 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Renews the existent subscription if the request body is empty. If event filters are specified, calling this method modifies the event filters for the existing subscription. The client application can extend or narrow the events for which it receives notifications in the frame of one subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func put(callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: SubscriptionInfo?, error) in
@@ -102,6 +73,7 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Renews the existent subscription if the request body is empty. If event filters are specified, calling this method modifies the event filters for the existing subscription. The client application can extend or narrow the events for which it receives notifications in the frame of one subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: SubscriptionInfo?, error) in
@@ -109,25 +81,34 @@ open class SubscriptionPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Renews the existent subscription if the request body is empty. If event filters are specified, calling this method modifies the event filters for the existing subscription. The client application can extend or narrow the events for which it receives notifications in the frame of one subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func put(parameters: PutParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
     open class PutParameters: Mappable {
         /*
-        Collection of URIs to API resources (see Event Types). Mandatory field
+        If 'True' then aggregated presence status is returned in a notification payload
         */
-        open var `eventFilters`: [String]?
+        open var `aggregated`: Bool?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(eventFilters: [String]? = nil) {
+        convenience public init(aggregated: Bool? = nil) {
             self.init()
-            self.eventFilters = `eventFilters`
+            self.aggregated = `aggregated`
         }
         open func mapping(map: Map) {
-            `eventFilters` <- map["eventFilters"]
+            `aggregated` <- map["aggregated"]
+        }
+    }
+    /*
+    <p style='font-style:italic;'></p><p>Cancels the existent subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
+    */
+    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.deleteString(self.endpoint()) { string, error in
+            callback(error)
         }
     }
 }

@@ -26,7 +26,7 @@ open class AccountServiceInfo: Mappable {
     */
     open var `serviceFeatures`: [ServiceFeatureInfo]?
     /*
-    Limits which are effective for the account
+    Limits which are effective for an account
     */
     open var `limits`: AccountLimits?
     public init() {

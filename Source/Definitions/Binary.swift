@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class Binary: Mappable {
     /*
-    Required. Binary data.
+    Required Binary Data
     */
     open var `data`: Data?
     public init() {

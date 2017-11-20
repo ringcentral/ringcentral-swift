@@ -12,11 +12,11 @@ open class PhoneNumberInfo: Mappable {
     /*
     Information on the extension, to which the phone number is assigned. Returned only for the request of Account phone number list
     */
-    open var `extension`: PhoneNumberInfo_ExtensionInfo?
+    open var `extension`: ExtensionInfo?
     /*
-    Indicates if this phone number is enabled to appear as CallerId and/or to send outbound SMS from it. Returned only for the request of Extension phone number list
+    Custom user name of a phone number, if any. Supported for numbers assigned to Auto-Receptionist, with usage type 'CompanyNumber'
     */
-    open var `features`: [String]?
+    open var `label`: String?
     /*
     Location (City, State). Filled for local US numbers
     */
@@ -45,12 +45,12 @@ open class PhoneNumberInfo: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, country: CountryInfo? = nil, extension: PhoneNumberInfo_ExtensionInfo? = nil, features: [String]? = nil, location: String? = nil, paymentType: String? = nil, phoneNumber: String? = nil, status: String? = nil, type: String? = nil, usageType: String? = nil) {
+    convenience public init(id: String? = nil, country: CountryInfo? = nil, extension: ExtensionInfo? = nil, label: String? = nil, location: String? = nil, paymentType: String? = nil, phoneNumber: String? = nil, status: String? = nil, type: String? = nil, usageType: String? = nil) {
         self.init()
         self.id = `id`
         self.country = `country`
         self.extension = `extension`
-        self.features = `features`
+        self.label = `label`
         self.location = `location`
         self.paymentType = `paymentType`
         self.phoneNumber = `phoneNumber`
@@ -62,7 +62,7 @@ open class PhoneNumberInfo: Mappable {
         `id` <- (map["id"], StringTransform())
         `country` <- map["country"]
         `extension` <- map["extension"]
-        `features` <- map["features"]
+        `label` <- map["label"]
         `location` <- map["location"]
         `paymentType` <- map["paymentType"]
         `phoneNumber` <- map["phoneNumber"]

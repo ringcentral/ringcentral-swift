@@ -28,11 +28,11 @@ open class AnsweringRuleInfo: Mappable {
     /*
     Answering rules are applied when calling to selected number(s)
     */
-    open var `calledNumbers`: [AnsweringRuleInfo_CalleeInfo]?
+    open var `calledNumbers`: [CalledNumberInfo]?
     /*
     Answering rules are applied when calls are received from specified caller(s)
     */
-    open var `callers`: [AnsweringRuleInfo_CallerInfo]?
+    open var `callers`: [CallersInfo]?
     /*
     Specifies how incoming calls are forwarded
     */
@@ -49,15 +49,11 @@ open class AnsweringRuleInfo: Mappable {
     Specifies whether to take a voicemail and who should do it
     */
     open var `voicemail`: VoicemailInfo?
-    /*
-    Predefined greetings applied for an answering rule
-    */
-    open var `greetings`: [GreetingInfo]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, name: String? = nil, enabled: Bool? = nil, schedule: ScheduleInfo? = nil, calledNumbers: [AnsweringRuleInfo_CalleeInfo]? = nil, callers: [AnsweringRuleInfo_CallerInfo]? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voicemail: VoicemailInfo? = nil, greetings: [GreetingInfo]? = nil) {
+    convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, name: String? = nil, enabled: Bool? = nil, schedule: ScheduleInfo? = nil, calledNumbers: [CalledNumberInfo]? = nil, callers: [CallersInfo]? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voicemail: VoicemailInfo? = nil) {
         self.init()
         self.uri = `uri`
         self.id = `id`
@@ -71,7 +67,6 @@ open class AnsweringRuleInfo: Mappable {
         self.forwarding = `forwarding`
         self.unconditionalForwarding = `unconditionalForwarding`
         self.voicemail = `voicemail`
-        self.greetings = `greetings`
     }
     open func mapping(map: Map) {
         `uri` <- map["uri"]
@@ -86,6 +81,5 @@ open class AnsweringRuleInfo: Mappable {
         `forwarding` <- map["forwarding"]
         `unconditionalForwarding` <- map["unconditionalForwarding"]
         `voicemail` <- map["voicemail"]
-        `greetings` <- map["greetings"]
     }
 }

@@ -18,6 +18,10 @@ open class GlipPostInfo: Mappable {
     */
     open var `text`: String?
     /*
+    List of posted attachments
+    */
+    open var `attachments`: [GlipAttachmentInfo]?
+    /*
     Internal identifier of a user - author of a post
     */
     open var `creatorId`: String?
@@ -37,12 +41,13 @@ open class GlipPostInfo: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, groupId: String? = nil, type: String? = nil, text: String? = nil, creatorId: String? = nil, addedPersonIds: [String]? = nil, creationTime: String? = nil, lastModifiedTime: String? = nil) {
+    convenience public init(id: String? = nil, groupId: String? = nil, type: String? = nil, text: String? = nil, attachments: [GlipAttachmentInfo]? = nil, creatorId: String? = nil, addedPersonIds: [String]? = nil, creationTime: String? = nil, lastModifiedTime: String? = nil) {
         self.init()
         self.id = `id`
         self.groupId = `groupId`
         self.type = `type`
         self.text = `text`
+        self.attachments = `attachments`
         self.creatorId = `creatorId`
         self.addedPersonIds = `addedPersonIds`
         self.creationTime = `creationTime`
@@ -53,6 +58,7 @@ open class GlipPostInfo: Mappable {
         `groupId` <- map["groupId"]
         `type` <- map["type"]
         `text` <- map["text"]
+        `attachments` <- map["attachments"]
         `creatorId` <- map["creatorId"]
         `addedPersonIds` <- map["addedPersonIds"]
         `creationTime` <- map["creationTime"]

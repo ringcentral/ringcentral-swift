@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 open class ShippingMethod: Mappable {
     /*
-    Method identifier. The default value is "1" (Ground)
+    Internal identifier of the shipping method
     */
     open var `id`: String?
     /*
-    Method name, corresponding to the identifier
+    Name/description of the shipping method
     */
     open var `name`: String?
     public init() {

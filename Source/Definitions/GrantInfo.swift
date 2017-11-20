@@ -8,7 +8,7 @@ open class GrantInfo: Mappable {
     /*
     Extension information
     */
-    open var `extension`: GrantInfo_ExtensionInfo?
+    open var `extension`: ExtensionInfoGrants?
     /*
     Specifies if picking up of other extensions' calls is allowed for the extension. If 'Presence' feature is disabled for the given extension, the flag is not returned
     */
@@ -21,7 +21,7 @@ open class GrantInfo: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, extension: GrantInfo_ExtensionInfo? = nil, callPickup: Bool? = nil, callMonitoring: Bool? = nil) {
+    convenience public init(uri: String? = nil, extension: ExtensionInfoGrants? = nil, callPickup: Bool? = nil, callMonitoring: Bool? = nil) {
         self.init()
         self.uri = `uri`
         self.extension = `extension`

@@ -8,70 +8,25 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    Creates a post.
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
     */
-    open func post(callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: GlipPostInfo?, error) in
+    open func list(callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GlipPosts?, error) in
             callback(t, error)
         }
     }
     /*
-    Creates a post.
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
     */
-    open func post(parameters: Parameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: GlipPostInfo?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GlipPosts?, error) in
             callback(t, error)
         }
     }
     /*
-    Creates a post.
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
     */
-    open func post(parameters: PostParameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
-        post(parameters: parameters.toParameters(), callback: callback)
-    }
-    open class PostParameters: Mappable {
-        /*
-        Internal identifier of a group to send post to
-        */
-        open var `groupId`: String?
-        /*
-        Text of a post, the maximum is 10000 characters
-        */
-        open var `text`: String?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(groupId: String? = nil, text: String? = nil) {
-            self.init()
-            self.groupId = `groupId`
-            self.text = `text`
-        }
-        open func mapping(map: Map) {
-            `groupId` <- map["groupId"]
-            `text` <- map["text"]
-        }
-    }
-    /*
-    Returns list of posts.
-    */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    Returns list of posts.
-    */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    Returns list of posts.
-    */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
@@ -103,27 +58,26 @@ open class PostsPath: PathSegment {
             `recordCount` <- map["recordCount"]
         }
     }
-    open class ListResponse: Mappable {
-        /*
-        List of posts
-        */
-        open var `records`: [GlipPostInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: GlipNavigationInfo?
-        public init() {
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    */
+    open func post(callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: GlipPostInfo?, error) in
+            callback(t, error)
         }
-        required public init?(map: Map) {
+    }
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    */
+    open func post(parameters: Parameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: GlipPostInfo?, error) in
+            callback(t, error)
         }
-        convenience public init(records: [GlipPostInfo]? = nil, navigation: GlipNavigationInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-        }
+    }
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    */
+    open func post(parameters: GlipCreatePost, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
+        post(parameters: parameters.toParameters(), callback: callback)
     }
 }

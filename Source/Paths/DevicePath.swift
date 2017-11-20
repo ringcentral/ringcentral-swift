@@ -8,46 +8,38 @@ open class DevicePath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.12 (Release 6.4)</p><p>Returns all the devices for a particular extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: GetAccountDevicesResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GetAccountDevicesResponse?, error) in
             callback(t, error)
         }
     }
-    open class ListResponse: Mappable {
-        /*
-        List of extension records
-        */
-        open var `records`: [DeviceInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [DeviceInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
+    /*
+    <p style='font-style:italic;'>Since 1.0.9 (Release 6.1)</p><p>Returns account device(s) by their ID(s).</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    */
+    open func get(callback: @escaping (_ t: GetDeviceInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: GetDeviceInfoResponse?, error) in
+            callback(t, error)
         }
     }
     /*
     */
-    open func get(callback: @escaping (_ t: DeviceInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: DeviceInfo?, error) in
+    open func put(callback: @escaping (_ t: DeviceResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint()) { (t: DeviceResource?, error) in
             callback(t, error)
         }
+    }
+    /*
+    */
+    open func put(parameters: Parameters, callback: @escaping (_ t: DeviceResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint(), parameters: parameters) { (t: DeviceResource?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    */
+    open func put(parameters: AccountDeviceUpdate, callback: @escaping (_ t: DeviceResource?, _ error: HTTPError?) -> Void) {
+        put(parameters: parameters.toParameters(), callback: callback)
     }
 }

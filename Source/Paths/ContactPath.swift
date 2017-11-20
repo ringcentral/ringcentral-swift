@@ -8,32 +8,28 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    Returns the extension address book.
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: ContactList?, error) in
             callback(t, error)
         }
     }
     /*
-    Returns the extension address book.
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ContactList?, error) in
             callback(t, error)
         }
     }
     /*
-    Returns the extension address book.
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
-        /*
-        Phone number in E.164 (11-digits) format with or without plus '+'. Multiple values are supported
-        */
-        open var `phoneNumber`: String?
         /*
         If specified, only contacts whose First name or Last name start with the mentioned substring are returned. Case-insensitive
         */
@@ -41,7 +37,7 @@ open class ContactPath: PathSegment {
         /*
         Sorts results by the specified property. The default is 'First Name'
         */
-        open var `sortBy`: String?
+        open var `sortBy`: [String]?
         /*
         Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
         */
@@ -50,105 +46,87 @@ open class ContactPath: PathSegment {
         Indicates the page size (number of items). If not specified, the value is '100' by default
         */
         open var `perPage`: Int?
+        /*
+        */
+        open var `phoneNumber`: [String]?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(phoneNumber: String? = nil, startsWith: String? = nil, sortBy: String? = nil, page: Int? = nil, perPage: Int? = nil) {
+        convenience public init(startsWith: String? = nil, sortBy: [String]? = nil, page: Int? = nil, perPage: Int? = nil, phoneNumber: [String]? = nil) {
             self.init()
-            self.phoneNumber = `phoneNumber`
             self.startsWith = `startsWith`
             self.sortBy = `sortBy`
             self.page = `page`
             self.perPage = `perPage`
+            self.phoneNumber = `phoneNumber`
         }
         open func mapping(map: Map) {
-            `phoneNumber` <- map["phoneNumber"]
             `startsWith` <- map["startsWith"]
             `sortBy` <- map["sortBy"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
-        }
-    }
-    open class ListResponse: Mappable {
-        /*
-        List of personal contacts from the extension address book
-        */
-        open var `records`: [PersonalContactInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [PersonalContactInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
+            `phoneNumber` <- map["phoneNumber"]
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func post(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: PersonalContactInfo?, error) in
+    open func post(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: PersonalContactResource?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func post(parameters: Parameters, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: PersonalContactInfo?, error) in
+    open func post(parameters: Parameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: PersonalContactResource?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func post(parameters: PersonalContactInfo, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: PersonalContactResource, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func get(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: PersonalContactResource?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func put(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint()) { (t: PersonalContactResource?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func put(parameters: Parameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint(), parameters: parameters) { (t: PersonalContactResource?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func put(parameters: PersonalContactResource, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+        put(parameters: parameters.toParameters(), callback: callback)
+    }
+    /*
+    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
         }
-    }
-    /*
-    */
-    open func get(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: PersonalContactInfo?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    */
-    open func put(callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint()) { (t: PersonalContactInfo?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    */
-    open func put(parameters: Parameters, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint(), parameters: parameters) { (t: PersonalContactInfo?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    */
-    open func put(parameters: PersonalContactInfo, callback: @escaping (_ t: PersonalContactInfo?, _ error: HTTPError?) -> Void) {
-        put(parameters: parameters.toParameters(), callback: callback)
     }
 }

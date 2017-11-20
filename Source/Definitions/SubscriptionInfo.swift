@@ -32,12 +32,12 @@ open class SubscriptionInfo: Mappable {
     /*
     Delivery mode data
     */
-    open var `deliveryMode`: DeliveryMode?
+    open var `deliveryMode`: NotificationDeliveryMode?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, eventFilters: [String]? = nil, expirationTime: String? = nil, expiresIn: Int? = nil, status: String? = nil, creationTime: String? = nil, deliveryMode: DeliveryMode? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, eventFilters: [String]? = nil, expirationTime: String? = nil, expiresIn: Int? = nil, status: String? = nil, creationTime: String? = nil, deliveryMode: NotificationDeliveryMode? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

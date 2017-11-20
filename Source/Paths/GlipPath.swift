@@ -19,4 +19,10 @@ open class GlipPath: PathSegment {
     open func `posts`() -> PostsPath {
         return PostsPath(parent: self)
     }
+    open func `files`(_ _id: String? = nil) -> FilesPath {
+        return FilesPath(parent: self, _id: _id)
+    }
+    open func `profile`() -> ProfilePath {
+        return ProfilePath(parent: self)
+    }
 }

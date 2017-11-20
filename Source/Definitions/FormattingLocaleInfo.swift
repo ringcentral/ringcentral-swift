@@ -10,7 +10,6 @@ open class FormattingLocaleInfo: Mappable {
     */
     open var `localeCode`: String?
     /*
-    Official name of a formatting language
     */
     open var `name`: String?
     public init() {

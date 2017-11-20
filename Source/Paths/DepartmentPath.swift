@@ -10,4 +10,7 @@ open class DepartmentPath: PathSegment {
     open func `members`() -> MembersPath {
         return MembersPath(parent: self)
     }
+    open func `bulkAssign`() -> BulkAssignPath {
+        return BulkAssignPath(parent: self)
+    }
 }

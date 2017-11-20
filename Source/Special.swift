@@ -150,11 +150,11 @@ extension FaxPath {
         let requestBody = try! JSONSerialization.data(withJSONObject: parameters)
         post(requestBody: requestBody, attachments: attachments, callback: callback)
     }
-    open func post(parameters: PostParameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
-        let parametersBody = parameters.toParameters()["json-string"] as! String
-        let requestBody = parametersBody.data(using: String.Encoding.utf8)!
-        post(requestBody: requestBody, attachments: attachments, callback: callback)
-    }
+//    open func post(parameters: PostParameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+//        let parametersBody = parameters.toParameters()["json-string"] as! String
+//        let requestBody = parametersBody.data(using: String.Encoding.utf8)!
+//        post(requestBody: requestBody, attachments: attachments, callback: callback)
+//    }
 }
 
 

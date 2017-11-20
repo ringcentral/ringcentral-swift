@@ -8,22 +8,25 @@ open class StatePath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GetStateListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetStateListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
@@ -61,39 +64,11 @@ open class StatePath: PathSegment {
             `withPhoneNumbers` <- map["withPhoneNumbers"]
         }
     }
-    open class ListResponse: Mappable {
-        /*
-        List of states
-        */
-        open var `records`: [StateInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [StateInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
-        }
-    }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on the required state.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func get(callback: @escaping (_ t: StateInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: StateInfo?, error) in
+    open func get(callback: @escaping (_ t: GetStateInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: GetStateInfoResponse?, error) in
             callback(t, error)
         }
     }

@@ -8,50 +8,50 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Returns the extension answering rules.
+    <p style='font-style:italic;'>Since 1.0.15 (Release 7.0)</p><p>Returns the extension answering rules.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
-            callback(t, error)
+    open func get(callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.getString(self.endpoint()) { string, error in
+            callback(error)
         }
     }
-    open class ListResponse: Mappable {
+    /*
+    <p style='font-style:italic;'>Since 1.0.15 (Release 7.0)</p><p>Returns the extension answering rules.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    */
+    open func get(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.getString(self.endpoint(), parameters: parameters) { string, error in
+            callback(error)
+        }
+    }
+    /*
+    <p style='font-style:italic;'>Since 1.0.15 (Release 7.0)</p><p>Returns the extension answering rules.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    */
+    open func get(parameters: GetParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
+        get(parameters: parameters.toParameters(), callback: callback)
+    }
+    open class GetParameters: Mappable {
         /*
-        Canonical URI of an answering rule resource
         */
-        open var `uri`: String?
+        open var `page`: String?
         /*
-        List of answering rules
         */
-        open var `records`: [AnsweringRuleInfo]?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
+        open var `perPage`: String?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(uri: String? = nil, records: [AnsweringRuleInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
+        convenience public init(page: String? = nil, perPage: String? = nil) {
             self.init()
-            self.uri = `uri`
-            self.records = `records`
-            self.paging = `paging`
-            self.navigation = `navigation`
+            self.page = `page`
+            self.perPage = `perPage`
         }
         open func mapping(map: Map) {
-            `uri` <- map["uri"]
-            `records` <- map["records"]
-            `paging` <- map["paging"]
-            `navigation` <- map["navigation"]
+            `page` <- map["page"]
+            `perPage` <- map["perPage"]
         }
     }
     /*
-    Creates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Creates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func post(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
@@ -59,7 +59,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Creates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Creates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: AnsweringRuleInfo?, error) in
@@ -67,92 +67,13 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Creates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Creates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
-    open func post(parameters: PostParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: CreateAnsweringRuleRequest, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
-        /*
-        Specifies if the rule is active or inactive. The default value is 'True'
-        */
-        open var `enabled`: Bool?
-        /*
-        Type of an answering rule, the supported value is 'Custom'
-        */
-        open var `type`: String?
-        /*
-        Name of an answering rule specified by user. Max number of symbols is 30
-        */
-        open var `name`: String?
-        /*
-        Answering rule will be applied when calls are received from the specified caller(s)
-        */
-        open var `callers`: [CallersInfo]?
-        /*
-        Answering rule will be applied when calling the specified number(s)
-        */
-        open var `calledNumbers`: [CalledNumberInfo]?
-        /*
-        Schedule when an answering rule should be applied
-        */
-        open var `schedule`: AnsweringRule_ScheduleInfo?
-        /*
-        Specifies how incoming calls should be forwarded. The default value is 'ForwardCalls'
-        */
-        open var `callHandlingAction`: String?
-        /*
-        Forwarding parameters. If the 'callHandlingAction' parameter value is set to 'ForwardCalls' - should be specified . The settings determine the forwarding numbers to which the call should be forwarded. If not specified in request, then the business-hours forwarding rules are set by default
-        */
-        open var `forwarding`: ForwardingInfo?
-        /*
-        Unconditional forwarding parameters. If the 'callHandlingAction' parameter value is set to 'UnconditionalForwarding' - should be specified
-        */
-        open var `unconditionalForwarding`: UnconditionalForwardingInfo?
-        /*
-        Specifies whether to take a voicemail and who should do it
-        */
-        open var `voiceMail`: VoicemailInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(enabled: Bool? = nil, type: String? = nil, name: String? = nil, callers: [CallersInfo]? = nil, calledNumbers: [CalledNumberInfo]? = nil, schedule: AnsweringRule_ScheduleInfo? = nil, callHandlingAction: String? = nil, forwarding: ForwardingInfo? = nil, unconditionalForwarding: UnconditionalForwardingInfo? = nil, voiceMail: VoicemailInfo? = nil) {
-            self.init()
-            self.enabled = `enabled`
-            self.type = `type`
-            self.name = `name`
-            self.callers = `callers`
-            self.calledNumbers = `calledNumbers`
-            self.schedule = `schedule`
-            self.callHandlingAction = `callHandlingAction`
-            self.forwarding = `forwarding`
-            self.unconditionalForwarding = `unconditionalForwarding`
-            self.voiceMail = `voiceMail`
-        }
-        open func mapping(map: Map) {
-            `enabled` <- map["enabled"]
-            `type` <- map["type"]
-            `name` <- map["name"]
-            `callers` <- map["callers"]
-            `calledNumbers` <- map["calledNumbers"]
-            `schedule` <- map["schedule"]
-            `callHandlingAction` <- map["callHandlingAction"]
-            `forwarding` <- map["forwarding"]
-            `unconditionalForwarding` <- map["unconditionalForwarding"]
-            `voiceMail` <- map["voiceMail"]
-        }
-    }
     /*
-    Returns an answering rule by ID.
-    */
-    open func get(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    Updates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Updates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func put(callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: AnsweringRuleInfo?, error) in
@@ -160,7 +81,7 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Updates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Updates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: AnsweringRuleInfo?, error) in
@@ -168,52 +89,36 @@ open class AnsweringRulePath: PathSegment {
         }
     }
     /*
-    Updates a custom answering rule for a particular caller ID.
+    <p style='font-style:italic;'>Since 1.0.24 (Release 8.0)</p><p>Updates a custom answering rule for a particular caller ID.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
     */
-    open func put(parameters: PutParameters, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
+    open func put(parameters: UpdateAnsweringRuleRequest, callback: @escaping (_ t: AnsweringRuleInfo?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PutParameters: Mappable {
-        /*
-        Specifies if the answering rule is active or not
-        */
-        open var `enabled`: Bool?
-        /*
-        Custom name of an answering rule. The maximum number of characters is 64
-        */
-        open var `name`: String?
-        /*
-        Forwarding parameters. Returned if 'ForwardCalls' is specified in 'callHandlingAction'. These settings determine the forwarding numbers to which the call will be forwarded
-        */
-        open var `forwarding`: ForwardingInfo?
-        /*
-        Predefined greetings applied for an answering rule
-        */
-        open var `greetings`: [GreetingInfo]?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(enabled: Bool? = nil, name: String? = nil, forwarding: ForwardingInfo? = nil, greetings: [GreetingInfo]? = nil) {
-            self.init()
-            self.enabled = `enabled`
-            self.name = `name`
-            self.forwarding = `forwarding`
-            self.greetings = `greetings`
-        }
-        open func mapping(map: Map) {
-            `enabled` <- map["enabled"]
-            `name` <- map["name"]
-            `forwarding` <- map["forwarding"]
-            `greetings` <- map["greetings"]
-        }
-    }
     /*
-    Deletes a custom answering rule by a particular ID.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
+        }
+    }
+    /*
+    */
+    open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
+            callback(error)
+        }
+    }
+    /*
+    */
+    open func delete(parameters: UpdateAnsweringRuleRequest, callback: @escaping (_ error: HTTPError?) -> Void) {
+        delete(parameters: parameters.toParameters(), callback: callback)
+    }
+    /*
+    <p style='font-style:italic;'>Since 1.0.31 (Release 9.2)</p><p>Returns a list of company answering rules.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    */
+    open func list(callback: @escaping (_ t: CompanyAnsweringRuleList?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: CompanyAnsweringRuleList?, error) in
+            callback(t, error)
         }
     }
 }

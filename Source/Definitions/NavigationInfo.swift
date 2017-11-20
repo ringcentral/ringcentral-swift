@@ -2,26 +2,26 @@ import Foundation
 import ObjectMapper
 open class NavigationInfo: Mappable {
     /*
-    First page of the list
+    Canonical URI for the first page of the list
     */
-    open var `firstPage`: Page?
+    open var `firstPage`: String?
     /*
-    Next page of the list
+    Canonical URI for the next page of the list
     */
-    open var `nextPage`: Page?
+    open var `nextPage`: String?
     /*
-    Previous page of the list
+    Canonical URI for the previous page of the list
     */
-    open var `previousPage`: Page?
+    open var `previousPage`: String?
     /*
-    Last page of the list
+    Canonical URI for the last page of the list
     */
-    open var `lastPage`: Page?
+    open var `lastPage`: String?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(firstPage: Page? = nil, nextPage: Page? = nil, previousPage: Page? = nil, lastPage: Page? = nil) {
+    convenience public init(firstPage: String? = nil, nextPage: String? = nil, previousPage: String? = nil, lastPage: String? = nil) {
         self.init()
         self.firstPage = `firstPage`
         self.nextPage = `nextPage`

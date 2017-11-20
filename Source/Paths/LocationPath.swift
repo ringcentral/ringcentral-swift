@@ -8,29 +8,32 @@ open class LocationPath: PathSegment {
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
+    open func list(callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: GetLocationListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ListResponse?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetLocationListResponse?, error) in
             callback(t, error)
         }
     }
     /*
+    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
         Sorts results by the specified property. The default value is 'City'
         */
-        open var `orderBy`: String?
+        open var `orderBy`: [String]?
         /*
         Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
         */
@@ -51,7 +54,7 @@ open class LocationPath: PathSegment {
         }
         required public init?(map: Map) {
         }
-        convenience public init(orderBy: String? = nil, page: Int? = nil, perPage: Int? = nil, stateId: String? = nil, withNxx: Bool? = nil) {
+        convenience public init(orderBy: [String]? = nil, page: Int? = nil, perPage: Int? = nil, stateId: String? = nil, withNxx: Bool? = nil) {
             self.init()
             self.orderBy = `orderBy`
             self.page = `page`
@@ -65,35 +68,6 @@ open class LocationPath: PathSegment {
             `perPage` <- map["perPage"]
             `stateId` <- map["stateId"]
             `withNxx` <- map["withNxx"]
-        }
-    }
-    open class ListResponse: Mappable {
-        /*
-        List of locations
-        */
-        open var `records`: [LocationInfo]?
-        /*
-        Information on navigation
-        */
-        open var `navigation`: NavigationInfo?
-        /*
-        Information on paging
-        */
-        open var `paging`: PagingInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(records: [LocationInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
-            self.init()
-            self.records = `records`
-            self.navigation = `navigation`
-            self.paging = `paging`
-        }
-        open func mapping(map: Map) {
-            `records` <- map["records"]
-            `navigation` <- map["navigation"]
-            `paging` <- map["paging"]
         }
     }
 }

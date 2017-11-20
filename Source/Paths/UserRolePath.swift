@@ -7,4 +7,7 @@ open class UserRolePath: PathSegment {
             return "user-role"
         }
     }
+    open func `default`() -> DefaultPath {
+        return DefaultPath(parent: self)
+    }
 }
