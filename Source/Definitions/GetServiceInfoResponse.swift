@@ -16,12 +16,12 @@ open class GetServiceInfoResponse: Mappable {
     /*
     Limits which are effective for the account
     */
-    open var `limits`: [AccountLimits]?
+    open var `limits`: AccountLimits?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, servicePlanName: String? = nil, serviceFeatures: [ServiceFeatureInfo]? = nil, limits: [AccountLimits]? = nil) {
+    convenience public init(uri: String? = nil, servicePlanName: String? = nil, serviceFeatures: [ServiceFeatureInfo]? = nil, limits: AccountLimits? = nil) {
         self.init()
         self.uri = `uri`
         self.servicePlanName = `servicePlanName`
