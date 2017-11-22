@@ -18,17 +18,17 @@ open class ProfileImagePath: PathSegment {
     /*
     <p style='font-style:italic;'>Since 1.0.26 (Release 8.2)</p><p>Returns the extension profile image.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func post(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.postString(self.endpoint()) { string, error in
-            callback(error)
+    open func post(callback: @escaping (_ t: Binary?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: Binary?, error) in
+            callback(t, error)
         }
     }
     /*
     <p style='font-style:italic;'>Since 1.0.26 (Release 8.2)</p><p>Updates the extension profile image..</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
     */
-    open func put(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.putString(self.endpoint()) { string, error in
-            callback(error)
+    open func put(callback: @escaping (_ t: Binary?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint()) { (t: Binary?, error) in
+            callback(t, error)
         }
     }
 }

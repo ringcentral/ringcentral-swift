@@ -6,20 +6,38 @@ open class NotificationDeliveryModeRequest: Mappable {
     */
     open var `transportType`: String?
     /*
+    Mandatory for 'APNS' and 'WebHook' transport types. For 'APNS' - internal identifier of a device 'device_token' for 'WebHook' - URL of a consumer service (cannot be changed during subscription update)
+    */
+    open var `address`: String?
+    /*
     Optional parameter. Specifies if the message will be encrypted or not. If request contains any presence event filter the value by default is 'True' (even if specified as 'false'). If request contains only message event filters the value by default is 'False'
     */
     open var `encryption`: Bool?
+    /*
+    For 'PubNub/APNS' and 'PubNub/GCM' transport types. Name of a certificate
+    */
+    open var `certificateName`: String?
+    /*
+    For 'PubNub/APNS' and 'PubNub/GCM' transport types. Identifier of a registration
+    */
+    open var `registrationId`: String?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(transportType: String? = nil, encryption: Bool? = nil) {
+    convenience public init(transportType: String? = nil, address: String? = nil, encryption: Bool? = nil, certificateName: String? = nil, registrationId: String? = nil) {
         self.init()
         self.transportType = `transportType`
+        self.address = `address`
         self.encryption = `encryption`
+        self.certificateName = `certificateName`
+        self.registrationId = `registrationId`
     }
     open func mapping(map: Map) {
         `transportType` <- map["transportType"]
+        `address` <- map["address"]
         `encryption` <- map["encryption"]
+        `certificateName` <- map["certificateName"]
+        `registrationId` <- map["registrationId"]
     }
 }

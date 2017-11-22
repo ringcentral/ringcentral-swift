@@ -16,7 +16,7 @@ open class GetExtensionInfoResponse: Mappable {
     /*
     Information on department extension(s), to which the requested extension belongs. Returned only for user extensions, members of department, requested by single extensionId
     */
-    open var `departments`: DepartmentInfo?
+    open var `departments`: [DepartmentInfo]?
     /*
     Number of department extension
     */
@@ -73,7 +73,7 @@ open class GetExtensionInfoResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, contact: ContactInfo? = nil, departments: DepartmentInfo? = nil, extensionNumber: String? = nil, name: String? = nil, partnerId: String? = nil, permissions: ExtensionPermissions? = nil, profileImage: ProfileImageInfo? = nil, references: [ReferenceInfo]? = nil, regionalSettings: RegionalSettings? = nil, serviceFeatures: [ExtensionServiceFeatureInfo]? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, type: String? = nil, callQueueInfo: CallQueueInfo? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, contact: ContactInfo? = nil, departments: [DepartmentInfo]? = nil, extensionNumber: String? = nil, name: String? = nil, partnerId: String? = nil, permissions: ExtensionPermissions? = nil, profileImage: ProfileImageInfo? = nil, references: [ReferenceInfo]? = nil, regionalSettings: RegionalSettings? = nil, serviceFeatures: [ExtensionServiceFeatureInfo]? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, type: String? = nil, callQueueInfo: CallQueueInfo? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

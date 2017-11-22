@@ -34,22 +34,16 @@ open class FilesPath: PathSegment {
         Internal identifier of a group the post with file attached will be added to
         */
         open var `groupId`: String?
-        /*
-        Name of a file attached
-        */
-        open var `name`: String?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(groupId: String? = nil, name: String? = nil) {
+        convenience public init(groupId: String? = nil) {
             self.init()
             self.groupId = `groupId`
-            self.name = `name`
         }
         open func mapping(map: Map) {
             `groupId` <- map["groupId"]
-            `name` <- map["name"]
         }
     }
     /*

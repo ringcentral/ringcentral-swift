@@ -36,25 +36,8 @@ open class SubscriptionPath: PathSegment {
     /*
     <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Creates a new subscription.</p><h4>Usage Plan Group</h4><p>Medium</p>
     */
-    open func post(parameters: PostParameters, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: CreateSubscriptionRequest, callback: @escaping (_ t: SubscriptionInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
-    }
-    open class PostParameters: Mappable {
-        /*
-        If 'True' then aggregated presence status is returned in a notification payload in the 'presenceStatus' field
-        */
-        open var `aggregated`: Bool?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(aggregated: Bool? = nil) {
-            self.init()
-            self.aggregated = `aggregated`
-        }
-        open func mapping(map: Map) {
-            `aggregated` <- map["aggregated"]
-        }
     }
     /*
     <p style='font-style:italic;'>Since 1.0.6 (Release 5.15)</p><p>Returns the requested subscription.</p><h4>Usage Plan Group</h4><p>Light</p>

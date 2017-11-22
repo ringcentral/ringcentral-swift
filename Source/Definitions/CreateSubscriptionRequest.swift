@@ -9,17 +9,23 @@ open class CreateSubscriptionRequest: Mappable {
     Notification delivery settings
     */
     open var `deliveryMode`: NotificationDeliveryModeRequest?
+    /*
+    Subscription lifetime in seconds. Max value is 7 days (604800 sec)
+    */
+    open var `expiresIn`: Int?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(eventFilters: [String]? = nil, deliveryMode: NotificationDeliveryModeRequest? = nil) {
+    convenience public init(eventFilters: [String]? = nil, deliveryMode: NotificationDeliveryModeRequest? = nil, expiresIn: Int? = nil) {
         self.init()
         self.eventFilters = `eventFilters`
         self.deliveryMode = `deliveryMode`
+        self.expiresIn = `expiresIn`
     }
     open func mapping(map: Map) {
         `eventFilters` <- map["eventFilters"]
         `deliveryMode` <- map["deliveryMode"]
+        `expiresIn` <- map["expiresIn"]
     }
 }
