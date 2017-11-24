@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79E2E6E31FC7344000BD3A6A /* ProfileImageInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C0B1FC501CF00A0A3B1 /* ProfileImageInfoURI.swift */; };
+		79E2E6E41FC7344000BD3A6A /* ProfileImageInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C0B1FC501CF00A0A3B1 /* ProfileImageInfoURI.swift */; };
+		79E2E6E51FC7344100BD3A6A /* ProfileImageInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C0B1FC501CF00A0A3B1 /* ProfileImageInfoURI.swift */; };
+		79E2E6E61FC7345C00BD3A6A /* NavigationInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C091FC501CE00A0A3B1 /* NavigationInfoURI.swift */; };
+		79E2E6E71FC7345C00BD3A6A /* NavigationInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C091FC501CE00A0A3B1 /* NavigationInfoURI.swift */; };
+		79E2E6E81FC7345D00BD3A6A /* NavigationInfoURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B3C091FC501CE00A0A3B1 /* NavigationInfoURI.swift */; };
 		872DB6D11DC3553C00EFA4E2 /* PubNub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872DB6D01DC3553C00EFA4E2 /* PubNub.framework */; };
 		872DB6D51DC3555D00EFA4E2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872DB6D41DC3555D00EFA4E2 /* CryptoSwift.framework */; };
 		873B6B181DB71070001D1825 /* CryptoSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 873B6B131DB71044001D1825 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -6529,6 +6535,7 @@
 				877B2F7E1FC3B84400A0A3B1 /* GrantPath.swift in Sources */,
 				877B2F7F1FC3B84400A0A3B1 /* GreetingPath.swift in Sources */,
 				877B2F801FC3B84400A0A3B1 /* GroupPath.swift in Sources */,
+				79E2E6E61FC7345C00BD3A6A /* NavigationInfoURI.swift in Sources */,
 				877B2F811FC3B84400A0A3B1 /* LanguagePath.swift in Sources */,
 				877B2F821FC3B84400A0A3B1 /* LocationPath.swift in Sources */,
 				877B2F831FC3B84400A0A3B1 /* LookupPath.swift in Sources */,
@@ -6658,6 +6665,7 @@
 				877B2FFF1FC3B84400A0A3B1 /* CompanyAnsweringRuleScheduleInfo.swift in Sources */,
 				877B30001FC3B84400A0A3B1 /* CompanyAnsweringRuleScheduleInfoRequest.swift in Sources */,
 				877B30011FC3B84400A0A3B1 /* CompanyAnsweringRuleTimeIntervalRequest.swift in Sources */,
+				79E2E6E51FC7344100BD3A6A /* ProfileImageInfoURI.swift in Sources */,
 				877B30021FC3B84400A0A3B1 /* CompanyAnsweringRuleUpdate.swift in Sources */,
 				877B30031FC3B84400A0A3B1 /* CompanyAnsweringRuleWeeklyScheduleInfoRequest.swift in Sources */,
 				877B30041FC3B84400A0A3B1 /* CompanyBusinessHours.swift in Sources */,
@@ -7364,6 +7372,7 @@
 				877B32BA1FC3B86300A0A3B1 /* GrantPath.swift in Sources */,
 				877B32BB1FC3B86300A0A3B1 /* GreetingPath.swift in Sources */,
 				877B32BC1FC3B86300A0A3B1 /* GroupPath.swift in Sources */,
+				79E2E6E71FC7345C00BD3A6A /* NavigationInfoURI.swift in Sources */,
 				877B32BD1FC3B86300A0A3B1 /* LanguagePath.swift in Sources */,
 				877B32BE1FC3B86300A0A3B1 /* LocationPath.swift in Sources */,
 				877B32BF1FC3B86300A0A3B1 /* LookupPath.swift in Sources */,
@@ -7493,6 +7502,7 @@
 				877B333B1FC3B86300A0A3B1 /* CompanyAnsweringRuleScheduleInfo.swift in Sources */,
 				877B333C1FC3B86300A0A3B1 /* CompanyAnsweringRuleScheduleInfoRequest.swift in Sources */,
 				877B333D1FC3B86300A0A3B1 /* CompanyAnsweringRuleTimeIntervalRequest.swift in Sources */,
+				79E2E6E41FC7344000BD3A6A /* ProfileImageInfoURI.swift in Sources */,
 				877B333E1FC3B86300A0A3B1 /* CompanyAnsweringRuleUpdate.swift in Sources */,
 				877B333F1FC3B86300A0A3B1 /* CompanyAnsweringRuleWeeklyScheduleInfoRequest.swift in Sources */,
 				877B33401FC3B86300A0A3B1 /* CompanyBusinessHours.swift in Sources */,
@@ -8199,6 +8209,7 @@
 				877B35F61FC3B87C00A0A3B1 /* GrantPath.swift in Sources */,
 				877B35F71FC3B87C00A0A3B1 /* GreetingPath.swift in Sources */,
 				877B35F81FC3B87C00A0A3B1 /* GroupPath.swift in Sources */,
+				79E2E6E81FC7345D00BD3A6A /* NavigationInfoURI.swift in Sources */,
 				877B35F91FC3B87C00A0A3B1 /* LanguagePath.swift in Sources */,
 				877B35FA1FC3B87C00A0A3B1 /* LocationPath.swift in Sources */,
 				877B35FB1FC3B87C00A0A3B1 /* LookupPath.swift in Sources */,
@@ -8328,6 +8339,7 @@
 				877B36771FC3B87C00A0A3B1 /* CompanyAnsweringRuleScheduleInfo.swift in Sources */,
 				877B36781FC3B87C00A0A3B1 /* CompanyAnsweringRuleScheduleInfoRequest.swift in Sources */,
 				877B36791FC3B87C00A0A3B1 /* CompanyAnsweringRuleTimeIntervalRequest.swift in Sources */,
+				79E2E6E31FC7344000BD3A6A /* ProfileImageInfoURI.swift in Sources */,
 				877B367A1FC3B87C00A0A3B1 /* CompanyAnsweringRuleUpdate.swift in Sources */,
 				877B367B1FC3B87C00A0A3B1 /* CompanyAnsweringRuleWeeklyScheduleInfoRequest.swift in Sources */,
 				877B367C1FC3B87C00A0A3B1 /* CompanyBusinessHours.swift in Sources */,
