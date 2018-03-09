@@ -1,7 +1,14 @@
+
 # RingCentral Swift Client
 
 [![Build status](https://travis-ci.org/ringcentral/ringcentral-swift.svg?branch=master)](https://travis-ci.org/ringcentral/ringcentral-swift)
 [![Coverage Status](https://coveralls.io/repos/github/ringcentral/ringcentral-swift/badge.svg?branch=master)](https://coveralls.io/github/ringcentral/ringcentral-swift?branch=master)
+
+## What is RingCentral platform?
+RingCentral Developer platform provides a set of over 70 APIs for business communications. Here are main platform's capabilities:
+__Voice - SMS/MMS – Fax - Team messaging – Data - Configurations__
+
+[Read API reference](https://developer.ringcentral.com/api-docs/latest/index.html) and [Try APIs online](https://developer.ringcentral.com/api-explorer/latest/index.html).
 
 
 ## Requirements
@@ -33,7 +40,7 @@ Denpending on your target platform, run **one** of the following:
     carthage update --platform tvOS
     carthage update --platform watchOS
 
-Built libraries will be available in `./Carthage/Build/`. 
+Built libraries will be available in `./Carthage/Build/`.
 
 
 ## URL Builder
