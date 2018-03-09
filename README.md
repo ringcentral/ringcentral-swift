@@ -5,8 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/ringcentral/ringcentral-swift/badge.svg?branch=master)](https://coveralls.io/github/ringcentral/ringcentral-swift?branch=master)
 
 ## What is RingCentral platform?
-RingCentral Developer platform provides a set of over 70 APIs for business communications. Here are main platform's capabilities:
-__Voice - SMS/MMS – Fax - Team messaging – Data - Configurations__
+RingCentral Developer platform is an API platform with more than 70 APIs for cloud communications. The platform's main capabilities include technologies that enable:
+__Voice, SMS/MMS, Fax, Team messaging, Data and Configurations__
 
 [Read API reference](https://developer.ringcentral.com/api-docs/latest/index.html) and [Try APIs online](https://developer.ringcentral.com/api-explorer/latest/index.html).
 
