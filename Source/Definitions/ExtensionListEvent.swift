@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ExtensionListEvent: Mappable {
-    // Internal identifier of an extension
+    /*
+    Internal identifier of an extension
+    */
     open var `extensionId`: String?
-    // Type of extension info change
+    /*
+    Type of extension info change
+    */
     open var `eventType`: String?
     public init() {
     }

@@ -1,19 +1,33 @@
 import Foundation
 import ObjectMapper
 open class DeliveryMode: Mappable {
-    // Notifications transportation provider name. 'APNS' (Apple Push Notifications Service)
+    /*
+    Notifications transportation provider name. 'APNS' (Apple Push Notifications Service)
+    */
     open var `transportType`: String?
-    // Optional parameter. Specifies if the message will be encrypted or not. For APNS transport type the value is always "false"
+    /*
+    Optional parameter. Specifies if the message will be encrypted or not. For APNS transport type the value is always "false"
+    */
     open var `encryption`: Bool?
-    // PubNub channel name. For APNS transport type - internal identifier of a device "device_token"
+    /*
+    PubNub channel name. For APNS transport type - internal identifier of a device "device_token"
+    */
     open var `address`: String?
-    // PubNub subscriber credentials required to subscribe to the channel
+    /*
+    PubNub subscriber credentials required to subscribe to the channel
+    */
     open var `subscriberKey`: String?
-    // PubNub subscriber credentials required to subscribe to the channel. Optional (for PubNub transport type only)
+    /*
+    PubNub subscriber credentials required to subscribe to the channel. Optional (for PubNub transport type only)
+    */
     open var `secretKey`: String?
-    // Encryption algorithm 'AES' (for PubNub transport type only)
+    /*
+    Encryption algorithm 'AES' (for PubNub transport type only)
+    */
     open var `encryptionAlgorithm`: String?
-    // Key for notification message decryption (for PubNub transport type only)
+    /*
+    Key for notification message decryption (for PubNub transport type only)
+    */
     open var `encryptionKey`: String?
     public init() {
     }

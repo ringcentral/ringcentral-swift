@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class ExternalUserInfo: Mappable {
-    // User type of a meeting account
+    /*
+    User type of a meeting account
+    */
     open var `accountId`: String?
-    // Meeting account user identifier
+    /*
+    Meeting account user identifier
+    */
     open var `userId`: String?
-    // Meeting account user token
+    /*
+    Meeting account user token
+    */
     open var `userToken`: String?
-    // Meeting account user type
+    /*
+    Meeting account user type
+    */
     open var `userType`: Int?
     public init() {
     }

@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class Page: Mappable {
-    // Canonical URI for the page
+    /*
+    Canonical URI for the page
+    */
     open var `uri`: String?
     public init() {
     }

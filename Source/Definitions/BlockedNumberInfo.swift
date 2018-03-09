@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class BlockedNumberInfo: Mappable {
-    // Standard resource properties ID and canonical URI, see the section called “Resource Identification Properties”
+    /*
+    Internal identifier of a blocked number
+    */
     open var `id`: String?
-    // Canonical URI of a blocked number resource
+    /*
+    Canonical URI of a blocked number
+    */
     open var `uri`: String?
-    // Name assigned by a user to a blocked phone number
+    /*
+    Name assigned by a user to a blocked phone number
+    */
     open var `name`: String?
-    // Phone number to be blocked
+    /*
+    Phone number to be blocked
+    */
     open var `phoneNumber`: String?
     public init() {
     }

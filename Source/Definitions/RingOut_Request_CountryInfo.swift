@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class RingOut_Request_CountryInfo: Mappable {
-    // Dialing plan country identifier
+    /*
+    Dialing plan country identifier
+    */
     open var `id`: String?
     public init() {
     }

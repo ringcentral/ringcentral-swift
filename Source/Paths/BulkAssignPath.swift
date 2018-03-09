@@ -7,43 +7,26 @@ open class BulkAssignPath: PathSegment {
             return "bulk-assign"
         }
     }
-    // Edit Group Members
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation at a time (either adding or removal) is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    */
     open func post(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipGroupInfo?, error) in
             callback(t, error)
         }
     }
-    // Edit Group Members
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation at a time (either adding or removal) is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipGroupInfo?, error) in
             callback(t, error)
         }
     }
-    // Edit Group Members
-    open func post(parameters: PostParameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
+    /*
+    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Updates group members. Please note: Only groups of 'Team' type can be updated. Currently only one operation at a time (either adding or removal) is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    */
+    open func post(parameters: EditGroupRequest, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
-    }
-    open class PostParameters: Mappable {
-        // List of users to be added to the team
-        open var `addedPersonIds`: [String]?
-        // List of user email addresses to be added to the team (i.e. as guests)
-        open var `addedPersonEmails`: [String]?
-        // List of users to be removed from the team
-        open var `removedPersonIds`: [String]?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(addedPersonIds: [String]? = nil, addedPersonEmails: [String]? = nil, removedPersonIds: [String]? = nil) {
-            self.init()
-            self.addedPersonIds = `addedPersonIds`
-            self.addedPersonEmails = `addedPersonEmails`
-            self.removedPersonIds = `removedPersonIds`
-        }
-        open func mapping(map: Map) {
-            `addedPersonIds` <- map["addedPersonIds"]
-            `addedPersonEmails` <- map["addedPersonEmails"]
-            `removedPersonIds` <- map["removedPersonIds"]
-        }
     }
 }

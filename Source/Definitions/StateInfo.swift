@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class StateInfo: Mappable {
-    // Internal identifier of a state
+    /*
+    Internal identifier of a state
+    */
     open var `id`: String?
-    // Canonical URI of a state
+    /*
+    Canonical URI of a state
+    */
     open var `uri`: String?
-    // Information on a country the state belongs to
+    /*
+    Information on a country the state belongs to
+    */
     open var `country`: StateInfo_CountryInfo?
-    // Short code for a state (2-letter usually)
+    /*
+    Short code for a state (2-letter usually)
+    */
     open var `isoCode`: String?
-    // Official name of a state
+    /*
+    Official name of a state
+    */
     open var `name`: String?
     public init() {
     }

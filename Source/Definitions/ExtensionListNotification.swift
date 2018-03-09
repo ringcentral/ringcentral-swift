@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class ExtensionListNotification: Mappable {
-    // Universally unique identifier of a notification
+    /*
+    Universally unique identifier of a notification
+    */
     open var `uuid`: String?
-    // Event filter URI
+    /*
+    Event filter URI
+    */
     open var `event`: String?
-    // Internal identifier of a subscription
+    /*
+    Internal identifier of a subscription
+    */
     open var `subscriptionId`: String?
-    // Datetime of sending a notification in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Datetime of sending a notification in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `timestamp`: String?
-    // Notification payload body
+    /*
+    Notification payload body
+    */
     open var `body`: ExtensionListEvent?
     public init() {
     }

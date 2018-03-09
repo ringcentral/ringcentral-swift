@@ -1,69 +1,48 @@
 import Foundation
 import ObjectMapper
 import Alamofire
-open class RingoutPath: PathSegment {
+open class RingOutPath: PathSegment {
     public override var pathSegment: String {
         get{
-            return "ringout"
+            return "ring-out"
         }
     }
-    // Initiate RingOut Call
-    open func post(callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: RingOutInfo?, error) in
+    /*
+    <p style='font-style:italic;'>Since 1.0.7 (Release 5.16)</p><p>Makes a 2-leg RingOut call.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>RingOut</td><td>Performing two-legged ring-out phone calls</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func post(callback: @escaping (_ t: GetRingOutStatusResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: GetRingOutStatusResponse?, error) in
             callback(t, error)
         }
     }
-    // Initiate RingOut Call
-    open func post(parameters: Parameters, callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: RingOutInfo?, error) in
+    /*
+    <p style='font-style:italic;'>Since 1.0.7 (Release 5.16)</p><p>Makes a 2-leg RingOut call.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>RingOut</td><td>Performing two-legged ring-out phone calls</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func post(parameters: Parameters, callback: @escaping (_ t: GetRingOutStatusResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: GetRingOutStatusResponse?, error) in
             callback(t, error)
         }
     }
-    // Initiate RingOut Call
-    open func post(parameters: PostParameters, callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
+    /*
+    <p style='font-style:italic;'>Since 1.0.7 (Release 5.16)</p><p>Makes a 2-leg RingOut call.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>RingOut</td><td>Performing two-legged ring-out phone calls</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
+    open func post(parameters: MakeRingOutRequest, callback: @escaping (_ t: GetRingOutStatusResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
-    open class PostParameters: Mappable {
-        // Phone number of the caller. This number corresponds to the 1st leg of the RingOut call. This number can be one of user's configured forwarding numbers or arbitrary number
-        open var `from`: RingOut_Request_From?
-        // Phone number of the called party. This number corresponds to the 2nd leg of the RingOut call
-        open var `to`: RingOut_Request_To?
-        // The number which will be displayed to the called party
-        open var `callerId`: RingOut_Request_To?
-        // The audio prompt that the calling party hears when the call is connected
-        open var `playPrompt`: Bool?
-        // Optional. Dialing plan country data. If not specified, then extension home country is applied by default
-        open var `country`: RingOut_Request_CountryInfo?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(from: RingOut_Request_From? = nil, to: RingOut_Request_To? = nil, callerId: RingOut_Request_To? = nil, playPrompt: Bool? = nil, country: RingOut_Request_CountryInfo? = nil) {
-            self.init()
-            self.from = `from`
-            self.to = `to`
-            self.callerId = `callerId`
-            self.playPrompt = `playPrompt`
-            self.country = `country`
-        }
-        open func mapping(map: Map) {
-            `from` <- map["from"]
-            `to` <- map["to"]
-            `callerId` <- map["callerId"]
-            `playPrompt` <- map["playPrompt"]
-            `country` <- map["country"]
+    /*
+    <p style='font-style:italic;'>Since 1.0.7 (Release 5.16)</p><p>Returns the status of a 2-leg RingOut call.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>RingOut</td><td>Performing two-legged ring-out phone calls</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    */
+    open func get(callback: @escaping (_ t: GetRingOutStatusResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: GetRingOutStatusResponse?, error) in
+            callback(t, error)
         }
     }
-    // Cancel RingOut Call
+    /*
+    <p style='font-style:italic;'></p><p>Cancels the 2-leg RingOut call.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>RingOut</td><td>Performing two-legged ring-out phone calls</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
             callback(error)
-        }
-    }
-    // Get RingOut Call Status
-    open func get(callback: @escaping (_ t: RingOutInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: RingOutInfo?, error) in
-            callback(t, error)
         }
     }
 }

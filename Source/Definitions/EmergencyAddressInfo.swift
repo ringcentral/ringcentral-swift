@@ -1,19 +1,33 @@
 import Foundation
 import ObjectMapper
 open class EmergencyAddressInfo: Mappable {
-    // Name of a customer
+    /*
+    Name of a customer
+    */
     open var `customerName`: String?
-    // Street address, line 1 - street address, P.O. box, company name, c/o
+    /*
+    Street address, line 1 - street address, P.O. box, company name, c/o
+    */
     open var `street`: String?
-    // Street address, line 2 - apartment, suite, unit, building, floor, etc.
+    /*
+    Street address, line 2 - apartment, suite, unit, building, floor, etc.
+    */
     open var `street2`: String?
-    // City name
+    /*
+    City name
+    */
     open var `city`: String?
-    // State/province name
+    /*
+    State/province name
+    */
     open var `state`: String?
-    // Zip code
+    /*
+    Zip code
+    */
     open var `zip`: String?
-    // Country name
+    /*
+    Country name
+    */
     open var `country`: String?
     public init() {
     }

@@ -1,13 +1,21 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_ContactInfo_RegionalSettings: Mappable {
-    // Timezone data
+    /*
+    Timezone data
+    */
     open var `timezone`: ExtensionInfo_Request_ContactInfo_RegionalSettings_Timezone?
-    // User interface language data
+    /*
+    User interface language data
+    */
     open var `language`: ExtensionInfo_Request_ContactInfo_RegionalSettings_Language?
-    // Information on language used for telephony greetings
+    /*
+    Information on language used for telephony greetings
+    */
     open var `greetingLanguage`: ExtensionInfo_Request_ContactInfo_RegionalSettings_GreetingLanguage?
-    // Formatting language preferences for numbers, dates and currencies
+    /*
+    Formatting language preferences for numbers, dates and currencies
+    */
     open var `formattingLocale`: ExtensionInfo_Request_ContactInfo_RegionalSettings_FormattingLocale?
     public init() {
     }

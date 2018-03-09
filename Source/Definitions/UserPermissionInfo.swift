@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class UserPermissionInfo: Mappable {
-    // Internal identifier of a permission
+    /*
+    Internal identifier of a permission
+    */
     open var `id`: String?
-    // Canonical URI of a permission resource
+    /*
+    Canonical URI of a permission resource
+    */
     open var `uri`: String?
     public init() {
     }

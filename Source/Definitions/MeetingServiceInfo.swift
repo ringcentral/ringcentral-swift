@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class MeetingServiceInfo: Mappable {
-    // Canonical URI of a meeting service info resource
+    /*
+    Canonical URI of a meeting service info resource
+    */
     open var `uri`: String?
-    // URI to retrieve support information for meetings functionality
+    /*
+    URI to retrieve support information for meetings functionality
+    */
     open var `supportUri`: String?
-    // URI to retrieve international dial in numbers
+    /*
+    URI to retrieve international dial in numbers
+    */
     open var `intlDialInNumbersUri`: String?
-    // External user data
+    /*
+    External user data
+    */
     open var `externalUserInfo`: ExternalUserInfo?
-    // Dial-in numbers data
+    /*
+    Dial-in numbers data
+    */
     open var `dialInNumbers`: DialInNumbers?
     public init() {
     }

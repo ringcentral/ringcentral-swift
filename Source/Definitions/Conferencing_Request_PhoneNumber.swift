@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class Conferencing_Request_PhoneNumber: Mappable {
-    // Dial-in phone number to connect to a conference
+    /*
+    Dial-in phone number to connect to a conference
+    */
     open var `phoneNumber`: String?
-    // 'True' if the number is default for the conference. Default conference number is a domestic number that can be set by user (otherwise it is set by the system). Only one default number per country is allowed
+    /*
+    'True' if the number is default for the conference. Default conference number is a domestic number that can be set by user (otherwise it is set by the system). Only one default number per country is allowed
+    */
     open var `default`: Bool?
     public init() {
     }

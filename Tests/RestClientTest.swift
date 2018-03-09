@@ -22,7 +22,7 @@ class RestClientTest: BaseTest {
         rc.authorize(config.username!, ext: config.extension!, password: config.password!) { token, error in
             XCTAssertNil(error)
             XCTAssertNotNil(token)
-            XCTAssertTrue(token!.access_token!.characters.count > 0)
+            XCTAssertTrue(token!.access_token!.count > 0)
             expectation1.fulfill()
         }
 
@@ -42,7 +42,7 @@ class RestClientTest: BaseTest {
     func testRestApi() {
         let expectation1 = expectation(description: "expectation1")
         rc.getString("/restapi") { string, error in
-            XCTAssertTrue(string!.characters.count > 0)
+            XCTAssertTrue(string!.count > 0)
             expectation1.fulfill()
         }
 

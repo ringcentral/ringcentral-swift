@@ -1,15 +1,19 @@
 import Foundation
 import ObjectMapper
 open class PhoneLinesInfo: Mappable {
-    // Type of phone line
+    /*
+    Type of phone line
+    */
     open var `lineType`: String?
-    // Phone number information
-    open var `phoneInfo`: PhoneLinesInfo_PhoneNumberInfo?
+    /*
+    Phone number information
+    */
+    open var `phoneInfo`: PhoneNumberInfo?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(lineType: String? = nil, phoneInfo: PhoneLinesInfo_PhoneNumberInfo? = nil) {
+    convenience public init(lineType: String? = nil, phoneInfo: PhoneNumberInfo? = nil) {
         self.init()
         self.lineType = `lineType`
         self.phoneInfo = `phoneInfo`

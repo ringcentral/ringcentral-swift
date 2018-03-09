@@ -17,14 +17,14 @@ Create a scheme for RingCentral_macOS_Tests if it doesn't already exist.
 
 Edit the scheme and create the following environtment variables: 
     
-    production => false
-    server => https://platform.devtest.ringcentral.com
-    appKey => appKey
-    appSecret => appSecret
-    username => username
-    extension =>
-    password => password
-    receiver => receiver number
+    rc_production => false
+    rc_server => https://platform.devtest.ringcentral.com
+    rc_appKey => appKey
+    rc_appSecret => appSecret
+    rc_username => username
+    rc_extension =>
+    rc_password => password
+    rc_receiver => receiver number
 
 
 ## Don't forget

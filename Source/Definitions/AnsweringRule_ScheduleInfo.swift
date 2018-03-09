@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class AnsweringRule_ScheduleInfo: Mappable {
-    // Weekly schedule. If specified, ranges cannot be specified
+    /*
+    Weekly schedule. If specified, ranges cannot be specified
+    */
     open var `weeklyRanges`: WeeklyScheduleInfo?
-    // Specific data ranges. If specified, weeklyRanges cannot be specified
+    /*
+    Specific data ranges. If specified, weeklyRanges cannot be specified
+    */
     open var `ranges`: RangesInfo?
     public init() {
     }

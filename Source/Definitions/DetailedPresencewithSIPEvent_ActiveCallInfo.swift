@@ -1,19 +1,33 @@
 import Foundation
 import ObjectMapper
 open class DetailedPresencewithSIPEvent_ActiveCallInfo: Mappable {
-    // Internal identifier of a call
+    /*
+    Internal identifier of a call
+    */
     open var `id`: String?
-    // Call direction
+    /*
+    Call direction
+    */
     open var `direction`: String?
-    // Phone number or extension number of a caller
+    /*
+    Phone number or extension number of a caller
+    */
     open var `from`: String?
-    // Phone number or extension number of a callee
+    /*
+    Phone number or extension number of a callee
+    */
     open var `to`: String?
-    // Telephony call status. See Telephony Status Values for detailed status description
+    /*
+    Telephony call status. See Telephony Status Values for detailed status description
+    */
     open var `telephonyStatus`: String?
-    // Internal identifier of a call session
+    /*
+    Internal identifier of a call session
+    */
     open var `sessionId`: String?
-    // SIP connection settings
+    /*
+    SIP connection settings
+    */
     open var `sipData`: SIPData?
     public init() {
     }

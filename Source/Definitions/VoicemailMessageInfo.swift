@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class VoicemailMessageInfo: Mappable {
-    // Internal identifier of a voicemail message
+    /*
+    Internal identifier of a voicemail message
+    */
     open var `id`: String?
-    // Type of a message - 'Voicemail'
+    /*
+    Type of a message - 'Voicemail'
+    */
     open var `type`: String?
-    // Link to a voicemail message resource
+    /*
+    Link to a voicemail message resource
+    */
     open var `uri`: String?
     public init() {
     }

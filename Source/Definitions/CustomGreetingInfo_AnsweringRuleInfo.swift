@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class CustomGreetingInfo_AnsweringRuleInfo: Mappable {
-    // Internal identifier of an answering rule
+    /*
+    Internal identifier of an answering rule
+    */
     open var `id`: String?
     public init() {
     }

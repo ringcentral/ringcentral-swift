@@ -1,33 +1,61 @@
 import Foundation
 import ObjectMapper
 open class InstantMessageEvent: Mappable {
-    // Internal identifier of a message
+    /*
+    Internal identifier of a message
+    */
     open var `id`: String?
-    // Message receiver(s) information
+    /*
+    Message receiver(s) information
+    */
     open var `to`: [InstantMessageEvent_CallerInfo]?
-    // Message sender information
+    /*
+    Message sender information
+    */
     open var `from`: InstantMessageEvent_CallerInfo?
-    // Type of a message. The default value is 'SMS'
+    /*
+    Type of a message. The default value is 'SMS'
+    */
     open var `type`: String?
-    // Message creation datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Message creation datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `creationTime`: String?
-    // The datetime when the message was modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    The datetime when the message was modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `lastModifiedTime`: String?
-    // Status of a message. The default value is 'Unread'
+    /*
+    Status of a message. The default value is 'Unread'
+    */
     open var `readStatus`: String?
-    // The default value is 'Normal'
+    /*
+    The default value is 'Normal'
+    */
     open var `priority`: String?
-    // Message attachment data
+    /*
+    Message attachment data
+    */
     open var `attachments`: [InstantMessageAttachmentInfo]?
-    // Message direction. The default value is 'Inbound'
+    /*
+    Message direction. The default value is 'Inbound'
+    */
     open var `direction`: String?
-    // Message availability status. The default value is 'Alive'
+    /*
+    Message availability status. The default value is 'Alive'
+    */
     open var `availability`: String?
-    // Message subject. It replicates message text which is also returned as an attachment
+    /*
+    Message subject. It replicates message text which is also returned as an attachment
+    */
     open var `subject`: String?
-    // Status of a message. The default value is 'Received'
+    /*
+    Status of a message. The default value is 'Received'
+    */
     open var `messageStatus`: String?
-    // Identifier of the conversation the message belongs to
+    /*
+    Identifier of the conversation the message belongs to
+    */
     open var `conversationId`: String?
     public init() {
     }

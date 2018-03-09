@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class BillingInfo: Mappable {
-    // Cost per minute used included in your RingCentral Plan
+    /*
+    Cost per minute used included in your RingCentral Plan
+    */
     open var `costIncluded`: Double?
-    // Cost per minute used not included in your RingCentral Plan. for example International Calls
+    /*
+    Cost per minute used not included in your RingCentral Plan. for example International Calls
+    */
     open var `costPurchased`: Double?
     public init() {
     }

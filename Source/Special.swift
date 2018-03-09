@@ -26,6 +26,84 @@ struct StringTransform: TransformType {
 }
 
 
+// MMS
+extension ExtensionPath {
+    open func mms() -> MmsPath {
+        return MmsPath(parent: self)
+    }
+}
+open class MmsPath: PathSegment {
+    public override var pathSegment: String {
+        get{
+            return "sms"
+        }
+    }
+    func post(requestBody: Data, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+        var headers: [String: String] = [:]
+        if rc.token != nil {
+            headers["Authorization"] = "Bearer \(rc.token!.access_token!)"
+        }
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(requestBody, withName: "json", fileName: "request.json", mimeType: "application/json")
+                for attachment in attachments {
+                    multipartFormData.append(attachment.data, withName: "attachment", fileName: attachment.fileName, mimeType: attachment.contentType)
+                }
+        },
+            to: self.url(withId: false),
+            headers: headers,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseString { response in
+                        if 200 == response.response!.statusCode {
+                            callback(MessageInfo(JSONString: response.result.value!), nil)
+                        } else {
+                            callback(nil, HTTPError(statusCode: response.response!.statusCode, message: response.result.value!))
+                        }
+                    }
+                case .failure(_):
+                    callback(nil, HTTPError(statusCode: -1, message: "error encoding multipartFormData"))
+                }
+        }
+        )
+    }
+    open func post(parameters: Parameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+        let requestBody = try! JSONSerialization.data(withJSONObject: parameters)
+        post(requestBody: requestBody, attachments: attachments, callback: callback)
+    }
+    open func post(parameters: PostParameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+        let parametersBody = parameters.toParameters()["json-string"] as! String
+        let requestBody = parametersBody.data(using: String.Encoding.utf8)!
+        post(requestBody: requestBody, attachments: attachments, callback: callback)
+    }
+    open class PostParameters: Mappable {
+        // Sender of an SMS message. The phoneNumber property must be filled to correspond to one of the account phone numbers which is allowed to send SMS
+        open var `from`: CallerInfo?
+        // Receiver of an SMS message. The phoneNumber property must be filled
+        open var `to`: [CallerInfo]?
+        // Text of a message. Max length is 1000 symbols (2-byte UTF-16 encoded). If a character is encoded in 4 bytes in UTF-16 it is treated as 2 characters, thus restricting the maximum message length to 500 symbols
+        open var `text`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
+        convenience public init(from: CallerInfo? = nil, to: [CallerInfo]? = nil, text: String? = nil) {
+            self.init()
+            self.from = `from`
+            self.to = `to`
+            self.text = `text`
+        }
+        open func mapping(map: Map) {
+            `from` <- map["from"]
+            `to` <- map["to"]
+            `text` <- map["text"]
+        }
+    }
+}
+
+
+
 // fax
 public struct Attachment {
     var fileName: String
@@ -72,11 +150,11 @@ extension FaxPath {
         let requestBody = try! JSONSerialization.data(withJSONObject: parameters)
         post(requestBody: requestBody, attachments: attachments, callback: callback)
     }
-    open func post(parameters: PostParameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
-        let parametersBody = parameters.toParameters()["json-string"] as! String
-        let requestBody = parametersBody.data(using: String.Encoding.utf8)!
-        post(requestBody: requestBody, attachments: attachments, callback: callback)
-    }
+//    open func post(parameters: PostParameters, attachments: [Attachment], callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+//        let parametersBody = parameters.toParameters()["json-string"] as! String
+//        let requestBody = parametersBody.data(using: String.Encoding.utf8)!
+//        post(requestBody: requestBody, attachments: attachments, callback: callback)
+//    }
 }
 
 extension MmsPath {

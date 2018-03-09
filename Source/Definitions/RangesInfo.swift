@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class RangesInfo: Mappable {
-    // Date and time in format YYYY-MM-DD hh:mm
+    /*
+    Date and time in format YYYY-MM-DD hh:mm
+    */
     open var `from`: String?
-    // Date and time in format YYYY-MM-DD hh:mm
+    /*
+    Date and time in format YYYY-MM-DD hh:mm
+    */
     open var `to`: String?
     public init() {
     }

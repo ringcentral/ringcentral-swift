@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ServiceFeatureInfo: Mappable {
-    // Feature name, see all available values in Service Feature List
+    /*
+    Feature name, see all available values in Service Feature List
+    */
     open var `featureName`: String?
-    // Feature status, shows feature availability for the extension
+    /*
+    Feature status, shows feature availability for the extension
+    */
     open var `enabled`: Bool?
     public init() {
     }

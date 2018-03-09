@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class PresenceInfo_ExtensionInfo: Mappable {
-    // Internal identifier of an extension
+    /*
+    Internal identifier of an extension
+    */
     open var `id`: String?
-    // Canonical URI of an extension
+    /*
+    Canonical URI of an extension
+    */
     open var `uri`: String?
-    // Extension number (usually 3 or 4 digits)
+    /*
+    Extension number (usually 3 or 4 digits)
+    */
     open var `extensionNumber`: String?
     public init() {
     }

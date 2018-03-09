@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class CalledNumberInfo: Mappable {
-    // Called phone number
+    /*
+    Called phone number
+    */
     open var `phoneNumber`: String?
     public init() {
     }

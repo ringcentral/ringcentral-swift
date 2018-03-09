@@ -1,15 +1,25 @@
 import Foundation
 import ObjectMapper
 open class GroupInfo: Mappable {
-    // Internal identifier of a group
+    /*
+    Internal identifier of a group
+    */
     open var `id`: String?
-    // Canonical URI of a group
+    /*
+    Canonical URI of a group
+    */
     open var `uri`: String?
-    // Amount of contacts in a group
+    /*
+    Amount of contacts in a group
+    */
     open var `contactsCount`: Int?
-    // Name of a group
+    /*
+    Name of a group
+    */
     open var `groupName`: String?
-    // Notes for a group
+    /*
+    Notes for a group
+    */
     open var `notes`: String?
     public init() {
     }

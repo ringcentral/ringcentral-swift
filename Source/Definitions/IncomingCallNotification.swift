@@ -1,39 +1,73 @@
 import Foundation
 import ObjectMapper
 open class IncomingCallNotification: Mappable {
-    // Event filter URI
+    /*
+    Event filter URI
+    */
     open var `event`: String?
-    // Universally unique identifier of a notification
+    /*
+    Universally unique identifier of a notification
+    */
     open var `uuid`: String?
-    // Internal identifier of a subscription
+    /*
+    Internal identifier of a subscription
+    */
     open var `subscriptionId`: String?
-    // The datetime of a call action in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    The datetime of a call action in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `timestamp`: String?
-    // Internal identifier of an extension
+    /*
+    Internal identifier of an extension
+    */
     open var `extensionId`: String?
-    // Calling action, for example 'StartRing'
+    /*
+    Calling action, for example 'StartRing'
+    */
     open var `action`: String?
-    // Identifier of a call session
+    /*
+    Identifier of a call session
+    */
     open var `sessionId`: String?
-    // Identifier of a server
+    /*
+    Identifier of a server
+    */
     open var `serverId`: String?
-    // Phone number of a caller
+    /*
+    Phone number of a caller
+    */
     open var `from`: String?
-    // Caller name
+    /*
+    Caller name
+    */
     open var `fromName`: String?
-    // Phone number of a callee
+    /*
+    Phone number of a callee
+    */
     open var `to`: String?
-    // Callee name
+    /*
+    Callee name
+    */
     open var `toName`: String?
-    // Unique identifier of a session
+    /*
+    Unique identifier of a session
+    */
     open var `sid`: String?
-    // SIP proxy registration name
+    /*
+    SIP proxy registration name
+    */
     open var `toUrl`: String?
-    // User data
+    /*
+    User data
+    */
     open var `srvLvl`: String?
-    // User data
+    /*
+    User data
+    */
     open var `srvLvlExt`: String?
-    // File containing recorded caller name
+    /*
+    File containing recorded caller name
+    */
     open var `recUrl`: String?
     public init() {
     }

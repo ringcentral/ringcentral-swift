@@ -16,4 +16,13 @@ open class OauthPath: PathSegment {
     open func `token`() -> TokenPath {
         return TokenPath(parent: self)
     }
+    open func `appInfo`() -> AppInfoPath {
+        return AppInfoPath(parent: self)
+    }
+    open func `appSession`() -> AppSessionPath {
+        return AppSessionPath(parent: self)
+    }
+    open func `generateCode`() -> GenerateCodePath {
+        return GenerateCodePath(parent: self)
+    }
 }

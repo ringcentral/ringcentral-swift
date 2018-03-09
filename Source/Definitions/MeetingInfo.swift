@@ -1,29 +1,53 @@
 import Foundation
 import ObjectMapper
 open class MeetingInfo: Mappable {
-    // Canonical URI of a meeting resource
+    /*
+    Canonical URI of a meeting resource
+    */
     open var `uri`: String?
-    // Internal identifier of a meeting as retrieved from Zoom
+    /*
+    Internal identifier of a meeting as retrieved from Zoom
+    */
     open var `id`: String?
-    // Topic of a meeting
+    /*
+    Topic of a meeting
+    */
     open var `topic`: String?
-    // Type of a meeting
+    /*
+    Type of a meeting
+    */
     open var `meetingType`: String?
-    // Password required to join a meeting
+    /*
+    Password required to join a meeting
+    */
     open var `password`: String?
-    // Current status of a meeting
+    /*
+    Current status of a meeting
+    */
     open var `status`: String?
-    // Links to start/join the meeting
+    /*
+    Links to start/join the meeting
+    */
     open var `links`: LinksInfo?
-    // Schedule of a meeting
+    /*
+    Schedule of a meeting
+    */
     open var `schedule`: MeetingScheduleInfo?
-    // If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+    /*
+    If 'True' then the meeting can be joined and started by any participant (not host only). Supported for the meetings of 'Scheduled' and 'Recurring' type.
+    */
     open var `allowJoinBeforeHost`: Bool?
-    // Enables starting video when host joins the meeting
+    /*
+    Enables starting video when host joins the meeting
+    */
     open var `startHostVideo`: Bool?
-    // Enables starting video when participants join the meeting
+    /*
+    Enables starting video when participants join the meeting
+    */
     open var `startParticipantsVideo`: Bool?
-    // Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+    /*
+    Meeting audio options. Possible values are 'Phone', 'ComputerAudio'
+    */
     open var `audioOptions`: [String]?
     public init() {
     }

@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_ContactInfo_RegionalSettings_Timezone: Mappable {
-    // Timezone identifier. The default value is "58" (US&Canada)
+    /*
+    Timezone identifier. The default value is "58" (US&Canada)
+    */
     open var `id`: String?
     public init() {
     }

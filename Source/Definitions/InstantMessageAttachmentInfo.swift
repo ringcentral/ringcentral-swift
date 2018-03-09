@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class InstantMessageAttachmentInfo: Mappable {
-    // Internal identifier of a message attachment
+    /*
+    Internal identifier of a message attachment
+    */
     open var `id`: String?
-    // Type of a message attachment. The default value is 'Text'
+    /*
+    Type of a message attachment. The default value is 'Text'
+    */
     open var `type`: String?
-    // Content type of an attachment, see also MIME Types. The default value is 'text/plain'
+    /*
+    Content type of an attachment, see also MIME Types. The default value is 'text/plain'
+    */
     open var `contentType`: String?
     public init() {
     }

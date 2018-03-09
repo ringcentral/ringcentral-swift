@@ -7,9 +7,10 @@ open class MeetingServiceInfoPath: PathSegment {
             return "meeting/service-info"
         }
     }
-    // Get Meeting Service Info
-    open func get(callback: @escaping (_ t: MeetingServiceInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: MeetingServiceInfo?, error) in
+    /*
+    */
+    open func get(callback: @escaping (_ t: MeetingServiceInfoResource?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: MeetingServiceInfoResource?, error) in
             callback(t, error)
         }
     }

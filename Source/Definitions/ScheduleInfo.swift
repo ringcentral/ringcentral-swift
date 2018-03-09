@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class ScheduleInfo: Mappable {
-    // Weekly schedule
+    /*
+    Weekly schedule
+    */
     open var `weeklyRanges`: WeeklyScheduleInfo?
-    // Specific data ranges
+    /*
+    Specific data ranges
+    */
     open var `ranges`: RangesInfo?
-    // The user's schedule specified for business hours or after hours; it can also be set/retrieved calling the corresponding method
+    /*
+    The user's schedule specified for business hours or after hours; it can also be set/retrieved calling the corresponding method
+    */
     open var `ref`: String?
     public init() {
     }

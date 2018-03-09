@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ExtensionPermissions: Mappable {
-    // Admin permission
+    /*
+    Admin permission
+    */
     open var `admin`: PermissionInfo?
-    // International Calling permission
+    /*
+    International Calling permission
+    */
     open var `internationalCalling`: PermissionInfo?
     public init() {
     }

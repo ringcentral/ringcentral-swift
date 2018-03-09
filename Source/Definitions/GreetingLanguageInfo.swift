@@ -1,11 +1,17 @@
 import Foundation
 import ObjectMapper
 open class GreetingLanguageInfo: Mappable {
-    // Internal identifier of a greeting language
+    /*
+    Internal identifier of a greeting language
+    */
     open var `id`: String?
-    // Localization code of a greeting language
+    /*
+    Localization code of a greeting language
+    */
     open var `localeCode`: String?
-    // Official name of a greeting language
+    /*
+    Official name of a greeting language
+    */
     open var `name`: String?
     public init() {
     }

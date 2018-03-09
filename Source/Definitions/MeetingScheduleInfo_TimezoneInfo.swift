@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class MeetingScheduleInfo_TimezoneInfo: Mappable {
-    // Identifier of a timezone
+    /*
+    Identifier of a timezone
+    */
     open var `id`: String?
     public init() {
     }

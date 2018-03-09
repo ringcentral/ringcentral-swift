@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class BusinessHour_ScheduleInfo: Mappable {
-    // Weekly schedule
+    /*
+    Weekly schedule
+    */
     open var `weeklyRanges`: WeeklyScheduleInfo?
     public init() {
     }

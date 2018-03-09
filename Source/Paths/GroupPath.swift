@@ -7,18 +7,25 @@ open class GroupPath: PathSegment {
             return "group"
         }
     }
-    // Get Contact Group List
+    /*
+    */
     open func list(callback: @escaping (_ t: ListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ListResponse?, error) in
             callback(t, error)
         }
     }
     open class ListResponse: Mappable {
-        // List of groups
+        /*
+        List of groups
+        */
         open var `records`: [GroupInfo]?
-        // Information on navigation
+        /*
+        Information on navigation
+        */
         open var `navigation`: NavigationInfo?
-        // Information on paging
+        /*
+        Information on paging
+        */
         open var `paging`: PagingInfo?
         public init() {
         }

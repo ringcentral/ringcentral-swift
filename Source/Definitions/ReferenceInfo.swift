@@ -1,9 +1,13 @@
 import Foundation
 import ObjectMapper
 open class ReferenceInfo: Mappable {
-    // Non-RC identifier of an extension
+    /*
+    Non-RC identifier of an extension
+    */
     open var `ref`: String?
-    // Type of external identifier
+    /*
+    Type of external identifier
+    */
     open var `type`: String?
     public init() {
     }

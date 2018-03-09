@@ -1,7 +1,9 @@
 import Foundation
 import ObjectMapper
 open class ExtensionInfo_Request_PartnerId: Mappable {
-    // Extension partner identifier
+    /*
+    Extension partner identifier
+    */
     open var `partnerId`: String?
     public init() {
     }

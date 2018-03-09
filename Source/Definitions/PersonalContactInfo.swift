@@ -1,65 +1,125 @@
 import Foundation
 import ObjectMapper
 open class PersonalContactInfo: Mappable {
-    // Standard resource properties ID
+    /*
+    Standard resource properties ID
+    */
     open var `id`: String?
-    // Canonical URI
+    /*
+    Canonical URI
+    */
     open var `url`: String?
-    // This property has a special meaning only on Address Book Sync (e.g. a contact can be 'Deleted'). For simple contact list reading it has always the default value - 'Alive'
+    /*
+    This property has a special meaning only on Address Book Sync (e.g. a contact can be 'Deleted'). For simple contact list reading it has always the default value - 'Alive'
+    */
     open var `availability`: String?
-    // First name of a personal contact
+    /*
+    First name of a personal contact
+    */
     open var `firstName`: String?
-    // Last name of a personal contact
+    /*
+    Last name of a personal contact
+    */
     open var `lastName`: String?
-    // Middle name of a personal contact
+    /*
+    Middle name of a personal contact
+    */
     open var `middleName`: String?
-    // Nick name of a personal contact
+    /*
+    Nick name of a personal contact
+    */
     open var `nickName`: String?
-    // Company name of a personal contact
+    /*
+    Company name of a personal contact
+    */
     open var `company`: String?
-    // Job title of a personal contact
+    /*
+    Job title of a personal contact
+    */
     open var `jobTitle`: String?
-    // Home phone of a personal contact
+    /*
+    Home phone of a personal contact
+    */
     open var `homePhone`: String?
-    // The 2-d home phone of a personal contact
+    /*
+    The 2-d home phone of a personal contact
+    */
     open var `homePhone2`: String?
-    // Business phone of a personal contact
+    /*
+    Business phone of a personal contact
+    */
     open var `businessPhone`: String?
-    // The 2-d business phone of a personal contact
+    /*
+    The 2-d business phone of a personal contact
+    */
     open var `businessPhone2`: String?
-    // Mobile phone of a personal contact
+    /*
+    Mobile phone of a personal contact
+    */
     open var `mobilePhone`: String?
-    // Business fax of a personal contact
+    /*
+    Business fax of a personal contact
+    */
     open var `businessFax`: String?
-    // Company phone of a personal contact
+    /*
+    Company phone of a personal contact
+    */
     open var `companyPhone`: String?
-    // Assistant phone of a personal contact
+    /*
+    Assistant phone of a personal contact
+    */
     open var `assistantPhone`: String?
-    // Car phone of a personal contact
+    /*
+    Car phone of a personal contact
+    */
     open var `carPhone`: String?
-    // Other phone of a personal contact
+    /*
+    Other phone of a personal contact
+    */
     open var `otherPhone`: String?
-    // Other fax of a personal contact
+    /*
+    Other fax of a personal contact
+    */
     open var `otherFax`: String?
-    // Callback phone of a personal contact
+    /*
+    Callback phone of a personal contact
+    */
     open var `callbackPhone`: String?
-    // Email of a personal contact
+    /*
+    Email of a personal contact
+    */
     open var `email`: String?
-    // The 2-d email of a personal contact
+    /*
+    The 2-d email of a personal contact
+    */
     open var `email2`: String?
-    // The 3-d email of a personal contact
+    /*
+    The 3-d email of a personal contact
+    */
     open var `email3`: String?
-    // Home address of a personal contact
+    /*
+    Home address of a personal contact
+    */
     open var `homeAddress`: ContactAddressInfo?
-    // Business address of a personal contact
+    /*
+    Business address of a personal contact
+    */
     open var `businessAddress`: ContactAddressInfo?
-    // Other address of a personal contact
+    /*
+    Other address of a personal contact
+    */
     open var `otherAddress`: ContactAddressInfo?
-    // Date of birth of a personal contact in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    /*
+    Date of birth of a personal contact in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    */
     open var `birthday`: String?
-    // Web page of a personal contact
+    /*
+    Web page of a personal contact
+    */
     open var `webPage`: String?
-    // Notes of a personal contact
+    /*
+    Notes of a personal contact
+    */
     open var `notes`: String?
     public init() {
     }

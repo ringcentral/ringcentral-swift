@@ -7,47 +7,26 @@ open class CompanyPagerPath: PathSegment {
             return "company-pager"
         }
     }
-    // Create and Send Pager Message
-    open func post(callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: MessageInfo?, error) in
+    /*
+    <p style='font-style:italic;'>Since 1.0.2</p><p>Creates and sends a pager message.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>InternalMessages</td><td>Sending and receiving intra-company text messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    */
+    open func post(callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: GetMessageInfoResponse?, error) in
             callback(t, error)
         }
     }
-    // Create and Send Pager Message
-    open func post(parameters: Parameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: MessageInfo?, error) in
+    /*
+    <p style='font-style:italic;'>Since 1.0.2</p><p>Creates and sends a pager message.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>InternalMessages</td><td>Sending and receiving intra-company text messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    */
+    open func post(parameters: Parameters, callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: GetMessageInfoResponse?, error) in
             callback(t, error)
         }
     }
-    // Create and Send Pager Message
-    open func post(parameters: PostParameters, callback: @escaping (_ t: MessageInfo?, _ error: HTTPError?) -> Void) {
+    /*
+    <p style='font-style:italic;'>Since 1.0.2</p><p>Creates and sends a pager message.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>InternalMessages</td><td>Sending and receiving intra-company text messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    */
+    open func post(parameters: CreatePagerMessageRequest, callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
-    }
-    open class PostParameters: Mappable {
-        // Sender of a pager message. The extensionNumber property must be filled
-        open var `from`: CallerInfo?
-        // Internal identifier of a message this message replies to
-        open var `replyOn`: Int?
-        // Text of a pager message. Max length is 1024 symbols (2-byte UTF-16 encoded). If a character is encoded in 4 bytes in UTF-16 it is treated as 2 characters, thus restricting the maximum message length to 512 symbols
-        open var `text`: String?
-        // Optional if replyOn parameter is specified. Receiver of a pager message. The extensionNumber property must be filled
-        open var `to`: [CallerInfo]?
-        public init() {
-        }
-        required public init?(map: Map) {
-        }
-        convenience public init(from: CallerInfo? = nil, replyOn: Int? = nil, text: String? = nil, to: [CallerInfo]? = nil) {
-            self.init()
-            self.from = `from`
-            self.replyOn = `replyOn`
-            self.text = `text`
-            self.to = `to`
-        }
-        open func mapping(map: Map) {
-            `from` <- map["from"]
-            `replyOn` <- map["replyOn"]
-            `text` <- map["text"]
-            `to` <- map["to"]
-        }
     }
 }
