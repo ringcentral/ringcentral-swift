@@ -8,7 +8,7 @@ open class LicenseTypes: Mappable {
     /*
     List of supported licenses
     */
-    open var `records`: [LicenseInfo]?
+    open var `records`: [DictionaryLicenseInfo]?
     /*
     Information on paging
     */
@@ -21,7 +21,7 @@ open class LicenseTypes: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, records: [LicenseInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
+    convenience public init(uri: String? = nil, records: [DictionaryLicenseInfo]? = nil, paging: PagingInfo? = nil, navigation: NavigationInfo? = nil) {
         self.init()
         self.uri = `uri`
         self.records = `records`

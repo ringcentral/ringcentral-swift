@@ -21,17 +21,22 @@ open class NotificationDeliveryModeRequest: Mappable {
     For 'PubNub/APNS' and 'PubNub/GCM' transport types. Identifier of a registration
     */
     open var `registrationId`: String?
+    /*
+    For 'Webhook' transport type. Subscription verification key ensuring data security
+    */
+    open var `verificationToken`: String?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(transportType: String? = nil, address: String? = nil, encryption: Bool? = nil, certificateName: String? = nil, registrationId: String? = nil) {
+    convenience public init(transportType: String? = nil, address: String? = nil, encryption: Bool? = nil, certificateName: String? = nil, registrationId: String? = nil, verificationToken: String? = nil) {
         self.init()
         self.transportType = `transportType`
         self.address = `address`
         self.encryption = `encryption`
         self.certificateName = `certificateName`
         self.registrationId = `registrationId`
+        self.verificationToken = `verificationToken`
     }
     open func mapping(map: Map) {
         `transportType` <- map["transportType"]
@@ -39,5 +44,6 @@ open class NotificationDeliveryModeRequest: Mappable {
         `encryption` <- map["encryption"]
         `certificateName` <- map["certificateName"]
         `registrationId` <- map["registrationId"]
+        `verificationToken` <- map["verificationToken"]
     }
 }

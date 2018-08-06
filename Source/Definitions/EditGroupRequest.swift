@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class EditGroupRequest: Mappable {
     /*
-    List of users to be added to the team
+    List of users to be added to a team
     */
     open var `addedPersonIds`: [String]?
     /*

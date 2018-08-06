@@ -8,6 +8,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
+    Checks if a certain user permission is activated for a particular extension.
     */
     open func get(callback: @escaping (_ t: AuthProfileCheckResource?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: AuthProfileCheckResource?, error) in
@@ -15,6 +16,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
+    Checks if a certain user permission is activated for a particular extension.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: AuthProfileCheckResource?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: AuthProfileCheckResource?, error) in
@@ -22,6 +24,7 @@ open class CheckPath: PathSegment {
         }
     }
     /*
+    Checks if a certain user permission is activated for a particular extension.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: AuthProfileCheckResource?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)

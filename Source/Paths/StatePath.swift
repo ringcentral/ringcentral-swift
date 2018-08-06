@@ -8,7 +8,7 @@ open class StatePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the states of a certain country
     */
     open func list(callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetStateListResponse?, error) in
@@ -16,7 +16,7 @@ open class StatePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the states of a certain country
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetStateListResponse?, error) in
@@ -24,7 +24,7 @@ open class StatePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the states for a certain country.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the states of a certain country
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetStateListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -35,15 +35,15 @@ open class StatePath: PathSegment {
         */
         open var `countryId`: Int?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*
-        If 'True', the list of states with phone numbers available for buying is returned. The default value is 'False'
+        If 'True', the list of states with phone numbers available for buying is returned
         */
         open var `withPhoneNumbers`: Bool?
         public init() {
@@ -65,7 +65,7 @@ open class StatePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on the required state.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on a specific state.
     */
     open func get(callback: @escaping (_ t: GetStateInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetStateInfoResponse?, error) in

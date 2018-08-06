@@ -6,7 +6,7 @@ open class PagingInfo: Mappable {
     */
     open var `page`: Int?
     /*
-    Current page size, describes how many items are in each page. Default value is 100. Maximum value is 1000. If perPage value in the request is greater than 1000, the maximum value (1000) is applied
+    Current page size, describes how many items are in each page. Maximum value is 1000. If perPage value in the request is greater than 1000, the maximum value (1000) is applied
     */
     open var `perPage`: Int?
     /*

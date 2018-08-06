@@ -6,7 +6,7 @@ open class CustomGreetingRequest: Mappable {
     */
     open var `type`: String?
     /*
-    nformation on an answering rule that the greeting is applied to
+    Information on an answering rule that the greeting is applied to
     */
     open var `answeringRule`: CustomGreetingAnsweringRuleInfoRequest?
     public init() {

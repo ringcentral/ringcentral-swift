@@ -58,14 +58,29 @@ open class CallLogRecord: Mappable {
     */
     open var `transport`: String?
     /*
+    Information about extension on whose behalf a call is initiated. For Secretary call log the Boss extension info is returned
+    */
+    open var `extension`: ActiveCallsRecordExtensionInfo?
+    /*
+    Information on a delegate extension that actually implemented a call action. For Secretary call log the field is returned if the current extension implemented a call. For Boss call log the field contains information on a Secretary extension which actually implemented a call on behalf of the current extension
+    */
+    open var `delegate`: DelegateInfo?
+    /*
     For 'Detailed' view only. Leg description
     */
     open var `legs`: [CallLogRecordLegInfo]?
+    /*
+    */
+    open var `message`: CallLogRecordMessage?
+    /*
+    Returned only if this call was deleted. Value is set to 'True' in this case
+    */
+    open var `deleted`: Bool?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallLogCallerInfo? = nil, to: CallLogCallerInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil, lastModifiedTime: String? = nil, transport: String? = nil, legs: [CallLogRecordLegInfo]? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallLogCallerInfo? = nil, to: CallLogCallerInfo? = nil, type: String? = nil, direction: String? = nil, action: String? = nil, result: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil, lastModifiedTime: String? = nil, transport: String? = nil, extension: ActiveCallsRecordExtensionInfo? = nil, delegate: DelegateInfo? = nil, legs: [CallLogRecordLegInfo]? = nil, message: CallLogRecordMessage? = nil, deleted: Bool? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
@@ -81,7 +96,11 @@ open class CallLogRecord: Mappable {
         self.recording = `recording`
         self.lastModifiedTime = `lastModifiedTime`
         self.transport = `transport`
+        self.extension = `extension`
+        self.delegate = `delegate`
         self.legs = `legs`
+        self.message = `message`
+        self.deleted = `deleted`
     }
     open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
@@ -98,6 +117,10 @@ open class CallLogRecord: Mappable {
         `recording` <- map["recording"]
         `lastModifiedTime` <- map["lastModifiedTime"]
         `transport` <- map["transport"]
+        `extension` <- map["extension"]
+        `delegate` <- map["delegate"]
         `legs` <- map["legs"]
+        `message` <- map["message"]
+        `deleted` <- map["deleted"]
     }
 }

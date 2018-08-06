@@ -8,34 +8,34 @@ open class MembersPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns call queue group members.
     */
-    open func list(callback: @escaping (_ t: DepartmentMemberList?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false)) { (t: DepartmentMemberList?, error) in
+    open func list(callback: @escaping (_ t: CallQueueMembers?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: CallQueueMembers?, error) in
             callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns call queue group members.
     */
-    open func list(parameters: Parameters, callback: @escaping (_ t: DepartmentMemberList?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: DepartmentMemberList?, error) in
+    open func list(parameters: Parameters, callback: @escaping (_ t: CallQueueMembers?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: CallQueueMembers?, error) in
             callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns call queue group members.
     */
-    open func list(parameters: ListParameters, callback: @escaping (_ t: DepartmentMemberList?, _ error: HTTPError?) -> Void) {
+    open func list(parameters: ListParameters, callback: @escaping (_ t: CallQueueMembers?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are allowed
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         public init() {

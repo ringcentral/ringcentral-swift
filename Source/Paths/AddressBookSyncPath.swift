@@ -8,30 +8,30 @@ open class AddressBookSyncPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes user contacts.
     */
-    open func get(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.getString(self.endpoint()) { string, error in
-            callback(error)
+    open func list(callback: @escaping (_ t: AddressBookSync?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: AddressBookSync?, error) in
+            callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes user contacts.
     */
-    open func get(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.getString(self.endpoint(), parameters: parameters) { string, error in
-            callback(error)
+    open func list(parameters: Parameters, callback: @escaping (_ t: AddressBookSync?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: AddressBookSync?, error) in
+            callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes user contacts.
     */
-    open func get(parameters: GetParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
-        get(parameters: parameters.toParameters(), callback: callback)
+    open func list(parameters: ListParameters, callback: @escaping (_ t: AddressBookSync?, _ error: HTTPError?) -> Void) {
+        list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class GetParameters: Mappable {
+    open class ListParameters: Mappable {
         /*
-        Type of synchronization. The default value is 'FSync'
+        Type of synchronization
         */
         open var `syncType`: [String]?
         /*
@@ -39,7 +39,7 @@ open class AddressBookSyncPath: PathSegment {
         */
         open var `syncToken`: String?
         /*
-        Number of records per page to be returned. The max number of records is 250, which is also the default. For FSync ??? if the number of records exceeds the parameter value (either specified or default), all of the pages can be retrieved in several requests. For ISync ??? if the number of records exceeds the page size, the number of incoming changes to this number is limited
+        Number of records per page to be returned. The max number of records is 250, which is also the default. For 'FSync' if the number of records exceeds the parameter value (either specified or default), all of the pages can be retrieved in several requests. For 'ISync' if the number of records exceeds the page size, the number of incoming changes to this number is limited
         */
         open var `perPage`: Int?
         /*

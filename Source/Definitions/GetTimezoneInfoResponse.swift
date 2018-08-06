@@ -6,15 +6,15 @@ open class GetTimezoneInfoResponse: Mappable {
     */
     open var `id`: String?
     /*
-    Canonical URI of the timezone
+    Canonical URI of a timezone
     */
     open var `uri`: String?
     /*
-    Short name of the timezone
+    Short name of a timezone
     */
     open var `name`: String?
     /*
-    Description of the timezone
+    Description of a timezone
     */
     open var `description`: String?
     public init() {

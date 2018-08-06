@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 open class GetCallRecordingResponse: Mappable {
     /*
-    Internal identifier of the call recording
+    Internal identifier of a call recording
     */
     open var `id`: String?
     /*
-    Link to the call recording binary content
+    Link to a call recording binary content
     */
     open var `contentUri`: String?
     /*

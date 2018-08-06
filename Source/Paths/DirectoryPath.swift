@@ -13,10 +13,4 @@ open class DirectoryPath: PathSegment {
     open func `federation`() -> FederationPath {
         return FederationPath(parent: self)
     }
-    open func `federationConflicts`() -> FederationConflictsPath {
-        return FederationConflictsPath(parent: self)
-    }
-    open func `extensionNumbers`() -> ExtensionNumbersPath {
-        return ExtensionNumbersPath(parent: self)
-    }
 }

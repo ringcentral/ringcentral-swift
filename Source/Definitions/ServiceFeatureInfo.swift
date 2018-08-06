@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class ServiceFeatureInfo: Mappable {
     /*
-    Feature name, see all available values in Service Feature List
+    Feature name
     */
     open var `featureName`: String?
     /*

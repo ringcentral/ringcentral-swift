@@ -42,6 +42,10 @@ open class GetPresenceInfo: Mappable {
     */
     open var `userStatus`: String?
     /*
+    Zoom Meetings presence
+    */
+    open var `meetingsStatus`: String?
+    /*
     Information on active calls
     */
     open var `activeCalls`: [ActiveCallInfo]?
@@ -49,7 +53,7 @@ open class GetPresenceInfo: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, allowSeeMyPresence: Bool? = nil, dndStatus: String? = nil, extension: GetPresenceExtensionInfo? = nil, message: String? = nil, pickUpCallsOnHold: Bool? = nil, presenceStatus: String? = nil, ringOnMonitoredCall: Bool? = nil, telephonyStatus: String? = nil, userStatus: String? = nil, activeCalls: [ActiveCallInfo]? = nil) {
+    convenience public init(uri: String? = nil, allowSeeMyPresence: Bool? = nil, dndStatus: String? = nil, extension: GetPresenceExtensionInfo? = nil, message: String? = nil, pickUpCallsOnHold: Bool? = nil, presenceStatus: String? = nil, ringOnMonitoredCall: Bool? = nil, telephonyStatus: String? = nil, userStatus: String? = nil, meetingsStatus: String? = nil, activeCalls: [ActiveCallInfo]? = nil) {
         self.init()
         self.uri = `uri`
         self.allowSeeMyPresence = `allowSeeMyPresence`
@@ -61,6 +65,7 @@ open class GetPresenceInfo: Mappable {
         self.ringOnMonitoredCall = `ringOnMonitoredCall`
         self.telephonyStatus = `telephonyStatus`
         self.userStatus = `userStatus`
+        self.meetingsStatus = `meetingsStatus`
         self.activeCalls = `activeCalls`
     }
     open func mapping(map: Map) {
@@ -74,6 +79,7 @@ open class GetPresenceInfo: Mappable {
         `ringOnMonitoredCall` <- map["ringOnMonitoredCall"]
         `telephonyStatus` <- map["telephonyStatus"]
         `userStatus` <- map["userStatus"]
+        `meetingsStatus` <- map["meetingsStatus"]
         `activeCalls` <- map["activeCalls"]
     }
 }

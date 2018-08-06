@@ -8,7 +8,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Returns posts which are available for the current user (by group ID). The maximum number of posts returned is 250.
     */
     open func list(callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GlipPosts?, error) in
@@ -16,7 +16,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Returns posts which are available for the current user (by group ID). The maximum number of posts returned is 250.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GlipPosts?, error) in
@@ -24,42 +24,36 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns list of posts.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Returns posts which are available for the current user (by group ID). The maximum number of posts returned is 250.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GlipPosts?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Identifier of a group to filter posts
-        */
-        open var `groupId`: String?
-        /*
-        Token of a page to be returned, see Glip Navigation Info
-        */
-        open var `pageToken`: String?
-        /*
-        Max numbers of records to be returned. The default/maximum value is 250
+        Max number of records to be returned
         */
         open var `recordCount`: Int?
+        /*
+        Pagination token
+        */
+        open var `pageToken`: String?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(groupId: String? = nil, pageToken: String? = nil, recordCount: Int? = nil) {
+        convenience public init(recordCount: Int? = nil, pageToken: String? = nil) {
             self.init()
-            self.groupId = `groupId`
-            self.pageToken = `pageToken`
             self.recordCount = `recordCount`
+            self.pageToken = `pageToken`
         }
         open func mapping(map: Map) {
-            `groupId` <- map["groupId"]
-            `pageToken` <- map["pageToken"]
             `recordCount` <- map["recordCount"]
+            `pageToken` <- map["pageToken"]
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Creates a new post in a group specified.
     */
     open func post(callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipPostInfo?, error) in
@@ -67,7 +61,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Creates a new post in a group specified.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipPostInfo?, error) in
@@ -75,7 +69,7 @@ open class PostsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a post.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Creates a new post in a group specified.
     */
     open func post(parameters: GlipCreatePost, callback: @escaping (_ t: GlipPostInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

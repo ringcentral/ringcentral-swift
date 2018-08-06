@@ -2,30 +2,42 @@ import Foundation
 import ObjectMapper
 open class MessageEvent: Mappable {
     /*
-    Internal identifier of an extension. Optional parameter
+    Universally unique identifier of a notification
     */
-    open var `extensionId`: Int?
+    open var `uuid`: String?
     /*
-    The datetime when the message was last modified in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
+    Event filter URI
     */
-    open var `lastUpdated`: String?
+    open var `event`: String?
     /*
-    Message changes
+    Datetime of sending a notification in [ISO 8601](shttps://en.wikipedia.org/wiki/ISO_8601) format including timezone, for example *2016-03-10T18:07:52.534Z*
     */
-    open var `changes`: [MessageChange]?
+    open var `timestamp`: String?
+    /*
+    Internal identifier of a subscription
+    */
+    open var `subscriptionId`: String?
+    /*
+    Notification payload body
+    */
+    open var `body`: MessageEventBody?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(extensionId: Int? = nil, lastUpdated: String? = nil, changes: [MessageChange]? = nil) {
+    convenience public init(uuid: String? = nil, event: String? = nil, timestamp: String? = nil, subscriptionId: String? = nil, body: MessageEventBody? = nil) {
         self.init()
-        self.extensionId = `extensionId`
-        self.lastUpdated = `lastUpdated`
-        self.changes = `changes`
+        self.uuid = `uuid`
+        self.event = `event`
+        self.timestamp = `timestamp`
+        self.subscriptionId = `subscriptionId`
+        self.body = `body`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
-        `lastUpdated` <- map["lastUpdated"]
-        `changes` <- map["changes"]
+        `uuid` <- map["uuid"]
+        `event` <- map["event"]
+        `timestamp` <- map["timestamp"]
+        `subscriptionId` <- map["subscriptionId"]
+        `body` <- map["body"]
     }
 }

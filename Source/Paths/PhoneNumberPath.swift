@@ -8,7 +8,7 @@ open class PhoneNumberPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.
     */
     open func list(callback: @escaping (_ t: GetExtensionPhoneNumbersResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetExtensionPhoneNumbersResponse?, error) in
@@ -16,7 +16,7 @@ open class PhoneNumberPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetExtensionPhoneNumbersResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetExtensionPhoneNumbersResponse?, error) in
@@ -24,14 +24,14 @@ open class PhoneNumberPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of phone numbers that are used by a particular extension, and can be filtered by the phone number type. The returned list contains all numbers which are directly mapped to a given extension plus the features and also company-level numbers which may be used when performing different operations on behalf of this extension.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetExtensionPhoneNumbersResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Usage type of the phone number
+        Usage type of a phone number
         */
         open var `usageType`: [String]?
         /*
@@ -59,10 +59,10 @@ open class PhoneNumberPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the phone number(s) belonging to a certain account or extension by phoneNumberId(s). Batch request is supported.
     */
-    open func get(callback: @escaping (_ t: PhoneNumberInfo?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: PhoneNumberInfo?, error) in
+    open func get(callback: @escaping (_ t: CompanyPhoneNumberInfo?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: CompanyPhoneNumberInfo?, error) in
             callback(t, error)
         }
     }

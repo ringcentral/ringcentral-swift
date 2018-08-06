@@ -7,6 +7,9 @@ open class ScimPath: PathSegment {
             return "scim"
         }
     }
+    open func `serviceProviderConfig`() -> ServiceProviderConfigPath {
+        return ServiceProviderConfigPath(parent: self)
+    }
     open func `users`(_ _id: String? = nil) -> UsersPath {
         return UsersPath(parent: self, _id: _id)
     }

@@ -8,7 +8,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns user personal contacts.
     */
     open func list(callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ContactList?, error) in
@@ -16,7 +16,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns user personal contacts.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ContactList?, error) in
@@ -24,7 +24,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns user personal contacts.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ContactList?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -35,15 +35,15 @@ open class ContactPath: PathSegment {
         */
         open var `startsWith`: String?
         /*
-        Sorts results by the specified property. The default is 'First Name'
+        Sorts results by the specified property
         */
         open var `sortBy`: [String]?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*
@@ -70,7 +70,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Creates personal user contact.
     */
     open func post(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: PersonalContactResource?, error) in
@@ -78,7 +78,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Creates personal user contact.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: PersonalContactResource?, error) in
@@ -86,13 +86,30 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Creates personal user contact.
     */
-    open func post(parameters: PersonalContactResource, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: PostParameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
+    open class PostParameters: Mappable {
+        /*
+        A country code value complying with the [ISO 3166-1 alpha-2](https://ru.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. The default value is home country of the current extension
+        */
+        open var `dialingPlan`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
+        convenience public init(dialingPlan: String? = nil) {
+            self.init()
+            self.dialingPlan = `dialingPlan`
+        }
+        open func mapping(map: Map) {
+            `dialingPlan` <- map["dialingPlan"]
+        }
+    }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns contact(s) by ID(s). Batch request is supported.
     */
     open func get(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: PersonalContactResource?, error) in
@@ -100,7 +117,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Updates personal contact information by contact ID(s). Batch request is supported
     */
     open func put(callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: PersonalContactResource?, error) in
@@ -108,7 +125,7 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Updates personal contact information by contact ID(s). Batch request is supported
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: PersonalContactResource?, error) in
@@ -116,13 +133,30 @@ open class ContactPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Updates personal contact information by contact ID(s). Batch request is supported
     */
-    open func put(parameters: PersonalContactResource, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
+    open func put(parameters: PutParameters, callback: @escaping (_ t: PersonalContactResource?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)
     }
+    open class PutParameters: Mappable {
+        /*
+        A country code value complying with the [ISO 3166-1 alpha-2](https://ru.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. The default value is home country of the current extension
+        */
+        open var `dialingPlan`: String?
+        public init() {
+        }
+        required public init?(map: Map) {
+        }
+        convenience public init(dialingPlan: String? = nil) {
+            self.init()
+            self.dialingPlan = `dialingPlan`
+        }
+        open func mapping(map: Map) {
+            `dialingPlan` <- map["dialingPlan"]
+        }
+    }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Contacts</td><td>Creating, viewing, editing and deleting user personal contacts</td></tr><tr><td class='code'>ReadContacts</td><td>Viewing user personal contacts</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Deletes contact(s) by ID(s). Batch request is supported.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in

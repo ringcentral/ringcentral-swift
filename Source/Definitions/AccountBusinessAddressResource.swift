@@ -6,7 +6,7 @@ open class AccountBusinessAddressResource: Mappable {
     open var `uri`: String?
     /*
     */
-    open var `businessAddress`: ContactAddressInfo?
+    open var `businessAddress`: ContactBusinessAddressInfo?
     /*
     */
     open var `company`: String?
@@ -17,7 +17,7 @@ open class AccountBusinessAddressResource: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, businessAddress: ContactAddressInfo? = nil, company: String? = nil, email: String? = nil) {
+    convenience public init(uri: String? = nil, businessAddress: ContactBusinessAddressInfo? = nil, company: String? = nil, email: String? = nil) {
         self.init()
         self.uri = `uri`
         self.businessAddress = `businessAddress`

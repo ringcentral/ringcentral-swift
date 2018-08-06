@@ -10,8 +10,14 @@ open class GroupsPath: PathSegment {
     open func `bulkAssign`() -> BulkAssignPath {
         return BulkAssignPath(parent: self)
     }
+    open func `posts`() -> PostsPath {
+        return PostsPath(parent: self)
+    }
+    open func `webhooks`(_ _id: String? = nil) -> WebhooksPath {
+        return WebhooksPath(parent: self, _id: _id)
+    }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns the list of groups associated with the user.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Returns the list of groups where the user is a member.
     */
     open func list(callback: @escaping (_ t: GlipGroupList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GlipGroupList?, error) in
@@ -19,7 +25,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns the list of groups associated with the user.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Returns the list of groups where the user is a member.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GlipGroupList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GlipGroupList?, error) in
@@ -27,42 +33,42 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns the list of groups associated with the user.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Returns the list of groups where the user is a member.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GlipGroupList?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Type of a group. 'PrivateChat' is a group of 2 members. 'Group' is a chat of 2 and more participants, the membership cannot be changed after group creation. 'Team' is a chat of 1 and more participants, the membership can be modified in future
+        Type of groups to be fetched (by default all type of groups will be fetched)
         */
-        open var `type`: [String]?
+        open var `type`: String?
         /*
-        Token of a page to be returned, see Glip Navigation Info
+        Max number of groups to be fetched by one request (Not more than 250).
+        */
+        open var `recordCount`: Double?
+        /*
+        Pagination token.
         */
         open var `pageToken`: String?
-        /*
-        Max numbers of records to be returned. The default/maximum value is 250
-        */
-        open var `recordCount`: Int?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(type: [String]? = nil, pageToken: String? = nil, recordCount: Int? = nil) {
+        convenience public init(type: String? = nil, recordCount: Double? = nil, pageToken: String? = nil) {
             self.init()
             self.type = `type`
-            self.pageToken = `pageToken`
             self.recordCount = `recordCount`
+            self.pageToken = `pageToken`
         }
         open func mapping(map: Map) {
             `type` <- map["type"]
-            `pageToken` <- map["pageToken"]
             `recordCount` <- map["recordCount"]
+            `pageToken` <- map["pageToken"]
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a group.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates a new private chat/team.
     */
     open func post(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: GlipGroupInfo?, error) in
@@ -70,7 +76,7 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a group.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates a new private chat/team.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: GlipGroupInfo?, error) in
@@ -78,13 +84,13 @@ open class GroupsPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Creates a group.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates a new private chat/team.
     */
     open func post(parameters: GlipCreateGroup, callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.28 (Release 8.4)</p><p>Returns a group or few groups by ID(s). Batch request is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>Glip</td><td>Availability of Glip</td></tr></tbody></table><h4>API Group</h4><p>Light</p>
+    Returns information about a group or multiple groups by their ID(s). Batch request is supported.
     */
     open func get(callback: @escaping (_ t: GlipGroupInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GlipGroupInfo?, error) in

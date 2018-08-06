@@ -2,6 +2,10 @@ import Foundation
 import ObjectMapper
 open class CompanyAnsweringRuleRequest: Mappable {
     /*
+    Name of an answering rule specified by user. Max number of symbols is 30. The default value is 'My Rule N' where 'N' is the first free number
+    */
+    open var `name`: String?
+    /*
     Specifies if the rule is active or inactive. The default value is 'True'
     */
     open var `enabled`: Bool?
@@ -9,10 +13,6 @@ open class CompanyAnsweringRuleRequest: Mappable {
     Type of an answering rule, the default value is 'Custom' = ['BusinessHours', 'AfterHours', 'Custom']
     */
     open var `type`: String?
-    /*
-    Name of an answering rule specified by user. Max number of symbols is 30. The default value is 'My Rule N' where 'N' is the first free number
-    */
-    open var `name`: String?
     /*
     Answering rule will be applied when calls are received from the specified caller(s)
     */
@@ -41,11 +41,11 @@ open class CompanyAnsweringRuleRequest: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(enabled: Bool? = nil, type: String? = nil, name: String? = nil, callers: [CompanyAnsweringRuleCallersInfoRequest]? = nil, calledNumbers: [CompanyAnsweringRuleCalledNumberInfo]? = nil, schedule: CompanyAnsweringRuleScheduleInfoRequest? = nil, callHandlingAction: String? = nil, extension: CompanyAnsweringRuleCallersInfoRequest? = nil, greetings: [GreetingInfo]? = nil) {
+    convenience public init(name: String? = nil, enabled: Bool? = nil, type: String? = nil, callers: [CompanyAnsweringRuleCallersInfoRequest]? = nil, calledNumbers: [CompanyAnsweringRuleCalledNumberInfo]? = nil, schedule: CompanyAnsweringRuleScheduleInfoRequest? = nil, callHandlingAction: String? = nil, extension: CompanyAnsweringRuleCallersInfoRequest? = nil, greetings: [GreetingInfo]? = nil) {
         self.init()
+        self.name = `name`
         self.enabled = `enabled`
         self.type = `type`
-        self.name = `name`
         self.callers = `callers`
         self.calledNumbers = `calledNumbers`
         self.schedule = `schedule`
@@ -54,9 +54,9 @@ open class CompanyAnsweringRuleRequest: Mappable {
         self.greetings = `greetings`
     }
     open func mapping(map: Map) {
+        `name` <- map["name"]
         `enabled` <- map["enabled"]
         `type` <- map["type"]
-        `name` <- map["name"]
         `callers` <- map["callers"]
         `calledNumbers` <- map["calledNumbers"]
         `schedule` <- map["schedule"]

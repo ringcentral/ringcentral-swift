@@ -22,7 +22,7 @@ open class GetConferencingInfoResponse: Mappable {
     */
     open var `participantCode`: String?
     /*
-    Primary conference phone number for user's home country returned in E.164 (11-digits) format
+    Primary conference phone number for user's home country returned in [E.164](https://www.itu.int/rec/T-REC-E.164-201011-I) (11-digits) format
     */
     open var `phoneNumber`: String?
     /*

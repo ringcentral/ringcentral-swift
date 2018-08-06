@@ -8,7 +8,7 @@ open class MessageSyncPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Synchronizes messages.
     */
     open func list(callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetMessageSyncResponse?, error) in
@@ -16,7 +16,7 @@ open class MessageSyncPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Synchronizes messages.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetMessageSyncResponse?, error) in
@@ -24,7 +24,7 @@ open class MessageSyncPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Provides facilities to synchronize mailbox content stored externally with server state.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Synchronizes messages.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetMessageSyncResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)

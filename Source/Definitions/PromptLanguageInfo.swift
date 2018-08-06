@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 open class PromptLanguageInfo: Mappable {
     /*
-    Link to prompt language
+    Link to a prompt language
     */
     open var `uri`: String?
     /*
-    Internal identifier of an language
+    Internal identifier of a language
     */
     open var `id`: String?
     /*

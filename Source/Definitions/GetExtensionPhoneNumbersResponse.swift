@@ -4,7 +4,7 @@ open class GetExtensionPhoneNumbersResponse: Mappable {
     /*
     List of phone numbers
     */
-    open var `records`: [PhoneNumberInfo]?
+    open var `records`: [UserPhoneNumberInfo]?
     /*
     Information on navigation
     */
@@ -17,7 +17,7 @@ open class GetExtensionPhoneNumbersResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(records: [PhoneNumberInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
+    convenience public init(records: [UserPhoneNumberInfo]? = nil, navigation: NavigationInfo? = nil, paging: PagingInfo? = nil) {
         self.init()
         self.records = `records`
         self.navigation = `navigation`

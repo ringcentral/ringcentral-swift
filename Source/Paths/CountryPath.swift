@@ -8,7 +8,7 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the countries available for calling.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the countries available for calling.
     */
     open func list(callback: @escaping (_ t: GetCountryListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetCountryListResponse?, error) in
@@ -16,7 +16,7 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the countries available for calling.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the countries available for calling.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetCountryListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetCountryListResponse?, error) in
@@ -24,7 +24,7 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the countries available for calling.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all the countries available for calling.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetCountryListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
@@ -43,11 +43,11 @@ open class CountryPath: PathSegment {
         */
         open var `numberSelling`: Bool?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*
@@ -77,7 +77,7 @@ open class CountryPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on the required country.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on a specific country.
     */
     open func get(callback: @escaping (_ t: GetCountryInfoDictionaryResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetCountryInfoDictionaryResponse?, error) in

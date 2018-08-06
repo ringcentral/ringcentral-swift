@@ -14,19 +14,17 @@ open class UserCallLogRecord: Mappable {
     */
     open var `sessionId`: String?
     /*
-    Caller information
     */
-    open var `from`: String?
+    open var `from`: CallLogCallerInfo?
     /*
-    Callee information
     */
-    open var `to`: String?
+    open var `to`: CallLogCallerInfo?
     /*
     Call type = ['Voice', 'Fax']
     */
     open var `type`: String?
     /*
-    Call direction = ['Inbound', 'Outbound']
+    Call direction
     */
     open var `direction`: String?
     /*
@@ -38,14 +36,13 @@ open class UserCallLogRecord: Mappable {
     */
     open var `duration`: Int?
     /*
-    Call recording data. Returned if the call is recorded. Each call recording is stored in the system for 90 days. But if the number of recordings exceeds the admissible limit (100,000 recordings per account) then the older recordings are replaced with the new ones. Thus a link to an older recording in a certain call log record becomes unavailable
     */
-    open var `recording`: String?
+    open var `recording`: RecordingInfo?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: String? = nil, to: String? = nil, type: String? = nil, direction: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: String? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, sessionId: String? = nil, from: CallLogCallerInfo? = nil, to: CallLogCallerInfo? = nil, type: String? = nil, direction: String? = nil, startTime: String? = nil, duration: Int? = nil, recording: RecordingInfo? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

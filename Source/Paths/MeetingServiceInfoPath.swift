@@ -8,6 +8,7 @@ open class MeetingServiceInfoPath: PathSegment {
         }
     }
     /*
+    Returns information on dial-in numbers for meetings, support and international dial-in numbers URIs and meeting account information.
     */
     open func get(callback: @escaping (_ t: MeetingServiceInfoResource?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: MeetingServiceInfoResource?, error) in

@@ -4,7 +4,7 @@ open class GetExtensionInfoResponse: Mappable {
     /*
     Internal identifier of an extension
     */
-    open var `id`: String?
+    open var `id`: Int?
     /*
     Canonical URI of an extension
     */
@@ -30,7 +30,6 @@ open class GetExtensionInfoResponse: Mappable {
     */
     open var `partnerId`: String?
     /*
-    Extension permissions, corresponding to the Service Web permissions 'Admin' and 'InternationalCalling'
     */
     open var `permissions`: ExtensionPermissions?
     /*
@@ -42,6 +41,9 @@ open class GetExtensionInfoResponse: Mappable {
     */
     open var `references`: [ReferenceInfo]?
     /*
+    */
+    open var `roles`: [Roles]?
+    /*
     Extension region data (timezone, home country, language)
     */
     open var `regionalSettings`: RegionalSettings?
@@ -50,7 +52,7 @@ open class GetExtensionInfoResponse: Mappable {
     */
     open var `serviceFeatures`: [ExtensionServiceFeatureInfo]?
     /*
-    Specifies extension configuration wizard state (web service setup). The default value is 'NotStarted'
+    Specifies extension configuration wizard state (web service setup).
     */
     open var `setupWizardState`: String?
     /*
@@ -68,12 +70,16 @@ open class GetExtensionInfoResponse: Mappable {
     /*
     For Department extension type only. Call queue settings
     */
-    open var `callQueueInfo`: CallQueueInfo?
+    open var `callQueueExtensionInfo`: CallQueueExtensionInfo?
+    /*
+    Hides extension from showing in company directory. Supported for extensions of User type only
+    */
+    open var `hidden`: Bool?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, contact: ContactInfo? = nil, departments: [DepartmentInfo]? = nil, extensionNumber: String? = nil, name: String? = nil, partnerId: String? = nil, permissions: ExtensionPermissions? = nil, profileImage: ProfileImageInfo? = nil, references: [ReferenceInfo]? = nil, regionalSettings: RegionalSettings? = nil, serviceFeatures: [ExtensionServiceFeatureInfo]? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, type: String? = nil, callQueueInfo: CallQueueInfo? = nil) {
+    convenience public init(id: Int? = nil, uri: String? = nil, contact: ContactInfo? = nil, departments: [DepartmentInfo]? = nil, extensionNumber: String? = nil, name: String? = nil, partnerId: String? = nil, permissions: ExtensionPermissions? = nil, profileImage: ProfileImageInfo? = nil, references: [ReferenceInfo]? = nil, roles: [Roles]? = nil, regionalSettings: RegionalSettings? = nil, serviceFeatures: [ExtensionServiceFeatureInfo]? = nil, setupWizardState: String? = nil, status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, type: String? = nil, callQueueExtensionInfo: CallQueueExtensionInfo? = nil, hidden: Bool? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
@@ -85,13 +91,15 @@ open class GetExtensionInfoResponse: Mappable {
         self.permissions = `permissions`
         self.profileImage = `profileImage`
         self.references = `references`
+        self.roles = `roles`
         self.regionalSettings = `regionalSettings`
         self.serviceFeatures = `serviceFeatures`
         self.setupWizardState = `setupWizardState`
         self.status = `status`
         self.statusInfo = `statusInfo`
         self.type = `type`
-        self.callQueueInfo = `callQueueInfo`
+        self.callQueueExtensionInfo = `callQueueExtensionInfo`
+        self.hidden = `hidden`
     }
     open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
@@ -104,12 +112,14 @@ open class GetExtensionInfoResponse: Mappable {
         `permissions` <- map["permissions"]
         `profileImage` <- map["profileImage"]
         `references` <- map["references"]
+        `roles` <- map["roles"]
         `regionalSettings` <- map["regionalSettings"]
         `serviceFeatures` <- map["serviceFeatures"]
         `setupWizardState` <- map["setupWizardState"]
         `status` <- map["status"]
         `statusInfo` <- map["statusInfo"]
         `type` <- map["type"]
-        `callQueueInfo` <- map["callQueueInfo"]
+        `callQueueExtensionInfo` <- map["callQueueExtensionInfo"]
+        `hidden` <- map["hidden"]
     }
 }

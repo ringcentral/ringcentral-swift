@@ -6,7 +6,6 @@ open class GlipGroupList: Mappable {
     */
     open var `records`: [GlipGroupInfo]?
     /*
-    Information on navigation
     */
     open var `navigation`: GlipNavigationInfo?
     public init() {

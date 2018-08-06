@@ -6,7 +6,7 @@ open class MakeRingOutRequest: Mappable {
     */
     open var `from`: MakeRingOutCallerInfoRequestFrom?
     /*
-    Phone number of the called party. This number corresponds to the 2nd leg of the RingOut call
+    Phone number of the called party. This number corresponds to the 2nd leg of a RingOut call
     */
     open var `to`: MakeRingOutCallerInfoRequestTo?
     /*

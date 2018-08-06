@@ -45,14 +45,13 @@ open class ExtensionUpdateRequest: Mappable {
     */
     open var `callQueueInfo`: CallQueueInfoRequest?
     /*
-    For NotActivated extensions only. Welcome email setting
     */
-    open var `transition`: String?
+    open var `transition`: [UserTransitionInfo]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, reason: String? = nil, comment: String? = nil, extensionNumber: String? = nil, contact: ContactInfoUpdateRequest? = nil, regionalSettings: ExtensionRegionalSettingRequest? = nil, setupWizardState: String? = nil, partnerId: String? = nil, ivrPin: String? = nil, password: String? = nil, callQueueInfo: CallQueueInfoRequest? = nil, transition: String? = nil) {
+    convenience public init(status: String? = nil, statusInfo: ExtensionStatusInfo? = nil, reason: String? = nil, comment: String? = nil, extensionNumber: String? = nil, contact: ContactInfoUpdateRequest? = nil, regionalSettings: ExtensionRegionalSettingRequest? = nil, setupWizardState: String? = nil, partnerId: String? = nil, ivrPin: String? = nil, password: String? = nil, callQueueInfo: CallQueueInfoRequest? = nil, transition: [UserTransitionInfo]? = nil) {
         self.init()
         self.status = `status`
         self.statusInfo = `statusInfo`

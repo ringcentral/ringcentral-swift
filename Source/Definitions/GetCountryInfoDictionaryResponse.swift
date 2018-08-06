@@ -10,7 +10,7 @@ open class GetCountryInfoDictionaryResponse: Mappable {
     */
     open var `uri`: String?
     /*
-    Country calling code defined by ITU-T recommendations E.123 and E.164, see Calling Codes
+    Country calling code defined by ITU-T recommendations [E.123](https://www.itu.int/rec/T-REC-E.123-200102-I/en) and [E.164](https://www.itu.int/rec/T-REC-E.164-201011-I)
     */
     open var `callingCode`: String?
     /*
@@ -18,7 +18,7 @@ open class GetCountryInfoDictionaryResponse: Mappable {
     */
     open var `emergencyCalling`: Bool?
     /*
-    Country code according to the ISO standard, see ISO 3166
+    Country code according to the ISO standard, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html)
     */
     open var `isoCode`: String?
     /*

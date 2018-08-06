@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class GetExtensionGrantListResponse: Mappable {
     /*
-    List of extension grants with the data
+    List of extension grants with details
     */
     open var `records`: [GrantInfo]?
     /*

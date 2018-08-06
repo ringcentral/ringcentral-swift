@@ -6,12 +6,12 @@ open class RecordsCollectionResourceSubscriptionResponse: Mappable {
     open var `uri`: String?
     /*
     */
-    open var `records`: [SubscriptionResponse]?
+    open var `records`: [SubscriptionInfo]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, records: [SubscriptionResponse]? = nil) {
+    convenience public init(uri: String? = nil, records: [SubscriptionInfo]? = nil) {
         self.init()
         self.uri = `uri`
         self.records = `records`

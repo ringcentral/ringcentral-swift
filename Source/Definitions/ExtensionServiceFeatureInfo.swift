@@ -6,7 +6,7 @@ open class ExtensionServiceFeatureInfo: Mappable {
     */
     open var `enabled`: Bool?
     /*
-    Feature name, see all available values in Service Feature List
+    Feature name
     */
     open var `featureName`: String?
     /*

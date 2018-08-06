@@ -8,7 +8,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Returns the information on the Free Conference Calling (FCC) feature for a given extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on the Free Conference Calling (FCC) feature for a given extension.
     */
     open func get(callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetConferencingInfoResponse?, error) in
@@ -16,7 +16,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Returns the information on the Free Conference Calling (FCC) feature for a given extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on the Free Conference Calling (FCC) feature for a given extension.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: GetConferencingInfoResponse?, error) in
@@ -24,7 +24,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.4 (Release 5.13)</p><p>Returns the information on the Free Conference Calling (FCC) feature for a given extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on the Free Conference Calling (FCC) feature for a given extension.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
@@ -47,7 +47,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates the default conferencing number for the current extension. The number can be selected from conferencing numbers of the current extension. Updates the setting, allowing participants join the conference before host.
     */
     open func put(callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: GetConferencingInfoResponse?, error) in
@@ -55,7 +55,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates the default conferencing number for the current extension. The number can be selected from conferencing numbers of the current extension. Updates the setting, allowing participants join the conference before host.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: GetConferencingInfoResponse?, error) in
@@ -63,7 +63,7 @@ open class ConferencingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates the default conferencing number for the current extension. The number can be selected from conferencing numbers of the current extension. Updates the setting, allowing participants join the conference before host.
     */
     open func put(parameters: UpdateConferencingInfoRequest, callback: @escaping (_ t: GetConferencingInfoResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

@@ -2,24 +2,42 @@ import Foundation
 import ObjectMapper
 open class ExtensionInfoEvent: Mappable {
     /*
-    Internal identifier of an extension
+    Universally unique identifier of a notification
     */
-    open var `extensionId`: String?
+    open var `uuid`: String?
     /*
-    Type of extension info change
+    Event filter URI
     */
-    open var `eventType`: String?
+    open var `event`: String?
+    /*
+    Datetime of sending a notification in [ISO 8601](shttps://en.wikipedia.org/wiki/ISO_8601) format including timezone, for example *2016-03-10T18:07:52.534Z*
+    */
+    open var `timestamp`: String?
+    /*
+    Internal identifier of a subscription
+    */
+    open var `subscriptionId`: String?
+    /*
+    Notification payload body
+    */
+    open var `body`: ExtensionInfoEventBody?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(extensionId: String? = nil, eventType: String? = nil) {
+    convenience public init(uuid: String? = nil, event: String? = nil, timestamp: String? = nil, subscriptionId: String? = nil, body: ExtensionInfoEventBody? = nil) {
         self.init()
-        self.extensionId = `extensionId`
-        self.eventType = `eventType`
+        self.uuid = `uuid`
+        self.event = `event`
+        self.timestamp = `timestamp`
+        self.subscriptionId = `subscriptionId`
+        self.body = `body`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
-        `eventType` <- map["eventType"]
+        `uuid` <- map["uuid"]
+        `event` <- map["event"]
+        `timestamp` <- map["timestamp"]
+        `subscriptionId` <- map["subscriptionId"]
+        `body` <- map["body"]
     }
 }

@@ -8,7 +8,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 8.2 (Release 1.0.26)</p><p>Returns a list of predefined standard greetings. Please note: Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>View Greetings</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns a list of predefined standard greetings. Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.
     */
     open func list(callback: @escaping (_ t: DictionaryGreetingList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: DictionaryGreetingList?, error) in
@@ -16,7 +16,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 8.2 (Release 1.0.26)</p><p>Returns a list of predefined standard greetings. Please note: Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>View Greetings</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns a list of predefined standard greetings. Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: DictionaryGreetingList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: DictionaryGreetingList?, error) in
@@ -24,18 +24,18 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 8.2 (Release 1.0.26)</p><p>Returns a list of predefined standard greetings. Please note: Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>View Greetings</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns a list of predefined standard greetings. Custom greetings recorded by user are not returned in response to this request. See Get Extension Custom Greetings.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: DictionaryGreetingList?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted.
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items).
         */
         open var `perPage`: Int?
         /*
@@ -65,7 +65,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 8.2 (Release 1.0.26)</p><p>Returns a standard greeting by ID</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>View Greetings</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Returns a standard greeting by ID.
     */
     open func get(callback: @escaping (_ t: DictionaryGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: DictionaryGreetingInfo?, error) in
@@ -73,6 +73,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
+    Creates a custom company greeting.
     */
     open func post(callback: @escaping (_ t: CustomCompanyGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: CustomCompanyGreetingInfo?, error) in
@@ -80,6 +81,7 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
+    Creates a custom company greeting.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: CustomCompanyGreetingInfo?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: CustomCompanyGreetingInfo?, error) in
@@ -87,8 +89,9 @@ open class GreetingPath: PathSegment {
         }
     }
     /*
+    Creates a custom company greeting.
     */
-    open func post(parameters: CustomGreetingRequest, callback: @escaping (_ t: CustomCompanyGreetingInfo?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: CustomCompanyGreetingRequest, callback: @escaping (_ t: CustomCompanyGreetingInfo?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
     }
 }

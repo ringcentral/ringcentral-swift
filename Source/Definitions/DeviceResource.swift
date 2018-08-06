@@ -14,11 +14,11 @@ open class DeviceResource: Mappable {
     */
     open var `sku`: String?
     /*
-    Device type. The default value is 'HardPhone'
+    Device type
     */
     open var `type`: String?
     /*
-    Status of a device = ['Online', 'Offline']
+    Status of a device
     */
     open var `status`: String?
     /*
@@ -36,15 +36,15 @@ open class DeviceResource: Mappable {
     /*
     HardPhone model information
     */
-    open var `model`: DeviceModelResource?
+    open var `model`: ModelInfo?
     /*
     This attribute can be omitted for unassigned devices
     */
-    open var `extension`: ExtensionResource?
+    open var `extension`: ExtensionResourceIntId?
     /*
     Phone lines information
     */
-    open var `phoneLines`: PhoneLineResource?
+    open var `phoneLines`: [PhoneLineResource]?
     /*
     Address for emergency cases. The same emergency address is assigned to all numbers of a single device ,
     */
@@ -65,7 +65,7 @@ open class DeviceResource: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, status: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: DeviceModelResource? = nil, extension: ExtensionResource? = nil, phoneLines: PhoneLineResource? = nil, emergencyServiceAddress: EmergencyServiceAddressResource? = nil, shipping: ShippingResource? = nil, boxBillingId: Int? = nil, linePooling: String? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, status: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: ModelInfo? = nil, extension: ExtensionResourceIntId? = nil, phoneLines: [PhoneLineResource]? = nil, emergencyServiceAddress: EmergencyServiceAddressResource? = nil, shipping: ShippingResource? = nil, boxBillingId: Int? = nil, linePooling: String? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

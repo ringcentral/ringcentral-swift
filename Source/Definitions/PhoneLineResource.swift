@@ -6,7 +6,7 @@ open class PhoneLineResource: Mappable {
     open var `lineType`: String?
     /*
     */
-    open var `phoneInfo`: PhoneNumberResource?
+    open var `phoneInfo`: PhoneNumberResourceIntId?
     /*
     */
     open var `emergencyAddress`: EmergencyAddress?
@@ -14,7 +14,7 @@ open class PhoneLineResource: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(lineType: String? = nil, phoneInfo: PhoneNumberResource? = nil, emergencyAddress: EmergencyAddress? = nil) {
+    convenience public init(lineType: String? = nil, phoneInfo: PhoneNumberResourceIntId? = nil, emergencyAddress: EmergencyAddress? = nil) {
         self.init()
         self.lineType = `lineType`
         self.phoneInfo = `phoneInfo`

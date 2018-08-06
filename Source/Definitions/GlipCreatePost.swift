@@ -2,29 +2,47 @@ import Foundation
 import ObjectMapper
 open class GlipCreatePost: Mappable {
     /*
-    Internal identifier of a group to send post to
+    Label of an activity type
     */
-    open var `groupId`: String?
+    open var `activity`: String?
     /*
-    Text of a post, the maximum is 10000 characters
+    Title of a message. (Can be set for bot's messages only).
+    */
+    open var `title`: String?
+    /*
+    URI to an image to use as the icon for this message.
+    */
+    open var `iconUri`: String?
+    /*
+    Emoji to use as the icon for a message.
+    */
+    open var `iconEmoji`: String?
+    /*
+    Text of a post
     */
     open var `text`: String?
     /*
     List of attachments to be posted
     */
-    open var `attachments`: [GlipAttachmentInfoRequest]?
+    open var `attachments`: [GlipMessageAttachmentInfoRequest]?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(groupId: String? = nil, text: String? = nil, attachments: [GlipAttachmentInfoRequest]? = nil) {
+    convenience public init(activity: String? = nil, title: String? = nil, iconUri: String? = nil, iconEmoji: String? = nil, text: String? = nil, attachments: [GlipMessageAttachmentInfoRequest]? = nil) {
         self.init()
-        self.groupId = `groupId`
+        self.activity = `activity`
+        self.title = `title`
+        self.iconUri = `iconUri`
+        self.iconEmoji = `iconEmoji`
         self.text = `text`
         self.attachments = `attachments`
     }
     open func mapping(map: Map) {
-        `groupId` <- map["groupId"]
+        `activity` <- map["activity"]
+        `title` <- map["title"]
+        `iconUri` <- map["iconUri"]
+        `iconEmoji` <- map["iconEmoji"]
         `text` <- map["text"]
         `attachments` <- map["attachments"]
     }

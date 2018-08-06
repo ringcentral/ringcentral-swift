@@ -36,7 +36,7 @@ open class GetDeviceInfoResponse: Mappable {
     /*
     This attribute can be omitted for unassigned devices
     */
-    open var `extension`: ExtensionInfo?
+    open var `extension`: ExtensionInfoIntId?
     /*
     Address for emergency cases. The same emergency address is assigned to all the numbers of one device
     */
@@ -44,7 +44,7 @@ open class GetDeviceInfoResponse: Mappable {
     /*
     Phone lines information
     */
-    open var `phoneLines`: PhoneLinesInfo?
+    open var `phoneLines`: [PhoneLinesInfo]?
     /*
     Shipping information, according to which devices (in case of  HardPhone ) or e911 stickers (in case of  SoftPhone  and  OtherPhone ) will be delivered to the customer
     */
@@ -57,7 +57,7 @@ open class GetDeviceInfoResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: ModelInfo? = nil, extension: ExtensionInfo? = nil, emergencyServiceAddress: EmergencyAddressInfo? = nil, phoneLines: PhoneLinesInfo? = nil, shipping: ShippingInfo? = nil, boxBillingId: Int? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, sku: String? = nil, type: String? = nil, name: String? = nil, serial: String? = nil, computerName: String? = nil, model: ModelInfo? = nil, extension: ExtensionInfoIntId? = nil, emergencyServiceAddress: EmergencyAddressInfo? = nil, phoneLines: [PhoneLinesInfo]? = nil, shipping: ShippingInfo? = nil, boxBillingId: Int? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

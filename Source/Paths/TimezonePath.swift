@@ -8,7 +8,7 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all available timezones.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available timezones.
     */
     open func list(callback: @escaping (_ t: GetTimezoneListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetTimezoneListResponse?, error) in
@@ -16,7 +16,7 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all available timezones.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available timezones.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetTimezoneListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetTimezoneListResponse?, error) in
@@ -24,18 +24,18 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all available timezones.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available timezones.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetTimezoneListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: String?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: String?
         public init() {
@@ -53,7 +53,7 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on a certain timezone.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on a certain timezone.
     */
     open func get(callback: @escaping (_ t: GetTimezoneInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetTimezoneInfoResponse?, error) in
@@ -61,7 +61,7 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on a certain timezone.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on a certain timezone.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: GetTimezoneInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: GetTimezoneInfoResponse?, error) in
@@ -69,25 +69,25 @@ open class TimezonePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns the information on a certain timezone.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the information on a certain timezone.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: GetTimezoneInfoResponse?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
     }
     open class GetParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
-        open var `page`: Int?
+        open var `page`: String?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
-        open var `perPage`: Int?
+        open var `perPage`: String?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(page: Int? = nil, perPage: Int? = nil) {
+        convenience public init(page: String? = nil, perPage: String? = nil) {
             self.init()
             self.page = `page`
             self.perPage = `perPage`

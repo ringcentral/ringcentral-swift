@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class LicenseTypeInfoRequest: Mappable {
     /*
-    Name of a license type = ['RMS', 'RCN', 'WBR-100', 'WBR-500', 'WBR-1000', 'WBR-3000', 'LRM-50', 'LRM-100', 'LRM-200']
+    Name of a license type
     */
     open var `sku`: String?
     public init() {

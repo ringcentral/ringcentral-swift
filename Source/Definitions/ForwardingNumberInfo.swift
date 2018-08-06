@@ -20,7 +20,7 @@ open class ForwardingNumberInfo: Mappable {
     /*
     Type of option this phone number is used for. Multiple values are accepted
     */
-    open var `features`: String?
+    open var `features`: [String]?
     /*
     Number assigned to the call flip phone number, corresponds to the shortcut dial number
     */
@@ -29,7 +29,7 @@ open class ForwardingNumberInfo: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, phoneNumber: String? = nil, label: String? = nil, features: String? = nil, flipNumber: Int? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, phoneNumber: String? = nil, label: String? = nil, features: [String]? = nil, flipNumber: Int? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

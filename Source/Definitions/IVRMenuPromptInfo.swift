@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 open class IVRMenuPromptInfo: Mappable {
     /*
-    Prompt mode: custom media or text = ['Audio', 'TextToSpeech']
+    Prompt mode: custom media or text
     */
     open var `mode`: String?
     /*

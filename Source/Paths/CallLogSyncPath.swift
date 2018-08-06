@@ -8,30 +8,30 @@ open class CallLogSyncPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes call log records
     */
-    open func get(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.getString(self.endpoint()) { string, error in
-            callback(error)
+    open func list(callback: @escaping (_ t: CallLogSync?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false)) { (t: CallLogSync?, error) in
+            callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes call log records
     */
-    open func get(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.getString(self.endpoint(), parameters: parameters) { string, error in
-            callback(error)
+    open func list(parameters: Parameters, callback: @escaping (_ t: CallLogSync?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint(withId: false), parameters: parameters) { (t: CallLogSync?, error) in
+            callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Synchronizes call log records
     */
-    open func get(parameters: GetParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
-        get(parameters: parameters.toParameters(), callback: callback)
+    open func list(parameters: ListParameters, callback: @escaping (_ t: CallLogSync?, _ error: HTTPError?) -> Void) {
+        list(parameters: parameters.toParameters(), callback: callback)
     }
-    open class GetParameters: Mappable {
+    open class ListParameters: Mappable {
         /*
-        Type of synchronization. 'FSync' is a default value
+        Type of synchronization
         */
         open var `syncType`: [String]?
         /*
@@ -43,7 +43,7 @@ open class CallLogSyncPath: PathSegment {
         */
         open var `dateFrom`: String?
         /*
-        ForT?FSync the parameter is mandatory, it limits the number of records to be returned in response. For ISync it specifies with how many records to extend sync Frame to the past, the maximum number of records is 250
+        For 'FSync' the parameter is mandatory, it limits the number of records to be returned in response. For 'ISync' it specifies with how many records to extend sync Frame to the past, the maximum number of records is 250
         */
         open var `recordCount`: Int?
         /*

@@ -8,7 +8,7 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.13 (Release 6.5)</p><p>Returns one or more parsed and/or formatted phone numbers that are passed as a string.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns one or more parsed and/or formatted phone numbers that are passed as a string.
     */
     open func post(callback: @escaping (_ t: ParsePhoneNumberResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint()) { (t: ParsePhoneNumberResponse?, error) in
@@ -16,7 +16,7 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.13 (Release 6.5)</p><p>Returns one or more parsed and/or formatted phone numbers that are passed as a string.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns one or more parsed and/or formatted phone numbers that are passed as a string.
     */
     open func post(parameters: Parameters, callback: @escaping (_ t: ParsePhoneNumberResponse?, _ error: HTTPError?) -> Void) {
         rc.post(self.endpoint(), parameters: parameters) { (t: ParsePhoneNumberResponse?, error) in
@@ -24,7 +24,7 @@ open class ParsePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.13 (Release 6.5)</p><p>Returns one or more parsed and/or formatted phone numbers that are passed as a string.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns one or more parsed and/or formatted phone numbers that are passed as a string.
     */
     open func post(parameters: PostParameters, callback: @escaping (_ t: ParsePhoneNumberResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)

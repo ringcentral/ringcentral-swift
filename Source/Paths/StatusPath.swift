@@ -8,7 +8,7 @@ open class StatusPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.27 (Release 8.3)</p><p>Returns the API status; status '200' means the API is working fine, and '503' means it is temporary unavailable.</p><h4>API Group</h4><p>Light</p>
+    Returns current PAS service status.
     */
     open func get(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.getString(self.endpoint()) { string, error in

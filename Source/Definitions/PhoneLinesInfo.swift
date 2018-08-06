@@ -8,12 +8,12 @@ open class PhoneLinesInfo: Mappable {
     /*
     Phone number information
     */
-    open var `phoneInfo`: PhoneNumberInfo?
+    open var `phoneInfo`: PhoneNumberInfoIntId?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(lineType: String? = nil, phoneInfo: PhoneNumberInfo? = nil) {
+    convenience public init(lineType: String? = nil, phoneInfo: PhoneNumberInfoIntId? = nil) {
         self.init()
         self.lineType = `lineType`
         self.phoneInfo = `phoneInfo`

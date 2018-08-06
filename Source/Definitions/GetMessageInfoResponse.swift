@@ -18,9 +18,13 @@ open class GetMessageInfoResponse: Mappable {
     */
     open var `availability`: String?
     /*
-    SMS and Pager only. Identifier of the conversation the message belongs to
+    SMS and Pager only. Identifier of a conversation the message belongs to
     */
     open var `conversationId`: Int?
+    /*
+    SMS and Pager only. Identifier of a conversation the message belongs to
+    */
+    open var `conversation`: ConversationInfo?
     /*
     Message creation datetime in ISO 8601 format including timezone, for example 2016-03-10T18:07:52.534Z
     */
@@ -34,11 +38,11 @@ open class GetMessageInfoResponse: Mappable {
     */
     open var `direction`: String?
     /*
-    Fax only. Page count in fax message
+    Fax only. Page count in a fax message
     */
     open var `faxPageCount`: Int?
     /*
-    Fax only. Resolution of fax message. ('High' for black and white image scanned at 200 dpi, 'Low' for black and white image scanned at 100 dpi)
+    Fax only. Resolution of a fax message. 'High' for black and white image scanned at 200 dpi, 'Low' for black and white image scanned at 100 dpi
     */
     open var `faxResolution`: String?
     /*
@@ -93,13 +97,14 @@ open class GetMessageInfoResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, attachments: [MessageAttachmentInfo]? = nil, availability: String? = nil, conversationId: Int? = nil, creationTime: String? = nil, deliveryErrorCode: String? = nil, direction: String? = nil, faxPageCount: Int? = nil, faxResolution: String? = nil, from: MessageStoreCallerInfoResponse? = nil, lastModifiedTime: String? = nil, messageStatus: String? = nil, pgToDepartment: Bool? = nil, priority: String? = nil, readStatus: String? = nil, smsDeliveryTime: String? = nil, smsSendingAttemptsCount: Int? = nil, subject: String? = nil, to: [MessageStoreCallerInfoResponse]? = nil, type: String? = nil, vmTranscriptionStatus: String? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, attachments: [MessageAttachmentInfo]? = nil, availability: String? = nil, conversationId: Int? = nil, conversation: ConversationInfo? = nil, creationTime: String? = nil, deliveryErrorCode: String? = nil, direction: String? = nil, faxPageCount: Int? = nil, faxResolution: String? = nil, from: MessageStoreCallerInfoResponse? = nil, lastModifiedTime: String? = nil, messageStatus: String? = nil, pgToDepartment: Bool? = nil, priority: String? = nil, readStatus: String? = nil, smsDeliveryTime: String? = nil, smsSendingAttemptsCount: Int? = nil, subject: String? = nil, to: [MessageStoreCallerInfoResponse]? = nil, type: String? = nil, vmTranscriptionStatus: String? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`
         self.attachments = `attachments`
         self.availability = `availability`
         self.conversationId = `conversationId`
+        self.conversation = `conversation`
         self.creationTime = `creationTime`
         self.deliveryErrorCode = `deliveryErrorCode`
         self.direction = `direction`
@@ -124,6 +129,7 @@ open class GetMessageInfoResponse: Mappable {
         `attachments` <- map["attachments"]
         `availability` <- map["availability"]
         `conversationId` <- map["conversationId"]
+        `conversation` <- map["conversation"]
         `creationTime` <- map["creationTime"]
         `deliveryErrorCode` <- map["deliveryErrorCode"]
         `direction` <- map["direction"]

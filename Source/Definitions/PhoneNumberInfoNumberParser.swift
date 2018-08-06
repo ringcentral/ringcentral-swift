@@ -30,7 +30,7 @@ open class PhoneNumberInfoNumberParser: Mappable {
     */
     open var `originalString`: String?
     /*
-    True  if the number is in a special format (for example N11 code)
+    'True'  if the number is in a special format (for example N11 code)
     */
     open var `special`: Bool?
     /*

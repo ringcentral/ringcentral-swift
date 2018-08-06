@@ -7,22 +7,22 @@ open class GlipPath: PathSegment {
             return "glip"
         }
     }
-    open func `companies`(_ _id: String) -> CompaniesPath {
-        return CompaniesPath(parent: self, _id: _id)
-    }
     open func `groups`(_ _id: String? = nil) -> GroupsPath {
         return GroupsPath(parent: self, _id: _id)
+    }
+    open func `files`() -> FilesPath {
+        return FilesPath(parent: self)
+    }
+    open func `cards`(_ _id: String? = nil) -> CardsPath {
+        return CardsPath(parent: self, _id: _id)
     }
     open func `persons`(_ _id: String) -> PersonsPath {
         return PersonsPath(parent: self, _id: _id)
     }
-    open func `posts`() -> PostsPath {
-        return PostsPath(parent: self)
+    open func `companies`(_ _id: String) -> CompaniesPath {
+        return CompaniesPath(parent: self, _id: _id)
     }
-    open func `files`(_ _id: String? = nil) -> FilesPath {
-        return FilesPath(parent: self, _id: _id)
-    }
-    open func `profile`() -> ProfilePath {
-        return ProfilePath(parent: self)
+    open func `webhooks`(_ _id: String? = nil) -> WebhooksPath {
+        return WebhooksPath(parent: self, _id: _id)
     }
 }

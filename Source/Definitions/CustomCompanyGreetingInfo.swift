@@ -10,7 +10,7 @@ open class CustomCompanyGreetingInfo: Mappable {
     */
     open var `id`: String?
     /*
-    Internal identifier of an answering rule
+    Type of a company greeting
     */
     open var `type`: String?
     /*
@@ -25,11 +25,15 @@ open class CustomCompanyGreetingInfo: Mappable {
     Information on an answering rule that the greeting is applied to
     */
     open var `answeringRule`: CustomGreetingAnsweringRuleInfo?
+    /*
+    Information on a greeting language. Supported for types 'StopRecording', 'StartRecording', 'AutomaticRecording'
+    */
+    open var `language`: CustomCompanyGreetingLanguageInfo?
     public init() {
     }
     required public init?(map: Map) {
     }
-    convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, contentType: String? = nil, contentUri: String? = nil, answeringRule: CustomGreetingAnsweringRuleInfo? = nil) {
+    convenience public init(uri: String? = nil, id: String? = nil, type: String? = nil, contentType: String? = nil, contentUri: String? = nil, answeringRule: CustomGreetingAnsweringRuleInfo? = nil, language: CustomCompanyGreetingLanguageInfo? = nil) {
         self.init()
         self.uri = `uri`
         self.id = `id`
@@ -37,6 +41,7 @@ open class CustomCompanyGreetingInfo: Mappable {
         self.contentType = `contentType`
         self.contentUri = `contentUri`
         self.answeringRule = `answeringRule`
+        self.language = `language`
     }
     open func mapping(map: Map) {
         `uri` <- map["uri"]
@@ -45,5 +50,6 @@ open class CustomCompanyGreetingInfo: Mappable {
         `contentType` <- map["contentType"]
         `contentUri` <- map["contentUri"]
         `answeringRule` <- map["answeringRule"]
+        `language` <- map["language"]
     }
 }

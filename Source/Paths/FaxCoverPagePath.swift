@@ -8,6 +8,7 @@ open class FaxCoverPagePath: PathSegment {
         }
     }
     /*
+    Returns fax cover pages available for the current extension.
     */
     open func get(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.getString(self.endpoint()) { string, error in
@@ -15,6 +16,7 @@ open class FaxCoverPagePath: PathSegment {
         }
     }
     /*
+    Returns fax cover pages available for the current extension.
     */
     open func get(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.getString(self.endpoint(), parameters: parameters) { string, error in
@@ -22,17 +24,18 @@ open class FaxCoverPagePath: PathSegment {
         }
     }
     /*
+    Returns fax cover pages available for the current extension.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
     }
     open class GetParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         public init() {

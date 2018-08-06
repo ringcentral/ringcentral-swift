@@ -6,7 +6,6 @@ open class GlipPosts: Mappable {
     */
     open var `records`: [GlipPostInfo]?
     /*
-    Information on navigation
     */
     open var `navigation`: GlipNavigationInfo?
     public init() {

@@ -8,7 +8,7 @@ open class LocationPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available locations for a certain state.
     */
     open func list(callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetLocationListResponse?, error) in
@@ -16,7 +16,7 @@ open class LocationPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available locations for a certain state.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetLocationListResponse?, error) in
@@ -24,22 +24,22 @@ open class LocationPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Returns all the available locations for the certain state.</p><h4>Usage Plan Group</h4><p>Light</p>
+    Returns all available locations for a certain state.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetLocationListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Sorts results by the specified property. The default value is 'City'
+        Sorts results by the property specified
         */
         open var `orderBy`: [String]?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'.
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*

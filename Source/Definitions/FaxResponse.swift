@@ -4,7 +4,7 @@ open class FaxResponse: Mappable {
     /*
     Internal identifier of a message
     */
-    open var `id`: String?
+    open var `id`: Int?
     /*
     Canonical URI of a message
     */
@@ -36,7 +36,7 @@ open class FaxResponse: Mappable {
     /*
     The list of message attachments
     */
-    open var `attachments`: [MessageAttachmentInfo]?
+    open var `attachments`: [MessageAttachmentInfoIntId]?
     /*
     Message direction
     */
@@ -73,7 +73,7 @@ open class FaxResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, uri: String? = nil, type: String? = nil, from: CallerInfoFrom? = nil, to: [CallerInfoTo]? = nil, creationTime: String? = nil, readStatus: String? = nil, priority: String? = nil, attachments: [MessageAttachmentInfo]? = nil, direction: String? = nil, availability: String? = nil, messageStatus: String? = nil, faxResolution: String? = nil, faxPageCount: Int? = nil, lastModifiedTime: String? = nil, coverIndex: Int? = nil, coverPageText: String? = nil) {
+    convenience public init(id: Int? = nil, uri: String? = nil, type: String? = nil, from: CallerInfoFrom? = nil, to: [CallerInfoTo]? = nil, creationTime: String? = nil, readStatus: String? = nil, priority: String? = nil, attachments: [MessageAttachmentInfoIntId]? = nil, direction: String? = nil, availability: String? = nil, messageStatus: String? = nil, faxResolution: String? = nil, faxPageCount: Int? = nil, lastModifiedTime: String? = nil, coverIndex: Int? = nil, coverPageText: String? = nil) {
         self.init()
         self.id = `id`
         self.uri = `uri`

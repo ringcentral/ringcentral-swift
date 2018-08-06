@@ -16,9 +16,6 @@ open class ExtensionPath: PathSegment {
     open func `activeCalls`() -> ActiveCallsPath {
         return ActiveCallsPath(parent: self)
     }
-    open func `phoneNumber`(_ _id: String? = nil) -> PhoneNumberPath {
-        return PhoneNumberPath(parent: self, _id: _id)
-    }
     open func `sms`() -> SmsPath {
         return SmsPath(parent: self)
     }
@@ -34,11 +31,11 @@ open class ExtensionPath: PathSegment {
     open func `messageSync`() -> MessageSyncPath {
         return MessageSyncPath(parent: self)
     }
+    open func `voicemail`() -> VoicemailPath {
+        return VoicemailPath(parent: self)
+    }
     open func `ringOut`(_ _id: String? = nil) -> RingOutPath {
         return RingOutPath(parent: self, _id: _id)
-    }
-    open func `directRingOut`() -> DirectRingOutPath {
-        return DirectRingOutPath(parent: self)
     }
     open func `addressBook`() -> AddressBookPath {
         return AddressBookPath(parent: self)
@@ -61,14 +58,14 @@ open class ExtensionPath: PathSegment {
     open func `authzProfile`() -> AuthzProfilePath {
         return AuthzProfilePath(parent: self)
     }
-    open func `forwardingNumber`(_ _id: String? = nil) -> ForwardingNumberPath {
-        return ForwardingNumberPath(parent: self, _id: _id)
-    }
-    open func `blockedNumber`(_ _id: String? = nil) -> BlockedNumberPath {
-        return BlockedNumberPath(parent: self, _id: _id)
-    }
     open func `businessHours`() -> BusinessHoursPath {
         return BusinessHoursPath(parent: self)
+    }
+    open func `callerBlocking`() -> CallerBlockingPath {
+        return CallerBlockingPath(parent: self)
+    }
+    open func `forwardingNumber`(_ _id: String? = nil) -> ForwardingNumberPath {
+        return ForwardingNumberPath(parent: self, _id: _id)
     }
     open func `answeringRule`(_ _id: String? = nil) -> AnsweringRulePath {
         return AnsweringRulePath(parent: self, _id: _id)
@@ -76,11 +73,11 @@ open class ExtensionPath: PathSegment {
     open func `greeting`(_ _id: String? = nil) -> GreetingPath {
         return GreetingPath(parent: self, _id: _id)
     }
+    open func `phoneNumber`(_ _id: String? = nil) -> PhoneNumberPath {
+        return PhoneNumberPath(parent: self, _id: _id)
+    }
     open func `callerId`() -> CallerIdPath {
         return CallerIdPath(parent: self)
-    }
-    open func `credentials`() -> CredentialsPath {
-        return CredentialsPath(parent: self)
     }
     open func `grant`() -> GrantPath {
         return GrantPath(parent: self)
@@ -94,17 +91,49 @@ open class ExtensionPath: PathSegment {
     open func `conferencing`() -> ConferencingPath {
         return ConferencingPath(parent: self)
     }
-    open func `freeNumbers`() -> FreeNumbersPath {
-        return FreeNumbersPath(parent: self)
-    }
     open func `device`(_ _id: String? = nil) -> DevicePath {
         return DevicePath(parent: self, _id: _id)
     }
-    open func `reporting`() -> ReportingPath {
-        return ReportingPath(parent: self)
+    /*
+    Returns basic information about a particular extension of an account.
+    */
+    open func get(callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.get(self.endpoint()) { (t: GetExtensionInfoResponse?, error) in
+            callback(t, error)
+        }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.0</p><p>Returns the list of extensions created for a particular account. All types of extensions are included in this list.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Updates user settings.
+    */
+    open func put(callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint()) { (t: GetExtensionInfoResponse?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    Updates user settings.
+    */
+    open func put(parameters: Parameters, callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
+        rc.put(self.endpoint(), parameters: parameters) { (t: GetExtensionInfoResponse?, error) in
+            callback(t, error)
+        }
+    }
+    /*
+    Updates user settings.
+    */
+    open func put(parameters: ExtensionUpdateRequest, callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
+        put(parameters: parameters.toParameters(), callback: callback)
+    }
+    /*
+    Deletes extension(s) by ID(s).
+    */
+    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
+        rc.deleteString(self.endpoint()) { string, error in
+            callback(error)
+        }
+    }
+    /*
+    Returns the list of extensions created for a particular account. All types of extensions are included in this list.
     */
     open func list(callback: @escaping (_ t: GetExtensionListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetExtensionListResponse?, error) in
@@ -112,7 +141,7 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.0</p><p>Returns the list of extensions created for a particular account. All types of extensions are included in this list.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Returns the list of extensions created for a particular account. All types of extensions are included in this list.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetExtensionListResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetExtensionListResponse?, error) in
@@ -120,22 +149,22 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.0</p><p>Returns the list of extensions created for a particular account. All types of extensions are included in this list.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Returns the list of extensions created for a particular account. All types of extensions are included in this list.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetExtensionListResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are allowed
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default.
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*
-        Extension current state. Multiple values are supported. If 'Unassigned' is specified, then extensions without extensionNumber are returned. If not specified, then all extensions are returned
+        Extension current state. Multiple values are supported. If 'Unassigned' is specified, then extensions without extensionNumber are returned. If not specified, then all extensions are returned.
         */
         open var `status`: [String]?
         /*
@@ -161,63 +190,25 @@ open class ExtensionPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Creates an extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates an extension.
     */
-    open func post(callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint()) { (t: ExtensionInfo?, error) in
+    open func post(callback: @escaping (_ t: ExtensionCreationResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint()) { (t: ExtensionCreationResponse?, error) in
             callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Creates an extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates an extension.
     */
-    open func post(parameters: Parameters, callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
-        rc.post(self.endpoint(), parameters: parameters) { (t: ExtensionInfo?, error) in
+    open func post(parameters: Parameters, callback: @escaping (_ t: ExtensionCreationResponse?, _ error: HTTPError?) -> Void) {
+        rc.post(self.endpoint(), parameters: parameters) { (t: ExtensionCreationResponse?, error) in
             callback(t, error)
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Creates an extension.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>API Group</h4><p>Medium</p>
+    Creates an extension.
     */
-    open func post(parameters: ExtensionCreationRequest, callback: @escaping (_ t: ExtensionInfo?, _ error: HTTPError?) -> Void) {
+    open func post(parameters: ExtensionCreationRequest, callback: @escaping (_ t: ExtensionCreationResponse?, _ error: HTTPError?) -> Void) {
         post(parameters: parameters.toParameters(), callback: callback)
-    }
-    /*
-    <p style='font-style:italic;'>Since 1.0.0</p><p>Returns basic information about a particular extension of an account.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadAccounts</td><td>Viewing user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
-    */
-    open func get(callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
-        rc.get(self.endpoint()) { (t: GetExtensionInfoResponse?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
-    */
-    open func put(callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint()) { (t: GetExtensionInfoResponse?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
-    */
-    open func put(parameters: Parameters, callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
-        rc.put(self.endpoint(), parameters: parameters) { (t: GetExtensionInfoResponse?, error) in
-            callback(t, error)
-        }
-    }
-    /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditExtensions</td><td>Viewing and updating my extension info (includes extension name, number, email and phone number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
-    */
-    open func put(parameters: ExtensionUpdateRequest, callback: @escaping (_ t: GetExtensionInfoResponse?, _ error: HTTPError?) -> Void) {
-        put(parameters: parameters.toParameters(), callback: callback)
-    }
-    /*
-    <p style='font-style:italic;'>Since 1.0.10 (Release 6.2)</p><p>Deletes extension(s) by ID(s).</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditAccounts</td><td>Viewing and updating user account info (including name, business name, address and phone number/account number)</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
-    */
-    open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
-        rc.deleteString(self.endpoint()) { string, error in
-            callback(error)
-        }
     }
 }

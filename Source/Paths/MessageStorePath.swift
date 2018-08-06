@@ -11,7 +11,7 @@ open class MessageStorePath: PathSegment {
         return ContentPath(parent: self, _id: _id)
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of messages from an extension mailbox.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of messages from an extension mailbox.
     */
     open func list(callback: @escaping (_ t: GetMessageList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetMessageList?, error) in
@@ -19,7 +19,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of messages from an extension mailbox.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of messages from an extension mailbox.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: GetMessageList?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: GetMessageList?, error) in
@@ -27,14 +27,14 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns the list of messages from an extension mailbox.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns the list of messages from an extension mailbox.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: GetMessageList?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Specifies the availability status for the resulting messages. Default value is 'Alive'. Multiple values are accepted
+        Specifies the availability status for the resulting messages. Multiple values are accepted
         */
         open var `availability`: [String]?
         /*
@@ -66,11 +66,11 @@ open class MessageStorePath: PathSegment {
         */
         open var `readStatus`: [String]?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are accepted
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
         /*
@@ -110,6 +110,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
+    Deletes conversation(s) by conversation ID(s).
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -117,6 +118,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
+    Deletes conversation(s) by conversation ID(s).
     */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
@@ -124,6 +126,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
+    Deletes conversation(s) by conversation ID(s).
     */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
@@ -132,20 +135,32 @@ open class MessageStorePath: PathSegment {
         /*
         */
         open var `conversationId`: [String]?
+        /*
+        Messages received earlier then the date specified will be deleted. The default value is 'Now'
+        */
+        open var `dateTo`: String?
+        /*
+        Type of messages to be deleted
+        */
+        open var `type`: String?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(conversationId: [String]? = nil) {
+        convenience public init(conversationId: [String]? = nil, dateTo: String? = nil, type: String? = nil) {
             self.init()
             self.conversationId = `conversationId`
+            self.dateTo = `dateTo`
+            self.type = `type`
         }
         open func mapping(map: Map) {
             `conversationId` <- map["conversationId"]
+            `dateTo` <- map["dateTo"]
+            `type` <- map["type"]
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Returns individual message record(s) by the given message ID(s). The length of inbound messages is unlimited. Batch request is supported, see Batch Requests for details.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Light</p>
+    Returns individual message record(s) by the given message ID(s). The length of inbound messages is unlimited. Batch request is supported.
     */
     open func get(callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetMessageInfoResponse?, error) in
@@ -153,7 +168,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditMessages</td><td>Viewing and updating user messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.
     */
     open func put(callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint()) { (t: GetMessageInfoResponse?, error) in
@@ -161,7 +176,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditMessages</td><td>Viewing and updating user messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.
     */
     open func put(parameters: Parameters, callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
         rc.put(self.endpoint(), parameters: parameters) { (t: GetMessageInfoResponse?, error) in
@@ -169,7 +184,7 @@ open class MessageStorePath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.2</p><p>Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditMessages</td><td>Viewing and updating user messages</td></tr><tr><td class='code'>ReadMessages</td><td>Viewing user messages</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Medium</p>
+    Updates message(s) by ID(s). Batch request is supported, see Batch Requests for details. Currently, only the message read status updating is supported.
     */
     open func put(parameters: UpdateMessageRequest, callback: @escaping (_ t: GetMessageInfoResponse?, _ error: HTTPError?) -> Void) {
         put(parameters: parameters.toParameters(), callback: callback)

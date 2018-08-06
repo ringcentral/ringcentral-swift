@@ -6,6 +6,9 @@ open class GetRingOutStatusResponse: Mappable {
     */
     open var `id`: String?
     /*
+    */
+    open var `uri`: String?
+    /*
     RingOut status information
     */
     open var `status`: RingOutStatusInfo?
@@ -13,13 +16,15 @@ open class GetRingOutStatusResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(id: String? = nil, status: RingOutStatusInfo? = nil) {
+    convenience public init(id: String? = nil, uri: String? = nil, status: RingOutStatusInfo? = nil) {
         self.init()
         self.id = `id`
+        self.uri = `uri`
         self.status = `status`
     }
     open func mapping(map: Map) {
         `id` <- (map["id"], StringTransform())
+        `uri` <- map["uri"]
         `status` <- map["status"]
     }
 }

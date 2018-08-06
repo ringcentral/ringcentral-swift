@@ -8,7 +8,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.3 (Release 5.11)</p><p>Returns call log records filtered by the specified parameters.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns call log records filtered by parameters specified.
     */
     open func list(callback: @escaping (_ t: ExtensionCallLogResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: ExtensionCallLogResponse?, error) in
@@ -16,7 +16,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.3 (Release 5.11)</p><p>Returns call log records filtered by the specified parameters.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns call log records filtered by parameters specified.
     */
     open func list(parameters: Parameters, callback: @escaping (_ t: ExtensionCallLogResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false), parameters: parameters) { (t: ExtensionCallLogResponse?, error) in
@@ -24,26 +24,26 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'>Since 1.0.3 (Release 5.11)</p><p>Returns call log records filtered by the specified parameters.</p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Returns call log records filtered by parameters specified.
     */
     open func list(parameters: ListParameters, callback: @escaping (_ t: ExtensionCallLogResponse?, _ error: HTTPError?) -> Void) {
         list(parameters: parameters.toParameters(), callback: callback)
     }
     open class ListParameters: Mappable {
         /*
-        Extension number of a user. If specified, returns call log for a particular extension only. Cannot be specified together with the phoneNumber filter
+        Extension number of a user. If specified, returns call log for a particular extension only
         */
         open var `extensionNumber`: String?
         /*
-        If 'True' then calls from/to blocked numbers are returned. The default value is 'True'
+        If 'True' then calls from/to blocked numbers are returned
         */
         open var `showBlocked`: Bool?
         /*
-        Phone number of a caller/call recipient. If specified, returns all calls (both incoming and outcoming) with the mentioned phone number. Cannot be specified together with the extensionNumber filter
+        Phone number of a caller/callee. If specified, returns all calls (both incoming and outcoming) with the phone number specified
         */
         open var `phoneNumber`: String?
         /*
-        The direction for the result records. It is allowed to specify more than one direction. If not specified, both inbound and outbound records are returned. Multiple values are accepted
+        The direction for the resulting records. If not specified, both inbound and outbound records are returned. Multiple values are accepted
         */
         open var `direction`: [String]?
         /*
@@ -58,11 +58,10 @@ open class CallLogPath: PathSegment {
         */
         open var `transport`: [String]?
         /*
-        The default value is 'Simple' for both account and extension call log
         */
-        open var `view`: [String]?
+        open var `view`: String?
         /*
-        'True' if only recorded calls have to be returned
+        True should be specified to return recorded calls only
         */
         open var `withRecording`: Bool?
         /*
@@ -74,18 +73,22 @@ open class CallLogPath: PathSegment {
         */
         open var `dateFrom`: String?
         /*
-        Indicates the page number to retrieve. Only positive number values are allowed. Default value is '1'
+        Indicates the page number to retrieve. Only positive number values are allowed
         */
         open var `page`: Int?
         /*
-        Indicates the page size (number of items). If not specified, the value is '100' by default
+        Indicates the page size (number of items)
         */
         open var `perPage`: Int?
+        /*
+        If 'True' then deleted calls are returned
+        */
+        open var `showDeleted`: Bool?
         public init() {
         }
         required public init?(map: Map) {
         }
-        convenience public init(extensionNumber: String? = nil, showBlocked: Bool? = nil, phoneNumber: String? = nil, direction: [String]? = nil, sessionId: String? = nil, type: [String]? = nil, transport: [String]? = nil, view: [String]? = nil, withRecording: Bool? = nil, dateTo: String? = nil, dateFrom: String? = nil, page: Int? = nil, perPage: Int? = nil) {
+        convenience public init(extensionNumber: String? = nil, showBlocked: Bool? = nil, phoneNumber: String? = nil, direction: [String]? = nil, sessionId: String? = nil, type: [String]? = nil, transport: [String]? = nil, view: String? = nil, withRecording: Bool? = nil, dateTo: String? = nil, dateFrom: String? = nil, page: Int? = nil, perPage: Int? = nil, showDeleted: Bool? = nil) {
             self.init()
             self.extensionNumber = `extensionNumber`
             self.showBlocked = `showBlocked`
@@ -100,6 +103,7 @@ open class CallLogPath: PathSegment {
             self.dateFrom = `dateFrom`
             self.page = `page`
             self.perPage = `perPage`
+            self.showDeleted = `showDeleted`
         }
         open func mapping(map: Map) {
             `extensionNumber` <- map["extensionNumber"]
@@ -115,10 +119,11 @@ open class CallLogPath: PathSegment {
             `dateFrom` <- map["dateFrom"]
             `page` <- map["page"]
             `perPage` <- map["perPage"]
+            `showDeleted` <- map["showDeleted"]
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditCallLog</td><td>Viewing and updating user call logs</td></tr><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Deletes filtered call log records.
     */
     open func delete(callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint()) { string, error in
@@ -126,7 +131,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditCallLog</td><td>Viewing and updating user call logs</td></tr><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Deletes filtered call log records.
     */
     open func delete(parameters: Parameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         rc.deleteString(self.endpoint(), parameters: parameters) { string, error in
@@ -134,7 +139,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
-    <p style='font-style:italic;'></p><p></p><h4>Required Permissions</h4><table class='fullwidth'><thead><tr><th>Permission</th><th>Description</th></tr></thead><tbody><tr><td class='code'>EditCallLog</td><td>Viewing and updating user call logs</td></tr><tr><td class='code'>ReadCallLog</td><td>Viewing user call logs</td></tr></tbody></table><h4>Usage Plan Group</h4><p>Heavy</p>
+    Deletes filtered call log records.
     */
     open func delete(parameters: DeleteParameters, callback: @escaping (_ error: HTTPError?) -> Void) {
         delete(parameters: parameters.toParameters(), callback: callback)
@@ -182,6 +187,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
+    Returns call log records by ID.
     */
     open func get(callback: @escaping (_ t: UserCallLogRecord?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: UserCallLogRecord?, error) in
@@ -189,6 +195,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
+    Returns call log records by ID.
     */
     open func get(parameters: Parameters, callback: @escaping (_ t: UserCallLogRecord?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(), parameters: parameters) { (t: UserCallLogRecord?, error) in
@@ -196,6 +203,7 @@ open class CallLogPath: PathSegment {
         }
     }
     /*
+    Returns call log records by ID.
     */
     open func get(parameters: GetParameters, callback: @escaping (_ t: UserCallLogRecord?, _ error: HTTPError?) -> Void) {
         get(parameters: parameters.toParameters(), callback: callback)
