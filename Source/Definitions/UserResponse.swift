@@ -45,7 +45,7 @@ open class UserResponse: Mappable {
     }
     required public init?(map: Map) {
     }
-    convenience public init(active: Bool? = nil, addresses: [Address]? = nil, emails: [Email]? = nil, externalId: String? = nil, id: String? = nil, name: Name? = nil, phoneNumbers: [PhoneNumber]? = nil, photos: [Photo]? = nil, schemas: [String]? = nil, urn:ietf:params:scim:schemas:extension:enterprise:2.0:User: EnterpriseUser? = nil, userName: String? = nil, meta: Meta? = nil) {
+    convenience public init(active: Bool? = nil, addresses: [Address]? = nil, emails: [Email]? = nil, externalId: String? = nil, id: String? = nil, name: Name? = nil, phoneNumbers: [PhoneNumber]? = nil, photos: [Photo]? = nil, schemas: [String]? = nil, userName: String? = nil, meta: Meta? = nil) {
         self.init()
         self.active = `active`
         self.addresses = `addresses`
@@ -56,7 +56,7 @@ open class UserResponse: Mappable {
         self.phoneNumbers = `phoneNumbers`
         self.photos = `photos`
         self.schemas = `schemas`
-        self.urn:ietf:params:scim:schemas:extension:enterprise:2.0:User = `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User`
+//        self.urn:ietf:params:scim:schemas:extension:enterprise:2.0:User = `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User`
         self.userName = `userName`
         self.meta = `meta`
     }
@@ -70,7 +70,7 @@ open class UserResponse: Mappable {
         `phoneNumbers` <- map["phoneNumbers"]
         `photos` <- map["photos"]
         `schemas` <- map["schemas"]
-        `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User` <- map["urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"]
+//        `urn:ietf:params:scim:schemas:extension:enterprise:2.0:User` <- map["urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"]
         `userName` <- map["userName"]
         `meta` <- map["meta"]
     }
