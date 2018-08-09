@@ -194,23 +194,6 @@ extension ProfileImagePath {
     }
 }
 
-
-// Extension put requestBody is an enum
-public protocol ExtensionParameters {
-    func toParameters() -> Parameters
-}
-extension ExtensionInfo_Request_StatusInfo: ExtensionParameters {
-}
-extension ExtensionInfo_Request_ContactInfo: ExtensionParameters {
-}
-extension ExtensionInfo_Request_PasswordPIN: ExtensionParameters {
-}
-extension ExtensionInfo_Request_PartnerId: ExtensionParameters {
-}
-extension ExtensionInfo_Request_Provision: ExtensionParameters {
-}
-
-
 // Subscription notification models
 public protocol INotification: Mappable {
 }
