@@ -105,8 +105,6 @@ class SubscriptionTest: BaseTest {
         var count = 0
         subscription.listeners.append { notification in
             print(notification.json!)
-//            XCTAssertTrue(NotificationType.Message == notification.type!)
-//            let messageNotification: MessageNotification = notification.downcast()!
             let messageEvent = MessageEvent(JSONString: notification.json!)!
             XCTAssertNotNil(messageEvent.body)
             XCTAssertNotNil(messageEvent.body!.extensionId)
@@ -152,9 +150,6 @@ class SubscriptionTest: BaseTest {
         let notification = Notification(json: json)!
         XCTAssertTrue("/restapi/v1.0/account/130829004/extension/130829004/message-store" == notification.event!)
         let messageEvent = MessageEvent(JSONString: notification.json!)!
-//        XCTAssertTrue(NotificationType.Message == notification.type!)
-//        let messageNotification: MessageNotification = notification.downcast()!
-//        XCTAssertNotNil(messageNotification.body!.extensionId)
         XCTAssertTrue("130829004" == messageEvent.body!.extensionId!)
     }
 
