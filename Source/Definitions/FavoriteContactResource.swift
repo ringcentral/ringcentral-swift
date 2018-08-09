@@ -27,7 +27,7 @@ open class FavoriteContactResource: Mappable {
     open func mapping(map: Map) {
         `uri` <- map["uri"]
         `id` <- (map["id"], StringTransform())
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `contactId` <- map["contactId"]
     }
 }

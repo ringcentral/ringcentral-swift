@@ -14,6 +14,6 @@ open class CreateVoicemailToInfo: Mappable {
         self.extensionId = `extensionId`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
     }
 }

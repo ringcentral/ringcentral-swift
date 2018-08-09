@@ -114,7 +114,7 @@ open class IncomingCallEvent: Mappable {
         `uuid` <- map["uuid"]
         `subscriptionId` <- map["subscriptionId"]
         `timestamp` <- map["timestamp"]
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `action` <- map["action"]
         `sessionId` <- map["sessionId"]
         `serverId` <- map["serverId"]

@@ -24,7 +24,7 @@ open class ExtensionListEventBody: Mappable {
         self.ownerId = `ownerId`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `eventType` <- map["eventType"]
         `ownerId` <- map["ownerId"]
     }

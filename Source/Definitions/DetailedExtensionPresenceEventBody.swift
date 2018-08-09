@@ -69,7 +69,7 @@ open class DetailedExtensionPresenceEventBody: Mappable {
         self.ownerId = `ownerId`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `telephonyStatus` <- map["telephonyStatus"]
         `activeCalls` <- map["activeCalls"]
         `sequence` <- map["sequence"]

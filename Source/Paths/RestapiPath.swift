@@ -29,16 +29,16 @@ open class RestapiPath: PathSegment {
         return NumberParserPath(parent: self)
     }
     /*
-     <p style='font-style:italic;'>Since 1.0.0</p><p>Returns current API version(s) and server info.</p><h4>Usage Plan Group</h4><p>Light</p>
-     */
+    Returns current API version(s) and server info.
+    */
     open func list(callback: @escaping (_ t: GetVersionsResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint(withId: false)) { (t: GetVersionsResponse?, error) in
             callback(t, error)
         }
     }
     /*
-     <p style='font-style:italic;'>Since 1.0.0</p><p>Returns current API version info by apiVersion.</p><h4>Usage Plan Group</h4><p>Light</p>
-     */
+    Returns current API version info by apiVersion.
+    */
     open func get(callback: @escaping (_ t: GetVersionResponse?, _ error: HTTPError?) -> Void) {
         rc.get(self.endpoint()) { (t: GetVersionResponse?, error) in
             callback(t, error)

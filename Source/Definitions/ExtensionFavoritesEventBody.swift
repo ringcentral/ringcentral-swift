@@ -19,7 +19,7 @@ open class ExtensionFavoritesEventBody: Mappable {
         self.ownerId = `ownerId`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `ownerId` <- map["ownerId"]
     }
 }
