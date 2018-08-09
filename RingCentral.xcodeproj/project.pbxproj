@@ -2085,8 +2085,6 @@
 		87D30AB91D9E5616009CC0E7 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D30AB71D9E5616009CC0E7 /* ObjectMapper.framework */; };
 		87D30ABA1D9E5616009CC0E7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D30AB81D9E5616009CC0E7 /* Alamofire.framework */; };
 		87D66589211C095F009DB464 /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D66588211C095F009DB464 /* TokenInfo.swift */; };
-		87E2E25B1E28BA9600E557E0 /* SpecialTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E2DEE81E28B9CF00E557E0 /* SpecialTest.swift */; };
-		87E2E25C1E28BA9600E557E0 /* BlockedNumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */; };
 		87E2E25D1E28BA9600E557E0 /* TokenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5C72C1DE30ECF00A0D681 /* TokenTest.swift */; };
 		87E2E25E1E28BA9600E557E0 /* AuthorizationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5C7291DE2F85900A0D681 /* AuthorizationTest.swift */; };
 		87E2E25F1E28BA9600E557E0 /* DefaultValueTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734DF6B1DD5A6F40042951B /* DefaultValueTest.swift */; };
@@ -2149,7 +2147,6 @@
 		875500D91DB468540089B0EA /* SubscriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionTest.swift; path = Tests/SubscriptionTest.swift; sourceTree = "<group>"; };
 		875500DC1DB494E10089B0EA /* PubNub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubNub.framework; path = Carthage/Build/Mac/PubNub.framework; sourceTree = "<group>"; };
 		875500E01DB4C6B00089B0EA /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/Mac/Async.framework; sourceTree = "<group>"; };
-		877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockedNumberTest.swift; path = Tests/BlockedNumberTest.swift; sourceTree = "<group>"; };
 		877021BC1E1BA32B00857F0F /* Definition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Definition.swift; path = Source/Definition/Definition.swift; sourceTree = "<group>"; };
 		87748F491DD02A2400DDCF21 /* FaxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FaxTest.swift; path = Tests/FaxTest.swift; sourceTree = "<group>"; };
 		878BC2DD1DF7EA56009F28B3 /* IPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IPath.swift; path = Source/Path/IPath.swift; sourceTree = "<group>"; };
@@ -2693,7 +2690,6 @@
 		87D30AB81D9E5616009CC0E7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		87D66588211C095F009DB464 /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenInfo.swift; path = Source/TokenInfo.swift; sourceTree = "<group>"; };
 		87DF1DBF1DCB2B32003DF22E /* BinaryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryTest.swift; path = Tests/BinaryTest.swift; sourceTree = "<group>"; };
-		87E2DEE81E28B9CF00E557E0 /* SpecialTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecialTest.swift; path = Tests/SpecialTest.swift; sourceTree = "<group>"; };
 		87EAD59A1D9BAEE200BE2FAA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Tests/Config.swift; sourceTree = "<group>"; };
 		87F3F56A1DD1D3D8005850AE /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/watchOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		87F3F56B1DD1D3D8005850AE /* PubNub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubNub.framework; path = Carthage/Build/watchOS/PubNub.framework; sourceTree = "<group>"; };
@@ -3430,8 +3426,6 @@
 		879ADF141D98E759008E7735 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				87E2DEE81E28B9CF00E557E0 /* SpecialTest.swift */,
-				877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */,
 				87F5C72C1DE30ECF00A0D681 /* TokenTest.swift */,
 				87F5C7291DE2F85900A0D681 /* AuthorizationTest.swift */,
 				8734DF6B1DD5A6F40042951B /* DefaultValueTest.swift */,
@@ -5764,8 +5758,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87E2E25B1E28BA9600E557E0 /* SpecialTest.swift in Sources */,
-				87E2E25C1E28BA9600E557E0 /* BlockedNumberTest.swift in Sources */,
 				87E2E25D1E28BA9600E557E0 /* TokenTest.swift in Sources */,
 				87E2E25E1E28BA9600E557E0 /* AuthorizationTest.swift in Sources */,
 				87E2E25F1E28BA9600E557E0 /* DefaultValueTest.swift in Sources */,
