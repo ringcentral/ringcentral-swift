@@ -29,7 +29,7 @@ open class MessageEventBody: Mappable {
         self.ownerId = `ownerId`
     }
     open func mapping(map: Map) {
-        `extensionId` <- map["extensionId"]
+        `extensionId` <- (map["extensionId"], StringTransform())
         `lastUpdated` <- map["lastUpdated"]
         `changes` <- map["changes"]
         `ownerId` <- map["ownerId"]
