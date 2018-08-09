@@ -40,7 +40,7 @@ open class DictionaryLicenseInfo: Mappable {
     }
     open func mapping(map: Map) {
         `uri` <- map["uri"]
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `sku` <- map["sku"]
         `name` <- map["name"]
         `feature` <- map["feature"]

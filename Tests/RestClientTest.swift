@@ -59,7 +59,7 @@ class RestClientTest: BaseTest {
     }
 
     func testHTTPMethods() {
-        rc.delete("/restapi/v1.0/account/~") { (obj: AccountInfo?, error: HTTPError?) in
+        rc.delete("/restapi/v1.0/account/~") { (obj: GetAccountInfoResponse?, error: HTTPError?) in
             XCTAssertNil(obj)
             XCTAssertNotNil(error)
         }

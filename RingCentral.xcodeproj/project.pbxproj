@@ -2084,6 +2084,7 @@
 		87BA404B211813FD00292D83 /* ConversationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA39BB211813FA00292D83 /* ConversationInfo.swift */; };
 		87D30AB91D9E5616009CC0E7 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D30AB71D9E5616009CC0E7 /* ObjectMapper.framework */; };
 		87D30ABA1D9E5616009CC0E7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D30AB81D9E5616009CC0E7 /* Alamofire.framework */; };
+		87D66589211C095F009DB464 /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D66588211C095F009DB464 /* TokenInfo.swift */; };
 		87E2E25B1E28BA9600E557E0 /* SpecialTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E2DEE81E28B9CF00E557E0 /* SpecialTest.swift */; };
 		87E2E25C1E28BA9600E557E0 /* BlockedNumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877021B91E1B7D1500857F0F /* BlockedNumberTest.swift */; };
 		87E2E25D1E28BA9600E557E0 /* TokenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5C72C1DE30ECF00A0D681 /* TokenTest.swift */; };
@@ -2690,6 +2691,7 @@
 		87BF19A41DCAC15D00A2DF29 /* CallLogTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CallLogTest.swift; path = Tests/CallLogTest.swift; sourceTree = "<group>"; };
 		87D30AB71D9E5616009CC0E7 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		87D30AB81D9E5616009CC0E7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		87D66588211C095F009DB464 /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TokenInfo.swift; path = Source/TokenInfo.swift; sourceTree = "<group>"; };
 		87DF1DBF1DCB2B32003DF22E /* BinaryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinaryTest.swift; path = Tests/BinaryTest.swift; sourceTree = "<group>"; };
 		87E2DEE81E28B9CF00E557E0 /* SpecialTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecialTest.swift; path = Tests/SpecialTest.swift; sourceTree = "<group>"; };
 		87EAD59A1D9BAEE200BE2FAA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Tests/Config.swift; sourceTree = "<group>"; };
@@ -3384,6 +3386,7 @@
 				879ADEEF1D98C4C0008E7735 /* RestClient.swift */,
 				875500D71DB4666A0089B0EA /* SubscriptionService.swift */,
 				878D66801DB65A2E0050C900 /* Special.swift */,
+				87D66588211C095F009DB464 /* TokenInfo.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -4119,6 +4122,7 @@
 				87BA370C211813D100292D83 /* ServiceProviderConfigPath.swift in Sources */,
 				87BA3F2C211813FC00292D83 /* GlipWebhookInfo.swift in Sources */,
 				87BA3DCC211813FC00292D83 /* NotificationInfo.swift in Sources */,
+				87D66589211C095F009DB464 /* TokenInfo.swift in Sources */,
 				87BA3C9C211813FB00292D83 /* RecordingInfo.swift in Sources */,
 				87BA3ED4211813FC00292D83 /* FaxResponse.swift in Sources */,
 				87BA375C211813D100292D83 /* CompaniesPath.swift in Sources */,

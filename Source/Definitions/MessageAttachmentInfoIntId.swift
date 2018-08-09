@@ -44,7 +44,7 @@ open class MessageAttachmentInfoIntId: Mappable {
         self.size = `size`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `uri` <- map["uri"]
         `type` <- map["type"]
         `contentType` <- map["contentType"]

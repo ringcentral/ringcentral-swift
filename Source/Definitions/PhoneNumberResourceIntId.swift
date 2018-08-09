@@ -58,7 +58,7 @@ open class PhoneNumberResourceIntId: Mappable {
         self.type = `type`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `country` <- map["country"]
         `extension` <- map["extension"]
         `label` <- map["label"]

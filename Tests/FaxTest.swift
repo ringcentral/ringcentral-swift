@@ -36,7 +36,7 @@ class FaxTest: BaseTest {
         let expectation2 = expectation(description: "expectation2")
 
         let parameters: Parameters = ["from": ["phoneNumber": Config.getInstance().username!], "to": [["phoneNumber": Config.getInstance().receiver!]]]
-        let postParameters = MmsPath.PostParameters(from: CallerInfo(phoneNumber: Config.getInstance().username!), to: [CallerInfo(phoneNumber: Config.getInstance().receiver!)])
+        let postParameters = CreateSMSMessage(from: MessageStoreCallerInfoRequest(phoneNumber: Config.getInstance().username!), to: [MessageStoreCallerInfoRequest(phoneNumber: Config.getInstance().receiver!)])
         var attachments: [Attachment] = []
         Alamofire.download("https://developer.ringcentral.com/assets/images/ico_case_business.png").responseData { response in
             if let textData = response.result.value {

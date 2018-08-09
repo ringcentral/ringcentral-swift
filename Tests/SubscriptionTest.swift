@@ -105,11 +105,12 @@ class SubscriptionTest: BaseTest {
         var count = 0
         subscription.listeners.append { notification in
             print(notification.json!)
-            XCTAssertTrue(NotificationType.Message == notification.type!)
-            let messageNotification: MessageNotification = notification.downcast()!
-            XCTAssertNotNil(messageNotification.body)
-            XCTAssertNotNil(messageNotification.body!.extensionId)
-            XCTAssertTrue(messageNotification.body!.changes!.count > 0)
+//            XCTAssertTrue(NotificationType.Message == notification.type!)
+//            let messageNotification: MessageNotification = notification.downcast()!
+            let messageEvent = MessageEvent(JSONString: notification.json!)!
+            XCTAssertNotNil(messageEvent.body)
+            XCTAssertNotNil(messageEvent.body!.extensionId)
+            XCTAssertTrue(messageEvent.body!.changes!.count > 0)
             count += 1
         }
 
@@ -150,10 +151,11 @@ class SubscriptionTest: BaseTest {
         let json = "{\"uuid\":\"ec43ed1b-ae0c-4571-a39a-861c432f31d3\",\"event\":\"/restapi/v1.0/account/130829004/extension/130829004/message-store\",\"timestamp\":\"2016-10-28T06:13:43.720Z\",\"subscriptionId\":\"ada0c29a-a914-4c15-bd52-7c27ac918f56\",\"body\":{\"extensionId\":130829004,\"lastUpdated\":\"2016-10-28T06:13:33.931+0000\",\"changes\":[{\"type\":\"SMS\",\"newCount\":1,\"updatedCount\":0}]}}"
         let notification = Notification(json: json)!
         XCTAssertTrue("/restapi/v1.0/account/130829004/extension/130829004/message-store" == notification.event!)
-        XCTAssertTrue(NotificationType.Message == notification.type!)
-        let messageNotification: MessageNotification = notification.downcast()!
-        XCTAssertNotNil(messageNotification.body!.extensionId)
-        XCTAssertTrue(130829004 == messageNotification.body!.extensionId!)
+        let messageEvent = MessageEvent(JSONString: notification.json!)!
+//        XCTAssertTrue(NotificationType.Message == notification.type!)
+//        let messageNotification: MessageNotification = notification.downcast()!
+//        XCTAssertNotNil(messageNotification.body!.extensionId)
+        XCTAssertTrue("130829004" == messageEvent.body!.extensionId!)
     }
 
     func testParseURL() {

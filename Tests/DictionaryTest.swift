@@ -17,14 +17,14 @@ class DictionaryTest: BaseTest {
         let expectation1 = expectation(description: "expectation1")
         rc.getString("/restapi/v1.0/dictionary/country/46") { string, error in
             XCTAssertNil(error)
-            let country = FullCountryInfo(JSONString: string!)
+            let country = GetCountryInfoDictionaryResponse(JSONString: string!)
             XCTAssertTrue("China" == country!.name)
             expectation1.fulfill()
         }
 
         // test get model
         let expectation2 = expectation(description: "expectation2")
-        rc.get("/restapi/v1.0/dictionary/country/46") { (country: FullCountryInfo?, error) in
+        rc.get("/restapi/v1.0/dictionary/country/46") { (country: GetCountryInfoDictionaryResponse?, error) in
             XCTAssertNil(error)
             XCTAssertTrue("China" == country!.name)
             XCTAssertNotNil(country!.loginAllowed)

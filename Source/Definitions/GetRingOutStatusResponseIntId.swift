@@ -23,7 +23,7 @@ open class GetRingOutStatusResponseIntId: Mappable {
         self.status = `status`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `uri` <- map["uri"]
         `status` <- map["status"]
     }

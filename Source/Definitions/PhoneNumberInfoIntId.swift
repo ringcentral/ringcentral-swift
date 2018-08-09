@@ -59,7 +59,7 @@ open class PhoneNumberInfoIntId: Mappable {
         self.usageType = `usageType`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `country` <- map["country"]
         `extension` <- map["extension"]
         `label` <- map["label"]

@@ -29,7 +29,7 @@ open class ExtensionInfoIntId: Mappable {
         self.partnerId = `partnerId`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `uri` <- map["uri"]
         `extensionNumber` <- map["extensionNumber"]
         `partnerId` <- map["partnerId"]

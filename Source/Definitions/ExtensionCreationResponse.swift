@@ -92,7 +92,7 @@ open class ExtensionCreationResponse: Mappable {
         self.hidden = `hidden`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `uri` <- map["uri"]
         `contact` <- map["contact"]
         `extensionNumber` <- map["extensionNumber"]

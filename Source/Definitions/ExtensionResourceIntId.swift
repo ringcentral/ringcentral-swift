@@ -86,7 +86,7 @@ open class ExtensionResourceIntId: Mappable {
     }
     open func mapping(map: Map) {
         `uri` <- map["uri"]
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `partnerId` <- map["partnerId"]
         `extensionNumber` <- map["extensionNumber"]
         `loginName` <- map["loginName"]

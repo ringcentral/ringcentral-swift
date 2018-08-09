@@ -94,7 +94,7 @@ open class FaxResponse: Mappable {
         self.coverPageText = `coverPageText`
     }
     open func mapping(map: Map) {
-        `id` <- (map["id"], StringTransform())
+        `id` <- map["id"]
         `uri` <- map["uri"]
         `type` <- map["type"]
         `from` <- map["from"]
