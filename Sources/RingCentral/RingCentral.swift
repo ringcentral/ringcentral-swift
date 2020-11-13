@@ -1,3 +1,19 @@
+// import Alamofire
+
+struct RingCentralOptions {
+    var clientId: String?
+    var clientSecret: String?
+    var server: String?
+}
+
 struct RingCentral {
-    var text = "Hello, World!"
+    let options: RingCentralOptions
+    init(options: RingCentralOptions) {
+        self.options = options
+    }
+    func authorize(username: String, extension: String?, password: String) {
+        // AF.request(self.options.server + "/restapi/v1.0").response { response in
+        //     debugPrint(response)
+        // }
+    }
 }

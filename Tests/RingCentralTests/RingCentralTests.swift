@@ -3,10 +3,9 @@ import XCTest
 
 final class RingCentralTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(RingCentral().text, "Hello, World!")
+        // XCTAssertEqual(RingCentral().text, "Hello, World!")
+        let rc = RingCentral(options: RingCentralOptions(clientId: "", clientSecret: "", server: ""))
+        rc.authorize(username: "username", extension: "extension", password: "password")
     }
 
     static var allTests = [
