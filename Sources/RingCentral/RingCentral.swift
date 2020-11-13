@@ -1,4 +1,4 @@
-// import Alamofire
+import Alamofire
 
 struct RingCentralOptions {
     var clientId: String?
