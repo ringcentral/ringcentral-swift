@@ -11,9 +11,10 @@ struct RingCentral {
     init(options: RingCentralOptions) {
         self.options = options
     }
-    func authorize(username: String, extension: String?, password: String) {
-        // AF.request(self.options.server + "/restapi/v1.0").response { response in
-        //     debugPrint(response)
-        // }
+    func authorize(username: String, extension: String?, password: String, callback: (() -> Void)? = nil) {
+        AF.request(self.options.server! + "/restapi/v1.0").response { response in
+            debugPrint(response)
+            callback?()
+        }
     }
 }
