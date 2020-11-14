@@ -11,6 +11,13 @@ __[Voice](https://developer.ringcentral.com/api-products/voice), [SMS/MMS](https
 [API Reference](https://developer.ringcentral.com/api-docs/latest/index.html) and [APIs Explorer](https://developer.ringcentral.com/api-explorer/latest/index.html).
 
 
+# Latest update
+
+Master branch is not up to date and it doesn't work with latest Swift language.
+
+For a working version please check the [dev branch](https://github.com/ringcentral/ringcentral-swift/tree/dev) of this project.
+
+
 ## Requirements
 
 - iOS 9.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+
