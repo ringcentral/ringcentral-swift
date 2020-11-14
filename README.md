@@ -19,3 +19,5 @@ dependencies: [
 ## Usage
 
 Please check this [test case](./Tests/RingCentralTests/RingCentralTests.swift).
+
+A [demo project](https://github.com/tylerlong/ringcentral-swift-demo) for your reference.
