@@ -1,23 +1,23 @@
 import Alamofire
 
-struct RingCentralOptions {
-    let clientId: String?
-    let clientSecret: String?
-    let server: String?
+public struct RingCentralOptions {
+    public let clientId: String?
+    public let clientSecret: String?
+    public let server: String?
+    public init(clientId: String?, clientSecret: String?, server: String?) {
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.server = server
+    }
 }
 
-struct TokenInfo {
-    let access_token: String?
-    let refresh_token: String?
-}
-
-class RingCentral {
-    let options: RingCentralOptions
-    var tokenInfo: [String: Any]?
-    init(options: RingCentralOptions) {
+public class RingCentral {
+    public let options: RingCentralOptions
+    public var tokenInfo: [String: Any]?
+    public init(options: RingCentralOptions) {
         self.options = options
     }
-    func authorize(username: String, ext: String?, password: String, callback: (() -> Void)? = nil) {
+    public func authorize(username: String, ext: String?, password: String, callback: (() -> Void)? = nil) {
         let parameters: Parameters = [
             "username": username,
             "extension": ext ?? "",
@@ -34,7 +34,7 @@ class RingCentral {
             callback?()
         }
     }
-    func request(_ endpoint: String, method: HTTPMethod = .get,
+    public func request(_ endpoint: String, method: HTTPMethod = .get,
                       parameters: Parameters? = nil,
                       encoding: ParameterEncoding = JSONEncoding.default) -> DataRequest {
         let headers: HTTPHeaders = [

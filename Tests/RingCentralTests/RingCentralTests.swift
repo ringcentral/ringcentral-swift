@@ -1,5 +1,5 @@
 import XCTest
-@testable import RingCentral
+import RingCentral
 import Alamofire
 
 final class RingCentralTests: XCTestCase {
