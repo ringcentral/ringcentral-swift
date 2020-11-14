@@ -4,15 +4,21 @@ import XCTest
 final class RingCentralTests: XCTestCase {
     func testExample() {
         let exp = expectation(description: "http call")
+
+        let dict = ProcessInfo.processInfo.environment
         let options = RingCentralOptions(
-            clientId: "33zQZlyQSPadH22cFIT0sw", 
-            clientSecret: "TgihqTjaSg2_63CmrNq6tA8n2riQTCQwGl4VoD0mRYTA", 
-            server: "https://platform.devtest.ringcentral.com"
+            clientId: dict["RINGCENTRAL_CLIENT_ID"]!, 
+            clientSecret: dict["RINGCENTRAL_CLIENT_SECRET"]!, 
+            server: dict["RINGCENTRAL_SERVER_URL"]!
         )
         let rc = RingCentral(options: options)
-        rc.authorize(username: "15178795131", ext: "101", password: "Ring123!") {
+        rc.authorize(
+            username: dict["RINGCENTRAL_USERNAME"]!, 
+            ext: dict["RINGCENTRAL_EXTENSION"], 
+            password: dict["RINGCENTRAL_PASSWORD"]!) {
             exp.fulfill()
         }
+
         waitForExpectations(timeout: 30, handler: nil)
     }
 
