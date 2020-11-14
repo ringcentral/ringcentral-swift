@@ -28,6 +28,7 @@ final class RingCentralTests: XCTestCase {
                     ],
                     "text": "Hello world",
                 ]
+                // send sms
                 rc.request("/restapi/v1.0/account/~/extension/~/sms", method: .post, parameters: parameters).responseJSON { response in
                     debugPrint(response)
                     exp.fulfill()
