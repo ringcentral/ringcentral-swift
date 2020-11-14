@@ -1,13 +1,19 @@
 import Alamofire
 
 struct RingCentralOptions {
-    var clientId: String?
-    var clientSecret: String?
-    var server: String?
+    let clientId: String?
+    let clientSecret: String?
+    let server: String?
 }
 
-struct RingCentral {
+struct TokenInfo {
+    let access_token: String?
+    let refresh_token: String?
+}
+
+class RingCentral {
     let options: RingCentralOptions
+    var tokenInfo: [String: Any]?
     init(options: RingCentralOptions) {
         self.options = options
     }
@@ -22,9 +28,18 @@ struct RingCentral {
         let headers: HTTPHeaders = [
             "Authorization": "Basic \(base64Token)"
         ]
-        AF.request("\(self.options.server!)/restapi/oauth/token", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).response { response in
+        AF.request("\(self.options.server!)/restapi/oauth/token", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
             debugPrint(response)
+            self.tokenInfo = response.value as? [String: Any]
             callback?()
         }
+    }
+    func request(_ endpoint: String, method: HTTPMethod = .get,
+                      parameters: Parameters? = nil,
+                      encoding: ParameterEncoding = JSONEncoding.default) -> DataRequest {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(self.tokenInfo!["access_token"]!)"
+        ]
+        return AF.request(self.options.server! + endpoint, method: method, parameters: parameters, encoding: encoding, headers: headers)
     }
 }

@@ -1,5 +1,6 @@
 import XCTest
 @testable import RingCentral
+import Alamofire
 
 final class RingCentralTests: XCTestCase {
     func testExample() {
@@ -16,7 +17,21 @@ final class RingCentralTests: XCTestCase {
             username: dict["RINGCENTRAL_USERNAME"]!, 
             ext: dict["RINGCENTRAL_EXTENSION"], 
             password: dict["RINGCENTRAL_PASSWORD"]!) {
-            exp.fulfill()
+                let parameters: Parameters = [
+                    "from": [
+                        "phoneNumber": dict["RINGCENTRAL_USERNAME"]!
+                    ],
+                    "to": [
+                        [
+                            "phoneNumber": dict["RINGCENTRAL_RECEIVER"]!
+                        ]
+                    ],
+                    "text": "Hello world",
+                ]
+                rc.request("/restapi/v1.0/account/~/extension/~/sms", method: .post, parameters: parameters).responseJSON { response in
+                    debugPrint(response)
+                    exp.fulfill()
+                }
         }
 
         waitForExpectations(timeout: 30, handler: nil)
