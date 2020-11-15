@@ -42,4 +42,7 @@ public class RingCentral {
         ]
         return AF.request(self.options.server! + endpoint, method: method, parameters: parameters, encoding: encoding, headers: headers)
     }
+    public func refresh() {
+        
+    }
 }
