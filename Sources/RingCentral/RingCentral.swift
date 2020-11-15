@@ -29,7 +29,6 @@ public class RingCentral {
             "Authorization": "Basic \(base64Token)"
         ]
         AF.request("\(self.options.server!)/restapi/oauth/token", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
-            debugPrint(response)
             self.tokenInfo = response.value as? [String: Any]
             callback?()
         }
@@ -42,7 +41,18 @@ public class RingCentral {
         ]
         return AF.request(self.options.server! + endpoint, method: method, parameters: parameters, encoding: encoding, headers: headers)
     }
-    public func refresh() {
-        
+    public func refresh(callback: (() -> Void)? = nil) {
+        let parameters: Parameters = [
+            "grant_type": "refresh_token",
+            "refresh_token": self.tokenInfo!["refresh_token"]!
+        ]
+        let base64Token = "\(self.options.clientId!):\(self.options.clientSecret!)".data(using: String.Encoding.utf8)!.base64EncodedString(options: [])
+        let headers: HTTPHeaders = [
+            "Authorization": "Basic \(base64Token)"
+        ]
+        AF.request("\(self.options.server!)/restapi/oauth/token", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+            self.tokenInfo = response.value as? [String: Any]
+            callback?()
+        }
     }
 }
