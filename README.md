@@ -2,7 +2,7 @@
 
 [![Build status](https://travis-ci.org/ringcentral/ringcentral-swift.svg?branch=master)](https://travis-ci.org/ringcentral/ringcentral-swift)
 [![Coverage Status](https://coveralls.io/repos/github/ringcentral/ringcentral-swift/badge.svg?branch=master)](https://coveralls.io/github/ringcentral/ringcentral-swift?branch=master)
-[![Community](https://img.shields.io/badge/dynamic/json.svg?label=community&colorB=&suffix=%20users&query=$.approximate_people_count&uri=http%3A%2F%2Fapi.getsatisfaction.com%2Fcompanies%2F102909.json)](https://devcommunity.ringcentral.com/ringcentraldev)
+[![Community](https://img.shields.io/badge/community-dev_forums-blue)](https://community.ringcentral.com/spaces/144/index.html)
 [![Twitter](https://img.shields.io/twitter/follow/ringcentraldevs.svg?style=social&label=follow)](https://twitter.com/RingCentralDevs)
 
 __[RingCentral Developers](https://developer.ringcentral.com/api-products)__ is a cloud communications platform which can be accessed via more than 70 APIs. The platform's main capabilities include technologies that enable:
